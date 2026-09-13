@@ -16,13 +16,12 @@ tags:
 
 # expanded-cinema
 
-Daily Three.js sketch agent project (see handoff at
-`~/.brain/projects/expanded-cinema-threejs-agent.svx` — system-level, not duplicated here).
+Daily Three.js sketch agent project (system-level handoff kept outside this repo).
 
 ## Decisions
 
 - **Workspace shape**: modeled on [ts-cli-template](https://github.com/joelhooks/ts-cli-template)
-  — pnpm workspaces (`apps/*`, `packages/*`) + Turborepo, strict TS 7.0.2,
+— pnpm workspaces (`apps/*`, `packages/*`) + Turborepo, strict TS 7.0.2,
   oxlint/ultracite + oxfmt, devEngines pinning Node >=24.18 / pnpm 11.3.0.
 - **Rendering**: WebGPU (three.js `WebGPURenderer`), not WebGL. Fallback story:
   report rather than silently substitute.
@@ -40,12 +39,12 @@ Daily Three.js sketch agent project (see handoff at
   `*.orchestration.mp4` suppressed from the loop. Starter placeholder:
   `apps/sketch/public/videos/starter.mp4`.
 - **Cloud infra**: alchemy (`2.0.0-beta.77`) for Cloudflare. Publishing target
-  is **cinema.wzrrd.sh** via the `wzrrd.sh` zone (pattern proven in
-  `~/Code/joelhooks/imp/alchemy.run.ts`: custom-domain Workers routes beat
+  is **cinema.wzrrd.sh** via the `wzrrd.sh` zone (pattern proven in a local stack file:
+  custom-domain Workers routes beat
   the zone's wildcard because Routes beat custom domains; stage-suffixed
   hostnames for previews). Reference examples vendored: the alchemy repo's
   `examples/cloudflare-website-vite` (SPA on Workers w/ `Website.Vite`) and
-  `~/Code/joelhooks/open-seo` (prebuilt worker + `assets.directory`).
+  another local example (prebuilt worker + `assets.directory`).
 - **Public repo**: GitHub via `gh`, public. ShitRat actor rule does not
   apply here (manual, Joel-approved publish; no app access needed).
 - **Vendored source mirrors** (`.agent_sources/github.com/`, via
