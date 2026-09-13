@@ -11,3 +11,8 @@ Classification contract (filename suffixes):
 
 Today: empty until the pipeline produces the first real clip. The starter
 placeholder lives at `apps/sketch/public/videos/starter.mp4`.
+
+Authority move (2026-09-13): videos/ is now the single source of truth. The
+ingest pipeline places clips here and regenerates apps/sketch/catalog.json;
+collections of deployed clips are served by the worker from the catalog
+during build. No hand-placed clips under apps/sketch/public.

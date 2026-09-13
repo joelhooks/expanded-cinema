@@ -23,6 +23,16 @@ export default Alchemy.Stack(
     const stage = yield* Alchemy.Stage;
     const host = hostname(stage);
 
+    // Immutable version archive: one prefix per shipped study version.
+    // forceDestroy allowed only on non-prod stages so previews can be torn
+    // down; prod archive is never destroy-run.
+    const archive = yield* Cloudflare.R2.Bucket("Archive", {
+      forceDestroy: stage !== "prod",
+      // r2.dev public read for the archive index and older bundles;
+      // rate-limited endpoint is fine for a browseable history surface.
+      publicAccess: true,
+    });
+
     const site = yield* Cloudflare.Website.Vite("ExpandedCinemaWeb", {
       rootDir: "../../apps/sketch",
       memo: {
@@ -32,6 +42,11 @@ export default Alchemy.Stack(
       domain: host,
       routes: [{ pattern: `${host}/*`, zoneName: ZONE }],
       observability: { enabled: true },
+      // The R2 bucket rides the worker env so a worker route can read
+      // archive manifest objects (see apps/sketch worker-side code).
+      env: {
+        ARCHIVE: archive,
+      },
     });
 
     return {

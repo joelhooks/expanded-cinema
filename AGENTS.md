@@ -23,6 +23,36 @@ pnpm build                        # turbo build (sketch bundles to dist/)
 Required validation before claiming a change is ready:
 `pnpm turbo run check test build`.
 
+## Live agent operations
+
+The Expanded Cinema runtime has three separate, low-noise loops. Keep these
+concerns separate; a status check is not a memory write, and a memory write is
+not an interruption to the maker.
+
+1. **Incident watch** — observe the starter surface and its serving path. Treat
+   intentional DGX cold starts and stale terminal output as expected. Do not
+   restart or repair the DGX stack. Escalate only a new, material regression:
+   the starter actually stops, a deploy regresses, or a live health check
+   fails.
+2. **Memory gardener** — use the Executor-backed Supermemory integration to
+   record meaningful progress in two horizons:
+   - short-term: timestamped observations, transient failures, deploys,
+     checks, corrections, and superseded claims;
+   - long-term: verified durable facts, stable decisions, invariants, and
+     reusable lessons.
+
+   Label the horizon, preserve the evidence, avoid duplicates, and never
+   promote stale or unverified output into long-term memory.
+3. **Dream feeder** — only when curation produces a meaningful new update,
+   feed the maker a compact, evidence-backed context summary. No routine
+   dumps, duplicate dreams, or speculative noise.
+
+Operational feedback should be infrequent and specific. Tattle material
+regressions to the art-director lane with evidence, implication, and whether
+action is needed. Aesthetic criticism is welcome, but accuracy outranks
+performative snark. Prefer current live or visual verification over old pane
+output.
+
 ## Layout
 
 | Path             | Role                                            |

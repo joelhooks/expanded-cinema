@@ -1,6 +1,7 @@
 import * as THREE from "three/webgpu";
 import { sketchEvents } from "./lib/o11y";
-import { openVideoLayer, type VideoLayerHandle } from "./lib/video-layer";
+import { openVideoLayer } from "./lib/video-layer";
+import { DELAY, STUDY, mountScene, type StudyScene } from "./lib/study-recurrence";
 
 /**
  * Hello world: one animated knot on a WebGPU renderer. Renderer init and the
@@ -54,32 +55,24 @@ try {
   scene.add(key);
   scene.add(new THREE.AmbientLight(0x222244, 0.9));
 
-  // The first projection surface: the video layer's texture on a screen
-  // plane, facing the camera. Emissive so the source image reads as
-  // light-on-surface (projection apparatus framing), not as a lit object.
-  let videoLayer: VideoLayerHandle | null = null;
-  let screen: THREE.Mesh | null = null;
-  const screenGeometry = new THREE.PlaneGeometry(3.2, 1.8);
-  const screenMaterial = new THREE.MeshBasicMaterial({ color: 0x111111 });
+  // Study: recurrence-01. The knot receives the video as its only light
+  // (map, not lit material); the screen shows the scene's own past via a
+  // 24-frame render-target delay ring. Lineage: hello-world-knot.
+  let study: StudyScene | null = null;
   openVideoLayer()
-    .then((layer) => {
-      videoLayer = layer;
-      if (!videoLayer) return;
-      screenMaterial.map = videoLayer.texture;
-      screenMaterial.color.set(0xffffff);
-      screen = new THREE.Mesh(screenGeometry, screenMaterial);
-      screen.position.set(0, 1.1, -1.2);
-      scene.add(screen);
+    .then(async (layer) => {
+      if (!layer) return;
+      study = await mountScene(renderer, layer);
       sketchEvents
-        .emitInfo("video-layer", "screen.mounted", { surface: "plane-3.2x1.8" })
+        .emitInfo("study", "study.scene.live", { study: STUDY, delay: DELAY })
         .catch(() => undefined);
     })
     .catch(() => {
-      // openVideoLayer already emits its own failure envelope internally
+      // openVideoLayer / mountScene already emit their own failure envelopes
     });
 
   if (overlay) {
-    overlay.textContent = `expanded cinema · hello world · ${backend}`;
+    overlay.textContent = `expanded cinema · ${STUDY} · extends hello-world-knot: keeps webgpu+o11y+starter; changes knot-as-screen-surface, self-delayed view · ${backend}`;
   }
 
   function resize(): void {
@@ -105,12 +98,27 @@ try {
   renderer.setAnimationLoop((now: number) => {
     const delta = (now - previous) / 1000;
     previous = now;
-    knot.rotation.x += delta * 0.4;
-    knot.rotation.y += delta * 0.55;
-    // Subtle parallax: the projection screen leans against the knot's motion
-    // so the source material visibly re-frames itself over time.
-    if (screen) {
-      screen.rotation.y = Math.sin(now / 2400) * 0.18;
+    if (study) {
+      study.knot.rotation.x += delta * 0.4;
+      study.knot.rotation.y += delta * 0.55;
+      study.screen.rotation.y = Math.sin(now / 2400) * 0.18;
+
+      // Rephotography: render the scene to the ring's write target, then
+      // swap read/write so the screen always shows DELAY-frames-ago.
+      const write = study.targets[study.readIndex.value % study.targets.length];
+      if (write) {
+        renderer.setRenderTarget(write);
+        renderer.render(study.scene, study.camera);
+        renderer.setRenderTarget(null);
+        study.readIndex.value = (study.readIndex.value + 1) % study.targets.length;
+        const read = study.targets[study.readIndex.value];
+        const mat = study.screen.material as THREE.MeshBasicMaterial;
+        mat.map = read?.texture ?? null;
+        mat.needsUpdate = true;
+      }
+      // Give the present scene a final render to the canvas so what the
+      // viewer sees is the CURRENT frame plus a screen showing the past.
+      renderer.render(study.scene, study.camera);
     }
     framesSinceHeartbeat++;
 
@@ -129,7 +137,11 @@ try {
         });
     }
 
-    renderer.render(scene, camera);
+    if (!study) {
+      // fallback: dark scene, study.load failure already reported
+      renderer.render(scene, camera);
+    }
+
   });
 } catch (initError) {
   initFailures++;

@@ -10,3 +10,4 @@ BRAIN.md
 *.log
 .DS_Store
 state/*.tmp
+.wrangler/

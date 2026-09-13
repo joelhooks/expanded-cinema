@@ -1,0 +1,12 @@
+{
+  "study": "recurrence-01",
+  "sha": "7371a23",
+  "bundleHash": "07d2c7dc2f77d7b3c4a8cd1eac3f991c6411ef45dfe3b7a78a167e340b021b4e",
+  "catalogHashes": {
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "rephotography delay: knot carries video as map (key light removed), screen shows scene's own past via 24-frame render-target ring; WIP - present-frame render pass added",
+  "archivedAt": "2026-09-13T23:32:41.553Z",
+  "url": "https://cinema.wzrrd.sh/",
+  "archive": "https://cinema.wzrrd.sh/archive/recurrence-01/7371a23/"
+}

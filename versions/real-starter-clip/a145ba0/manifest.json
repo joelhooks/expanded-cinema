@@ -1,0 +1,12 @@
+{
+  "study": "real-starter-clip",
+  "sha": "a145ba0",
+  "bundleHash": "07d2c7dc2f77d7b3c4a8cd1eac3f991c6411ef45dfe3b7a78a167e340b021b4e",
+  "catalogHashes": {
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "placeholder mp4 killed — real 6s gradients+testsrc composite, verified in-browser (video.load 652ms, screen.mounted, canvas advancing)",
+  "archivedAt": "2026-09-13T23:32:41.492Z",
+  "url": "https://cinema.wzrrd.sh/",
+  "archive": "https://cinema.wzrrd.sh/archive/real-starter-clip/a145ba0/"
+}

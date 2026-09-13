@@ -1,6 +1,6 @@
-# starter.mp4 placeholder
+# Build-time copy of the workspace catalog
 
-Replace with any short H.264 MP4 and update the `sha256` in
-`apps/sketch/catalog.json` (regenerate with `pnpm catalog:videos`). The
-sketch loop plays whatever the catalog publishes; the StarterSource fallback
-diff is a deliberate, time-limited bridge.
+`videos/` at the workspace root is the authority. The build (vite plugin)
+copies clips from there into this directory so they ship as static URLs
+without a hand-placed duplicate being committed. Nothing here is real
+source; do not edit.
