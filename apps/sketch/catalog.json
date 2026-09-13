@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-13T00:00:00.000Z",
-  "generator": "scripts/catalog-videos.mjs (manual bootstrap)",
+  "generatedAt": "2026-09-13T22:13:38.507Z",
+  "generator": "scripts/catalog-videos.mjs (manual bootstrap, public/ seed)",
   "entries": [
     {
       "file": "starter.mp4",
-      "sha256": "1f0e3a5c2b98e7a1156c4d2f9b7a4c0e8d3f6b2a9c5e1d740f83b6a29ec51d74"
+      "sha256": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
     }
   ]
 }
