@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Expanded Cinema — Sketch</title>
+    <title>Expanded Cinema</title>
     <style>
       html,
       body {
@@ -18,17 +18,39 @@
       #overlay {
         position: fixed;
         inset: 0;
+        top: auto;
+        height: 4rem;
         display: grid;
         place-items: center;
         color: #9be7ff;
-        font: 14px/1.6 ui-monospace, monospace;
+        font: 13px/1.6 ui-monospace, monospace;
         pointer-events: none;
         text-align: center;
+        z-index: 2;
+      }
+      footer {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        padding: 0.75rem 1rem;
+        font: 12px/1.4 ui-monospace, monospace;
+        color: #667788;
+      }
+      footer a {
+        color: #668899;
+        text-decoration: none;
+        border-bottom: 1px dotted #445566;
+      }
+      footer a:hover {
+        color: #9be7ff;
       }
     </style>
   </head>
   <body>
     <div id="overlay">expanded cinema · initializing…</div>
+    <footer>
+      <a href="https://github.com/joelhooks/expanded-cinema">github ↗</a>
+    </footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

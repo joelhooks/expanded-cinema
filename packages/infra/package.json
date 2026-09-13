@@ -1,0 +1,25 @@
+{
+  "name": "@expanded-cinema/infra",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check": "pnpm run typecheck",
+    "dev": "alchemy dev",
+    "up": "alchemy deploy",
+    "down": "alchemy destroy"
+  },
+  "dependencies": {
+    "@effect/platform": "0.97.2",
+    "@effect/platform-bun": "4.0.0-rc.112",
+    "@effect/platform-node": "4.0.0-rc.112",
+    "@effect/platform-node-shared": "4.0.0-rc.112",
+    "alchemy": "2.0.0-beta.77",
+    "effect": "4.0.0-rc.112"
+  },
+  "devDependencies": {
+    "@types/node": "26.5.1",
+    "typescript": "7.0.2"
+  }
+}

@@ -3,6 +3,7 @@
  * lives here so apps/sketch stays a thin composition root.
  */
 
+export * from "./observability";
 export interface SourceRef {
   file: string;
   hash: string | null;

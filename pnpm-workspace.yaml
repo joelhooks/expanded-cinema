@@ -5,3 +5,17 @@ packages:
 allowBuilds:
   lefthook: true
   esbuild: true
+  '@parcel/watcher': true
+  msgpackr-extract: true
+  workerd: true
+
+# Pin the entire Effect v4 platform + alchemy to a mutually consistent set.
+# alchemy beta.77's deps drag rc.115 transitive packages whose `effect/ByteSize`
+# import does not exist in effect rc.112, and Config.string vanished in rc.115.
+overrides:
+  "@effect/platform-node-shared": 4.0.0-rc.112
+  "@effect/platform-bun": 4.0.0-rc.112
+  "@effect/platform-node": 4.0.0-rc.112
+  "@effect/platform": 0.97.2
+  effect: 4.0.0-rc.112
+  alchemy: 2.0.0-beta.77

@@ -1,0 +1,5 @@
+# pre-commit gate: typecheck + lint + format + test before every commit
+pre-commit:
+  jobs:
+    - name: turbo check + test
+      run: pnpm turbo run check test
