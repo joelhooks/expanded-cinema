@@ -20,6 +20,13 @@ and owns doctrine only: `.pi/skills/expanded-cinema-research`,
 before choosing or critiquing a study. Neither role edits the brief, budget,
 schedule, or model pin. Joel approves.
 
+Creative tools on this machine: Blender 5.2.1 (`blender` on PATH, MCP via
+Executor integration `blender`, needs `blender-mcp-host` running), Houdini
+22.0 (`hython`, `hbatch`, no MCP), DaVinci Resolve Studio 21.1 (MCP via
+Executor integration `davinci_resolve`, needs Resolve running). Details,
+address patterns, and rules: `.brain/resources/creative-tooling.svx`. They
+make material for the sketch; the sketch is the work.
+
 Effect is v4 at `4.0.0-rc.112`, one major across the workspace, pinned by
 `pnpm-workspace.yaml` overrides. Do not add v3 packages (`effect@3.x`,
 `@effect/platform@0.x`) and do not bump effect without bumping alchemy with

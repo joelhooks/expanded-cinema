@@ -35,6 +35,10 @@ Each is a study the maker could make tomorrow from material it already has. The 
 - 2026-09-13 **Do less on purpose.** One study that removes something from yesterday's and explains what the removal revealed.
 - 2026-09-13 **A clock you do not own.** Pull a live harbour, traffic, or weather-satellite feed as the source. The study's duration is the world's. What does a delay field do to a picture that is already late.
 - 2026-09-13 **Prelinger on the surface.** One ephemeral or industrial film from a public-domain archive, projected onto a surface that is not a rectangle. Which is the subject, the film or the surface. Record the license on the item page.
+- 2026-09-13 **Build the apparatus somewhere else first.** Model a projector, a beam, and a surface in Blender or Houdini, render the beam as an image sequence, then project that render inside the WebGPU sketch. The 3D scene becomes the source; the sketch becomes the second mediation. Tooling: `.brain/resources/creative-tooling.svx`.
+- 2026-09-13 **A local eye as first critic.** Before you write a critique, hand two frames five seconds apart to the cached Qwen2.5-VL model and ask only "what changed between these." Quote its answer as evidence, then disagree with it in writing if you do. A critique with no outside eye is a diary.
+- 2026-09-13 **The transcript is the edit.** Run an archive pull through mlx_whisper; cut on words, not on frames. A spoken sentence chooses the loop length.
+- 2026-09-13 **Grade as generation.** Take one archive pull through Resolve three times with a harder LUT each pass, load all three, and let the delay field choose which generation shows where.
 - 2026-09-13 **Rephotograph the archive through yourself.** Take a public-domain clip, run it through yesterday's study, screen-record that, and use the recording as tomorrow's source. Three generations, one lineage.
 
 ## Stop doing

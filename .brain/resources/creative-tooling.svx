@@ -1,0 +1,59 @@
+---
+title: "Creative tooling available to the maker: Blender, Houdini, DaVinci Resolve"
+type: "resource"
+status: "active"
+created_at: "2026-09-13"
+privacy: "public"
+tags:
+  - expanded-cinema
+  - blender
+  - houdini
+  - davinci-resolve
+  - executor
+  - mcp
+---
+
+# Creative tooling on this machine
+
+Joel, 2026-09-13: install Blender and let the agent know it has access to it, Houdini and DaVinci Resolve are already here, Resolve has an MCP. Blender and Resolve are now wired into Executor as saved MCP connections. Houdini is available on the command line.
+
+These are source generators and post tools for studies. They do not replace the Three.js WebGPU sketch, which is the work. Use them to make material, rigs, and cuts that the sketch then projects, rephotographs, or remixes.
+
+## Blender 5.2.1 LTS
+
+- Installed via Homebrew cask. `blender` is on PATH; the app is in `/Applications/Blender.app`.
+- MCP: the "MCP for Blender" addon (`blender-mcp`, addon 1.6) is installed and enabled in Blender's saved prefs, telemetry **off**. The stdio server is `uvx blender-mcp`; it talks to a socket the addon opens inside a running Blender at port 9876.
+- Executor integration `blender` (name "Blender MCP", 28 tools). Discover with `tools.search({ query: "blender" })`; the 2026-09-13 verified address pattern is `tools.blender.org.default.<tool>`. Key tools: `get_scene_info`, `get_object_info`, `get_viewport_screenshot`, `execute_blender_code`, `download_polyhaven_asset`, `get_addon_status`. Third-party generators (Hyper3D, Hunyuan3D, Sketchfab, Poly Pizza) are present but need keys and are paid or account-bound; VISION says spend needs Joel.
+- Blender must be running with the socket up for any tool call to work. Launch with `blender-mcp-host [file.blend]` (in `~/.local/bin`); it is idempotent and logs to `~/.local/state/blender-mcp-host.log`. Verify with `tools.blender.org.default.get_addon_status({})`.
+- If the stdio server asks for telemetry consent, answer `consent: false`.
+- Headless render without MCP: `blender --background file.blend --render-output //out --render-anim`.
+
+## Houdini 22.0.429
+
+- `/Applications/Houdini/Current` with `hython`, `hbatch`, `houdini`, `hserver`, `hkey` under `Frameworks/Houdini.framework/Versions/Current/Resources/bin`. No MCP; drive it with `hython` scripts or `hbatch` for headless cooks and renders.
+- Good for: procedural surfaces the projection lands on, simulated screens and fabric, volumetric beams, particle and fluid material to project. Export as image sequences or video for `videos/`, or as glTF for the sketch.
+
+## DaVinci Resolve Studio 21.1
+
+- `/Applications/DaVinci Resolve`. Scripting API and docs under the Blackmagic Developer directory; `DaVinciResolveScript.pyi` stubs are there.
+- MCP: Resolve ships its own stdio server, `ResolveMCP`, inside the app bundle. It needs Resolve running.
+- Executor integration `davinci_resolve` (name "DaVinci Resolve MCP", 14 tools). Verified address pattern `tools.davinci_resolve.org.default.<tool>`. Tools: `get_resolve_status`, `launch_resolve`, `get_whats_new`, `search_scripting_api`, `get_scripting_api`, `get_scripting_docs`, `run_script`, `run_script_unsafe`, `list_luts`, `generate_lut`, `list_dctls`, `update_dctl`, `delete_dctl`, `delete_lut`. The server's own instructions: always call `get_whats_new` first; the model is not trained on current Resolve features.
+- Good for: cutting archive pulls into loops, generational grade passes, LUT and DCTL as a colour-space study, rendering the clip the sketch will load.
+
+## Local AI on this machine
+
+Joel, 2026-09-13: "this computer has some solid capabilities for doing local ai shit." Mac Studio, Apple M4 Max, 128 GB unified memory, macOS 26. Inventory taken the same day; discover again before relying on a path.
+
+- **Local LLMs**: Ollama (`ollama` on PATH) with `qwen3:8b`, `qwen3-embedding:8b`, `nomic-embed-text`. pi-ds4 runs DeepSeek V4 Flash locally (weights cached); the `pi-ds4-config` skill owns it. The maker's own model is the pinned GLM endpoint and stays pinned; these are helpers, not substitutes.
+- **Local vision**: `mlx-community/Qwen2.5-VL-7B-Instruct-4bit` weights are cached. Run with `uvx --from mlx-vlm mlx_vlm.generate --model mlx-community/Qwen2.5-VL-7B-Instruct-4bit --image <frame.png> --prompt "..."`. Use it as the first critic: hand it two frames a few seconds apart and ask what changed. Its answer is evidence for the critique, never the verdict. Receipt 2026-09-13: given two live gallery frames five seconds apart it reported the gradient behind the object shifted from pink-purple to pink-blue, lighting on the object changed, and the caption stayed the same. Correct on all three, about 40 seconds wall time including model load.
+- **Speech and audio**: `mlx_whisper` (large-v3 and large-v3-turbo cached) for transcribing archive pulls; pyannote diarization cached. Transcripts are remix material: a spoken word is a cut point.
+- **Embeddings**: `qwen3-embedding:8b` or `nomic-embed-text` through Ollama for clustering research notes or matching clips to questions.
+- **Media tools**: `ffmpeg`, `ffprobe`, ImageMagick (`magick`), `mlx` and `mlx-c` from Homebrew, Adobe Premiere Pro 2026 alongside Resolve.
+- **Not present**: no local image or video diffusion stack (no ComfyUI, Draw Things, or Stable Diffusion install). Generating new footage from text is not a capability here today; ask before adding one, it is spend and a new dependency.
+
+## Rules that still apply
+
+- Provenance per clip in `research/provenance.md`, including clips these tools generate (source: "generated, Blender" or "cut from <provenance id>, Resolve").
+- Executor runs stdio servers as its service user. Do not assume your shell's environment inside a tool call.
+- Never write hostnames, ports beyond what is here, or private paths into this public repo.
+- A tool being available is not a reason to use it. The chain decides.

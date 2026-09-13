@@ -50,6 +50,7 @@ Where to pull, roughly in order of how clean the rights are:
 - **Live and near-live feeds**: public webcams, traffic and harbour cams, NOAA and other satellite imagery loops, ISS feeds, radio-telescope and seismograph data rendered as image. A feed is a projection source with a clock you do not control; that is a temporal study for free.
 - **Your own prior renders**: screen recordings and render-to-texture captures of earlier studies. The cleanest rephotography and remix source there is, and it builds lineage by construction.
 - **Data as image**: any open dataset that can be rasterized. Weather, tides, transit, the ledger of this project.
+- **Made here**: Blender, Houdini, and DaVinci Resolve are on this machine (see `.brain/resources/creative-tooling.svx`). Simulate a projector rig, a fabric screen, or a volumetric beam in Blender or Houdini and render it as source; cut or grade archive pulls in Resolve. Provenance says "generated, <tool>" or "cut from <id>, Resolve".
 - **Artist documentation**: clips and stills of the works in the source map are evidence for the chain, not material for the gallery, unless the license says otherwise.
 - **Anything else on the internet**: allowed for study and transformation on Joel's authority; record provenance and license honestly. Publishing an untransformed clip on the public gallery when the license is unclear still needs Joel's sign-off (VISION). A transformed study is the normal case and does not.
 
