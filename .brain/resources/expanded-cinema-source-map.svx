@@ -1,0 +1,99 @@
+---
+title: "Expanded cinema source map (seeded, verify before citing)"
+type: "resource"
+status: "active"
+created_at: "2026-09-13"
+privacy: "public"
+tags:
+  - expanded-cinema
+  - research
+  - sources
+---
+
+# Expanded cinema source map
+
+Seeded by the art director from memory on 2026-09-13. **Every entry is `unverified` until the maker confirms title, date, and attribution against a primary or institutional source and records the receipt.** Verifying an entry is a research deliverable. Do not cite an unverified entry in a study chain.
+
+Scope: roughly 1975 onward. Antecedents are marked and may give context, not carry a study alone.
+
+Entry format: `status · maker or author · work · year · why it matters for a Three.js operation · where to verify`.
+
+## Canonical texts and surveys
+
+- unverified · Gene Youngblood · *Expanded Cinema* · 1970 (antecedent) · the term itself; intermedia, synaesthetic cinema, the screen as environment · Dutton; full text widely archived
+- unverified · A.L. Rees, Duncan White, Steven Ball, David Curtis (eds.) · *Expanded Cinema: Art, Performance, Film* · 2011 · the standard scholarly survey, UK-heavy · Tate Publishing
+- unverified · Chrissie Iles · *Into the Light: The Projected Image in American Art 1964–1977* · 2001 · projection as sculpture and installation; exhibition catalogue · Whitney Museum
+- unverified · Tate Modern Tanks programme and "Expanded Cinema" strands · 2009 onward · institutional framing of live projection performance · tate.org.uk
+- unverified · LUX (London), Light Cone (Paris), EAI (New York), Anthology Film Archives · ongoing · distribution archives with artist pages and dated work lists; first stop for verification · lux.org.uk, lightcone.org, eai.org, anthologyfilmarchives.org
+
+## Projection: image, surface, viewer, beam
+
+- unverified · Anthony McCall · *Line Describing a Cone* · 1973 (antecedent) · the beam as the work; volumetric light; viewer walks inside the projection · McCall's own writings; Whitney
+- unverified · Anthony McCall · *Doubling Back* and the "solid light" return · 2003 onward · same question decades later with digital projection and haze; proof that a lineage can be revisited · Sean Kelly Gallery, Tate
+- unverified · Malcolm Le Grice · *Horror Film 1* · 1971 (antecedent) · the filmmaker's body between projectors and screen; shadow as image · LUX
+- unverified · Lis Rhodes · *Light Music* · 1975 · two projectors facing, optical sound, audience in the beams; the screen is the room · LUX, Tate Tanks 2012
+- unverified · Guy Sherwin · *Man with Mirror* · 1976 · performer holds a mirror/screen; surface moves, image stays · LUX
+- unverified · William Raban · *2'45"* · 1973 (antecedent) · films the audience and screen, projects it back; recursive projection · LUX
+- unverified · Paul Sharits · *Shutter Interface* · 1975 · multi-projector locational film piece; overlapping frames, flicker as spatial · Whitney; Anthology
+- unverified · Stan VanDerBeek · *Movie-Drome* · 1963–65 (antecedent) · dome, many projectors, image environment · Youngblood; Whitney
+- unverified · Sandra Gibson and Luis Recoder · projector performances · 2000s onward · the projector itself as instrument; sculptural beam · artist site; Tate
+- unverified · Rosa Barba · projector sculptures · 2000s onward · the apparatus exhibited as object · artist site; museum pages
+- unverified · Tacita Dean · *FILM* · 2011 · vertical projection in Tate Turbine Hall; format as subject · Tate
+
+## Rephotography: recapture, generation, feedback
+
+- unverified · Ken Jacobs · *Tom, Tom, the Piper's Son* · 1969 (antecedent) · rephotographing a 1905 film off a screen; framing, slowing, grain as content · Anthology; Jacobs interviews
+- unverified · Ken Jacobs · *Nervous System* performances · 1975 onward · two projectors, near-identical frames, propeller shutter; depth and stutter from rephotographed stills · Anthology; Jacobs writings
+- unverified · Ernie Gehr · *Eureka* · 1974 · 1906 trolley film rephotographed and slowed; duration as recovery of detail · MoMA; Anthology
+- unverified · Peter Tscherkassky · *Outer Space* · 1999 · contact-printed found footage, frame fracturing in the darkroom; generational manipulation · sixpackfilm; artist site
+- unverified · Martin Arnold · *Pièce touchée* · 1989 · optical printer micro-repetition of a few seconds of a feature; remix and temporal in one · sixpackfilm
+- unverified · Steina and Woody Vasulka · video work with Rutt/Etra and homemade tools · 1970s · signal as material; scan and raster manipulation · Vasulka archive (vasulka.org)
+- unverified · Joan Jonas · *Vertical Roll* · 1972 (antecedent) · the monitor's roll bar as the frame; apparatus failure as rhythm · EAI
+- unverified · Peter Campus · *Three Transitions* · 1973 (antecedent) · closed-circuit self-superimposition; the camera as the second surface · EAI
+- unverified · Nam June Paik · *TV Buddha* · 1974 · closed-circuit loop with a delay of zero; the watched watches · museum pages
+
+## Remix: recurring fragments, reordering, juxtaposition
+
+- unverified · Bruce Conner · *A Movie* · 1958 (antecedent) · found-footage montage as the original remix study · MoMA; Conner Family Trust
+- unverified · Christian Marclay · *The Clock* · 2010 · 24 hours of clips arranged by diegetic time; remix ruled by a clock · museum pages
+- unverified · Douglas Gordon · *24 Hour Psycho* · 1993 · one source, stretched; remix by duration alone · Gagosian; Tate
+- unverified · Jodie Mack · *Dusty Stacks of Mom* · 2013 · stop-motion remix of printed material; repetition and pattern · artist site
+- unverified · Hollis Frampton · *Zorns Lemma* · 1970 (antecedent) · alphabetic substitution system; rule-based reordering · Anthology; Frampton writings
+
+## Temporal relationships: delay, asynchrony, duration
+
+- unverified · Dan Graham · *Present Continuous Past(s)* · 1974 · mirrored room with an 8-second video delay; viewer sees their own past · Graham writings; museum pages
+- unverified · Bruce Nauman · *Live-Taped Video Corridor* · 1970 (antecedent) · live and taped feeds side by side; walking toward your own back · Guggenheim
+- unverified · Michael Snow · *La Région Centrale* · 1971 (antecedent) · machine camera, three hours, no cut; duration and apparatus · CFMDC; Snow writings
+- unverified · Hollis Frampton · *(nostalgia)* · 1971 (antecedent) · narration one photograph ahead of the image; delay between channels · Anthology
+- unverified · Bill Viola · *He Weeps for You* · 1976 · water drop, live camera, magnified projection; duration and scale · EAI; Viola studio
+- unverified · Gary Hill · *Tall Ships* · 1992 · corridor of figures that approach when the viewer stops; viewer time as trigger · museum pages
+- unverified · Ryoji Ikeda · *test pattern* series · 2008 onward · data rendered as barcode strobe across a floor; the test card as the work, on purpose · artist site
+
+## Footage, feeds, and data to pull (material, not citations)
+
+Joel authorized sourcing from the open internet on 2026-09-13. Pull through the ingest pipeline so clips land on the NAS archive and `videos/`; record provenance and license per `.pi/skills/expanded-cinema-research`. License notes below are from memory; read the item page.
+
+- unverified · Internet Archive, Prelinger Archives · ephemeral, industrial, educational, home movies · mostly public domain or CC; check each item · archive.org/details/prelinger
+- unverified · Internet Archive, Feature Films and Silent Films collections · public-domain features · check each item · archive.org
+- unverified · Library of Congress, National Screening Room · early actualities and newsreels · rights statement per item · loc.gov/collections/national-screening-room
+- unverified · NASA Image and Video Library · launches, orbit, planetary flyovers · generally free to use, credit NASA · images.nasa.gov
+- unverified · NOAA GOES and other satellite imagery loops · earth as a slow clock · US government work, generally public domain · star.nesdis.noaa.gov and similar
+- unverified · Public webcams: harbours, mountain passes, city squares, airport aprons · live feeds with a clock you do not control · terms vary; many allow non-commercial viewing, few state redistribution rights; treat as transformed-only
+- unverified · Wikimedia Commons video · CC-licensed and public-domain clips with license stated per file · commons.wikimedia.org
+- unverified · Open data as image: tide tables, transit feeds, seismographs, air traffic, this project's own ledger · rasterize it; it is a projection source · agency open-data portals
+- unverified · Your own prior renders and screen recordings · rephotography and remix source with lineage built in · `versions/`
+
+## Institutional archives for verification
+
+- LUX: lux.org.uk (UK artists' moving image; dated work lists)
+- Light Cone: lightcone.org (Paris distribution; catalogue entries)
+- EAI: eai.org (video art; artist bios and work dates)
+- Anthology Film Archives: anthologyfilmarchives.org (Essential Cinema; program notes)
+- Vasulka archive: vasulka.org (primary documents, scanned)
+- Tate: tate.org.uk (Tanks, collection entries, research papers)
+- Whitney, MoMA, Guggenheim collection pages
+
+## Verified entries
+
+None yet. Move an entry here with the verification receipt (URL, access date, what it confirmed) when done.

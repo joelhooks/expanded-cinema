@@ -1,0 +1,56 @@
+---
+title: "Art direction: stance and provocations"
+type: "resource"
+status: "active"
+created_at: "2026-09-13"
+privacy: "public"
+tags:
+  - expanded-cinema
+  - art-direction
+  - threejs
+---
+
+# Art direction
+
+The art director's standing stance for the maker. These are proposals under VISION.md, not approved fixed aesthetics. Joel has not signed off a visual language, and this page does not create one. It says where to push and what to stop doing.
+
+## What interesting means here
+
+- **The apparatus is the subject.** Screen, beam, surface, viewer, delay. A study about a video is a screensaver. A study about what a screen is, is expanded cinema.
+- **Subtraction beats accumulation.** One surface, one source, one operation, one duration is a complete study. Adding is the lazy move.
+- **Duration beats spectacle.** If nothing changes between second 5 and second 60, it is a still. If the change only reads after 30 seconds, that is a feature; say so in the critique.
+- **Return is progress.** Reopening an unresolved question from three studies ago is worth more than a new effect on yesterday's.
+- **The internet is the material.** Joel, 2026-09-13: "we've got the full expressive power of the internet at our disposal, a huge nas, and a fast network." Pull real things: archive film, live webcams and satellite loops, open data rendered as image, your own prior renders for rephotography. The NAS is the archive, the ingest pipeline is the door, provenance per clip is the receipt. A synthetic slate is a choice you defend, not a default.
+
+## Provocations, open
+
+Each is a study the maker could make tomorrow from material it already has. The director retires a line when it has been made or refuted, and adds new ones with a date.
+
+- 2026-09-13 **Kill the mascot.** The torus knot is the hello-world prop. Either the image lands on it as its only light and the key light goes, or the knot goes and the surface alone is the study.
+- 2026-09-13 **The surface shows its past.** Render-to-texture the frame, feed it back onto the screen delayed by N frames. Then vary N across the surface, left edge now, right edge two seconds ago.
+- 2026-09-13 **Generational loss as image.** Rephotograph your own render through the screen plane repeatedly. Let the degradation be the picture. Measure it: how many generations until the source is gone.
+- 2026-09-13 **Beam, not picture.** Render the volume of light between an imagined projector and the plane with thin slices. The image on the plane is a by-product.
+- 2026-09-13 **Two screens, one clock, wrong.** Same source on two surfaces, one running at 0.9x. Watch them drift and re-sync. How long is the loop.
+- 2026-09-13 **Browser as projector.** Window resize is zoom, tab visibility is the shutter, cursor is a body in the room that casts a shadow on the surface.
+- 2026-09-13 **Do less on purpose.** One study that removes something from yesterday's and explains what the removal revealed.
+- 2026-09-13 **A clock you do not own.** Pull a live harbour, traffic, or weather-satellite feed as the source. The study's duration is the world's. What does a delay field do to a picture that is already late.
+- 2026-09-13 **Prelinger on the surface.** One ephemeral or industrial film from a public-domain archive, projected onto a surface that is not a rectangle. Which is the subject, the film or the surface. Record the license on the item page.
+- 2026-09-13 **Rephotograph the archive through yourself.** Take a public-domain clip, run it through yesterday's study, screen-record that, and use the recording as tomorrow's source. Three generations, one lineage.
+
+## Stop doing
+
+- Bloom, glow, chromatic aberration, lens dirt, particles, and "cinematic" color grades as the day's change.
+- The hello-world caption on a page that carries a study. The overlay is a title card; give it the study id and lineage line.
+- Test slates used as source without saying so. A calibration card can be the point; it cannot be an accident.
+- Rebuild-and-redeploy as delivery. VISION Priority 1 is the live MCP write path; until it exists, every deploy should be tagged as a code change, not a study.
+- Calling anything verified without a ledger row and a URL that returned 200 with the expected content.
+
+## Titling and lineage
+
+- Study ids: `<lane>/<slug>-<nn>`, for example `projection/surface-only-01`, `rephotography/delay-field-02`.
+- Every study carries one lineage line in the chain and in `STUDIES.md`: `extends|revisits|branches <id>: keeps <x>; changes <y>`.
+- The gallery shows the id and the lineage line, not a marketing caption.
+
+## How the director works
+
+The director watches every 16 hours, looks at the live gallery with real screenshots, judges with `.pi/skills/study-critique/SKILL.md`, sends one intercom note, and gardens `.pi/skills/*`, the source map, and this page when the maker repeats a mistake or a boundary is worth pushing. The director cannot rewrite the brief, budget, schedule, or model pin; neither can the maker. Joel approves.

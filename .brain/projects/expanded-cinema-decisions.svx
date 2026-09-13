@@ -81,6 +81,34 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
   Joel's sign-off. Implementation (KV/R2 manifest vs Durable Object,
   polling vs SSE/WebSocket) is undecided.
 
+- **Art director role** (2026-09-13, Joel: this session should refine the
+  maker's skills, suggest sources, push style and approach boundaries, and
+  leverage pi infrastructure with a durable prompt). Shape: a project pi agent
+  `.pi/agents/art-director.md` (Fable via claude-bridge, read-only toward the
+  maker's code, writes doctrine only), a slash prompt `.pi/prompts/
+  art-director-pass.md` so any fresh session can run a pass and re-arm the
+  16h `until` watch, two project skills the maker loads
+  (`expanded-cinema-research`, `study-critique`), and two Brain resources
+  (`art-direction.svx` stance + dated provocations, `expanded-cinema-source-
+  map.svx` seeded leads, all flagged unverified until the maker confirms).
+  The recurring watch lives in the director's session, not the repo. The
+  maker currently runs from `~`, so project skills are not auto-discovered
+  for it; `.pi/append_system.md` tells it to load them by path until it
+  moves into the project dir.
+- **Material policy** (Joel, 2026-09-13, verbatim: "we've got the full
+  expressive power of the internet at our disposal, a huge nas, and a fast
+  network"). The open internet is the source: archive film, live feeds,
+  satellite loops, open data, plus the maker's own renders. Pull through the
+  ingest pipeline so clips land on the NAS archive and `videos/`; provenance
+  and license recorded per clip in `research/provenance.md`. VISION sign-off
+  bullet narrowed accordingly: only publishing an untransformed clip with
+  unclear license needs Joel. NAS name and paths never appear in this public
+  repo.
+
+## Art director log
+
+- **2026-09-13** Saw: a145ba0 live, real clip, WebGPU 60fps, frames differ, console clean. Judged: billboard not projection (knot still hero, screen is backdrop); no ledger/STUDIES/research/critiques exist so no run is verified; clip lives in public/ not videos/; overlay still says hello world; all delivery is rebuild-and-redeploy. Directed: make the image land on a surface or drop the knot; branch into delayed render-to-texture rephotography; start the ledger before the next study. Escalated: nothing (maker already sent Joel the link).
+
 ## Open questions
 
 

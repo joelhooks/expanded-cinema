@@ -10,6 +10,16 @@ will-not-do list. Quote it when a choice turns on intent.
 `VISION.md` is not permission to bypass `AGENTS.md`. Commands, validation,
 model pin, ledger rules, and completion gates live there.
 
+Two roles share this repo. The **maker** (daily agent, pinned local model)
+builds studies and owns `apps/`, `packages/`, `videos/`, `state/`. The **art
+director** (`.pi/agents/art-director.md`, run by hand with
+`/art-director-pass`) judges rendered output, sends direction over intercom,
+and owns doctrine only: `.pi/skills/expanded-cinema-research`,
+`.pi/skills/study-critique`, `.brain/resources/art-direction.svx`, and
+`.brain/resources/expanded-cinema-source-map.svx`. Maker: load both skills
+before choosing or critiquing a study. Neither role edits the brief, budget,
+schedule, or model pin. Joel approves.
+
 Effect is v4 at `4.0.0-rc.112`, one major across the workspace, pinned by
 `pnpm-workspace.yaml` overrides. Do not add v3 packages (`effect@3.x`,
 `@effect/platform@0.x`) and do not bump effect without bumping alchemy with

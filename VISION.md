@@ -96,8 +96,10 @@ pull request. It is not an agent instruction file; operational rules live in
 - Enabling, changing, or unpausing unattended runs.
 - Editing the user brief, permissions, budgets, or standing rules.
   Self-critique may propose these changes; it may not make them.
-- Using source material that is not procedural, user-authorized, or clearly
-  licensed. Publicly viewable is not licensed for redistribution.
+- Publishing an untransformed source clip on the gallery when its license is
+  unclear. Pulling from the open internet for study and transformation is
+  authorized; provenance and license are recorded per clip; the transformed
+  study is the normal case and needs no sign-off.
 - Fixing a visual language, or promoting any study as canonical.
 
 ## Will Not Do For Now
