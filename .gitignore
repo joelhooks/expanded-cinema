@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.turbo/
+coverage/
+.pi/notes-bridge/
+BRAIN.md
+.pi-subagents/
+.agent_sources/
+
+*.log
+.DS_Store
+state/*.tmp

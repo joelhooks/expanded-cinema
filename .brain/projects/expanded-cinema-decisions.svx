@@ -1,0 +1,66 @@
+---
+title: "expanded-cinema project decisions"
+type: "project"
+status: "active"
+created_at: "2026-09-13"
+privacy: "private"
+tags:
+  - threejs
+  - webgpu
+  - effect
+  - xstate
+  - alchemy
+  - cloudflare
+  - wzrrd
+---
+
+# expanded-cinema
+
+Daily Three.js sketch agent project (see handoff at
+`~/.brain/projects/expanded-cinema-threejs-agent.svx` — system-level, not duplicated here).
+
+## Decisions
+
+- **Workspace shape**: modeled on [ts-cli-template](https://github.com/joelhooks/ts-cli-template)
+  — pnpm workspaces (`apps/*`, `packages/*`) + Turborepo, strict TS 7.0.2,
+  oxlint/ultracite + oxfmt, devEngines pinning Node >=24.18 / pnpm 11.3.0.
+- **Rendering**: WebGPU (three.js `WebGPURenderer`), not WebGL. Fallback story:
+  report rather than silently substitute.
+- **Effect**: effect 3.22.2 as the runtime backbone — video sources, WebGPU
+  device acquisition, and any node-side pipeline steps are Effects, not
+  untyped promises.
+- **XState v6 alpha**: `xstate@6.0.0-alpha.53` pinned exactly (alpha, no caret)
+  for the sketch/run lifecycle machine. API verified from the vendored mirror
+  (`setup`, `createMachine`, `createActor`, `fromPromise`, `fromCallback`,
+  `assign` all present in `packages/core/src`).
+- **Video sources**: real video files are the projection material. `videos/`
+  at workspace root holds source clips; `scripts/catalog-videos.mjs` will
+  generate `apps/sketch/catalog.json` (file + sha256). Classification:
+  `*.mp4` direct-play, `*.readback.mp4` gpu-readback study input,
+  `*.orchestration.mp4` suppressed from the loop. Starter placeholder:
+  `apps/sketch/public/videos/starter.mp4`.
+- **Cloud infra**: alchemy (`2.0.0-beta.77`) for Cloudflare. Publishing target
+  is **cinema.wzrrd.sh** via the `wzrrd.sh` zone (pattern proven in
+  `~/Code/joelhooks/imp/alchemy.run.ts`: custom-domain Workers routes beat
+  the zone's wildcard because Routes beat custom domains; stage-suffixed
+  hostnames for previews). Reference examples vendored: the alchemy repo's
+  `examples/cloudflare-website-vite` (SPA on Workers w/ `Website.Vite`) and
+  `~/Code/joelhooks/open-seo` (prebuilt worker + `assets.directory`).
+- **Public repo**: GitHub via `gh`, public. ShitRat actor rule does not
+  apply here (manual, Joel-approved publish; no app access needed).
+- **Vendored source mirrors** (`.agent_sources/github.com/`, via
+  `scripts/vendor-agent-sources.sh`, reference-only):
+  `mrdoob/three` @ r186, `Effect-TS/effect`, `statelyai/xstate`,
+  `alchemy-run/alchemy` @ 1eccc046.
+- **State layers** (per system handoff): `state/ledger.jsonl` canonical for
+  run outcomes; `STATE.json`, `STUDIES.md`, `LOG.md` derived pointers;
+  this Brain is for durable decisions/terms, not run history.
+- **Scheduling & delivery**: `joelclaw wake` for cadence, `joelclaw notify
+  send` for daily report, wzrrd for review links. No run has been fired.
+
+## Open questions
+
+- Near-term: an actual R2 bucket wiring for previews/clips (alchemy
+  `Cloudflare.Bucket`) — deferred until a real run produces artifacts.
+- Whether the public site carries the gallery alone or also a run history
+  page (default: gallery only).
