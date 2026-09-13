@@ -1,5 +1,6 @@
 import * as THREE from "three/webgpu";
 import { sketchEvents } from "./lib/o11y";
+import { openVideoLayer, type VideoLayerHandle } from "./lib/video-layer";
 
 /**
  * Hello world: one animated knot on a WebGPU renderer. Renderer init and the
@@ -53,6 +54,30 @@ try {
   scene.add(key);
   scene.add(new THREE.AmbientLight(0x222244, 0.9));
 
+  // The first projection surface: the video layer's texture on a screen
+  // plane, facing the camera. Emissive so the source image reads as
+  // light-on-surface (projection apparatus framing), not as a lit object.
+  let videoLayer: VideoLayerHandle | null = null;
+  let screen: THREE.Mesh | null = null;
+  const screenGeometry = new THREE.PlaneGeometry(3.2, 1.8);
+  const screenMaterial = new THREE.MeshBasicMaterial({ color: 0x111111 });
+  openVideoLayer()
+    .then((layer) => {
+      videoLayer = layer;
+      if (!videoLayer) return;
+      screenMaterial.map = videoLayer.texture;
+      screenMaterial.color.set(0xffffff);
+      screen = new THREE.Mesh(screenGeometry, screenMaterial);
+      screen.position.set(0, 1.1, -1.2);
+      scene.add(screen);
+      sketchEvents
+        .emitInfo("video-layer", "screen.mounted", { surface: "plane-3.2x1.8" })
+        .catch(() => undefined);
+    })
+    .catch(() => {
+      // openVideoLayer already emits its own failure envelope internally
+    });
+
   if (overlay) {
     overlay.textContent = `expanded cinema · hello world · ${backend}`;
   }
@@ -82,6 +107,11 @@ try {
     previous = now;
     knot.rotation.x += delta * 0.4;
     knot.rotation.y += delta * 0.55;
+    // Subtle parallax: the projection screen leans against the knot's motion
+    // so the source material visibly re-frames itself over time.
+    if (screen) {
+      screen.rotation.y = Math.sin(now / 2400) * 0.18;
+    }
     framesSinceHeartbeat++;
 
     if (now - heartbeatStart >= 5000) {

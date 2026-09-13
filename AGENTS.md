@@ -3,6 +3,11 @@
 Garden means edit the living system. persistent state lives in this
 directory, never in a temp dir.
 
+Read `VISION.md` for intent, audience, non-goals, and sign-off boundaries
+before planning substantial work. `VISION.md` is not permission to bypass
+this file. Operational rules, commands, validation, and completion gates live
+here.
+
 ## Commands
 
 ```bash

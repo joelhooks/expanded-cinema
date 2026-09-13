@@ -56,8 +56,33 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
   this Brain is for durable decisions/terms, not run history.
 - **Scheduling & delivery**: `joelclaw wake` for cadence, `joelclaw notify
   send` for daily report, wzrrd for review links. No run has been fired.
+- **VISION.md** (2026-09-13): repo-scoped, external audience (gallery
+  viewers, contributors). Captures the body-of-work intent ("bounce around
+  within similar topics", not linear, not random), the sign-off list (model
+  pin, backend, major deps, publishing, spend, scheduling, brief edits, asset
+  licensing, canonical studies), and the will-not-do list (forever loop,
+  multi-agent, WebGL target, public run history, second ledger). `AGENTS.md`
+  points at it for intent only; operational rules stay in `AGENTS.md`.
+  Hosting wording follows the code (alchemy → Workers), not the older
+  handoff's Pages + wrangler wording.
+- **Live gallery via MCP** (Joel, 2026-09-13, verbatim: "the page needs to
+  refresh itself dynamically, so we should be able to use mcp to modify the
+  site live and occasionally push when updates are needed"). The gallery
+  reads content from a runtime store; an authenticated MCP tool writes to it;
+  an open page picks up changes without a rebuild. Git push + deploy is a
+  code checkpoint, not the per-study delivery path. The MCP write surface is
+  a publishing capability on a public site: auth and allowed operations need
+  Joel's sign-off. Implementation (KV/R2 manifest vs Durable Object,
+  polling vs SSE/WebSocket) is undecided.
 
 ## Open questions
+
+- **Effect version drift**: `apps/sketch` declares `effect@3.22.2` and the
+  README says Effect 3.22, but the workspace `overrides` in
+  `pnpm-workspace.yaml` force `effect@4.0.0-rc.112` everywhere, and that is
+  what is installed under `apps/sketch/node_modules`. Either the sketch app
+  is really on v4 rc and docs should say so, or the override should be scoped
+  to `packages/infra`. Decide before the pipeline code leans on either API.
 
 - Near-term: an actual R2 bucket wiring for previews/clips (alchemy
   `Cloudflare.Bucket`) — deferred until a real run produces artifacts.
