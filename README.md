@@ -17,7 +17,7 @@ public surface is this gallery plus occasional review links.
 | Layer      | Choice                                             |
 | ---------- | -------------------------------------------------- |
 | Render     | three.js r186, `WebGPURenderer` (WebGPU, not WebGL) |
-| Runtime    | Effect 3.22 — sources, device acquisition, pipeline |
+| Runtime    | Effect 4.0.0-rc.112 — sources, device acquisition, pipeline |
 | Lifecycle  | XState `6.0.0-alpha` — run/sketch state machines    |
 | Build      | pnpm workspaces + Turborepo, Vite, TS 7 strict      |
 | Lint       | oxlint + ultracite, oxfmt                           |

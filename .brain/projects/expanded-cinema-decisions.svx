@@ -25,9 +25,15 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
   oxlint/ultracite + oxfmt, devEngines pinning Node >=24.18 / pnpm 11.3.0.
 - **Rendering**: WebGPU (three.js `WebGPURenderer`), not WebGL. Fallback story:
   report rather than silently substitute.
-- **Effect**: effect 3.22.2 as the runtime backbone — video sources, WebGPU
-  device acquisition, and any node-side pipeline steps are Effects, not
-  untyped promises.
+- **Effect**: effect `4.0.0-rc.112` (v4 release candidate) as the runtime
+  backbone — video sources, WebGPU device acquisition, and any node-side
+  pipeline steps are Effects, not untyped promises. One Effect major across
+  the whole workspace, pinned exactly via `pnpm-workspace.yaml` overrides.
+  rc.112 is the floor of alchemy beta.77's peer range and the last rc that
+  still ships `Config.string`, which alchemy calls; rc.115 removed it. Bump
+  effect and alchemy together, never separately. (2026-09-13: the scaffold
+  had copied npm `latest` = 3.22.2 into `apps/sketch`; that was never
+  installed because the override already forced rc.112. Cleaned up.)
 - **XState v6 alpha**: `xstate@6.0.0-alpha.53` pinned exactly (alpha, no caret)
   for the sketch/run lifecycle machine. API verified from the vendored mirror
   (`setup`, `createMachine`, `createActor`, `fromPromise`, `fromCallback`,
@@ -77,12 +83,6 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 ## Open questions
 
-- **Effect version drift**: `apps/sketch` declares `effect@3.22.2` and the
-  README says Effect 3.22, but the workspace `overrides` in
-  `pnpm-workspace.yaml` force `effect@4.0.0-rc.112` everywhere, and that is
-  what is installed under `apps/sketch/node_modules`. Either the sketch app
-  is really on v4 rc and docs should say so, or the override should be scoped
-  to `packages/infra`. Decide before the pipeline code leans on either API.
 
 - Near-term: an actual R2 bucket wiring for previews/clips (alchemy
   `Cloudflare.Bucket`) — deferred until a real run produces artifacts.
