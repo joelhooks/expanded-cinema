@@ -41,9 +41,10 @@ interface ClockScene {
   frame: { value: number };
   // intervention trace wall-clock
   traceAt: number | null;
-  computeBandsFromVideo: (video: HTMLVideoElement) => { bands: Float32Array; luma: Float32Array } | null;
+  computeBandsFromVideo: (video: HTMLVideoElement) => { bands: Float32Array; luma: Float32Array; bandDetail: Float32Array } | null;
   bandAt: (framesAgo: number) => Float32Array | null;
-  pushBandHistory: (bands: Float32Array) => void;
+  detailAt: (framesAgo: number) => Float32Array | null;
+  pushBandHistory: (bands: Float32Array, detail: Float32Array) => void;
 }
 
 /** Beam rig geometry (mirrors clock-02/03's scene scale for archive comparability). */
@@ -186,16 +187,25 @@ function buildScene() {
 
   // per-frame band means (SLICES bands, luma 0..1), ring of length RING
   const bandHistory: Float32Array[] = [];
-  const pushBandHistory = (bands: Float32Array): void => {
+  const detailHistory: Float32Array[] = [];
+  const pushBandHistory = (bands: Float32Array, detail: Float32Array): void => {
     bandHistory.push(bands);
-    if (bandHistory.length > RING) bandHistory.shift();
+    detailHistory.push(detail);
+    if (bandHistory.length > RING) {
+      bandHistory.shift();
+      detailHistory.shift();
+    }
   };
   const bandAt = (framesAgo: number): Float32Array | null => {
     const idx = bandHistory.length - 1 - framesAgo;
     return idx >= 0 ? (bandHistory[idx] ?? null) : null;
   };
+  const detailAt = (framesAgo: number): Float32Array | null => {
+    const idx = detailHistory.length - 1 - framesAgo;
+    return idx >= 0 ? (detailHistory[idx] ?? null) : null;
+  };
 
-  const computeBandsFromVideo = (video: HTMLVideoElement): { bands: Float32Array; luma: Float32Array } | null => {
+  const computeBandsFromVideo = (video: HTMLVideoElement): { bands: Float32Array; luma: Float32Array; bandDetail: Float32Array } | null => {
     if (video.readyState < 2) return null;
     lumaCtx.drawImage(video, 0, 0, LUMA_W, LUMA_H);
     const data = lumaCtx.getImageData(0, 0, LUMA_W, LUMA_H).data;
@@ -204,7 +214,10 @@ function buildScene() {
       const o = i * 4;
       luma[i] = (0.299 * (data[o] ?? 0) + 0.587 * (data[o + 1] ?? 0) + 0.114 * (data[o + 2] ?? 0)) / 255;
     }
-    // 120 bands over 18 rows: each band maps to a fractional row range
+    // 120 bands over 18 rows: each band maps to a fractional row range.
+    // v5: also capture 3 x-window means per band (left/mid/right thirds)
+    // so slices carry horizontal picture detail, not just row luma.
+    const bandDetail = new Float32Array(SLICES * 3);
     const bands = new Float32Array(SLICES);
     const rowsF = bandAt(0);
     void rowsF;
@@ -222,8 +235,20 @@ function buildScene() {
         }
       }
       bands[bi] = count > 0 ? acc / count : 0;
+      // three x-thirds within the band rows
+      for (let cx = 0; cx < 3; cx++) {
+        let cacc = 0;
+        let ccount = 0;
+        for (let ry = rowStart; ry < Math.min(rowEnd, LUMA_H); ry++) {
+          for (let rx = cx * Math.floor(LUMA_W / 3); rx < (cx + 1) * Math.floor(LUMA_W / 3); rx++) {
+            cacc += luma[ry * LUMA_W + rx] ?? 0;
+            ccount++;
+          }
+        }
+        bandDetail[bi * 3 + cx] = ccount > 0 ? cacc / ccount : 0;
+      }
     }
-    return { bands, luma };
+    return { bands, luma, bandDetail };
   };
 
   const cutDetector = new CutDetector();
@@ -242,6 +267,7 @@ function buildScene() {
     traceAt: traceAtHolder.at,
     computeBandsFromVideo,
     bandAt,
+    detailAt,
     pushBandHistory,
   };
 }
@@ -284,7 +310,7 @@ export async function mountRuntime(
         const video = (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image;
         const tap = video ? study.computeBandsFromVideo(video) : null;
         if (tap) {
-          study.pushBandHistory(tap.bands);
+          study.pushBandHistory(tap.bands, tap.bandDetail);
           const frame = { pixels: Array.from(tap.luma), width: LUMA_W, height: LUMA_H };
           lumaFramesSeen++;
           if (lumaFramesSeen % 600 === 1) {
@@ -325,7 +351,9 @@ export async function mountRuntime(
         // per-slice beams: brightness = the FRAME at that slice's row band
         // (live bands for beam 0; DELAY-late history for beam 1)
         const live = tap ? tap.bands : null;
+        const liveDetail = tap ? tap.bandDetail : null;
         const past = tap ? study.bandAt(DELAY) : null;
+        const pastDetail = tap ? study.detailAt(DELAY) : null;
         for (const m of study.canvases) {
           const { beam, idx, yMid } = m.userData as { beam: number; idx: number; yMid: number };
           const org = beam === 0 ? PROJ : PROJ_OFF;
@@ -333,9 +361,12 @@ export async function mountRuntime(
           const sx = SCREEN_R * Math.sin(u);
           const sz = SCREEN_R * Math.cos(u) - 2.2;
           // beam 1 (the delayed past) misses the screen and lands on the
-          // BACK WALL, spread wide so its half of the room is lit (seq-23)
-          const tx = beam === 0 ? sx : 2.2 + yMid * 2.1;
-          const ty = beam === 0 ? 1.1 + yMid : 1.0 + yMid * 1.35;
+          // BACK WALL, spread wide; v5: the landing point drifts with the
+          // delayed bands so the past visibly moves on the wall (critique)
+          const pastBand = past?.[idx] ?? 0;
+          const drift = (pastBand - 0.35) * 2.6;
+          const tx = beam === 0 ? sx : 2.2 + yMid * 2.1 + drift;
+          const ty = beam === 0 ? 1.1 + yMid : 1.0 + yMid * 1.35 + drift * 0.4;
           const tz = beam === 0 ? sz : -7.55;
           const dir = new THREE.Vector3(tx - org.x, ty - org.y, tz - org.z);
           const len = dir.length();
@@ -347,9 +378,15 @@ export async function mountRuntime(
           m.rotation.set(0, -yaw, pitch);
           m.rotateY(Math.PI / 2);
           const bands = beam === 0 ? live : past;
-          const bright = Math.min(1, ((bands?.[idx] ?? 0) * 2.1 + cutGlow * 0.35));
+          const detail = beam === 0 ? liveDetail : pastDetail;
+          const bandL = bands?.[idx] ?? 0;
+          // horizontal position of this slice on the cone: left/mid/right
+          const colP = Math.min(2, Math.max(0, Math.floor(((yMid * 0.16 + 0.02) / 0.16 + 0.5) * 1 % 3)));
+          const colW = detail?.[idx * 3 + colP] ?? bandL;
+          // picture detail rides ON the band mean; cut flash luminesces all
+          const bright = Math.min(1, bandL * 1.1 + colW * 1.6 + cutGlow * 0.35);
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = beam === 0 ? 0.05 + bright * 0.42 : 0.02 + bright * 0.16;
+          mm.opacity = beam === 0 ? 0.05 + bright * 0.44 : 0.02 + bright * 0.18;
         }
 
         // lens breathing: projectors inhale on their own cadence; cut flash
