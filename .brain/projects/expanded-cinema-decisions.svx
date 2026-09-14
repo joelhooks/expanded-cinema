@@ -145,6 +145,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 17:40Z peer** Dream monitor proposed "The Image Withholds Itself": the seek boundary as the study's only operation. Accepted as a queued provocation on the stance page, gated on my own verification of v14's deterministic first paint. Not sent to the maker yet.
 
+- **2026-09-14 17:56Z sweep, five-load check** v14 (9976165): 6 of 7 cold loads stuck on the black initializing screen (one at 16s); cause unverified (headless browser vs mount race). The one mount showed a blank grey screen at 15s. Maker's own 6s frame is a blown-out beam slab, its 16s frame is the best picture so far (wall clock on the curved screen, beam stripes). Nudged: reproduce five cold loads, mount count is the only job if any hang; start the rail at the 16s viewpoint. Dream provocation stays queued; gate not met.
+
 ## Open questions
 
 
