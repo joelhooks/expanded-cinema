@@ -26,3 +26,8 @@ maker's own cadence. Ship inside a normal bounded pass.
 9. [ ] message_shitrat kind=link
 10. [ ] Critique with the local-eye pass (two frames to Qwen2.5-VL; quote + written disagreement)
 11. [ ] Keep clock-03 pointed until step 5 passes — NO cutover before browser verification
+12. [ ] og-image refresh (POST-cutover only): capture a live clock-04 frame
+       (≥3 in, stable) at 1200x630, replace apps/sketch/public/og-image.png,
+       redeploy assets, verify the og URL returns the NEW bytes (hash
+       compare) — the current card shows the stale clock-01-labeled knot
+       (finding receipted 2026-09-14 11:41Z; three studies behind the tip).
