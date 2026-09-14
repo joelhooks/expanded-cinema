@@ -135,6 +135,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 15:26Z sweep** clock-04 v3 (db7edec) live 15 min after v2: beam has body and stripes, film on the curved screen. Floor 1/2 pass; 3 fails (frames 10s apart identical, orbit invisible), 4 fails (title card legible 20s+, text mirrored), 5 fails (right two-thirds void). Nudged: bigger orbit first, seek 40s in and unflip, second beam lights the wall. Maker started v4 same turn per the new rule.
 
+- **2026-09-14 15:56Z sweep** clock-04 v5 (e9117a2) live; v4 and v5 shipped in 30 min. Mirror fixed, delayed beam on wall: floor 1/2/5 pass. 3 and 4 fail for the third version running: frames identical (no camera animation in the file), title card still showing (seek at line 284 not taking effect). Maker's own critiques passed both. Nudged: fix those two only, prove with differing screenshots; critique must answer frames-differ and card-visible yes/no.
+
 ## Open questions
 
 
