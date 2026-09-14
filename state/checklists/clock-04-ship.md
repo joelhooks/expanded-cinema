@@ -14,6 +14,9 @@ maker's own cadence. Ship inside a normal bounded pass.
 2. [ ] pnpm turbo run check test build (full green)
 3. [ ] Deploy worker (ALCHEMY_STAGE=prod chain, secrets leases)
 4. [ ] Pointer cut to clock-04@new-sha via MCP PUT with `archive: /archive/clock-04/<sha>/`
+       — NOTE (2026-09-14 fix): scripts/make-cut.mjs now refuses a cut whose archive target 404s; run steps 6–7
+       (archive-ship + upload) BEFORE generating the cut, or make-cut will exit 2. The b03234c-look3 bug class
+       (pointer → nonexistent archive dir, live 404 for viewers) is guarded at the tool.
 5. [ ] Browser verify ≥3 frames / 90s watch: shard visible from boot trace, tears out at a film
        cut (watch `clock04.shard {source:'cut'}`), decays ~6s+2s back into the plane, memory-panel
        lag intact, zero console errors
