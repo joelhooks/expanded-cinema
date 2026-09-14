@@ -335,6 +335,7 @@ export async function mountRuntime(
     unwrapRepeat(videoLayer.texture);
     screenMat.map = null; // nothing chosen yet -> nothing shown
     const onSeeked = (ev: Event): void => {
+      if (revealHolder.revealed) return; // v21: one-shot guard
       const vid = ev.target as HTMLVideoElement;
       if (vid !== vidOf()) return; // stale element's event: ignore
       if (Math.abs(vid.currentTime - SEEK_TO) >= 1.5) return; // wrong place
@@ -353,6 +354,7 @@ export async function mountRuntime(
     // never does — readyState>=2 AND currentTime within 0.5s of SEEK_TO
     let firstStepAt: number | null = null;
     let revealProofLogs = 0;
+    let bubbleLogs = 0;
     const revealProofTick = (elapsed: number): void => {
       if (revealHolder.revealed) return;
       if (revealProofLogs >= 30 || elapsed - revealProofLogs * 1000 < 1000) return;
@@ -381,8 +383,10 @@ export async function mountRuntime(
       }
     };
     const seekTick = (): void => {
+      if (revealHolder.revealed) return; // one-shot: never re-seek after reveal
       const vid = vidOf();
       if (!vid) return;
+      if (Math.abs(vid.currentTime - SEEK_TO) <= 1.5) return; // already there
       vid.currentTime = SEEK_TO;
       seekAttempts++;
       if (Math.abs(vid.currentTime - SEEK_TO) > 1.5 && seekAttempts < 20) setTimeout(seekTick, 1000);
@@ -414,7 +418,11 @@ export async function mountRuntime(
         revealBackstop();
         revealProofTick(elapsed);
         const n = study.frame.value;
-        if (n % 60 === 0 && seekAttempts < 6) seekTick();
+        // v21 (AD seq-32): the re-assert loop pinned the video at 63
+        // forever — seekTick fired every second even after reveal, so the
+        // "picture" was one frame. Seek re-assert is now DEAD once the
+        // reveal fires: the film plays free from there.
+        if (!revealHolder.revealed && n % 60 === 0 && seekAttempts < 6) seekTick();
 
         // CPU luma tap (honest, synchronous): bands for beams + CutDetector
         const video = (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image;
@@ -506,6 +514,28 @@ export async function mountRuntime(
         };
         const fade1 = bubble(segDist(PROJ, B0_END));
         const fade2 = bubble(segDist(PROJ_OFF, B1_END));
+        // v21 (AD seq-32): bubble-proof — computed alphas, once a second,
+        // first 10s, so a non-biting fade is VISIBLE in the console
+        if (bubbleLogs < 10) {
+          const elS = elapsed / 1000;
+          if (Math.floor(elS) > bubbleLogs) {
+            bubbleLogs = Math.floor(elS);
+            void sketchEvents
+              .emitInfo("study", "clock04.bubble.alpha", {
+                s: bubbleLogs,
+                cam: [
+                  Number(study.camera.position.x.toFixed(2)),
+                  Number(study.camera.position.y.toFixed(2)),
+                  Number(study.camera.position.z.toFixed(2)),
+                ],
+                d0: Number(segDist(PROJ, B0_END).toFixed(2)),
+                d1: Number(segDist(PROJ_OFF, B1_END).toFixed(2)),
+                fade1: Number(fade1.toFixed(3)),
+                fade2: Number(fade2.toFixed(3)),
+              })
+              .catch(() => undefined);
+          }
+        }
 
         // per-slice beams: brightness = the FRAME at that slice's row band
         // (live bands for beam 0; DELAY-late history for beam 1)
