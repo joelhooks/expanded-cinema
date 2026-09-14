@@ -32,6 +32,7 @@ const STUDY_LOADERS: Record<
   "recurrence-01": () => import("./lib/study-recurrence"),
   "recursion-01": () => import("./lib/study-recursion"),
   "clock-01": () => import("./lib/study-clock"),
+  "clock-02": () => import("./lib/study-clock02"),
 };
 
 async function initRenderer(): Promise<RenderHarness> {
