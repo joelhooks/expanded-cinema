@@ -74,3 +74,22 @@ the subtraction test by deleting the right-hand panel entirely.
   the cut-detection threshold for the clock-04 shard seed is validated
   from real footage: a mean-abs-frame-difference over the ring write is
   sufficient, no motion compensation needed.
+
+## Local eye (2026-09-14, doctrine applied — first outside critic on this study)
+- Fed the two cut-crossing frames (watch 4 → /tmp/look-c03-cutwatch-a.png,
+  -b.png) to the cached Qwen2.5-VL 7B per the "local eye as first critic"
+  direction. Its answer, quoted: "the main change between the two frames is
+  the visibility of the paper inside the typewriter… the graphical elements
+  on the right side of the frame remain the same… indicating a change in the
+  typewriter's state rather than a change in the overall design."
+- The outside eye'missed the hard cut entirely: it read both frames as one
+  scene (machinery/typewriter) and did not report the transition to the
+  clock-face close-up — the structural cut my two-frame watch relied on.
+- Disagreement, recorded: the local eye under-detects hard cuts on this
+  material in 2026; the cut-threshold validation for clock-04 therefore
+  rests on the human-side watch frames, not VL agreement. The doctrine's
+  diary warning was pointed: without this pass the critique would have
+  claimed outside-eye corroboration it did not have. Noted also: the
+  machine DID confirm the right-side overlay panel stability across both
+  frames, which is correct and useful — the pointer panel IS static frame
+  to frame, and that is part of why it reads as decoration.
