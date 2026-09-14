@@ -56,3 +56,11 @@ the subtraction test by deleting the right-hand panel entirely.
   is most visible precisely AT cut crossings. A split-off surface seeded at
   the film's own cuts would make the archive's interruptions and the
   gallery's interruptions agree — one interruption grammar instead of two.
+
+## Watch notes (2026-09-14, pass 3 — cross-pointer)
+- look3 cut PUT 200 (`b03234c-look3`), console shows full hot-swap chain with
+  zero errors: video.load starter → conquest swap (`study.material.swapped
+  {study:clock-03}`) → `study.ready delay:180` → `study.scene.live
+  {pointer:b03234c-look3}`. The material-swap path fires correctly on a
+  same-study pointer move: the gallery contract holds under third-party
+  cuts.
