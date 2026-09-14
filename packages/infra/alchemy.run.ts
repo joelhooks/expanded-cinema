@@ -43,9 +43,7 @@ export default Alchemy.Stack(
       routes: [
         { pattern: `${host}/archive/*`, zoneName: ZONE },
         { pattern: `${host}/mcp/*`, zoneName: ZONE },
-        // /videos/* also routes here (seq-30): the media element cannot
-        // seek without Range/206 support, and the Website static-assets
-        // path returns full-body 200s. R2 get() honours obj.range.
+        { pattern: `${host}/videos/*`, zoneName: ZONE },
       ],
       env: {
         ARCHIVE: archive,
