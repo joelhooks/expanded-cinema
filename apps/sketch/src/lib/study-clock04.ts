@@ -56,6 +56,7 @@ interface ClockScene {
   lumaSeq: Sequencer<Uint8Array>;
   lumaTarget: THREE.RenderTarget;
   lastPointerKey: string;
+  lastReadErrorAt: number;
 }
 
 /** Geometry constants mirroring clock-02/03 so archives stay comparable. */
@@ -140,19 +141,31 @@ function buildScene(videoTexture: THREE.VideoTexture): ClockScene {
     lumaSeq,
     lumaTarget,
     lastPointerKey: "",
+    lastReadErrorAt: 0,
   };
 }
 
 function lumaFrameOf(buf: Uint8Array): LumaFrame {
-  // downsample RGBA → luma (Rec. 601), stride 4; reuse the array shape
-  const luma: number[] = new Array(LUMA_W * LUMA_H);
-  for (let i = 0; i < LUMA_W * LUMA_H; i++) {
-    const r = buf[i * 4] ?? 0;
-    const g = buf[i * 4 + 1] ?? 0;
-    const b = buf[i * 4 + 2] ?? 0;
-    luma[i] = 0.299 * r + 0.587 * g + 0.114 * b;
+  // Downsample RGBA → luma (Rec. 601). The WebGPU backend pads each row of
+  // copyTextureToBuffer to a 256-byte boundary (WebGPUTextureUtils), so the
+  // buffer may be WIDER than width*4 bytes per row — compute the actual
+  // stride from the buffer length instead of assuming tight packing.
+  const texelsLaidOut = new Array<number>(LUMA_W * LUMA_H);
+  const bytesPerRow = Math.max(1, Math.floor(buf.length / LUMA_H));
+  const texelsPerRow = Math.floor(bytesPerRow / 4); // stride in texels
+  for (let ry = 0; ry < LUMA_H; ry++) {
+    const srcRow = Math.min(ry, LUMA_H - 1);
+    const rowBase = srcRow * texelsPerRow;
+    const dstBase = ry * LUMA_W;
+    for (let x = 0; x < LUMA_W; x++) {
+      const o = (rowBase + x) * 4;
+      const r = buf[o];
+      const g = buf[o + 1];
+      const b = buf[o + 2];
+      texelsLaidOut[dstBase + x] = 0.299 * (r ?? 0) + 0.587 * (g ?? 0) + 0.114 * (b ?? 0);
+    }
   }
-  return { pixels: luma, width: LUMA_W, height: LUMA_H };
+  return { pixels: texelsLaidOut, width: LUMA_W, height: LUMA_H };
 }
 
 export async function mountRuntime(
@@ -213,7 +226,17 @@ export async function mountRuntime(
           .then((buf) => {
             study.lumaSeq.submit(seqN, buf as Uint8Array);
           })
-          .catch(() => undefined);
+          .catch((err: unknown) => {
+            // Never silent again: emit ONCE so a dead read chain is visible
+            // on the live surface instead of quietly disabling cut detection.
+            const now = Date.now();
+            if (now - study.lastReadErrorAt > 30_000) {
+              study.lastReadErrorAt = now;
+              void sketchEvents
+                .emitFailure("study", "clock04.read.error", err instanceof Error ? err.message : String(err))
+                .catch(() => undefined);
+            }
+          });
 
         // shard: displaced per the trace contract; texture = the past
         const trace = traceState(study.traceAt === null ? null : { at: study.traceAt }, now);
