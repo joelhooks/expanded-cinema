@@ -64,3 +64,13 @@ the subtraction test by deleting the right-hand panel entirely.
   {pointer:b03234c-look3}`. The material-swap path fires correctly on a
   same-study pointer move: the gallery contract holds under third-party
   cuts.
+
+## Watch notes (2026-09-14, pass 4 — cut-crossing frames for clock-04 seed)
+- Separate frames (15s apart) land either side of a hard cut: machinery →
+  clock-face extreme close-up. The lag panel shows the pre-cut scene in
+  BOTH frames, confirming ~1-cut panel lag. The visible frame-to-frame
+  difference at the cut is large-scale and structural (global luminance
+  flip + full composition change), well above any within-scene motion —
+  the cut-detection threshold for the clock-04 shard seed is validated
+  from real footage: a mean-abs-frame-difference over the ring write is
+  sufficient, no motion compensation needed.
