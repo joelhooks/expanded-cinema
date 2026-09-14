@@ -1,0 +1,15 @@
+# Study queue — maker banking, AD cadence
+
+Maker keeps this queue in sync with pre-written chains under `research/`.
+Each entry carries its provenance of direction (AD provocation, critique
+open question, or watch finding) and its build-readiness. The AD lane reads
+this to see direction flow without chat noise; build order at the next
+open cadence day is the AD's call unless the queue is silent.
+
+- **clock-04 — surface as sculpture.** READY (chain: `research/2026-09-14-clock-04.md`). Branches clock-03's open question in `critiques/clock-03.md`: past shard torn out of the footage plane, seeded at the film's own hard cuts (cut-detection threshold validated from real watch frames); pointer raster panel removed per the subtraction finding.
+- **phone-01 — the phone is the projector.** CHAINED (research: `research/2026-09-14-phone-01.md`). Materializes the approved 2026-09-14 provocation; tilt→projector angle, accel→delay offset; stillness as the gesture. Trace-replay verification path per sensor constraint; on-device check pending someone holding a phone.
+- **clock-05 — a clock you do not own.** CHAINED (research: `research/2026-09-14-clock-05.md`). Second material for the clock lane (diversity audit showed all shipped clock studies share the 1943 cut): live public feed, delay measured from the feed's own latency, ring riding on top; bounded snapshot replay for headless verification.
+
+Watch findings feeding these chains live in `critiques/clock-03.md`
+(2026-09-14 watch notes 1–4). Ship chain and budget gates per AGENTS.md;
+one study per day; the queue is banking, not an override of the cadence.
