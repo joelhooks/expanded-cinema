@@ -404,6 +404,150 @@
       "status": "uploaded"
     },
     {
+      "key": "archive/recursion-01/972174c/assets/index-BXtI5n90.js",
+      "bytes": 590913,
+      "etag": "e3017768f6eaf99583872ad83ce8e0fb5b5cdd03b0fcb7fed56b83a18d04b701",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/assets/index-BXtI5n90.js.map",
+      "bytes": 3138040,
+      "etag": "0bd511f842bba56e3a80c36745ac95aa8107ef2cfcef1d7782e62fba4a2e0fbe",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/assets/study-recurrence-BAOvS4EF.js",
+      "bytes": 209209,
+      "etag": "e535f2b22a13f55ba06988e06688ee94b9716b3f235473afc063e7603b135935",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/assets/study-recurrence-BAOvS4EF.js.map",
+      "bytes": 1857856,
+      "etag": "531f0bfc3bc2fba07abc26c48eb4e34507a2553cc97e9df669bb897475da66ea",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/assets/study-recurrence-BAWmamwk.js",
+      "bytes": 143,
+      "etag": "8c5e6a546fb1365d7cffff74bd9fdaa32a9691f8f2f154773e36fad67eb2e3d5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/assets/study-recursion-Ccel7wKG.js",
+      "bytes": 163,
+      "etag": "38783f56dca7704793f149db3a9be8bb00143ca0dbf530a60e436197360ae78c",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/assets/study-recursion-DW8T0Fpk.js",
+      "bytes": 3454,
+      "etag": "3729c3caf278206e1d272d246296f49063ec90a8bfd115365ac973a2d4d615bd",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/assets/study-recursion-DW8T0Fpk.js.map",
+      "bytes": 12442,
+      "etag": "07d451c9406264c9a744bea27b28ae49d95a185edf1ae19a6ca43f4ea841978a",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/assets/index-BXtI5n90.js",
+      "bytes": 590913,
+      "etag": "e3017768f6eaf99583872ad83ce8e0fb5b5cdd03b0fcb7fed56b83a18d04b701",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/assets/index-BXtI5n90.js.map",
+      "bytes": 3138067,
+      "etag": "8fc06e988b22d372e682a87d6a294bc432187eaee570106e68633ade3aac92a7",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/assets/study-recurrence-BAOvS4EF.js",
+      "bytes": 209209,
+      "etag": "e535f2b22a13f55ba06988e06688ee94b9716b3f235473afc063e7603b135935",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/assets/study-recurrence-BAOvS4EF.js.map",
+      "bytes": 1857874,
+      "etag": "ea7d75441eb96e6dbbac722a20f3c9c98a1ee7b4fea867b3dc3d94598868a088",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/assets/study-recurrence-BAWmamwk.js",
+      "bytes": 143,
+      "etag": "8c5e6a546fb1365d7cffff74bd9fdaa32a9691f8f2f154773e36fad67eb2e3d5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/assets/study-recursion-Ccel7wKG.js",
+      "bytes": 163,
+      "etag": "38783f56dca7704793f149db3a9be8bb00143ca0dbf530a60e436197360ae78c",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/assets/study-recursion-DW8T0Fpk.js",
+      "bytes": 3454,
+      "etag": "3729c3caf278206e1d272d246296f49063ec90a8bfd115365ac973a2d4d615bd",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/assets/study-recursion-DW8T0Fpk.js.map",
+      "bytes": 12445,
+      "etag": "583d25bb21912557e9f42242b721869949baa409bdcc434372e6fc41d7512525",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/index.html",
+      "bytes": 1048,
+      "etag": "3c66717a451b68f992cefaee96922ba11679b999c05d37088ec1cc929dd9388a",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/client/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/index.html",
+      "bytes": 1048,
+      "etag": "3c66717a451b68f992cefaee96922ba11679b999c05d37088ec1cc929dd9388a",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/manifest.json",
+      "bytes": 531,
+      "etag": "de4c8e5b256754e6096531e79b1fe9461aee47a73d0e3b8a568ed92deda52542",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/972174c/note.md",
+      "bytes": 146,
+      "etag": "fb944252320657ea29c2c97c314180ef1f3f0d2f366c8231880459f1a3451484",
+      "status": "uploaded"
+    },
+    {
       "key": "archive/video-texture-screen/e0cba18/assets/index-CrISFYx_.js",
       "bytes": 794529,
       "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
