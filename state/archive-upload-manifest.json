@@ -1,0 +1,299 @@
+{
+  "bucket": "expanded-cinema-archive-prod-abltfaf3krqqx6m3",
+  "files": [
+    {
+      "key": "archive/hello-world-knot/574f3b9/assets/index-CrISFYx_.js",
+      "bytes": 794529,
+      "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/assets/index-CrISFYx_.js.map",
+      "bytes": 4992976,
+      "etag": "b5d023a66a73629bd273c02a6a092723c00550d294dea84e44b936d4d070d2ec",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/client/assets/index-CrISFYx_.js",
+      "bytes": 794529,
+      "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/client/assets/index-CrISFYx_.js.map",
+      "bytes": 4993018,
+      "etag": "9da9e673646b198079f9de2cf3c28cda0b1be2fd51d856eda6408bdc1ac922ff",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/client/index.html",
+      "bytes": 960,
+      "etag": "a0fe73e8a33c02ea4df364aa1514d44e438324914dae943a607c189c8a69bda5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/client/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/client/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/index.html",
+      "bytes": 960,
+      "etag": "a0fe73e8a33c02ea4df364aa1514d44e438324914dae943a607c189c8a69bda5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/manifest.json",
+      "bytes": 505,
+      "etag": "25f655792fb9b498934ed91fd8df0fefa23b4bffe8fda2534817dbb519c00ddd",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/hello-world-knot/574f3b9/note.md",
+      "bytes": 117,
+      "etag": "d46c809bcd73739ae7c29db1f738c44eba0670d90c8e61e03204ae82ae8c3cfd",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/index.html",
+      "bytes": 3304,
+      "etag": "c072206fda1ad24b019ab90234285a7b11cdf0937c519157fa92cec4c5d6005e",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/assets/index-CrISFYx_.js",
+      "bytes": 794529,
+      "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/assets/index-CrISFYx_.js.map",
+      "bytes": 4992976,
+      "etag": "b5d023a66a73629bd273c02a6a092723c00550d294dea84e44b936d4d070d2ec",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/client/assets/index-CrISFYx_.js",
+      "bytes": 794529,
+      "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/client/assets/index-CrISFYx_.js.map",
+      "bytes": 4993018,
+      "etag": "9da9e673646b198079f9de2cf3c28cda0b1be2fd51d856eda6408bdc1ac922ff",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/client/index.html",
+      "bytes": 960,
+      "etag": "a0fe73e8a33c02ea4df364aa1514d44e438324914dae943a607c189c8a69bda5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/client/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/client/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/index.html",
+      "bytes": 960,
+      "etag": "a0fe73e8a33c02ea4df364aa1514d44e438324914dae943a607c189c8a69bda5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/manifest.json",
+      "bytes": 557,
+      "etag": "bb615b736dcfd701acf564234ab6316eb39c3fa1dbef98988dcbffd8c2800d3d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/real-starter-clip/a145ba0/note.md",
+      "bytes": 168,
+      "etag": "59024faaf941d0f7687ae31e7fb6a85045b9db2e00d1fd318c9e15d7b922122c",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/assets/index-CrISFYx_.js",
+      "bytes": 794529,
+      "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/assets/index-CrISFYx_.js.map",
+      "bytes": 4992976,
+      "etag": "b5d023a66a73629bd273c02a6a092723c00550d294dea84e44b936d4d070d2ec",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/client/assets/index-CrISFYx_.js",
+      "bytes": 794529,
+      "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/client/assets/index-CrISFYx_.js.map",
+      "bytes": 4993018,
+      "etag": "9da9e673646b198079f9de2cf3c28cda0b1be2fd51d856eda6408bdc1ac922ff",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/client/index.html",
+      "bytes": 960,
+      "etag": "a0fe73e8a33c02ea4df364aa1514d44e438324914dae943a607c189c8a69bda5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/client/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/client/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/index.html",
+      "bytes": 960,
+      "etag": "a0fe73e8a33c02ea4df364aa1514d44e438324914dae943a607c189c8a69bda5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/manifest.json",
+      "bytes": 581,
+      "etag": "05d98b152929f3d9fc1b92328bb2e1cf679439161d96bebd7f637f40616ceb96",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/7371a23/note.md",
+      "bytes": 196,
+      "etag": "d5f5a44e5bcda36c110be87441d836b0ea067d45bfeaf7819ea2f5d2ba411006",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/assets/index-CrISFYx_.js",
+      "bytes": 794529,
+      "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/assets/index-CrISFYx_.js.map",
+      "bytes": 4992976,
+      "etag": "b5d023a66a73629bd273c02a6a092723c00550d294dea84e44b936d4d070d2ec",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/client/assets/index-CrISFYx_.js",
+      "bytes": 794529,
+      "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/client/assets/index-CrISFYx_.js.map",
+      "bytes": 4993018,
+      "etag": "9da9e673646b198079f9de2cf3c28cda0b1be2fd51d856eda6408bdc1ac922ff",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/client/index.html",
+      "bytes": 960,
+      "etag": "a0fe73e8a33c02ea4df364aa1514d44e438324914dae943a607c189c8a69bda5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/client/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/client/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/index.html",
+      "bytes": 960,
+      "etag": "a0fe73e8a33c02ea4df364aa1514d44e438324914dae943a607c189c8a69bda5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/manifest.json",
+      "bytes": 501,
+      "etag": "68dbdfa403b9b4b5e28f69749483af811e3baa78b8eeb683f55e61f0a39bb140",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/video-texture-screen/e0cba18/note.md",
+      "bytes": 109,
+      "etag": "b35003a1df6aa8221d25093245e5376524b30d493366bfdcb1802a59d9e04e73",
+      "status": "uploaded"
+    }
+  ]
+}
