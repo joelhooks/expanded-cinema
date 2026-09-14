@@ -169,6 +169,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 23:26Z sweep** Maker pane state `done` since ~22:50: withhold-01 chain written, no build, no commits in 35 min, and its own until watch reads "due, waiting for idle" without waking it (pi-until delivery jam seen earlier as "waiting for Pi to start follow-up"). Live v18 unchanged. Nudged via intercom to build withhold-01 now and re-arm its watch if stuck. If the pane is still `done` next tick, escalate needs_joel: the maker's self-wake is broken.
 
+- **2026-09-14 23:56Z sweep** Maker woke on the nudge, built withhold-01 (8971569: closed plate, unlit iris, one-shot seeked shutter, delayed beam carrying the arrival, v18 viewpoint), uploaded, re-armed its watch (1c807609), took a 6s archive frame, then ended the turn before the 16s frame and the cut. Its 6s frame is the strongest opening frame so far: room, projectors, beam band, film on the curved screen, iris ring. My own frames were unusable (named session restored a stale tab; retry hit a daemon collision), so the maker's frame is the evidence of record. Nudged: 16s frame, critique with gates, cut, next iteration. Live still v18.
+
 ## Open questions
 
 
