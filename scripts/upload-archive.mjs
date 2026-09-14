@@ -95,6 +95,8 @@ async function main() {
   }
 
   const results = [];
+  let skipped = 0;
+  let uploaded = [];
   for (const path of files) {
     const rel = relative(versionsDir, path).split(sep).join("/");
     const key = keyFor(rel);
@@ -102,6 +104,20 @@ async function main() {
     const body = readFileSync(path);
     const etag = createHash("sha256").update(body).digest("hex");
     const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/r2/buckets/${bucket}/objects/${encodeURIComponent(key)}`;
+
+    // Idempotency (delivered 2026-09-14 — the docstring claimed it before the
+    // code did): fetch the stored object, compare hashes, skip the PUT if
+    // identical. Saves ~261MB per noop run across R2 Class-B ops.
+    const stored = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    if (stored.ok) {
+      const arr = new Uint8Array(await stored.arrayBuffer());
+      if (createHash("sha256").update(arr).digest("hex") === etag) {
+        skipped++;
+        results.push({ key, bytes: body.length, etag, status: "skipped" });
+        console.log(`skipped ${key} (hash match)`);
+        continue;
+      }
+    }
     const res = await fetch(url, {
       method: "PUT",
       headers: {
@@ -117,6 +133,7 @@ async function main() {
       process.exit(1);
     }
     results.push({ key, bytes: body.length, etag, status: "uploaded" });
+    uploaded.push(key);
     console.log(`uploaded ${key} (${body.length})`);
   }
 
@@ -125,7 +142,7 @@ async function main() {
     `${JSON.stringify({ bucket, files: results }, null, 2)}\n`,
   );
   console.log(
-    `done: ${results.length} objects, ${results.reduce((a, r) => a + r.bytes, 0)} bytes total`,
+    `done: ${results.length} objects (${uploaded.length} uploaded, ${skipped} skipped), ${results.reduce((a, r) => a + r.bytes, 0)} bytes accounted`,
   );
 }
 
