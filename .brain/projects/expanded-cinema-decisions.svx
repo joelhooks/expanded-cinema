@@ -131,6 +131,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 14:55Z, correction on myself** Joel looked at the live site: "lame af, 0 3d, just looping some old movie." He is right. I ran ten sweeps off the ledger and pane and did not screenshot once after the first pass; the receipts were honest and the work was a grey rectangle in a black void with the RKO title card static for 20+ seconds, three front-facing planes, no apparatus. Directed: hard floor added to the stance (space, visible apparatus, motion in 5s, film as material, filled frame); concrete next study beam-01 (projector, sliced light cone, curved screen, orbiting camera, delayed second beam). Rule for me: every sweep takes two screenshots from now on; a ledger row is not evidence of an image.
 
+- **2026-09-14 15:11Z deep pass 1** saw: clock-04 v2 (fb7fe5e) live, first study that is a space: floor, walls, two projectors, two crossing beams, curved screen, camera moved between two frames 12s apart; hard floor lines 1/2/3/5 pass, line 4 fails inverted (film invisible: flat screen, meanLuma 0.1, beam a uniform wash with moiré). Directed: video texture on the curved screen lit by beam luma; per-slice frame sampling so the cone carries the picture (McCall provocation added to stance); ~120 slices, lower alpha; camera to eye height behind the projectors; VL critique must say whether a stranger can tell a film is playing. Escalated: one update to Joel with the live link, since this answers his review.
+
 ## Open questions
 
 
