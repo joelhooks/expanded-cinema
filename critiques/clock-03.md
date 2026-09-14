@@ -125,3 +125,11 @@ the subtraction test by deleting the right-hand panel entirely.
   small subtraction item for the next materials pass — the per-study
   module contract (VIDEO declarations) can dispose the dead element when
   study.material.swapped fires. Not user-visible; logged so it isn't lost.
+
+## Element audit 2 (2026-09-14, delivery 8 — loop-length receipt)
+- In-page time continuity: conquerb1943.mp4 advancing, currentTime 70.34 →
+  wrapped past 90.02s proving the loop wrap arithmetic on a three-digit
+  transition; readyState 4. The 90s loop length is now a measured material
+  fact (not just the encode spec) — recorded here because the clock lane's
+  loops are all built on this cut, and twin-01's "how long is the loop"
+  question inherits this baseline for rate-0.9 arithmetic.
