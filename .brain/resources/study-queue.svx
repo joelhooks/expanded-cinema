@@ -21,10 +21,10 @@ Watch findings feeding these chains live in `critiques/clock-03.md`
 one study per day; the queue is banking, not an override of the cadence.
 
 AD boundary correction (seq 16, 2026-09-14): pre-building modules is
-STOPPED — scaffolded gen-01 and twin-01 modules were moved out of src to
-`research/scaffolded/*.bak` as preserved reference; only clock-04
-(pre-picked by the critique) keeps its module in src, unregistered until
-its ship. Chain files and verified material facts remain the queue's
-currency; code waits for the pick.
+STOPPED — scaffolded gen-01, twin-01, and (post-directive sweep) less-01
+modules were moved out of src to `research/scaffolded/*.bak` as preserved
+reference; only clock-04 (pre-picked by the critique) keeps its module in
+src, unregistered until its ship. Chain files and verified material
+facts remain the queue's currency; code waits for the pick.
 
 Method state 2026-09-14: the "local eye as first critic" doctrine has been APPLIED once on clock-03 (Qwen2.5-VL quoted, missed the hard cut, disagreement recorded in `critiques/clock-03.md`). Future critiques should include the outside-eye pass by default.
