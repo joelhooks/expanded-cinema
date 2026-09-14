@@ -1,5 +1,13 @@
 import * as THREE from "three/webgpu";
-import { CutDetector, traceState, ringLength, writeSlot, readSlot, type LumaFrame } from "@expanded-cinema/core";
+import {
+  CutDetector,
+  Sequencer,
+  ringLength,
+  readSlot,
+  traceState,
+  writeSlot,
+  type LumaFrame,
+} from "@expanded-cinema/core";
 import { sketchEvents } from "./o11y";
 import type { StudyRuntime } from "./study-recurrence";
 import type { CurrentStudy } from "./gallery-store";
@@ -45,9 +53,8 @@ interface ClockScene {
   // intervention trace wall-clock
   traceAt: number | null;
   // cut detection
-  cutDetector: CutDetector;
+  lumaSeq: Sequencer<Uint8Array>;
   lumaTarget: THREE.RenderTarget;
-  lumaBuf: Uint8Array;
   lastPointerKey: string;
 }
 
@@ -113,12 +120,25 @@ function buildScene(videoTexture: THREE.VideoTexture): ClockScene {
   const lumaTarget = new THREE.RenderTarget(LUMA_W, LUMA_H, { depthBuffer: false });
   const lumaBuf = new Uint8Array(LUMA_W * LUMA_H * 4);
 
+  // detection lives in a closure so the sequencer can drive it in-order;
+  // traceAt is a mutable holder shared with the scene object
+  const cutDetector = new CutDetector();
+  const traceAtHolder: { at: number | null } = { at: null };
+  const lumaSeq = new Sequencer<Uint8Array>((buf: Uint8Array) => {
+    const cut = cutDetector.push(lumaFrameOf(buf));
+    if (!cut) return;
+    traceAtHolder.at = performance.now();
+    void sketchEvents
+      .emitInfo("study", "clock04.shard", { at: Number(traceAtHolder.at.toFixed(0)), source: "cut" })
+      .catch(() => undefined);
+  });
+
   return {
     scene, camera, pastCamera, footage, memory, pastShard, videoTexture,
     targets, frame,
-    traceAt: null,
-    cutDetector: new CutDetector(),
-    lumaTarget, lumaBuf,
+    traceAt: traceAtHolder.at,
+    lumaSeq,
+    lumaTarget,
     lastPointerKey: "",
   };
 }
@@ -181,20 +201,17 @@ export async function mountRuntime(
         }
 
         // cut detection on a tiny downsample of the CURRENT presented frame.
-        // The async read resolves a buffer and may lag one frame — fine for
-        // cuts (a structural change persists far beyond one frame).
+        // The async read resolves out of order under load — the Sequencer
+        // guarantees the detector sees frames in submission order (stale
+        // reads dropped, newest-wins), so no false cuts from reordering.
         r.setRenderTarget(study.lumaTarget);
         r.render(study.scene, study.pastCamera);
         r.setRenderTarget(null);
+        const seqN = n;
         void r
           .readRenderTargetPixelsAsync(study.lumaTarget, 0, 0, LUMA_W, LUMA_H)
           .then((buf) => {
-            const cut = study.cutDetector.push(lumaFrameOf(buf as Uint8Array));
-            if (!cut) return;
-            study.traceAt = now;
-            void sketchEvents
-              .emitInfo("study", "clock04.shard", { at: Number(now.toFixed(0)), source: "cut" })
-              .catch(() => undefined);
+            study.lumaSeq.submit(seqN, buf as Uint8Array);
           })
           .catch(() => undefined);
 
