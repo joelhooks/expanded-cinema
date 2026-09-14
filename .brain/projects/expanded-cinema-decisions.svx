@@ -163,6 +163,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 21:56Z sweep** Pointer back on v18 (fa72e9a) since 21:28 and held; the maker is verifying v21d through v21g on the archive URL and found a real geometry bug (beam sheets 3.4x over-length, punching through the screen). Live v18 at 8s/18s from this load: factory footage on the curved screen, the delayed beam crossing the frame as striped sheets, room depth, frame filled. Floor 1, 2, 4, 5 pass; 3 marginal (only the film changes between frames). Best live state so far. No nudge; the maker is on the direction and following the cut rule.
 
+- **2026-09-14 22:26Z sweep** v18 still live and still passing 1/2/4/5 (line 3 marginal). Maker has made six tune commits (v21e-j: camera, brightness caps) verified only by curl 200 on the archive URL; no critique frame newer than v21d. Nudged: screenshot v21j at 6s/16s beside v18, decide in one critique whether it beats v18 on line 3 without losing the rest; cut or stop, then start the next question. One more frameless tune is a loop.
+
 ## Open questions
 
 
