@@ -113,3 +113,8 @@ the subtraction test by deleting the right-hand panel entirely.
   while after a pointer cut, or the cut leaves a visible seam in the
   footage plane), not only the transient wipe. Adding this as a
   requirement for the clock-04 chain before build.
+
+## Watch notes (2026-09-14, delivery 6 — score 09:01Z)
+- Fresh tab (post-soak) mounted clean again: swap→ready→live chain, heartbeats ~78fps. 90s two-frame: credits → typewriter
+  machinery full scene advance; memory panels show DIFFERENT content per frame (panel tracks the cut lag live). Zero errors.
+  The loop's stability is now routine across 6 independent sessions — the unresolved verdict is about form, not reliability.
