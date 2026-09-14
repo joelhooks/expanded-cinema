@@ -1,7 +1,11 @@
 {
-  "generatedAt": "2026-09-13T22:13:38.507Z",
-  "generator": "scripts/catalog-videos.mjs (manual bootstrap, public/ seed)",
+  "generatedAt": "2026-09-14T04:39:10.424Z",
+  "generator": "scripts/catalog-videos.mjs",
   "entries": [
+    {
+      "file": "Conquerb1943_512kb.mp4",
+      "sha256": "33ea3cf331d3d4ee4f9bcb8d99fb3f8dc6f7db228e8a04012ef06544b391722c"
+    },
     {
       "file": "starter.mp4",
       "sha256": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"

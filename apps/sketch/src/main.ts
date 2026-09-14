@@ -26,6 +26,7 @@ const STUDY_LOADERS: Record<
   // registry; the registry only gates what a pointing tab can mount.
   "recurrence-01": () => import("./lib/study-recurrence"),
   "recursion-01": () => import("./lib/study-recursion"),
+  "clock-01": () => import("./lib/study-clock"),
 };
 
 async function initRenderer(): Promise<RenderHarness> {

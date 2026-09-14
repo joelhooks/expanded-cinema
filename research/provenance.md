@@ -32,3 +32,14 @@ sha256:    pending ingest
 used in:   recurrence-02 (planned: 1936 driving safety footage as projection source)
 publish:   transformed-only (finding will be confirmed before any untransformed publish)
 ```
+
+```
+id:        clock-01-conquerb1943
+source:    https://archive.org/details/Conquerb1943
+title / maker / date: Conquer by the Clock, 1943, sponsor n/a per metadata
+license:   http://creativecommons.org/licenses/publicdomain/ (CC PD Dedication)
+pulled:    2026-09-14, via pipeline/video.requested event 01M2F2AMZADPPHM8DX00B97TMX
+sha256:    33ea3cf331d3d4ee4f9bcb8d99fb3f8dc6f7db228e8a04012ef06544b391722c (manual fallback pull after pipeline video-download FAILED twice: 01M2F2AN3YXVK36GDV676GQQ8C, 01M2F2NSPCPSXDGYVZSN8YEKFR)
+used in:   clock-01
+publish:   ok (PD dedication on item metadata)
+```

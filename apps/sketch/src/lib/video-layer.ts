@@ -34,7 +34,9 @@ async function waitUntilAdvancing(video: HTMLVideoElement, timeoutMs = 10_000): 
   });
 }
 
-export async function openVideoLayer(): Promise<VideoLayerHandle | null> {
+export async function openVideoLayer(
+  source?: { src: string; hash: string },
+): Promise<VideoLayerHandle | null> {
   useVideoLayerState.getState().start();
 
   const video = document.createElement("video");
@@ -46,8 +48,9 @@ export async function openVideoLayer(): Promise<VideoLayerHandle | null> {
   document.body.appendChild(video);
 
   const { activate, ready } = useVideoLayerState.getState();
-  const starterSrc = "/videos/starter.mp4";
+  const starterSrc = source?.src ?? "/videos/starter.mp4";
   const starterHash =
+    source?.hash ??
     "1f0e3a5c2b98e7a1156c4d2f9b7a4c0e8d3f6b2a9c5e1d740f83b6a29ec51d74";
   activate(starterSrc, starterHash);
   video.src = starterSrc;
