@@ -124,9 +124,42 @@ console.log(JSON.stringify({ started: pass.id, resumed }, null, 2));
 // then flip producer.json to completed. A pass that throws keeps the lock —
 // intentionally: the next invocation sees it as stale/resumable evidence.
 try {
-  // TODO(next increment): study selection -> build/verify/archive-ship chain
-  // driven from the study registry rather than inline shell.
-  throw Object.assign(new Error("pass body not implemented yet"), { producerScaffold: true });
+  // Pass body = the standard verified ship chain (VISION D). Study selection
+  // from the registry is a later increment; intent names the study explicitly.
+  const [study, ...noteParts] = intent.split("\n")[0].split(" ");
+  if (!study) throw new Error("intent must start with the study id");
+  const note = noteParts.join(" ") || `producer pass ${pass.id}`;
+  const sh = (cmd, args) => {
+    const out = execFileSync(cmd, args, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "inherit"] });
+    return out.trim();
+  };
+
+  sh("pnpm", ["turbo", "run", "check", "test", "build"]);
+  const sha = sh("git", ["rev-parse", "--short", "HEAD"]);
+  sh("node", ["scripts/archive-ship.mjs", sha, study, note]);
+  sh("node", ["scripts/upload-archive.mjs"]);
+  const url = `https://cinema.wzrrd.sh/archive/${study}/${sha}/index.html`;
+  const res = await fetch(url, { method: "HEAD" });
+  if (!res.ok) throw new Error(`archive check ${res.status} for ${url}`);
+
+  pass.status = "completed";
+  pass.study = study;
+  pass.sha = sha;
+  pass.archive = url;
+  pass.completedAt = new Date().toISOString();
+  ledgerAppend({
+    runId: pass.id,
+    study,
+    sha,
+    archive: `archive/${study}/${sha}/`,
+    status: "completed",
+    stage: "producer",
+    intent,
+    verified: ["turbo check test build", `archive 200 (${url})`],
+  });
+  writeFileSync(passStatePath, JSON.stringify({ ...state, passes: [...(state.passes ?? []), pass] }, null, 2) + "\n");
+  unlinkSync(lockPath);
+  console.log(JSON.stringify({ completed: pass.id, study, sha, url }, null, 2));
 } catch (err) {
   pass.status = "failed";
   pass.error = err.message;

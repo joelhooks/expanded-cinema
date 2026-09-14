@@ -548,6 +548,162 @@
       "status": "uploaded"
     },
     {
+      "key": "archive/recursion-01/a382d38/assets/index-Cxu51qu-.js",
+      "bytes": 590913,
+      "etag": "66edbcba45a4a3bad72ff584168421aeea3b4fa7ef57f1bda3298a3c7a017e75",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/assets/index-Cxu51qu-.js.map",
+      "bytes": 3138040,
+      "etag": "b6ad5be7e9ffd094ad4b8853a11fa8177f5bc18676d4cc017666e0d282b905ef",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/assets/study-recurrence-BAOvS4EF.js",
+      "bytes": 209209,
+      "etag": "e535f2b22a13f55ba06988e06688ee94b9716b3f235473afc063e7603b135935",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/assets/study-recurrence-BAOvS4EF.js.map",
+      "bytes": 1857856,
+      "etag": "531f0bfc3bc2fba07abc26c48eb4e34507a2553cc97e9df669bb897475da66ea",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/assets/study-recurrence-BAWmamwk.js",
+      "bytes": 143,
+      "etag": "8c5e6a546fb1365d7cffff74bd9fdaa32a9691f8f2f154773e36fad67eb2e3d5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/assets/study-recursion-D_kpKDiC.js",
+      "bytes": 3454,
+      "etag": "dcf2210d50327893a9fe5ffbac7a5d66371e48e9f932b043057f7024feb20854",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/assets/study-recursion-D_kpKDiC.js.map",
+      "bytes": 12655,
+      "etag": "68261e21275bd160d6cda92c21b98f7530ac5fd04343ed8cd408718600813ba9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/assets/study-recursion-N-VYuQ6K.js",
+      "bytes": 163,
+      "etag": "480c4b584996b05784f2fb7b754b10ebc6a830f55f9d80e973f89589b05293a9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/index.html",
+      "bytes": 1048,
+      "etag": "7a8c8222341e8b00878e3b394c1ecc07af8d8361ff21dd1126906e4fbe01d648",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/manifest.json",
+      "bytes": 492,
+      "etag": "6f14e1842cc8d9e2d0e8a4be0139076e86a4780c7803fc9b26ab8bd4d3fcca60",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/a382d38/note.md",
+      "bytes": 108,
+      "etag": "31d283d4696a733bc137d314ac428dd01da4b8ebf660b4430e62ac3a92b6a1df",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/assets/index-Cxu51qu-.js",
+      "bytes": 590913,
+      "etag": "66edbcba45a4a3bad72ff584168421aeea3b4fa7ef57f1bda3298a3c7a017e75",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/assets/index-Cxu51qu-.js.map",
+      "bytes": 3138040,
+      "etag": "b6ad5be7e9ffd094ad4b8853a11fa8177f5bc18676d4cc017666e0d282b905ef",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/assets/study-recurrence-BAOvS4EF.js",
+      "bytes": 209209,
+      "etag": "e535f2b22a13f55ba06988e06688ee94b9716b3f235473afc063e7603b135935",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/assets/study-recurrence-BAOvS4EF.js.map",
+      "bytes": 1857856,
+      "etag": "531f0bfc3bc2fba07abc26c48eb4e34507a2553cc97e9df669bb897475da66ea",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/assets/study-recurrence-BAWmamwk.js",
+      "bytes": 143,
+      "etag": "8c5e6a546fb1365d7cffff74bd9fdaa32a9691f8f2f154773e36fad67eb2e3d5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/assets/study-recursion-D_kpKDiC.js",
+      "bytes": 3454,
+      "etag": "dcf2210d50327893a9fe5ffbac7a5d66371e48e9f932b043057f7024feb20854",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/assets/study-recursion-D_kpKDiC.js.map",
+      "bytes": 12655,
+      "etag": "68261e21275bd160d6cda92c21b98f7530ac5fd04343ed8cd408718600813ba9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/assets/study-recursion-N-VYuQ6K.js",
+      "bytes": 163,
+      "etag": "480c4b584996b05784f2fb7b754b10ebc6a830f55f9d80e973f89589b05293a9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/index.html",
+      "bytes": 1048,
+      "etag": "7a8c8222341e8b00878e3b394c1ecc07af8d8361ff21dd1126906e4fbe01d648",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/manifest.json",
+      "bytes": 484,
+      "etag": "e684ad7cd2d0a65526a09ca7ccb7564f5a475b199bfdfa41f7d7e1e5956cef43",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recursion-01/fcc87a2/note.md",
+      "bytes": 100,
+      "etag": "ef53203fe9abb310e75a736b06ae0fb68d31d9a98bbeebccd810adf2b84c848b",
+      "status": "uploaded"
+    },
+    {
       "key": "archive/video-texture-screen/e0cba18/assets/index-CrISFYx_.js",
       "bytes": 794529,
       "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
