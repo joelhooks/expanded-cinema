@@ -5,7 +5,7 @@ maker's own cadence. Ship inside a normal bounded pass.
 
 ## Pre-flight done (2026-09-14)
 - [x] research chain: research/2026-09-14-clock-04.md (+ durable-trace requirement from the dream check)
-- [x] core: cut-detection, ring-capture, intervention-trace — 31/31 tests green
+- [x] core: cut-detection, ring-capture, intervention-trace (+ ring-capture collision detector) — 36/36 tests green (as of 2026-09-14; re-run full count at ship)
 - [x] module: apps/sketch/src/lib/study-clock04.ts — committed UNREGISTERED (741ec37), turbo green
 - [x] subtraction honored: pointer raster panel gone; wipe band gone
 
