@@ -155,6 +155,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 19:56Z sweep, unverified** Maker found the root cause of every reveal failure since v13: `/videos/*` was served as a full-body 200 with no Range support, so the media element refused to seek. v18 keys the rail to elapsed-since-first-step and logs reveal proof once a second; infra fix routes video through the archive worker with 206 ranges (first commit only added a comment, second one wires the route). Deploy in progress at sweep time, so no image judgment: the browser daemon is being shared with the maker's own agent_browser session and every screenshot this tick was a blank tab. No nudge; the maker is exactly on the direction. Next tick: use sessionMode fresh for the browser.
 
+- **2026-09-14 20:26Z sweep** v18 (fa72e9a) after the Range fix, verified with a fresh browser session (`--session-name ad-sweep`, sessionMode fresh; no daemon collision). Line 4 passes for the first time since clock-04 began: reveal event via seeked in the console, footage on the screen, picture changes between frames. Lines 3 and 5 fail: opening waypoint is inside the near beam, both frames a blown-out white slab with the projector boxes in it, camera static across 10s. Nudged: proximity beam fade plus waypoint 0 at the v14 16s viewpoint. v19 archive uploading. Browser fix for future sweeps: always use the fresh named session.
+
 ## Open questions
 
 
