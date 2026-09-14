@@ -118,3 +118,10 @@ the subtraction test by deleting the right-hand panel entirely.
 - Fresh tab (post-soak) mounted clean again: swap→ready→live chain, heartbeats ~78fps. 90s two-frame: credits → typewriter
   machinery full scene advance; memory panels show DIFFERENT content per frame (panel tracks the cut lag live). Zero errors.
   The loop's stability is now routine across 6 independent sessions — the unresolved verdict is about form, not reliability.
+
+## Housekeeping note (2026-09-14, delivery-7 element audit)
+- In-page eval: TWO video elements coexist after the boot swap (starter +
+  conquerb1943); the swapped-out element is not removed. Minor waste and a
+  small subtraction item for the next materials pass — the per-study
+  module contract (VIDEO declarations) can dispose the dead element when
+  study.material.swapped fires. Not user-visible; logged so it isn't lost.
