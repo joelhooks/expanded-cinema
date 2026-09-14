@@ -502,6 +502,47 @@ export async function mountRuntime(
           mm.opacity = (beam === 0 ? 0.03 + bright * 0.26 : 0.02 + bright * 0.2) * fade;
         }
 
+        // beam-01 vertical slats (now live, was dead since v13 rewrites):
+        // each slat is a thin bar across the beam's height at one arc
+        // fraction; brightness = the luma tap's COLUMN at that fraction
+        // (rows summed), so vertical picture structure joins band detail.
+        const SLATS = 16;
+        for (const sm2 of study.slats) {
+          const { beam: bBeam, slatIdx: bSi, uFrac: bU } = sm2.userData as { beam: number; slatIdx: number; uFrac: number };
+          const org = bBeam === 0 ? PROJ : PROJ_OFF;
+          if (!(revealHolder.revealed && tap)) {
+            sm2.visible = false;
+            continue;
+          }
+          sm2.visible = true;
+          const bU2 = -0.02 + bU * 0.16;
+          const bsx = SCREEN_R * Math.sin(bU2);
+          const bsz = SCREEN_R * Math.cos(bU2) - 2.2;
+          const bdir = new THREE.Vector3(bsx - org.x, 1.1 - org.y, bsz - org.z);
+          const blen = bdir.length();
+          sm2.position.copy(org).addScaledVector(bdir, 0.5);
+          sm2.scale.set(1, blen, 1);
+          sm2.rotation.set(0, -Math.atan2(bdir.z, bdir.x), Math.atan2(bdir.y, Math.hypot(bdir.x, bdir.z)));
+          sm2.rotateZ(Math.PI / 2);
+          const cF = Math.max(0, Math.min(LUMA_W - 1, bU * 0.14 * LUMA_W));
+          const bcol = Math.max(0, Math.floor(cF - 1));
+          const bgrid = bBeam === 0 ? tap.luma : pastLuma;
+          let bcacc = 0;
+          let bcn = 0;
+          if (bgrid) {
+            for (let ry = 0; ry < LUMA_H; ry++) {
+              bcacc += bgrid[ry * LUMA_W + bcol] ?? 0;
+              bcn++;
+            }
+          }
+          const bcolL = bcn > 0 ? bcacc / bcn : 0;
+          const bbright = Math.min(1, bcolL * 1.35 + cutGlow * 0.3);
+          const bfade = bBeam === 0 ? fade1 : fade2;
+          const bmm = sm2.material as THREE.MeshBasicMaterial;
+          bmm.opacity = (bBeam === 0 ? 0.02 + bbright * 0.28 : 0.015 + bbright * 0.13) * bfade;
+        }
+        void SLATS;
+
         // lens breathing: projectors inhale on their own cadence; cut flash
         const pulse = Math.sin((now / 2400) % (Math.PI * 2)) * 0.5 + 0.5;
         const p1 = study.proj1.material as THREE.MeshStandardMaterial;
