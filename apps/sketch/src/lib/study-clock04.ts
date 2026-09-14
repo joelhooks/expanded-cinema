@@ -405,7 +405,10 @@ export async function mountRuntime(
         // wide right -> dives THROUGH the beam -> lands low near the
         // screen looking back at the projectors -> swings up and out.
         // Two frames 10s apart land on visibly different sides of the room.
-        const rp = ((now % 40_000) / 40_000) * Math.PI * 2;
+        // rail phase shifted so t=0 lands on the proven-good viewpoint
+        // (the ~16s frame of v14: low near the screen looking back); the
+        // beam-bubble dive now happens mid-cycle, not on first paint
+        const rp = (((now + 26_000) % 40_000) / 40_000) * Math.PI * 2;
         // Catmull-like hand-tuned rail: three control points blended
         const w1 = Math.max(0, Math.cos(rp));
         const w2 = Math.max(0, Math.sin(rp * 0.5 + 0.6));
