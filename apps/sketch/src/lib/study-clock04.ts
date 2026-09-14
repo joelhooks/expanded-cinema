@@ -38,6 +38,7 @@ interface ClockScene {
   proj1: THREE.Mesh;
   proj2: THREE.Mesh;
   canvases: THREE.Mesh[];
+  slats: THREE.Mesh[];
   frame: { value: number };
   // intervention trace wall-clock
   traceAt: number | null;
@@ -147,6 +148,30 @@ function buildScene() {
   })();
   void glow;
   const canvases: THREE.Mesh[] = [];
+  const slats: THREE.Mesh[] = [];
+
+  // beam-01 vertical slats: 16 per beam, each a thin bar across the beam's
+  // full height at one arc fraction; samples a luma COLUMN (all rows at
+  // that arc u) so vertical detail joins the horizontal band detail.
+  const SLATS = 16;
+  for (let si = 0; si < SLATS; si++) {
+    const uFrac = (si + 0.5) / SLATS;
+    for (const beam of [0, 1]) {
+      const geo = new THREE.PlaneGeometry(SLICE_H * 0.5, BEAM_LEN);
+      const mat = new THREE.MeshBasicMaterial({
+        transparent: true,
+        opacity: 0,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+        side: THREE.DoubleSide,
+        color: beam === 0 ? 0xdfe8ff : 0x9fd4ff,
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.userData = { beam, slatIdx: si, uFrac };
+      scene.add(mesh);
+      slats.push(mesh);
+    }
+  }
 
   for (let i = 0; i < SLICES; i++) {
     const t0 = i / SLICES;
@@ -271,6 +296,7 @@ function buildScene() {
     proj1,
     proj2,
     canvases,
+    slats,
     frame,
     traceAt: traceAtHolder.at,
     computeBandsFromVideo,
@@ -470,6 +496,10 @@ export async function mountRuntime(
         study.pastCamera.updateProjectionMatrix();
       },
       dispose() {
+        for (const m of study.slats) {
+          m.geometry.dispose();
+          (m.material as THREE.Material).dispose();
+        }
         for (const m of study.canvases) {
           m.geometry.dispose();
           (m.material as THREE.Material).dispose();
