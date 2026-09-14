@@ -15,6 +15,8 @@ export interface VideoLayerHandle {
   readonly texture: THREE.VideoTexture;
   /** Resolves once the video is actually advancing (timeupdate seen). */
   readonly ready: Promise<boolean>;
+  /** Stops playback, removes the element, disposes the texture. Idempotent. */
+  dispose(): void;
 }
 
 async function waitUntilAdvancing(video: HTMLVideoElement, timeoutMs = 10_000): Promise<boolean> {
@@ -103,5 +105,15 @@ export async function openVideoLayer(
       .catch(() => undefined);
   });
 
-  return { texture, ready: Promise.resolve(true) };
+  return {
+    texture,
+    ready: Promise.resolve(true),
+    dispose() {
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      video.remove();
+      texture.dispose();
+    },
+  };
 }

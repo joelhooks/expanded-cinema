@@ -91,8 +91,11 @@ try {
     const videoDecl = mod.VIDEO ?? null;
     const layerSrc = useVideoLayerState.getState().currentSrc ?? "";
     if (videoDecl && !layerSrc.endsWith(videoDecl.src)) {
-      // Study wants material the open layer isn't playing: reopen its own.
-      layer.texture.dispose();
+      // Study wants material the open layer isn't playing: tear the old
+      // element down fully (element + texture) and open its own — per-study
+      // material, shared temporal machinery, no dead_VIDEO elements left in
+      // the document.
+      layer.dispose();
       layer = await openVideoLayer(videoDecl).catch(() => null);
       if (!layer) return false;
       void sketchEvents
