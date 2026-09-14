@@ -44,7 +44,8 @@ interface ClockScene {
   computeBandsFromVideo: (video: HTMLVideoElement) => { bands: Float32Array; luma: Float32Array; bandDetail: Float32Array } | null;
   bandAt: (framesAgo: number) => Float32Array | null;
   detailAt: (framesAgo: number) => Float32Array | null;
-  pushBandHistory: (bands: Float32Array, detail: Float32Array) => void;
+  lumaAt: (framesAgo: number) => Float32Array | null;
+  pushBandHistory: (bands: Float32Array, detail: Float32Array, luma: Float32Array) => void;
 }
 
 /** Beam rig geometry (mirrors clock-02/03's scene scale for archive comparability). */
@@ -188,12 +189,15 @@ function buildScene() {
   // per-frame band means (SLICES bands, luma 0..1), ring of length RING
   const bandHistory: Float32Array[] = [];
   const detailHistory: Float32Array[] = [];
-  const pushBandHistory = (bands: Float32Array, detail: Float32Array): void => {
+  const lumaHistory: Float32Array[] = []; // full 32x18 grids for the past beam
+  const pushBandHistory = (bands: Float32Array, detail: Float32Array, luma: Float32Array): void => {
     bandHistory.push(bands);
     detailHistory.push(detail);
+    lumaHistory.push(luma);
     if (bandHistory.length > RING) {
       bandHistory.shift();
       detailHistory.shift();
+      lumaHistory.shift();
     }
   };
   const bandAt = (framesAgo: number): Float32Array | null => {
@@ -203,6 +207,10 @@ function buildScene() {
   const detailAt = (framesAgo: number): Float32Array | null => {
     const idx = detailHistory.length - 1 - framesAgo;
     return idx >= 0 ? (detailHistory[idx] ?? null) : null;
+  };
+  const lumaAt = (framesAgo: number): Float32Array | null => {
+    const idx = lumaHistory.length - 1 - framesAgo;
+    return idx >= 0 ? (lumaHistory[idx] ?? null) : null;
   };
 
   const computeBandsFromVideo = (video: HTMLVideoElement): { bands: Float32Array; luma: Float32Array; bandDetail: Float32Array } | null => {
@@ -268,6 +276,7 @@ function buildScene() {
     computeBandsFromVideo,
     bandAt,
     detailAt,
+    lumaAt,
     pushBandHistory,
   };
 }
@@ -284,14 +293,31 @@ export async function mountRuntime(
     // time holds (element swaps reset playback to 0).
     const SEEK_TO = 55;
     let seekAttempts = 0;
+    const revealHolder = { revealed: false };
+    const vidOf = (): HTMLVideoElement | null =>
+      (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image ?? null;
     const seekTick = (): void => {
-      const vid = (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image;
+      const vid = vidOf();
       if (!vid) return;
       vid.currentTime = SEEK_TO;
       seekAttempts++;
       if (vid.currentTime < 10 && seekAttempts < 20) setTimeout(seekTick, 1000);
     };
+    // reveal the screen ONLY after the SEEKED event fires post-assemble —
+    // a viewer's first impression must be footage, never the front cards
+    const revealOnSeeked = (): void => {
+      const vid = vidOf();
+      if (!vid) return;
+      if (Math.abs(vid.currentTime - SEEK_TO) < 1.5) {
+        revealHolder.revealed = true;
+        (study.screen.material as THREE.MeshBasicMaterial).color.setScalar(1);
+        return;
+      }
+      vid.addEventListener("seeked", revealOnSeeked, { once: true });
+    };
+    (study.screen.material as THREE.MeshBasicMaterial).color.setScalar(0); // dark until footage
     seekTick();
+    revealOnSeeked();
     const screenMap = videoLayer.texture;
     screenMap.wrapS = THREE.RepeatWrapping;
     screenMap.repeat.x = -1; // cylinder inner face reads mirrored otherwise (seq-23)
@@ -320,7 +346,7 @@ export async function mountRuntime(
         const video = (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image;
         const tap = video ? study.computeBandsFromVideo(video) : null;
         if (tap) {
-          study.pushBandHistory(tap.bands, tap.bandDetail);
+          study.pushBandHistory(tap.bands, tap.bandDetail, tap.luma);
           const frame = { pixels: Array.from(tap.luma), width: LUMA_W, height: LUMA_H };
           lumaFramesSeen++;
           if (lumaFramesSeen % 600 === 1) {
@@ -360,8 +386,9 @@ export async function mountRuntime(
 
         // per-slice beams: brightness = the FRAME at that slice's row band
         // (live bands for beam 0; DELAY-late history for beam 1)
-        const live = tap ? tap.bands : null;
-        const past = tap ? study.bandAt(DELAY) : null;
+        const live = revealHolder.revealed && tap ? tap.bands : null;
+        const past = revealHolder.revealed && tap ? study.bandAt(DELAY) : null;
+        const pastLuma = revealHolder.revealed && tap ? study.lumaAt(DELAY) : null;
         for (const m of study.canvases) {
           const { beam, idx, yMid } = m.userData as { beam: number; idx: number; yMid: number };
           const org = beam === 0 ? PROJ : PROJ_OFF;
@@ -391,10 +418,20 @@ export async function mountRuntime(
           // this slice's band. That sampled patch's MEAN drives the slice —
           // dark picture regions read as dark gaps IN the beam cone.
           const bands = beam === 0 ? live : past;
-          const lumaTap = tap ? tap.luma : null;
+          const lumaTap = beam === 0 ? (tap?.luma ?? null) : pastLuma;
           const bandL = bands?.[idx] ?? 0;
           const uMid = yMid * 0.16 - 0.02 + 0.06; // landing u, mid of quad span
-          const colF = Math.max(0, Math.min(LUMA_W - 1, (beam === 0 ? uMid / 0.14 : 0.5) * LUMA_W));
+          // past beam samples the PAST luma grid across its wall span
+          // (wall x 2.2..4.3 -> left..right col, mirroring the live arc)
+          const colF = Math.max(
+            0,
+            Math.min(
+              LUMA_W - 1,
+              (beam === 0
+                ? uMid / 0.14
+                : (tx - 2.2) / 2.1) * LUMA_W,
+            ),
+          );
           const col0 = Math.max(0, Math.floor(colF - 2));
           const rowF = Math.max(0, Math.min(LUMA_H - 1, (idx / SLICES) * LUMA_H));
           const patchRow = Math.floor(rowF);
