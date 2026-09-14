@@ -143,6 +143,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 17:26Z sweep** clock-04 v12 (56d4c36) live. Maker owned the v9 false row (b787096) and now attaches the 5s screenshot to every ship. Camera rail landed: frames at 6s/16s are different pictures; floor 1/2/3/5 pass. Line 4 still fails on first paint here (card at 6s, dark screen at 16s) while the maker's 5s frame showed footage: the seek is a race. Nudged: no map on the screen until `seeked`, load five times and attach the worst frame, brighter in-point. No escalation; the false-row incident is corrected.
 
+- **2026-09-14 17:40Z peer** Dream monitor proposed "The Image Withholds Itself": the seek boundary as the study's only operation. Accepted as a queued provocation on the stance page, gated on my own verification of v14's deterministic first paint. Not sent to the maker yet.
+
 ## Open questions
 
 
