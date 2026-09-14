@@ -400,32 +400,49 @@ export async function mountRuntime(
           }
         }
 
-        // v11 (seq-26): materially different composition — the camera
-        // TRAVELS the room on a 40s rail, not an orbit around one spot:
-        // wide right -> dives THROUGH the beam -> lands low near the
-        // screen looking back at the projectors -> swings up and out.
-        // Two frames 10s apart land on visibly different sides of the room.
-        // rail phase shifted so t=0 lands on the proven-good viewpoint
-        // (the ~16s frame of v14: low near the screen looking back); the
-        // beam-bubble dive now happens mid-cycle, not on first paint
-        const rp = (((now + 26_000) % 40_000) / 40_000) * Math.PI * 2;
-        // Catmull-like hand-tuned rail: three control points blended
-        const w1 = Math.max(0, Math.cos(rp));
-        const w2 = Math.max(0, Math.sin(rp * 0.5 + 0.6));
-        const w3 = Math.max(0, -Math.cos(rp * 0.7));
-        const tot = w1 + w2 + w3 + 1e-6;
-        const ax = w1 * 3.4 + w2 * 0.4 + w3 * -2.8;
-        const ay = w1 * 1.6 + w2 * 2.4 + w3 * 0.55;
-        const az = w1 * 6.8 + w2 * 3.1 + w3 * 0.2;
-        void tot;
-        study.camera.position.set(ax, ay, az);
-        // look ahead along the rail so the view sweeps, not locks
-        const rp2 = rp + 0.35;
-        const lx = Math.max(0, Math.cos(rp2)) * 3.4 + Math.max(0, Math.sin(rp2 * 0.5 + 0.6)) * 0.4;
-        const ly = Math.max(0, Math.sin(rp2 * 0.5 + 0.6)) * 2.4;
-        const lz = Math.max(0, -Math.cos(rp2 * 0.7)) * 0.2 + Math.max(0, Math.cos(rp2)) * 6.8;
-        study.camera.lookAt(lx, ly, lz);
-
+        // v16 (seq-28): stop guessing with rotated phases — AUTHOR the rail
+        // as explicit waypoints. Start at the proven-good v14 16s viewpoint
+        // (low near the screen looking back at the projectors = "the best
+        // picture this project has made"). Hold it, travel the good wide
+        // arc, cross the beam only after 20s, return. Two frames 10s apart
+        // are different pictures AND no beam bubble before 20s.
+        const RAIL: Array<{ t: number; p: [number, number, number]; l: [number, number, number] }> = [
+          { t: 0.0, p: [0.6, 0.9, 1.4], l: [-3.9, 1.35, 2.4] }, // look at projector 1 from low right
+          { t: 0.15, p: [0.6, 0.9, 1.4], l: [-3.9, 1.35, 2.4] }, // HOLD first ~7s
+          { t: 0.4, p: [1.4, 1.5, 4.6], l: [-1.5, 1.1, -1.8] }, // pull back to the wide
+          { t: 0.6, p: [2.6, 1.9, 5.9], l: [-2.2, 1.1, -2.0] }, // wide right, outside beam
+          { t: 0.8, p: [2.2, 1.6, 5.4], l: [-3.0, 1.2, -1.5] }, // cross toward beam side (later, allowed)
+          { t: 1.0, p: [0.6, 0.9, 1.4], l: [-3.9, 1.35, 2.4] }, // return to the opening frame
+        ];
+        const railAt = (f: number): { p: THREE.Vector3; l: THREE.Vector3 } => {
+          let i = 0;
+          for (let k = 0; k < RAIL.length - 1; k++) {
+            if (f >= (RAIL[k]?.t ?? 0) && f <= (RAIL[k + 1]?.t ?? 0)) {
+              i = k;
+              break;
+            }
+          }
+          const a = RAIL[i] ?? RAIL[0]!;
+          const b = RAIL[i + 1] ?? RAIL[RAIL.length - 1]!;
+          const span = (b.t - a.t) + 1e-9;
+          const u = Math.min(1, Math.max(0, (f - a.t) / span));
+          const ease = u * u * (3 - 2 * u); // smoothstep
+          return {
+            p: new THREE.Vector3(
+              a.p[0] + (b.p[0] - a.p[0]) * ease,
+              a.p[1] + (b.p[1] - a.p[1]) * ease,
+              a.p[2] + (b.p[2] - a.p[2]) * ease,
+            ),
+            l: new THREE.Vector3(
+              a.l[0] + (b.l[0] - a.l[0]) * ease,
+              a.l[1] + (b.l[1] - a.l[1]) * ease,
+              a.l[2] + (b.l[2] - a.l[2]) * ease,
+            ),
+          };
+        };
+        const rail = railAt((now % 48_000) / 48_000);
+        study.camera.position.copy(rail.p);
+        study.camera.lookAt(rail.l);
         // transient flash: the intervention trace the room feels
         const since = now - (study.traceAt ?? -1e9);
         const cutGlow = since >= 0 && since < 900 ? Math.max(0, 1 - since / 900) : 0;
