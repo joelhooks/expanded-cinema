@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CutDetector, isHardCut, meanAbsDiff, type LumaFrame } from "./cut-detection";
+import { CutDetector, isHardCut, meanAbsDiff, type LumaFrame } from "../src/cut-detection";
 
 const frame = (v: number, w = 4, h = 4): LumaFrame => ({ pixels: Array(w * h).fill(v), width: w, height: h });
 
@@ -62,8 +62,8 @@ describe("CutDetector", () => {
   });
 
   it("handles a mixed real-shaped pair (row-major 2x2)", () => {
-    const a = frameFrom([0, 0, 0, 0]);
-    const b = frameFrom([255, 255, 0, 0]);
+    const a = frameFrom([0, 0, 0, 0], 2, 2);
+    const b = frameFrom([255, 255, 0, 0], 2, 2);
     expect(meanAbsDiff(a, b)).toBeCloseTo(0.5);
   });
 });
