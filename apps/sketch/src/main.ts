@@ -1,13 +1,14 @@
 import * as THREE from "three/webgpu";
 import { sketchEvents } from "./lib/o11y";
 import { openVideoLayer } from "./lib/video-layer";
-import { DELAY, RING, STUDY, mountScene, type StudyScene } from "./lib/study-recurrence";
+import { fetchCurrent, watchCurrent, type CurrentStudy } from "./lib/gallery-store";
+import { mountRuntime, type StudyRuntime } from "./lib/study-recurrence";
 
 /**
- * Hello world: one animated knot on a WebGPU renderer. Renderer init and the
- * frame loop emit real o11y events through the core contract — renderer init
- * is a measured hop, the loop emits a heartbeat with fps every 5 seconds,
- * and fallback (WebGL2) is explicit in metadata, never silent.
+ * Expanded Cinema: a WebGPU gallery whose current study is a runtime
+ * pointer, not a build artifact. The page boots from content/current.json
+ * (served through the /archive gateway) and hot-swaps when the pointer
+ * moves — an already-open tab picks a new study up without a redeploy.
  */
 
 const overlay = document.getElementById("overlay");
@@ -15,6 +16,20 @@ const MAX_FAILURES = 3;
 let initFailures = 0;
 
 type RenderHarness = { renderer: THREE.WebGPURenderer; backend: string };
+
+/**
+ * Study registry: each shipped study registers a loader keyed by its id.
+ * A pointer move to a registered id needs no code push; registering a
+ * NEW study id is a code push (the archive route serves arbitrary study
+ * URLs regardless — /archive/<study>/<sha>/ works for every shipped
+ * bundle, registry or not).
+ */
+const STUDY_LOADERS: Record<
+  string,
+  () => Promise<{ mountRuntime: typeof mountRuntime; STUDY: string }>
+> = {
+  "recurrence-01": () => import("./lib/study-recurrence"),
+};
 
 async function initRenderer(): Promise<RenderHarness> {
   const renderer = new THREE.WebGPURenderer({ antialias: true });
@@ -55,25 +70,62 @@ try {
   scene.add(key);
   scene.add(new THREE.AmbientLight(0x222244, 0.9));
 
-  // Study: recurrence-01. The knot receives the video as its only light
-  // (map, not lit material); the screen shows the scene's own past via a
-  // 24-frame render-target delay ring. Lineage: hello-world-knot.
-  let study: StudyScene | null = null;
-  openVideoLayer()
-    .then(async (layer) => {
-      if (!layer) return;
-      study = await mountScene(renderer, layer);
-      sketchEvents
-        .emitInfo("study", "study.scene.live", { study: STUDY, delay: DELAY })
-        .catch(() => undefined);
-    })
-    .catch(() => {
-      // openVideoLayer / mountScene already emit their own failure envelopes
-    });
+  // Gallery state: the live study exists only behind this variable. The
+  // boot pointer comes from the runtime store; watchCurrent hot-swaps in
+  // an already-open tab when it moves. A failed look falls back to the
+  // last registered study so the page never boots dark.
+  let study: StudyRuntime | null = null;
+  let layer: Awaited<ReturnType<typeof openVideoLayer>> = null;
 
-  if (overlay) {
-    overlay.textContent = `expanded cinema · ${STUDY} · extends hello-world-knot: keeps webgpu+o11y+starter; changes knot-as-screen-surface, self-delayed view · ${backend}`;
+  const FALLBACK_POINTER: CurrentStudy = {
+    study: "recurrence-01",
+    sha: "bundle",
+    updatedAt: "1970-01-01T00:00:00Z",
+    url: "https://cinema.wzrrd.sh/",
+    archive: "/archive/recurrence-01/",
+  };
+
+  async function mountStudy(pointer: CurrentStudy): Promise<boolean> {
+    const loader = STUDY_LOADERS[pointer.study];
+    if (!loader) {
+      void sketchEvents
+        .emitInfo("gallery", "gallery.study.unknown", { study: pointer.study })
+        .catch(() => undefined);
+      return false;
+    }
+    if (!layer) return false;
+    const mod = await loader();
+    const next = await mod.mountRuntime(renderer, layer);
+    study = next;
+    if (overlay) {
+      overlay.textContent = `expanded cinema · ${pointer.study} · live pointer ${pointer.sha.slice(0, 7)} · ${backend}`;
+    }
+    void sketchEvents
+      .emitInfo("study", "study.scene.live", { study: pointer.study, pointer: pointer.sha })
+      .catch(() => undefined);
+    return true;
   }
+
+  layer = await openVideoLayer().catch(() => null);
+  const booted = (await fetchCurrent()) ?? FALLBACK_POINTER;
+  await mountStudy(booted);
+  // One watcher for the surface lifetime: pointer moves dismount the old
+  // runtime and mount the new one in the same loop.
+  watchCurrent(booted, async (next, previous) => {
+    const old = study;
+    study = null;
+    if (await mountStudy(next).catch(() => false)) {
+      old?.dispose();
+      void sketchEvents
+        .emitInfo("gallery", "gallery.study.swapped.applied", {
+          from: `${previous.study}@${previous.sha.slice(0, 7)}`,
+          to: `${next.study}@${next.sha.slice(0, 7)}`,
+        })
+        .catch(() => undefined);
+    } else {
+      study = old;
+    }
+  });
 
   function resize(): void {
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -99,32 +151,10 @@ try {
     const delta = (now - previous) / 1000;
     previous = now;
     if (study) {
-      study.knot.rotation.x += delta * 0.4;
-      study.knot.rotation.y += delta * 0.55;
-      study.screen.rotation.y = Math.sin(now / 2400) * 0.18;
-
-      // Rephotography: the screen shows the frame from DELAY-frames-ago.
-      // The map MUST move before the write pass: read = targets[(n+1)%RING]
-      // holds frame n-DELAY and is never the write target (targets[n%RING],
-      // RING = DELAY + 1), so no texture is attachment-bound and
-      // texture-bound in the same WebGPU render pass.
-      const n = study.frame.value;
-      const write = study.targets[n % RING];
-      const read = study.targets[(n + 1) % RING];
-      const mat = study.screen.material as THREE.MeshBasicMaterial;
-      if (read && mat.map !== read.texture) {
-        mat.map = read.texture;
-        mat.needsUpdate = true;
-      }
-      if (write) {
-        renderer.setRenderTarget(write);
-        renderer.render(study.scene, study.camera);
-        renderer.setRenderTarget(null);
-      }
-      // Give the present scene a final render to the canvas so what the
-      // viewer sees is the CURRENT frame plus a screen showing the past.
-      renderer.render(study.scene, study.camera);
-      study.frame.value = n + 1;
+      study.step(renderer, now, delta);
+    } else {
+      // fallback: dark scene, study.load failure already reported
+      renderer.render(scene, camera);
     }
     framesSinceHeartbeat++;
 
@@ -147,7 +177,6 @@ try {
       // fallback: dark scene, study.load failure already reported
       renderer.render(scene, camera);
     }
-
   });
 } catch (initError) {
   initFailures++;

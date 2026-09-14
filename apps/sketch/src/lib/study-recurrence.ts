@@ -115,4 +115,62 @@ function sceneSwap(study: StudyScene): void {
   study.screen = study.feedbackMesh;
 }
 
+/**
+ * Swappable runtime surface the gallery layer owns: one step per frame,
+ * one dispose on hot-swap. main.ts never touches study internals — that
+ * is what lets a study change under an open tab without a redeploy.
+ */
+export interface StudyRuntime {
+  scene: THREE.Scene;
+  camera: THREE.PerspectiveCamera;
+  delay: number;
+  step(renderer: THREE.WebGPURenderer, now: number, delta: number): void;
+  dispose(): void;
+}
+
+export async function mountRuntime(
+  renderer: THREE.WebGPURenderer,
+  videoLayer: { texture: THREE.VideoTexture; ready: Promise<boolean> },
+): Promise<StudyRuntime> {
+  const study = await mountScene(renderer, videoLayer);
+  const allTargets = study.targets;
+  return {
+    scene: study.scene,
+    camera: study.camera,
+    delay: DELAY,
+    step(r, now, delta) {
+      study.knot.rotation.x += delta * 0.4;
+      study.knot.rotation.y += delta * 0.55;
+      study.screen.rotation.y = Math.sin(now / 2400) * 0.18;
+
+      // Rephotography: the screen shows the frame from DELAY-frames-ago.
+      // Map moves BEFORE the write pass (read = (n+1)%RING holds frame
+      // n-DELAY), so no texture is attachment- and texture-bound in one
+      // WebGPU render pass (that regression shipped black in 7371a23).
+      const n = study.frame.value;
+      const write = allTargets[n % RING];
+      const read = allTargets[(n + 1) % RING];
+      const mat = study.screen.material as THREE.MeshBasicMaterial;
+      if (read && mat.map !== read.texture) {
+        mat.map = read.texture;
+        mat.needsUpdate = true;
+      }
+      if (write) {
+        r.setRenderTarget(write);
+        r.render(study.scene, study.camera);
+        r.setRenderTarget(null);
+      }
+      r.render(study.scene, study.camera);
+      study.frame.value = n + 1;
+    },
+    dispose() {
+      for (const t of allTargets) t.dispose();
+      study.knot.geometry.dispose();
+      (study.knot.material as THREE.Material).dispose();
+      study.screen.geometry.dispose();
+      (study.screen.material as THREE.Material).dispose();
+    },
+  };
+}
+
 export { DELAY, RING, STUDY };
