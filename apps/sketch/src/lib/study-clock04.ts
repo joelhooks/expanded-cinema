@@ -184,7 +184,9 @@ function buildScene() {
         transparent: true,
         opacity: 0,
         depthWrite: false,
-        blending: THREE.AdditiveBlending,
+        // v21d: slice SHEETS composite normally (two additive sheets crossed
+        // the whole room and summed to a white wall); slats stay additive.
+        blending: THREE.NormalBlending,
         side: THREE.DoubleSide,
         color: (beam === 0 ? 0xdfe8ff : 0x9fd4ff),
       });
@@ -614,7 +616,7 @@ export async function mountRuntime(
           const bright = Math.min(1, patchL * 1.35 + bandL * 0.5 + cutGlow * 0.35);
           const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = (beam === 0 ? 0.03 + bright * 0.26 : 0.02 + bright * 0.2) * fade * graze(m);
+          mm.opacity = (beam === 0 ? 0.05 + bright * 0.34 : 0.03 + bright * 0.26) * fade * graze(m);
         }
 
         // beam-01 vertical slats (now live, was dead since v13 rewrites):
