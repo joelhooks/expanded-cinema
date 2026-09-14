@@ -554,6 +554,156 @@
       "status": "uploaded"
     },
     {
+      "key": "archive/clock-03/b03234c/assets/index-DMcs_UBs.js",
+      "bytes": 591548,
+      "etag": "90d1c9d13b96f1ceef0f1f3dae46a628a9c34245e87c5a030a119dbb558adb5f",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/index-DMcs_UBs.js.map",
+      "bytes": 3139394,
+      "etag": "c8598659be776f9804929c80dd9c978ee975617af748a41277d610d148bfb752",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/o11y-DTJgjOD0.js",
+      "bytes": 207245,
+      "etag": "7efe5cd255c891c23fdfa07ce87d1c3dcb692723d61ce65cec887677b1b64985",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/o11y-DTJgjOD0.js.map",
+      "bytes": 1848278,
+      "etag": "f5422b3ea3d399dfd0f7e453de7a2f9b577655553cc23664cffa610730c96025",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-clock-CHUZowy6.js",
+      "bytes": 3646,
+      "etag": "11e67c333c96d3bc4e07029c4290c7d98820d6a06e2b777f0f79bc8a986c3fe5",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-clock-CHUZowy6.js.map",
+      "bytes": 13096,
+      "etag": "300d87ff0c79915e214f7964fae16a6a8585a776a01fbd1a7e0106d1754ac1bb",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-clock02-pQo4ZRE5.js",
+      "bytes": 3297,
+      "etag": "b672196d6688032610e86b2cac879b1ea27c1e89c7cef4a374dc07356499c41b",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-clock02-pQo4ZRE5.js.map",
+      "bytes": 11897,
+      "etag": "45447141c60860e2e56cb9117d019ba547d39eb447d90f46f29adb612be46971",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-clock03-DmzxFlqD.js",
+      "bytes": 4280,
+      "etag": "ffa778eb56025610888445e8b5c59672a2cb08d9be464c1e759540b2a62c4d18",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-clock03-DmzxFlqD.js.map",
+      "bytes": 16058,
+      "etag": "47914a5b733693900fcc9aa5b3c94704ae6f93441c49936ea3425a506df62268",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-recurrence-Cdsz0nTa.js",
+      "bytes": 2103,
+      "etag": "bcbae15547521f1b6562e77a9cb9dbbbc3565d7db93b89a22d77d0550d6602aa",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-recurrence-Cdsz0nTa.js.map",
+      "bytes": 9839,
+      "etag": "f841832fedd23e7753bd6755f937d7960d8296f1cbabe3f7cc79e9f367c45f14",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-recurrence-Drzy_oYz.js",
+      "bytes": 166,
+      "etag": "ad1205666a3fa1f9ff606210a643edf946733d0d4e7e8f32cf50b9efade20511",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-recursion-C-iBSPZb.js",
+      "bytes": 3495,
+      "etag": "9c5163166d41a34d3cf1fb6ad11d82775d2bc0c9809ff9be47eef8ce2119028a",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-recursion-C-iBSPZb.js.map",
+      "bytes": 12817,
+      "etag": "9dc5ea846bc0e5d7d78f6f77c4c4f404d582dcf47b4c59ce3ca18dc25334d1e0",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/assets/study-recursion-M3QU8GUo.js",
+      "bytes": 176,
+      "etag": "5ef5aa64578d9aa8d47d53fe9b75d7c96af9b7e7aa4c71ca8462388c5ffc2eb8",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/index.html",
+      "bytes": 1843,
+      "etag": "94967da52d9d61db7e43699373248c8e32cd626f6b220f00eb36fa99c3e74130",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/og-image.png",
+      "bytes": 126201,
+      "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/videos/.gitignore",
+      "bytes": 23,
+      "etag": "f051db0ffea3f59c3dd5b3fa53b30c44f03fd12dc0349eecb2ffd4716b24f3a8",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/videos/Conquerb1943_512kb.mp4",
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/videos/conquerb1943.mp4",
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/manifest.json",
+      "bytes": 594,
+      "etag": "41704943e8ae5df3f1560755f24d238291a1597a06020a4c6b107d6d7f30c2af",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-03/b03234c/note.md",
+      "bytes": 116,
+      "etag": "f5d00f3047083a681170da7102318a7c097691941d7ff718aa75f2b377c796b5",
+      "status": "uploaded"
+    },
+    {
       "key": "archive/hello-world-knot/574f3b9/assets/index-CrISFYx_.js",
       "bytes": 794529,
       "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",

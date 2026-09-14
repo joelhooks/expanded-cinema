@@ -1,0 +1,46 @@
+# Study: clock-03 (extend clock-02 — the intervention interrupts)
+
+## Verdict: unresolved
+
+## Evidence (browser receipts, 2026-09-14, sha b03234c)
+- Build from recorded deps; console clean except an untracked third-party
+  "Ketch GTM consent" log (named honestly; not from the sketch).
+- Frames: /tmp/clock03-f1.png (clock room, memory panel trailing),
+  /tmp/clock03-wipe-capture.png (title card "CONQUER BY THE CLOCK" +
+  pointer stripes redrawn to f00d pattern), 90-second watch pair
+  /tmp/clock03-watch-0s.png (blurred cut in motion) →
+  /tmp/clock03-watch-90s.png (machinery, memory panel showing an EARLIER
+  clock face — the past's past, lag genuinely visible).
+- o11y ring: renderer backend webgpu, video.load/activate on both layers,
+  study.ready delay:180, clock03.wipe {"sha":"b03234c-wipe1","start":0.73}
+  (sha byte 0xB → start 0.73: the wipe position is provably sha-driven),
+  gallery.pointer.moved on each live PUT, heartbeats 50–81fps.
+- Provenance: Conquerb1943 CC-PD, research/provenance.md complete.
+- Comparison targets: clock-02 (retained), recursion-01 (lineage reference).
+
+## Rubric walk
+1. Lineage: extends clock-02 explicitly; keeps material+framing, changes
+   the intervention layer from adjacent panel to interruption. Pass.
+2. Chain: all six links written BEFORE code (research/2026-09-14-clock-03.md).
+   Pass.
+3. Apparatus: the subject is now an interruption — but the wipe band reads
+   as a highlighted strip PASTED ON the footage, not as the archive being
+   re-notched. Close to the billboard failure mode the stance warns about.
+4. Material: shared with clock-01/02, provenance-carried. Pass, no new pull.
+5. Time: claimed duration 700ms transient × live cuts; watched 90s full
+   window plus transient events. The lag panel does more temporal work over
+   90s than the wipe does. Say it plainly.
+6. Subtraction test: remove the pointer raster panel (right) and the study
+   arguably GAINS — the wipe already carries the intervention layer alone.
+   The panel is now decoration. Flagged.
+7. Lane: temporal relationships; body of work still reads one practice.
+8. Honesty: every claim above has a frame file or o11y receipt; the wipe's
+   visual band itself was NOT caught in a still (700ms vs 60s capture
+   cadence) — the wipe's VISIBLE FORM is unverified; its firing is proven.
+
+## Open question (tomorrow's study comes from here, not momentum)
+Can the interruption be part of the archive's own time rather than an
+overlay — i.e., the past band SPLIT OFF from the footage (plane torn out of
+the surface, physically displaced) instead of a translucent strip pasted on?
+That is the "surface as sculpture" boundary move, and it would also answer
+the subtraction test by deleting the right-hand panel entirely.
