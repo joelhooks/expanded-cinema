@@ -447,13 +447,17 @@ export async function mountRuntime(
         // a shallow arc that keeps distance from the projector bubbles,
         // return. Nearing PROJ is forbidden: both beam origins stay >=3.5
         // away from every rail point.
+        // v20 (AD seq-31): open LOW and NEAR the screen — the film is the
+        // largest thing in the opening frame — hold ~7s, then arc back into
+        // the room. The old default (0.4,0.85,5.9) sat INSIDE the near
+        // beam's volume and read as a white slab for 20s.
         const RAIL: Array<{ t: number; p: [number, number, number]; l: [number, number, number] }> = [
-          { t: 0.0, p: [0.4, 0.85, 5.9], l: [-0.5, 1.1, 0.0] }, // the proven default view
-          { t: 0.2, p: [1.0, 1.05, 6.2], l: [-0.7, 1.15, -0.3] }, // faster sway right
-          { t: 0.45, p: [2.1, 1.55, 6.5], l: [-1.1, 1.1, -0.9] }, // clearly right of default by 21s
-          { t: 0.7, p: [0.9, 1.1, 6.5], l: [-0.7, 1.2, 0.1] }, // back left
-          { t: 0.9, p: [0.3, 0.95, 6.2], l: [-0.5, 1.1, 0.0] }, // near default again
-          { t: 1.0, p: [0.4, 0.85, 5.9], l: [-0.5, 1.1, 0.0] }, // loop close
+          { t: 0.0, p: [0.55, 0.75, 3.2], l: [-0.2, 1.25, 1.15] }, // low, near screen, film fills frame
+          { t: 0.15, p: [0.7, 0.85, 3.6], l: [-0.4, 1.2, 0.9] }, // ~7s hold with a slow drift
+          { t: 0.35, p: [1.4, 1.15, 5.6], l: [-0.6, 1.15, 0.0] }, // pull back into the room
+          { t: 0.55, p: [2.0, 1.5, 6.4], l: [-1.0, 1.1, -0.7] }, // right of default
+          { t: 0.75, p: [0.9, 1.1, 6.4], l: [-0.7, 1.2, 0.1] }, // back left
+          { t: 1.0, p: [0.55, 0.75, 3.2], l: [-0.2, 1.25, 1.15] }, // loop close
         ];
         const railAt = (f: number): { p: THREE.Vector3; l: THREE.Vector3 } => {
           let i = 0;
@@ -491,10 +495,23 @@ export async function mountRuntime(
         // v12: camera-beam proximity falloff — the camera's distance from
         // each projector drives a fade on that beam; at close range the
         // wash back off so room + picture stay readable (v11 15s frame)
-        const camD1 = study.camera.position.distanceTo(PROJ);
-        const camD2 = study.camera.position.distanceTo(PROJ_OFF);
-        const fade1 = Math.min(1, Math.max(0.25, (camD1 - 1.2) / 3.4));
-        const fade2 = Math.min(1, Math.max(0.25, (camD2 - 1.2) / 3.4));
+        // v20 (AD seq-31): bubble fade by CAMERA-TO-BEAM-SEGMENT distance —
+        // the old distance-to-projector fade missed the real failure (the
+        // camera INSIDE the beam cone between origin and landing). Inside
+        // ~1m of the beam line: alpha to ~0.15; full alpha by ~3m.
+        const B0_END = new THREE.Vector3(0.0, 1.6, 1.2); // beam 0 lands on the screen
+        const B1_END = new THREE.Vector3(2.2, 1.0, -7.55); // beam 1 lands on the back wall
+        const segDist = (a: THREE.Vector3, b: THREE.Vector3): number => {
+          const ab = b.clone().sub(a);
+          const t = Math.max(0, Math.min(1, study.camera.position.clone().sub(a).dot(ab) / ab.lengthSq()));
+          return study.camera.position.distanceTo(a.clone().addScaledVector(ab, t));
+        };
+        const bubble = (d: number): number => {
+          const u = Math.min(1, Math.max(0, (d - 1.0) / 2.0)); // 1m → 3m ramp
+          return 0.15 + 0.85 * (u * u * (3 - 2 * u));
+        };
+        const fade1 = bubble(segDist(PROJ, B0_END));
+        const fade2 = bubble(segDist(PROJ_OFF, B1_END));
 
         // per-slice beams: brightness = the FRAME at that slice's row band
         // (live bands for beam 0; DELAY-late history for beam 1)
