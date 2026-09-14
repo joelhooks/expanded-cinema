@@ -317,37 +317,44 @@ export async function mountRuntime(
     // this clip's 90s duration (clamped -> looped back to the cards).
     // 55s is inside the film, past both front cards. Re-assert until the
     // time holds (element swaps reset playback to 0).
-    const SEEK_TO = 55;
+    const SEEK_TO = 63; // brighter in-point (55s reads too dark on the wall, seq-27)
     let seekAttempts = 0;
     const revealHolder = { revealed: false };
     const vidOf = (): HTMLVideoElement | null =>
       (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image ?? null;
+    // v13 (seq-27): DETERMINISTIC first paint. The v8 reveal raced a stale
+    // 'seeked' from the OLD element (already at SEEK_TO from a prior pass)
+    // firing while the fresh element sat at 0 — the card then showed full.
+    // Now: screen map = NULL at mount; the map is assigned only when the
+    // seeked event arrives from the CURRENT element AT SEEK_TO.
+    const screenMat = study.screen.material as THREE.MeshBasicMaterial;
+    const unwrapRepeat = (tex: THREE.Texture): void => {
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.repeat.x = -1; // cylinder inner face reads mirrored otherwise (seq-23)
+    };
+    unwrapRepeat(videoLayer.texture);
+    screenMat.map = null; // nothing chosen yet -> nothing shown
+    const onSeeked = (ev: Event): void => {
+      const vid = ev.target as HTMLVideoElement;
+      if (vid !== vidOf()) return; // stale element's event: ignore
+      if (Math.abs(vid.currentTime - SEEK_TO) >= 1.5) return; // wrong place
+      screenMat.map = videoLayer.texture; // the chosen frame, only now
+      screenMat.needsUpdate = true;
+      revealHolder.revealed = true;
+    };
+    videoLayer.texture.addEventListener?.("dispose", () => {
+      if (screenMat.map === videoLayer.texture) screenMat.map = null;
+    });
+    vidOf()?.addEventListener("seeked", onSeeked);
     const seekTick = (): void => {
       const vid = vidOf();
       if (!vid) return;
       vid.currentTime = SEEK_TO;
       seekAttempts++;
-      if (vid.currentTime < 10 && seekAttempts < 20) setTimeout(seekTick, 1000);
+      if (Math.abs(vid.currentTime - SEEK_TO) > 1.5 && seekAttempts < 20) setTimeout(seekTick, 1000);
     };
-    // reveal the screen ONLY after the SEEKED event fires post-assemble —
-    // a viewer's first impression must be footage, never the front cards
-    const revealOnSeeked = (): void => {
-      const vid = vidOf();
-      if (!vid) return;
-      if (Math.abs(vid.currentTime - SEEK_TO) < 1.5) {
-        revealHolder.revealed = true;
-        (study.screen.material as THREE.MeshBasicMaterial).color.setScalar(1);
-        return;
-      }
-      vid.addEventListener("seeked", revealOnSeeked, { once: true });
-    };
-    (study.screen.material as THREE.MeshBasicMaterial).color.setScalar(0); // dark until footage
     seekTick();
-    revealOnSeeked();
-    const screenMap = videoLayer.texture;
-    screenMap.wrapS = THREE.RepeatWrapping;
-    screenMap.repeat.x = -1; // cylinder inner face reads mirrored otherwise (seq-23)
-    (study.screen.material as THREE.MeshBasicMaterial).map = screenMap;
+    document.addEventListener("seeked", onSeeked, true); // capture phase: element swaps included
     const detector = new CutDetector();
     let lumaFramesSeen = 0;
     void sketchEvents.emitInfo("study", "study.ready", { study: STUDY, delay: DELAY }).catch(() => undefined);
