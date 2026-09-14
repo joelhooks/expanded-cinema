@@ -626,7 +626,7 @@ export async function mountRuntime(
           const bright = Math.min(1, patchL * 1.35 + bandL * 0.5 + cutGlow * 0.35);
           const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = (beam === 0 ? 0.05 + bright * 0.34 : 0.03 + bright * 0.26) * fade * graze(m) * 0.75;
+          mm.opacity = (beam === 0 ? 0.05 + bright * 0.34 : 0.02 + bright * 0.12) * fade * graze(m) * (beam === 0 ? 0.75 : 0.35);
         }
 
         // beam-01 vertical slats (now live, was dead since v13 rewrites):
@@ -669,7 +669,7 @@ export async function mountRuntime(
           const bbright = Math.min(1, bcolL * 1.35 + cutGlow * 0.3);
           const bfade = bBeam === 0 ? fade1 : fade2;
           const bmm = sm2.material as THREE.MeshBasicMaterial;
-          bmm.opacity = (bBeam === 0 ? 0.02 + bbright * 0.28 : 0.015 + bbright * 0.13) * bfade * graze(sm2) * 0.75;
+          bmm.opacity = (bBeam === 0 ? 0.02 + bbright * 0.28 : 0.01 + bbright * 0.07) * bfade * graze(sm2) * (bBeam === 0 ? 0.75 : 0.35);
         }
         void SLATS;
 
