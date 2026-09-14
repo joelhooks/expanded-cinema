@@ -441,23 +441,17 @@ export async function mountRuntime(
           }
         }
 
-        // v16b: rail coordinates DERIVED from the original proven-good
-        // default camera (0.4, 0.85, 5.9) lookAt (-0.5, 1.1, 0) — the
-        // setup that read before the rail existed. Open there, sway along
-        // a shallow arc that keeps distance from the projector bubbles,
-        // return. Nearing PROJ is forbidden: both beam origins stay >=3.5
-        // away from every rail point.
         // v20 (AD seq-31): open LOW and NEAR the screen — the film is the
         // largest thing in the opening frame — hold ~7s, then arc back into
         // the room. The old default (0.4,0.85,5.9) sat INSIDE the near
         // beam's volume and read as a white slab for 20s.
         const RAIL: Array<{ t: number; p: [number, number, number]; l: [number, number, number] }> = [
-          { t: 0.0, p: [0.55, 0.75, 3.2], l: [-0.2, 1.25, 1.15] }, // low, near screen, film fills frame
-          { t: 0.15, p: [0.7, 0.85, 3.6], l: [-0.4, 1.2, 0.9] }, // ~7s hold with a slow drift
-          { t: 0.35, p: [1.4, 1.15, 5.6], l: [-0.6, 1.15, 0.0] }, // pull back into the room
-          { t: 0.55, p: [2.0, 1.5, 6.4], l: [-1.0, 1.1, -0.7] }, // right of default
-          { t: 0.75, p: [0.9, 1.1, 6.4], l: [-0.7, 1.2, 0.1] }, // back left
-          { t: 1.0, p: [0.55, 0.75, 3.2], l: [-0.2, 1.25, 1.15] }, // loop close
+          { t: 0.0, p: [0.55, 0.75, 3.2], l: [-0.2, 1.25, -2.2] }, // low, near screen, film fills frame
+          { t: 0.15, p: [0.7, 0.85, 3.6], l: [-0.4, 1.2, -2.2] }, // ~7s hold with a slow drift
+          { t: 0.35, p: [1.4, 1.15, 5.6], l: [-0.6, 1.15, -1.8] }, // pull back into the room
+          { t: 0.55, p: [2.0, 1.5, 6.4], l: [-1.0, 1.1, -2.0] }, // right of default
+          { t: 0.75, p: [0.9, 1.1, 6.4], l: [-0.7, 1.2, -1.9] }, // back left
+          { t: 1.0, p: [0.55, 0.75, 3.2], l: [-0.2, 1.25, -2.2] }, // loop close
         ];
         const railAt = (f: number): { p: THREE.Vector3; l: THREE.Vector3 } => {
           let i = 0;
