@@ -104,6 +104,114 @@
       "status": "uploaded"
     },
     {
+      "key": "archive/clock-01/7995dc2/assets/index-BotAFUId.js",
+      "bytes": 591319,
+      "etag": "411105ceb1f00602e0a1dce3d40bfde8c2a2bf4d0556c310a3113df7423a3f1d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/assets/index-BotAFUId.js.map",
+      "bytes": 3139244,
+      "etag": "507224c8e2ecf32b680b12bd3d865519953ef04d1dc6607006ae79019c25f07a",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/assets/study-clock-BjHJNNy8.js",
+      "bytes": 3609,
+      "etag": "2e503200c561091a7a12d00f0ce7bd30efa0366ab5dd7ae978b05fb23e738786",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/assets/study-clock-BjHJNNy8.js.map",
+      "bytes": 13096,
+      "etag": "db207b913e102d9386444ebe5c8198de661a1fd86da12470c239f5f4a0c37c8e",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/assets/study-recurrence-CG4RHCOG.js",
+      "bytes": 209226,
+      "etag": "02fc7c567cc2c67578193fd4dd20dab2b8cc3c9af10b45e51fa44655f0828ce9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/assets/study-recurrence-CG4RHCOG.js.map",
+      "bytes": 1858018,
+      "etag": "991f1669161aae4fcd9a0a8471fb052948b7c1ed7e0d4d9f7658c186ccbb0d7d",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/assets/study-recurrence-DMQLy6lj.js",
+      "bytes": 166,
+      "etag": "10c5d18bf132ce4c7c56278f691612f9587f17ed8d086695cd68d4b5d513834c",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/assets/study-recursion-CfTK2MWS.js",
+      "bytes": 176,
+      "etag": "ea7d5aab689f9fc118cd5b0323f49c68705b5784052de2a2d18ec623e2710e6b",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/assets/study-recursion-DFzk7tP3.js",
+      "bytes": 3468,
+      "etag": "df916e7ecde33a0b056161c5f83afe5fd7ef07f0ac333fd546448e6639c48f4b",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/assets/study-recursion-DFzk7tP3.js.map",
+      "bytes": 12817,
+      "etag": "3384cf53ac90e3226e3986915af99a7dc2bcab0a99568254e14e86d0e3ec1bb6",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/index.html",
+      "bytes": 1855,
+      "etag": "44b8b2ed139b2063b89a04b8db727a2bc76f2b3ec579df2ef4b31949806da2cb",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/og-image.png",
+      "bytes": 126201,
+      "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/videos/Conquerb1943_512kb.mp4",
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/videos/conquerb1943.mp4",
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/manifest.json",
+      "bytes": 576,
+      "etag": "4656c6bdf875680901e52c8ab086e19dfb969fec62a3aeadc871cd38e96f15cd",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/clock-01/7995dc2/note.md",
+      "bytes": 98,
+      "etag": "3e87acc6a397b966701089594f2bdae5c69fb5152c344ee8f6979a1a12277c84",
+      "status": "uploaded"
+    },
+    {
       "key": "archive/clock-01/e4c7a8f/assets/index-BSza8tra.js",
       "bytes": 591057,
       "etag": "7a41d20f3ad532c767a9dfdfd9929a8a8c82277654d85cf0811d98b46ee2ae0f",
