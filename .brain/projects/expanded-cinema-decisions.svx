@@ -133,6 +133,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 15:11Z deep pass 1** saw: clock-04 v2 (fb7fe5e) live, first study that is a space: floor, walls, two projectors, two crossing beams, curved screen, camera moved between two frames 12s apart; hard floor lines 1/2/3/5 pass, line 4 fails inverted (film invisible: flat screen, meanLuma 0.1, beam a uniform wash with moiré). Directed: video texture on the curved screen lit by beam luma; per-slice frame sampling so the cone carries the picture (McCall provocation added to stance); ~120 slices, lower alpha; camera to eye height behind the projectors; VL critique must say whether a stranger can tell a film is playing. Escalated: one update to Joel with the live link, since this answers his review.
 
+- **2026-09-14 15:26Z sweep** clock-04 v3 (db7edec) live 15 min after v2: beam has body and stripes, film on the curved screen. Floor 1/2 pass; 3 fails (frames 10s apart identical, orbit invisible), 4 fails (title card legible 20s+, text mirrored), 5 fails (right two-thirds void). Nudged: bigger orbit first, seek 40s in and unflip, second beam lights the wall. Maker started v4 same turn per the new rule.
+
 ## Open questions
 
 
