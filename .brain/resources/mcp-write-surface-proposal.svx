@@ -60,3 +60,12 @@ item 4) depends on this being durable rather than manual.
 - Public run history (VISION will-not).
 - Scheduling the producer (chain item D; blocked on sign-off AND on
   this surface existing).
+
+## Private-split audit (2026-09-14 11:36Z): CLEAN
+VISION privacy rule audited against the live public surface: tip HTML,
+shipped archive bundles (note.md, index), and archive pages contain zero
+machine topology, tailnet IPs, credential paths, or private-notes strings
+(grep receipted). The only video endpoints serve the transformed inline cut
+and the site starter — no untransformed source in any public path. The
+rule holds structurally because sources are gitignored + the vite allowlist
+copies only declared study material.
