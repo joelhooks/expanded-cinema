@@ -157,6 +157,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 20:26Z sweep** v18 (fa72e9a) after the Range fix, verified with a fresh browser session (`--session-name ad-sweep`, sessionMode fresh; no daemon collision). Line 4 passes for the first time since clock-04 began: reveal event via seeked in the console, footage on the screen, picture changes between frames. Lines 3 and 5 fail: opening waypoint is inside the near beam, both frames a blown-out white slab with the projector boxes in it, camera static across 10s. Nudged: proximity beam fade plus waypoint 0 at the v14 16s viewpoint. v19 archive uploading. Browser fix for future sweeps: always use the fresh named session.
 
+- **2026-09-14 20:56Z sweep** v20 (77616ad): the whole viewport is a flat white slab at 8s and 18s, every floor line fails. Bubble fade not effective; reveal re-fires via seeked every ~0.75s pinned at t=63, so the film is frozen (new bug from the proof loop); both v20 builds cut live without a room in the 6s frame. Directed: re-cut the pointer to v18 now, then v21 with one-shot reveal, fade alpha logged, and a 6s frame showing the screen larger than any beam before any cut. If v21 ships white or frozen again, escalate needs_joel: the maker cannot see its own frames.
+
 ## Open questions
 
 
