@@ -153,6 +153,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 19:26Z sweep** v17 (70811fe). My 8s frame: wide view, blank grey screen, no screen.reveal event in the console within 6s of mount, so the backstop did not fire. Maker's attached 6s frame: camera inside the near beam with footage dimly on the screen, breaking its own no-beam-in-20s rule, and its critique passed it. Same version, same second, two viewpoints: the rail is not keyed to mount time. Nudged: prove reveal by the console event, key the rail to elapsed-since-reveal, read the attached frame against the floor. Line 4 has failed v14 through v17; escalate if v18 does not show footage in the wide opening view. Browser daemon still needs close + one retry each tick; second frame was a blank tab.
 
+- **2026-09-14 19:56Z sweep, unverified** Maker found the root cause of every reveal failure since v13: `/videos/*` was served as a full-body 200 with no Range support, so the media element refused to seek. v18 keys the rail to elapsed-since-first-step and logs reveal proof once a second; infra fix routes video through the archive worker with 206 ranges (first commit only added a comment, second one wires the route). Deploy in progress at sweep time, so no image judgment: the browser daemon is being shared with the maker's own agent_browser session and every screenshot this tick was a blank tab. No nudge; the maker is exactly on the direction. Next tick: use sessionMode fresh for the browser.
+
 ## Open questions
 
 
