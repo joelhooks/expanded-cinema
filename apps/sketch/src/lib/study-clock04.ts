@@ -341,11 +341,29 @@ export async function mountRuntime(
       screenMat.map = videoLayer.texture; // the chosen frame, only now
       screenMat.needsUpdate = true;
       revealHolder.revealed = true;
+      void sketchEvents
+        .emitInfo("study", "clock04.screen.reveal", { at: Number(vid.currentTime.toFixed(2)), via: "seeked" })
+        .catch(() => undefined);
     };
     videoLayer.texture.addEventListener?.("dispose", () => {
       if (screenMat.map === videoLayer.texture) screenMat.map = null;
     });
     vidOf()?.addEventListener("seeked", onSeeked);
+    // backstop reveal check (seq-29): runs every frame; fires if seeked
+    // never does — readyState>=2 AND currentTime within 0.5s of SEEK_TO
+    const revealBackstop = (): void => {
+      if (revealHolder.revealed) return;
+      const vid = vidOf();
+      if (!vid) return;
+      if (vid.readyState >= 2 && Math.abs(vid.currentTime - SEEK_TO) <= 0.5) {
+        revealHolder.revealed = true;
+        screenMat.map = videoLayer.texture;
+        screenMat.needsUpdate = true;
+        void sketchEvents
+          .emitInfo("study", "clock04.screen.reveal", { at: Number(vid.currentTime.toFixed(2)), via: "backstop" })
+          .catch(() => undefined);
+      }
+    };
     const seekTick = (): void => {
       const vid = vidOf();
       if (!vid) return;
@@ -372,6 +390,7 @@ export async function mountRuntime(
       },
       step(r, now, delta) {
         void delta; // signature parity with StudyRuntime
+        revealBackstop();
         const n = study.frame.value;
         if (n % 60 === 0 && seekAttempts < 6) seekTick();
 
@@ -408,8 +427,8 @@ export async function mountRuntime(
         // away from every rail point.
         const RAIL: Array<{ t: number; p: [number, number, number]; l: [number, number, number] }> = [
           { t: 0.0, p: [0.4, 0.85, 5.9], l: [-0.5, 1.1, 0.0] }, // the proven default view
-          { t: 0.2, p: [0.75, 1.0, 6.1], l: [-0.6, 1.15, -0.2] }, // slow sway right
-          { t: 0.45, p: [1.5, 1.35, 6.3], l: [-0.9, 1.1, -0.6] }, // mostly right of default
+          { t: 0.2, p: [1.0, 1.05, 6.2], l: [-0.7, 1.15, -0.3] }, // faster sway right
+          { t: 0.45, p: [2.1, 1.55, 6.5], l: [-1.1, 1.1, -0.9] }, // clearly right of default by 21s
           { t: 0.7, p: [0.9, 1.1, 6.5], l: [-0.7, 1.2, 0.1] }, // back left
           { t: 0.9, p: [0.3, 0.95, 6.2], l: [-0.5, 1.1, 0.0] }, // near default again
           { t: 1.0, p: [0.4, 0.85, 5.9], l: [-0.5, 1.1, 0.0] }, // loop close
