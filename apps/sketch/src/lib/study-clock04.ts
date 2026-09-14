@@ -622,7 +622,10 @@ export async function mountRuntime(
           const bsz = SCREEN_R * Math.cos(bU2) - 2.2;
           const bdir = new THREE.Vector3(bsx - org.x, 1.1 - org.y, bsz - org.z);
           const blen = bdir.length();
-          sm2.position.copy(org).addScaledVector(bdir, 0.5);
+          // v21b: 16 slats were ALL copied to the beam midpoint — a
+          // 16-deep coplanar additive stack = the white slab. Distribute
+          // them ALONG the beam instead (each owns 1/16 of the throw).
+          sm2.position.copy(org).addScaledVector(bdir, (bSi + 0.5) / SLATS);
           sm2.scale.set(1, blen, 1);
           sm2.rotation.set(0, -Math.atan2(bdir.z, bdir.x), Math.atan2(bdir.y, Math.hypot(bdir.x, bdir.z)));
           sm2.rotateZ(Math.PI / 2);
