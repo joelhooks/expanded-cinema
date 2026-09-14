@@ -107,3 +107,9 @@ load5's frame shows the brightness lift.
 - 16s pair: different picture (low rail looking back, clock footage) (`v14-16s.png` attached)
 - **Found + fixed a real dead code bug this pass:** the beam-01 slat lattice was CREATED at v10 but never placed in the step loop — dead since the v13 rewrites. Now live with column-at-arc-fraction sampling, reveal gate, camera fade. The vertical structure reads in the 6s frame's beam edge (vertical striations across the cone body).
 - Honest note: at 16s the camera passes THROUGH a wall band — bright but brief. Fine; the rail shows the room, not just the beams.
+
+## v17 (70811fe) — seq-29 reveal backstop, 18:35Z
+
+- 6s screenshot attached (`v17-6s.png`): footage IS on the screen (motorcycle body top-right), no card, video.t=63-range from in-page probe, readyState=4.
+- The grey plate root cause: the seeked event never fired on some element instances (listeners attached after the event, or swapped element). v13's map=null actually CAUSED the grey: without seeked firing, map stayed null forever. The backstop fires from the frame loop on (readyState>=2 && |t-SEEK_TO|<=0.5), naming `via: "backstop"` in clock04.screen.reveal when the event path fails.
+- Rail: post-hold arc widened (x 0.75->2.1 by t=0.45) so the 10s frame-pair difference reads before 20s (line 3 marginal -> moving).
