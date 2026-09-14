@@ -157,7 +157,8 @@ function buildScene() {
   for (let si = 0; si < SLATS; si++) {
     const uFrac = (si + 0.5) / SLATS;
     for (const beam of [0, 1]) {
-      const geo = new THREE.PlaneGeometry(SLICE_H * 0.5, BEAM_LEN);
+      // v21f: unit-length base (see slice note) — slats overshot too.
+      const geo = new THREE.PlaneGeometry(SLICE_H * 0.5, 1);
       const mat = new THREE.MeshBasicMaterial({
         transparent: true,
         opacity: 0,
@@ -179,7 +180,11 @@ function buildScene() {
     const y0 = (t0 - 0.5) * SLICE_H;
     const y1 = (t1 - 0.5) * SLICE_H;
     for (const beam of [0, 1]) {
-      const geo = new THREE.PlaneGeometry(BEAM_LEN, Math.abs(y1 - y0));
+      // v21f: base length 1 — position/scale multiply a UNIT quad to the
+      // exact throw. With BEAM_LEN=3.1 baked in, every slice was ~3.4x
+      // over-length, sheets overshooting the projector and punching
+      // through the screen to fill the room (the standing white slab).
+      const geo = new THREE.PlaneGeometry(1, Math.abs(y1 - y0));
       const mat = new THREE.MeshBasicMaterial({
         transparent: true,
         opacity: 0,
