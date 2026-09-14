@@ -456,12 +456,17 @@ export async function mountRuntime(
         // the room. The old default (0.4,0.85,5.9) sat INSIDE the near
         // beam's volume and read as a white slab for 20s.
         const RAIL: Array<{ t: number; p: [number, number, number]; l: [number, number, number] }> = [
-          { t: 0.0, p: [0.55, 0.75, 3.2], l: [-0.2, 1.25, -2.2] }, // low, near screen, film fills frame
-          { t: 0.15, p: [0.7, 0.85, 3.6], l: [-0.4, 1.2, -2.2] }, // ~7s hold with a slow drift
-          { t: 0.35, p: [1.4, 1.15, 5.6], l: [-0.6, 1.15, -1.8] }, // pull back into the room
-          { t: 0.55, p: [2.0, 1.5, 6.4], l: [-1.0, 1.1, -2.0] }, // right of default
-          { t: 0.75, p: [0.9, 1.1, 6.4], l: [-0.7, 1.2, -1.9] }, // back left
-          { t: 1.0, p: [0.55, 0.75, 3.2], l: [-0.2, 1.25, -2.2] }, // loop close
+          // v21e: geometry-first fix. The beam-0 sheet lives at
+          // z ∈ [1.2, 2.4] (projector throw) — the old opening at z≈3.2
+          // stared ACROSS it, so the sheet filled mid-frame. Open BETWEEN
+          // the sheet and the screen (z≈0.7, below sheet height): the beam
+          // is behind the viewer; the frame is screen + room.
+          { t: 0.0, p: [0.35, 0.85, 0.7], l: [-0.1, 1.2, -2.2] },
+          { t: 0.15, p: [0.45, 0.9, 0.85], l: [-0.3, 1.2, -2.2] }, // ~7s hold, slow drift
+          { t: 0.35, p: [1.3, 1.15, 3.4], l: [-0.7, 1.15, -1.9] }, // pull back (x clears sheet width)
+          { t: 0.55, p: [2.0, 1.5, 5.2], l: [-1.0, 1.1, -2.0] }, // right side of the room
+          { t: 0.75, p: [0.9, 1.0, 2.6], l: [-0.5, 1.15, -1.6] }, // back left
+          { t: 1.0, p: [0.35, 0.85, 0.7], l: [-0.1, 1.2, -2.2] }, // loop close
         ];
         const railAt = (f: number): { p: THREE.Vector3; l: THREE.Vector3 } => {
           let i = 0;
