@@ -152,6 +152,78 @@
       "status": "uploaded"
     },
     {
+      "key": "archive/recurrence-01/5c3d040/assets/index-bRFKgp5W.js",
+      "bytes": 794479,
+      "etag": "5ef6439a290b4cdcedaf2684545c8d774d19c7f4c961a4a4a867d8030749544a",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/assets/index-bRFKgp5W.js.map",
+      "bytes": 4993723,
+      "etag": "12f6e4bde307ea98ccc8b55e8e39cb30f328ba3b64e7ac4291193819f108103b",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/client/assets/index-bRFKgp5W.js",
+      "bytes": 794479,
+      "etag": "5ef6439a290b4cdcedaf2684545c8d774d19c7f4c961a4a4a867d8030749544a",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/client/assets/index-bRFKgp5W.js.map",
+      "bytes": 4993765,
+      "etag": "607f641670693b9f4ae1310fbd1700abaa54c64e1c6141bdca9d992804da6bba",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/client/index.html",
+      "bytes": 960,
+      "etag": "8fe42917ce7f19319a6f0fb039e39158cb880e6783a41ccc9cd055e2e7fe3cc3",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/client/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/client/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/index.html",
+      "bytes": 960,
+      "etag": "8fe42917ce7f19319a6f0fb039e39158cb880e6783a41ccc9cd055e2e7fe3cc3",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/manifest.json",
+      "bytes": 679,
+      "etag": "3181ba8ce8c056ee5756c2396d74d6a0cf2b84a6c499d1aab084c4ed3f1c201b",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5c3d040/note.md",
+      "bytes": 294,
+      "etag": "4e0a049f6b1744a011ac3d6b8e90f53c5930d02e7ef5d341d0b7b35051dc6685",
+      "status": "uploaded"
+    },
+    {
       "key": "archive/recurrence-01/7371a23/assets/index-CrISFYx_.js",
       "bytes": 794529,
       "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",

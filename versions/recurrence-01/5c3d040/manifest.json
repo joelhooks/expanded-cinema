@@ -1,0 +1,12 @@
+{
+  "study": "recurrence-01",
+  "sha": "5c3d040",
+  "bundleHash": "75480927c4bf9cf2bb95205d2ca0ddeebf21ee937216943c9d35cfbe9bdbc3bd",
+  "catalogHashes": {
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "rephotography verified: ring DELAY+1 fixes WebGPU scope violation (screen was black every frame); knot rotates with video as only light; 77fps zero errors across 3-frame probe; unresolved: delayed past-image on screen is faint — captured frame is mostly background",
+  "archivedAt": "2026-09-14T01:37:41.289Z",
+  "url": "https://cinema.wzrrd.sh/",
+  "archive": "https://cinema.wzrrd.sh/archive/recurrence-01/5c3d040/"
+}
