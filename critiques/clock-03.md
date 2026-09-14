@@ -101,3 +101,15 @@ the subtraction test by deleting the right-hand panel entirely.
   continuous 50–82fps since 07:05Z, zero console errors. The study holds up
   on an unattended tab: material swap, memory ring, and wipe surfaces all
   stable over time, not just at probe time.
+
+## Dream-direction check (2026-09-14 — "source, memory, intervention, no caption")
+- The AD's 2026-09-14 dream claim demands one-frame legibility of the
+  three layers. Current clock-03 satisfies 2 of 3 at rest: source footage
+  ✓, retained past ✓ (lag panel); the live pointer cut is only legible for
+  the 700ms wipe duration, then disappears — a rest-state viewer cannot
+  tell a cut just happened without the caption/UI.
+- Implication for clock-04: the split-off past surface must carry a
+  DURABLE intervention trace (e.g. the shard stays out for a bounded
+  while after a pointer cut, or the cut leaves a visible seam in the
+  footage plane), not only the transient wipe. Adding this as a
+  requirement for the clock-04 chain before build.
