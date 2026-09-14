@@ -1,0 +1,13 @@
+{
+  "study": "clock-01",
+  "sha": "e6460fa",
+  "bundleHash": "e14647be8ce1090410e86b8cb38d5bdd9875370deacb355f45ef9be2c155360b",
+  "catalogHashes": {
+    "Conquerb1943_512kb.mp4": "33ea3cf331d3d4ee4f9bcb8d99fb3f8dc6f7db228e8a04012ef06544b391722c",
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "clock-01: branch onto Conquer by the Clock (Prelinger 1943, CC-PD); first internet-sourced material",
+  "archivedAt": "2026-09-14T04:41:39.260Z",
+  "url": "https://cinema.wzrrd.sh/",
+  "archive": "https://cinema.wzrrd.sh/archive/clock-01/e6460fa/"
+}

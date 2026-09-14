@@ -1,0 +1,13 @@
+{
+  "study": "clock-01",
+  "sha": "0dfeba4",
+  "bundleHash": "02daaf59ccb6253243161df77522fe7946b6d757ad27699783eeee666937d03c",
+  "catalogHashes": {
+    "Conquerb1943_512kb.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "clock-01: per-study video material wired; 1943 clip actually plays",
+  "archivedAt": "2026-09-14T04:54:10.679Z",
+  "url": "https://cinema.wzrrd.sh/",
+  "archive": "https://cinema.wzrrd.sh/archive/clock-01/0dfeba4/"
+}

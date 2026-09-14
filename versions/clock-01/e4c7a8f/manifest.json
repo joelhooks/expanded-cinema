@@ -1,0 +1,13 @@
+{
+  "study": "clock-01",
+  "sha": "e4c7a8f",
+  "bundleHash": "c4fc224dfe8b4d1f8329747642fdac62f4f18b6628e45cee6a930b07a87792a3",
+  "catalogHashes": {
+    "Conquerb1943_512kb.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "clock-01 rebuild: inline clip compressed to 25MB worker asset limit; AD guard applied",
+  "archivedAt": "2026-09-14T04:47:15.688Z",
+  "url": "https://cinema.wzrrd.sh/",
+  "archive": "https://cinema.wzrrd.sh/archive/clock-01/e4c7a8f/"
+}
