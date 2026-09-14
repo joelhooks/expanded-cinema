@@ -466,12 +466,12 @@ export async function mountRuntime(
           // stared ACROSS it, so the sheet filled mid-frame. Open BETWEEN
           // the sheet and the screen (z≈0.7, below sheet height): the beam
           // is behind the viewer; the frame is screen + room.
-          { t: 0.0, p: [0.9, 1.0, 0.1], l: [0.05, 1.2, -2.2] },
-          { t: 0.15, p: [0.95, 1.02, 0.25], l: [-0.05, 1.18, -2.2] }, // ~7s hold, slow drift
+          { t: 0.0, p: [1.05, 1.3, 0.15], l: [0.0, 1.0, -2.2] },
+          { t: 0.15, p: [1.1, 1.3, 0.3], l: [-0.05, 1.0, -2.2] }, // ~7s hold, slow drift
           { t: 0.35, p: [1.3, 1.15, 3.4], l: [-0.7, 1.15, -1.9] }, // pull back (x clears sheet width)
           { t: 0.55, p: [2.0, 1.5, 5.2], l: [-1.0, 1.1, -2.0] }, // right side of the room
           { t: 0.75, p: [0.9, 1.0, 2.6], l: [-0.5, 1.15, -1.6] }, // back left
-          { t: 1.0, p: [0.9, 1.0, 0.1], l: [0.05, 1.2, -2.2] }, // loop close
+          { t: 1.0, p: [1.05, 1.3, 0.15], l: [0.0, 1.0, -2.2] }, // loop close
         ];
         const railAt = (f: number): { p: THREE.Vector3; l: THREE.Vector3 } => {
           let i = 0;
