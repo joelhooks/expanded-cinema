@@ -152,6 +152,114 @@
       "status": "uploaded"
     },
     {
+      "key": "archive/recurrence-01/5135d94/assets/index-C6hBnbes.js",
+      "bytes": 590750,
+      "etag": "59fce9909581395ad445bc92e56d300cf5461e55341a99b64b8d067e6fcad7d8",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/assets/index-C6hBnbes.js.map",
+      "bytes": 3138054,
+      "etag": "449e840f2c1bd0bc91d7e714d96d10970fa0141d0b6f44366374f7c94ce929de",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/assets/study-recurrence-B9srlv2m.js",
+      "bytes": 143,
+      "etag": "92bcc71a41e31ae6ab48465c6b692bada86e34a4dbfcda1cf8f1d32e7e8db0f2",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/assets/study-recurrence-BdVdWJTe.js",
+      "bytes": 209078,
+      "etag": "c2f4c4b2dbfc8772f0c0a3333e91c72710b1f96f23b73dc64945409c6d54257c",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/assets/study-recurrence-BdVdWJTe.js.map",
+      "bytes": 1857635,
+      "etag": "b0b064eb7a478a21891aac78f5ff74c5f5ec3028861cef219dc1f5faf8f61afc",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/client/assets/index-C6hBnbes.js",
+      "bytes": 590750,
+      "etag": "59fce9909581395ad445bc92e56d300cf5461e55341a99b64b8d067e6fcad7d8",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/client/assets/index-C6hBnbes.js.map",
+      "bytes": 3138081,
+      "etag": "16c7ab59501e628bd1e61a2aaa7f0914066fcafa58c8c39f9c4769d90d7afc9b",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/client/assets/study-recurrence-B9srlv2m.js",
+      "bytes": 143,
+      "etag": "92bcc71a41e31ae6ab48465c6b692bada86e34a4dbfcda1cf8f1d32e7e8db0f2",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/client/assets/study-recurrence-BdVdWJTe.js",
+      "bytes": 209078,
+      "etag": "c2f4c4b2dbfc8772f0c0a3333e91c72710b1f96f23b73dc64945409c6d54257c",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/client/assets/study-recurrence-BdVdWJTe.js.map",
+      "bytes": 1857653,
+      "etag": "b29b8f5610383eeb1105ed59d5548055b599b3f8222676c942a65c44022b8001",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/client/index.html",
+      "bytes": 1048,
+      "etag": "127db1b821406a3300a9557b6a87517d9ca772173a24f3f95f4c88b26f6c2c91",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/client/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/client/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/index.html",
+      "bytes": 1048,
+      "etag": "127db1b821406a3300a9557b6a87517d9ca772173a24f3f95f4c88b26f6c2c91",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/videos/README.md",
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/videos/starter.mp4",
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/manifest.json",
+      "bytes": 589,
+      "etag": "588804fa02b7a90bc6a2741d8428ff50560567cc37cd9d83331a53115297159c",
+      "status": "uploaded"
+    },
+    {
+      "key": "archive/recurrence-01/5135d94/note.md",
+      "bytes": 204,
+      "etag": "4f11518ca488723fc5d7d516e6f7ce5487bb39573b112e5f130d6f63cdff41fd",
+      "status": "uploaded"
+    },
+    {
       "key": "archive/recurrence-01/5c3d040/assets/index-bRFKgp5W.js",
       "bytes": 794479,
       "etag": "5ef6439a290b4cdcedaf2684545c8d774d19c7f4c961a4a4a867d8030749544a",
