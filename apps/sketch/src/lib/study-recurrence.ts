@@ -138,6 +138,7 @@ export interface StudyRuntime {
   delay: number;
   step(renderer: THREE.WebGPURenderer, now: number, delta: number): void;
   dispose(): void;
+  onResize?(w: number, h: number): void;
 }
 
 export async function mountRuntime(

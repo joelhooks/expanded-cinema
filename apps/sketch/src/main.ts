@@ -1,14 +1,15 @@
 import * as THREE from "three/webgpu";
 import { sketchEvents } from "./lib/o11y";
 import { openVideoLayer } from "./lib/video-layer";
-import { fetchCurrent, watchCurrent, type CurrentStudy } from "./lib/gallery-store";
-import { mountRuntime, type StudyRuntime } from "./lib/study-recurrence";
+import { fetchCurrent, watchCurrent, POLL_INTERVAL_MS, type CurrentStudy } from "./lib/gallery-store";
+import { mountRuntime, type StudyRuntimeRecursion } from "./lib/study-recursion";
 
 /**
- * Expanded Cinema: a WebGPU gallery whose current study is a runtime
- * pointer, not a build artifact. The page boots from content/current.json
- * (served through the /archive gateway) and hot-swaps when the pointer
- * moves — an already-open tab picks a new study up without a redeploy.
+ * Study: recursion-01 — three temporal layers in one frame, no captions:
+ * source (video now), memory (surface's retained past via delay ring),
+ * intervention (live pointer cut rasterized as image). Antecedent: Raban
+ * 2'45" (1973, LUX-verified). Art direction carried: distinguish the three
+ * in one frame WITHOUT overlay text. Overlay shows only the minimal id.
  */
 
 const overlay = document.getElementById("overlay");
@@ -17,18 +18,14 @@ let initFailures = 0;
 
 type RenderHarness = { renderer: THREE.WebGPURenderer; backend: string };
 
-/**
- * Study registry: each shipped study registers a loader keyed by its id.
- * A pointer move to a registered id needs no code push; registering a
- * NEW study id is a code push (the archive route serves arbitrary study
- * URLs regardless — /archive/<study>/<sha>/ works for every shipped
- * bundle, registry or not).
- */
 const STUDY_LOADERS: Record<
   string,
   () => Promise<{ mountRuntime: typeof mountRuntime; STUDY: string }>
 > = {
+  // The archive route serves every shipped study bundle regardless of this
+  // registry; the registry only gates what a pointing tab can mount.
   "recurrence-01": () => import("./lib/study-recurrence"),
+  "recursion-01": () => import("./lib/study-recursion"),
 };
 
 async function initRenderer(): Promise<RenderHarness> {
@@ -52,37 +49,22 @@ try {
 
   document.body.appendChild(renderer.domElement);
 
+  // Fallback dark scene shown only if the pointer resolves to nothing mountable.
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x06060a);
-
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
   camera.position.set(0, 1.2, 6);
   camera.lookAt(0, 0, 0);
 
-  const knot = new THREE.Mesh(
-    new THREE.TorusKnotGeometry(1, 0.28, 128, 24),
-    new THREE.MeshStandardMaterial({ color: 0x9be7ff, roughness: 0.35, metalness: 0.6 }),
-  );
-  scene.add(knot);
-
-  const key = new THREE.DirectionalLight(0xffffff, 3);
-  key.position.set(3, 4, 5);
-  scene.add(key);
-  scene.add(new THREE.AmbientLight(0x222244, 0.9));
-
-  // Gallery state: the live study exists only behind this variable. The
-  // boot pointer comes from the runtime store; watchCurrent hot-swaps in
-  // an already-open tab when it moves. A failed look falls back to the
-  // last registered study so the page never boots dark.
-  let study: StudyRuntime | null = null;
+  let study: StudyRuntimeRecursion | null = null;
   let layer: Awaited<ReturnType<typeof openVideoLayer>> = null;
 
   const FALLBACK_POINTER: CurrentStudy = {
-    study: "recurrence-01",
+    study: "recursion-01",
     sha: "bundle",
     updatedAt: "1970-01-01T00:00:00Z",
     url: "https://cinema.wzrrd.sh/",
-    archive: "/archive/recurrence-01/",
+    archive: "/archive/recursion-01/",
   };
 
   async function mountStudy(pointer: CurrentStudy): Promise<boolean> {
@@ -95,23 +77,38 @@ try {
     }
     if (!layer) return false;
     const mod = await loader();
+    // openVideoLayer already yields a live, looping, muted VideoTexture;
+    // remount simply adopts it, so remounts stay autoplay-safe.
+    if (!layer) return false;
     const next = await mod.mountRuntime(renderer, layer);
-    study = next;
-    if (overlay) {
-      overlay.textContent = `expanded cinema · ${pointer.study} · live pointer ${pointer.sha.slice(0, 7)} · ${backend}`;
-    }
+    // Only the study's short id, never marketing copy (art direction).
+    if (overlay) overlay.textContent = pointer.study;
     void sketchEvents
       .emitInfo("study", "study.scene.live", { study: pointer.study, pointer: pointer.sha })
       .catch(() => undefined);
+    study = next;
     return true;
   }
 
   layer = await openVideoLayer().catch(() => null);
   const booted = (await fetchCurrent()) ?? FALLBACK_POINTER;
   await mountStudy(booted);
-  // One watcher for the surface lifetime: pointer moves dismount the old
-  // runtime and mount the new one in the same loop.
+
+  // Pointer watcher: hot-swap on study change; forward same-study pointer
+  // moves to the live study so the intervention layer can rasterize the cut.
   watchCurrent(booted, async (next, previous) => {
+    if (study && next.study === previous.study) {
+      // same study: hand the pointer to the intervention layer (visible cut)
+      // without remounting anything
+      study.onPointer?.(next);
+      void sketchEvents
+        .emitInfo("gallery", "gallery.pointer.moved", {
+          from: `${previous.study}@${previous.sha.slice(0, 7)}`,
+          to: `${next.study}@${next.sha.slice(0, 7)}`,
+        })
+        .catch(() => undefined);
+      return;
+    }
     const old = study;
     study = null;
     if (await mountStudy(next).catch(() => false)) {
@@ -131,6 +128,7 @@ try {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+    study?.onResize?.(window.innerWidth, window.innerHeight);
     try {
       sketchEvents.emitInfo("webgpu-renderer", "viewport.resized", {
         width: window.innerWidth,
@@ -153,7 +151,6 @@ try {
     if (study) {
       study.step(renderer, now, delta);
     } else {
-      // fallback: dark scene, study.load failure already reported
       renderer.render(scene, camera);
     }
     framesSinceHeartbeat++;
@@ -167,15 +164,11 @@ try {
           fps: Math.round(fps * 10) / 10,
           backend,
           pixelRatio: window.devicePixelRatio,
+          poll: POLL_INTERVAL_MS,
         })
         .catch(() => {
           // telemetry must never break the sketch
         });
-    }
-
-    if (!study) {
-      // fallback: dark scene, study.load failure already reported
-      renderer.render(scene, camera);
     }
   });
 } catch (initError) {
@@ -187,6 +180,6 @@ try {
     { failures: initFailures, ceiling: MAX_FAILURES },
   );
   if (overlay) {
-    overlay.textContent = `expanded cinema · renderer failed: ${initError instanceof Error ? initError.message : "unknown"}`;
+    overlay.textContent = `renderer failed: ${initError instanceof Error ? initError.message : "unknown"}`;
   }
 }
