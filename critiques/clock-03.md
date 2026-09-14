@@ -93,3 +93,11 @@ the subtraction test by deleting the right-hand panel entirely.
   machine DID confirm the right-side overlay panel stability across both
   frames, which is correct and useful — the pointer panel IS static frame
   to frame, and that is part of why it reads as decoration.
+
+## Long-run note (2026-09-14, pass 5 — soak)
+- 25+ minute soak under pointer look3: two frames 20s apart (credits →
+  pendulum machinery) confirm the loop stays fully temporal — both frames
+  advance, the lag panel tracks one scene behind, no stall/crash; heartbeat
+  continuous 50–82fps since 07:05Z, zero console errors. The study holds up
+  on an unattended tab: material swap, memory ring, and wipe surfaces all
+  stable over time, not just at probe time.
