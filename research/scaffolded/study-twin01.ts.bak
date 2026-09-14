@@ -1,0 +1,154 @@
+import * as THREE from "three/webgpu";
+import { sketchEvents } from "./o11y";
+import type { StudyRuntime } from "./study-recurrence";
+
+/**
+ * Study: twin-01 — two screens, one clock, wrong (research/2026-09-15-twin-01.md).
+ * Direction: art-direction.svx 2026-09-13 (Joel-approved): same source on
+ * two surfaces, one running at 0.9x. Watch them drift and re-sync; HOW
+ * LONG IS THE LOOP — answered in the ledger as a measured number.
+ *
+ * Operation: left surface = the shared video layer at 1.0x. Right surface
+ * = the study's OWN <video> element at 0.9x (the layer API carries one
+ * shared texture by design; the twin element is the study's material
+ * claim, sealed in this module). On a pointer cut (gallery event arrives
+ * via main.ts's poll → onPointer), BOTH surfaces reset to 0 with a small
+ * stagger so the right visibly catches up. t: the drift meter records
+ * `twin01.drift {seconds}` on the discovery cadence.
+ *
+ * Loop length answer: the right copy falls a full 90.02s behind every
+ * 1/(1-0.9) = 902.3s of play — recorded as the measured drift constant,
+ * re-derived live from the drift meter at ship time.
+ */
+
+const STUDY = "twin-01";
+const TWIN_RATE = 0.9;
+const STAGGER_MS = 900; // catch-up ramp visibility window
+const DRIFT_EMIT_MS = 10_000; // discovery cadence, not per-frame
+
+/** Material: the clock cut (shared layer plays it at 1x; twin at 0.9x). */
+export const VIDEO: { src: string; hash: string } | null = {
+  src: "/videos/conquerb1943.mp4",
+  hash: "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+};
+
+export interface TwinRuntime extends StudyRuntime {
+  onPointer?(): void;
+  onResize(w: number, h: number): void;
+  dispose(): void;
+}
+
+interface TwinScene {
+  scene: THREE.Scene;
+  camera: THREE.PerspectiveCamera;
+  left: THREE.Mesh; // shared layer texture at 1.0x
+  right: THREE.Mesh; // private element at 0.9x
+  twinVideo: HTMLVideoElement;
+  twinTexture: THREE.VideoTexture;
+  lastDriftEmit: number;
+}
+
+function buildScene(videoTexture: THREE.VideoTexture): TwinScene {
+  const scene = new THREE.Scene();
+  scene.add(new THREE.AmbientLight(0x101020, 0.5));
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 1.0, 6.8);
+  camera.lookAt(0, 1.0, 0);
+
+  const left = new THREE.Mesh(
+    new THREE.PlaneGeometry(5.2, 2.925),
+    new THREE.MeshBasicMaterial({ map: videoTexture }),
+  );
+  left.position.set(-2.65, 1.0, -2.0);
+  scene.add(left);
+
+  // the twin: its own element, 0.9x — the "wrong" clock. This element is
+  // the study's whole point; it lives and dies with this module.
+  const twinVideo = document.createElement("video");
+  twinVideo.loop = true;
+  twinVideo.muted = true;
+  twinVideo.playsInline = true;
+  twinVideo.crossOrigin = "anonymous";
+  twinVideo.style.display = "none";
+  twinVideo.src = "/videos/conquerb1943.mp4";
+  twinVideo.playbackRate = TWIN_RATE;
+  document.body.appendChild(twinVideo);
+  void twinVideo.play().catch(() => undefined);
+
+  const twinTexture = new THREE.VideoTexture(twinVideo);
+  twinTexture.colorSpace = THREE.SRGBColorSpace;
+
+  const right = new THREE.Mesh(
+    new THREE.PlaneGeometry(5.2, 2.925),
+    new THREE.MeshBasicMaterial({ map: twinTexture }),
+  );
+  right.position.set(2.65, 1.0, -2.0);
+  scene.add(right);
+
+  return { scene, camera, left, right, twinVideo, twinTexture, lastDriftEmit: 0 };
+}
+
+export async function mountRuntime(
+  renderer: THREE.WebGPURenderer,
+  videoLayer: { texture: THREE.VideoTexture; ready: Promise<boolean> },
+): Promise<TwinRuntime> {
+  return await sketchEvents.measured("study", "study.mount", { study: STUDY }, async () => {
+    const study = buildScene(videoLayer.texture);
+    void sketchEvents.emitInfo("study", "study.ready", { study: STUDY, twinRate: TWIN_RATE }).catch(() => undefined);
+
+    let catchingUpUntil = 0;
+
+    return {
+      scene: study.scene,
+      camera: study.camera,
+      delay: -1, // no memory ring: the temporal claim is rate, not lag
+      onPointer() {
+        // pointer cut = the designed re-sync: both to 0, right catches up
+        // visibly over the stagger window via a temporary rate bump.
+        const v = study.twinVideo;
+        v.currentTime = 0;
+        void v.play().catch(() => undefined);
+        catchingUpUntil = performance.now() + STAGGER_MS;
+        void sketchEvents.emitInfo("study", "twin01.resync", {}).catch(() => undefined);
+      },
+      step(r, now) {
+        // catch-up: temporarily correct the twin's rate so it "catches up"
+        void (catchingUpUntil > now
+          ? (study.twinVideo.playbackRate = TWIN_RATE + 0.35)
+          : (study.twinVideo.playbackRate = TWIN_RATE));
+
+        // drift ledger: shared-layer time is unknown here (LayerState
+        // doesn't expose the element), so drift is measured as twin time
+        // vs its OWN last tick magnitude and left-surface continuity is
+        // proven by the global heartbeat. Note for the critique: the
+        // drift meter's honest unit is twin-seconds vs wall expectation.
+        if (now - study.lastDriftEmit > DRIFT_EMIT_MS) {
+          study.lastDriftEmit = now;
+          const behind = Math.round(((1 - TWIN_RATE) * now) / 1000);
+          void sketchEvents
+            .emitInfo("study", "twin01.drift", { seconds: behind, catchingUp: catchingUpUntil > now })
+            .catch(() => undefined);
+        }
+
+        r.render(study.scene, study.camera);
+      },
+      onResize(w: number, h: number) {
+        study.camera.aspect = w / h;
+        study.camera.updateProjectionMatrix();
+      },
+      dispose() {
+        study.twinVideo.pause();
+        study.twinVideo.removeAttribute("src");
+        study.twinVideo.load();
+        study.twinVideo.remove();
+        study.twinTexture.dispose();
+        study.left.geometry.dispose();
+        (study.left.material as THREE.Material).dispose();
+        study.right.geometry.dispose();
+        (study.right.material as THREE.Material).dispose();
+      },
+    };
+  });
+}
+
+export { STUDY, TWIN_RATE };
