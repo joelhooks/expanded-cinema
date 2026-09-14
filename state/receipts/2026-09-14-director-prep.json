@@ -3,6 +3,23 @@
   "study": "clock-03",
   "pointer": "b03234c-look3",
   "freshSession": true,
-  "frames": ["/tmp/director-prep-f1.png", "/tmp/director-prep-f2.png", {"gapSeconds": 8}],
-  "console": {"fpsAtCapture": [77.3, 78.9, 79, 79.3, 78.8, 79.1, 79.7], "errors": 0, "materialSwap": "starter -> conquerb1943 ok", "sceneLive": true}
+  "frames": [
+    "state/receipts/frames/2026-09-14-clock03/director-prep-f1.png",
+    "state/receipts/frames/2026-09-14-clock03/director-prep-f2.png",
+    "8s gap"
+  ],
+  "console": {
+    "fpsAtCapture": [
+      77.3,
+      78.9,
+      79,
+      79.3,
+      78.8,
+      79.1,
+      79.7
+    ],
+    "errors": 0,
+    "materialSwap": "starter -> conquerb1943 ok",
+    "sceneLive": true
+  }
 }
