@@ -156,3 +156,19 @@ the subtraction test by deleting the right-hand panel entirely.
 - Irony bank for the critique only: Vorkapich reads as a name in the film
   ABOUT clocks and time-on-the-wall; the study's delay is the modern reader
   of that montage grammar. No factual claim beyond the two frames.
+
+## PM pass 2 — 2026-09-14 13:09Z (live, two frames 45s apart)
+- f1: the film opens its loop on the Technicolor title card — producer Frederic
+  Ullman Jr., directed by Slavko Vorkapich. The credits themselves are a
+  typographic machine: the film's past announcing its own makers.
+- f2 (+45s): a cameraman leaning into a movie camera. The film has cut from
+  typography to the body that produced it — self-referential without narration.
+- The lag panel held nearly identical across both frames (leading block
+  advanced one increment, dash row unchanged): it records the past band at its
+  own step cadence, refusing to follow the film's cut from titles to operator.
+  Confirms the surface-as-sculpture split — the panel is a monument the present
+  builds out of its own previous frames, not a mirror.
+- Open question sharpened: clock-04's shard makes a film cut the *trigger* for
+  tearing a fragment out of the plane; this pass says the lag panel never
+  triggers on cuts at all. Two opposing clocks of the past in one scene — worth
+  watching for whether the shard and the panel ever land on the same cut.
