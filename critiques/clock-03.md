@@ -133,3 +133,9 @@ the subtraction test by deleting the right-hand panel entirely.
   fact (not just the encode spec) — recorded here because the clock lane's
   loops are all built on this cut, and twin-01's "how long is the loop"
   question inherits this baseline for rate-0.9 arithmetic.
+
+## Delivery-8 continuity receipt (2026-09-14, 09:56Z)
+- Three element-level probes ~30s apart: 26.77 → 73.53 → 30.34 (wrapped),
+  paused:false throughout; the live surface keeps the loop invariant with
+  zero stalls across repeated browser sessions. OG surface verified too:
+  4 og meta tags resolve and /og-image.png 200.
