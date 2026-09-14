@@ -1,6 +1,7 @@
 import * as THREE from "three/webgpu";
 import { sketchEvents } from "./lib/o11y";
 import { openVideoLayer } from "./lib/video-layer";
+import { useVideoLayerState } from "./state/videoLayerState";
 import { fetchCurrent, watchCurrent, POLL_INTERVAL_MS, type CurrentStudy } from "./lib/gallery-store";
 import { mountRuntime, type StudyRuntimeRecursion } from "./lib/study-recursion";
 
@@ -20,7 +21,11 @@ type RenderHarness = { renderer: THREE.WebGPURenderer; backend: string };
 
 const STUDY_LOADERS: Record<
   string,
-  () => Promise<{ mountRuntime: typeof mountRuntime; STUDY: string }>
+  () => Promise<{
+    mountRuntime: typeof mountRuntime;
+    STUDY: string;
+    VIDEO: { src: string; hash: string } | null;
+  }>
 > = {
   // The archive route serves every shipped study bundle regardless of this
   // registry; the registry only gates what a pointing tab can mount.
@@ -78,8 +83,20 @@ try {
     }
     if (!layer) return false;
     const mod = await loader();
-    // openVideoLayer already yields a live, looping, muted VideoTexture;
-    // remount simply adopts it, so remounts stay autoplay-safe.
+    // Each study declares its material (VIDEO). If the open layer's source
+    // doesn't match, close it and open the study's own — per-study material,
+    // shared temporal machinery.
+    const videoDecl = mod.VIDEO ?? null;
+    const layerSrc = useVideoLayerState.getState().currentSrc ?? "";
+    if (videoDecl && !layerSrc.endsWith(videoDecl.src)) {
+      // Study wants material the open layer isn't playing: reopen its own.
+      layer.texture.dispose();
+      layer = await openVideoLayer(videoDecl).catch(() => null);
+      if (!layer) return false;
+      void sketchEvents
+        .emitInfo("study", "study.material.swapped", { study: pointer.study, src: videoDecl.src })
+        .catch(() => undefined);
+    }
     if (!layer) return false;
     const next = await mod.mountRuntime(renderer, layer);
     // Only the study's short id, never marketing copy (art direction).

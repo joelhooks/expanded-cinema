@@ -25,6 +25,9 @@ function targetAspectRatio(): number {
 const RING = DELAY + 1;
 const STUDY = "recurrence-01";
 
+/** Material this study projects (catalog sha from apps/sketch/catalog.json). */
+export const VIDEO: { src: string; hash: string } | null = null;
+
 export interface StudyScene {
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
