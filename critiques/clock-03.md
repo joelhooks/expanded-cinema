@@ -139,3 +139,9 @@ the subtraction test by deleting the right-hand panel entirely.
   paused:false throughout; the live surface keeps the loop invariant with
   zero stalls across repeated browser sessions. OG surface verified too:
   4 og meta tags resolve and /og-image.png 200.
+
+## Deploy-9 soak (2026-09-14, post videos-allowlist fix, ledger row 34)
+- Fresh bundle mounts clean: swap→ready→live, heartbeat 74.7fps, zero errors.
+  90s two-frame: machinery scene with the lag panel on a DIFFERENT scene —
+  grammar intact on the rebuilt worker. Bundle serves only declared material
+  (conquerb1943.mp4 + starter.mp4).
