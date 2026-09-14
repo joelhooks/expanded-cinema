@@ -13,6 +13,9 @@ import { sketchEvents } from "./o11y";
  */
 
 const DELAY = 24;
+function targetAspectRatio(): number {
+  return window.innerWidth / window.innerHeight;
+}
 /**
  * Ring length must exceed the delay: with length == DELAY the target we
  * want to read is always the one being written this frame, which WebGPU
@@ -25,6 +28,7 @@ const STUDY = "recurrence-01";
 export interface StudyScene {
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
+  pastCamera: THREE.PerspectiveCamera;
   knot: THREE.Mesh;
   screen: THREE.Mesh;
   videoTexture: THREE.VideoTexture;
@@ -45,6 +49,14 @@ function buildScene(videoTexture: THREE.VideoTexture): StudyScene {
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
   camera.position.set(0, 1.2, 6);
   camera.lookAt(0, 0.6, 0);
+
+  // recurrence-02: past-camera — a dedicated close-up on the knot only,
+  // used for the delay-ring capture so the screen shows the KNOT's past
+  // (frame n-DELAY), not the scene's mostly-background past. This is the
+  // readability fix from the 5c3d040 critique.
+  const pastCamera = new THREE.PerspectiveCamera(38, targetAspectRatio(), 0.1, 100);
+  pastCamera.position.set(0, 0.7, 4.2);
+  pastCamera.lookAt(0, 0.6, 0);
 
   // The knot's only light is the moved image: an emissive screen behind it
   // plus the video texture as its map — the surface *carries* the source.
@@ -77,7 +89,7 @@ function buildScene(videoTexture: THREE.VideoTexture): StudyScene {
   const frame = { value: 0 };
   const readIndex = { value: 0 };
 
-  return { scene, camera, knot, screen, videoTexture, feedbackMesh, targets, frame, readIndex, targetSize, targetHeight };
+  return { scene, camera, pastCamera, knot, screen, videoTexture, feedbackMesh, targets, frame, readIndex, targetSize, targetHeight };
 }
 
 export async function mountScene(
@@ -143,10 +155,10 @@ export async function mountRuntime(
       study.knot.rotation.y += delta * 0.55;
       study.screen.rotation.y = Math.sin(now / 2400) * 0.18;
 
-      // Rephotography: the screen shows the frame from DELAY-frames-ago.
-      // Map moves BEFORE the write pass (read = (n+1)%RING holds frame
-      // n-DELAY), so no texture is attachment- and texture-bound in one
-      // WebGPU render pass (that regression shipped black in 7371a23).
+      // recurrence-02: the delay ring captures the PAST-camera framing
+      // (knot close-up) — the screen shows the knot frame n-DELAY, at
+      // readable scale. Same ordering discipline as 5c3d040: map moves
+      // BEFORE the write pass, never same-texture in one scope.
       const n = study.frame.value;
       const write = allTargets[n % RING];
       const read = allTargets[(n + 1) % RING];
@@ -157,7 +169,7 @@ export async function mountRuntime(
       }
       if (write) {
         r.setRenderTarget(write);
-        r.render(study.scene, study.camera);
+        r.render(study.scene, study.pastCamera);
         r.setRenderTarget(null);
       }
       r.render(study.scene, study.camera);
