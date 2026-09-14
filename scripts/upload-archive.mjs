@@ -74,6 +74,10 @@ async function main() {
     process.exit(1);
   }
 
+  // Never upload a stale index: regenerate from the tree on every upload.
+  execFileSync("node", [join(root, "scripts/build-archive-index.mjs")], {
+    stdio: "inherit",
+  });
   const files = walk(versionsDir);
   console.log(`${files.length} files under versions/, bucket ${bucket}`);
 
