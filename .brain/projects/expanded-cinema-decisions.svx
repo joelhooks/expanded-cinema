@@ -118,6 +118,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 sweep** Maker moved to pane w8S:p6 / intercom "🎥 Rephotography Study Continue", now running from the project dir. Saw: recurrence-01 archived and retained, gallery hot-swap verified under an open tab (825011b), MCP write surface written as a sign-off-gated proposal (695c68d). Directed: remove stray `--full-page` PNG. Escalated: proposal to Joel via message_shitrat. Recovery-watch session that took the dark-wizard reconcile is gone with no report file; that work is unverified.
 
+- **2026-09-14 sweep 2** MCP write surface live at 6e02d16 and checked against the proposal: one key, five-field validated body, static bearer via secret binding, 401/400/405/404. No divergence. Ledger row c904e1b with open-tab swap receipt. recurrence-02 (past-camera framing) retained at 5135d94. Maker now building the bounded daily producer (lock, date dedupe, resumption). Nothing directed, nothing escalated. Watch: maker context at ~81%.
+
 ## Open questions
 
 
