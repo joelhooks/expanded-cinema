@@ -466,12 +466,12 @@ export async function mountRuntime(
           // stared ACROSS it, so the sheet filled mid-frame. Open BETWEEN
           // the sheet and the screen (z≈0.7, below sheet height): the beam
           // is behind the viewer; the frame is screen + room.
-          { t: 0.0, p: [0.35, 0.85, 0.7], l: [-0.1, 1.2, -2.2] },
-          { t: 0.15, p: [0.45, 0.9, 0.85], l: [-0.3, 1.2, -2.2] }, // ~7s hold, slow drift
+          { t: 0.0, p: [0.55, 1.05, -0.2], l: [-0.1, 1.15, -2.2] },
+          { t: 0.15, p: [0.6, 1.05, 0.0], l: [-0.25, 1.15, -2.2] }, // ~7s hold, slow drift
           { t: 0.35, p: [1.3, 1.15, 3.4], l: [-0.7, 1.15, -1.9] }, // pull back (x clears sheet width)
           { t: 0.55, p: [2.0, 1.5, 5.2], l: [-1.0, 1.1, -2.0] }, // right side of the room
           { t: 0.75, p: [0.9, 1.0, 2.6], l: [-0.5, 1.15, -1.6] }, // back left
-          { t: 1.0, p: [0.35, 0.85, 0.7], l: [-0.1, 1.2, -2.2] }, // loop close
+          { t: 1.0, p: [0.55, 1.05, -0.2], l: [-0.1, 1.15, -2.2] }, // loop close
         ];
         const railAt = (f: number): { p: THREE.Vector3; l: THREE.Vector3 } => {
           let i = 0;
@@ -626,7 +626,7 @@ export async function mountRuntime(
           const bright = Math.min(1, patchL * 1.35 + bandL * 0.5 + cutGlow * 0.35);
           const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = (beam === 0 ? 0.05 + bright * 0.34 : 0.03 + bright * 0.26) * fade * graze(m);
+          mm.opacity = (beam === 0 ? 0.05 + bright * 0.34 : 0.03 + bright * 0.26) * fade * graze(m) * 0.75;
         }
 
         // beam-01 vertical slats (now live, was dead since v13 rewrites):
@@ -669,7 +669,7 @@ export async function mountRuntime(
           const bbright = Math.min(1, bcolL * 1.35 + cutGlow * 0.3);
           const bfade = bBeam === 0 ? fade1 : fade2;
           const bmm = sm2.material as THREE.MeshBasicMaterial;
-          bmm.opacity = (bBeam === 0 ? 0.02 + bbright * 0.28 : 0.015 + bbright * 0.13) * bfade * graze(sm2);
+          bmm.opacity = (bBeam === 0 ? 0.02 + bbright * 0.28 : 0.015 + bbright * 0.13) * bfade * graze(sm2) * 0.75;
         }
         void SLATS;
 
