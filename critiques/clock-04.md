@@ -79,3 +79,24 @@ camera path visible enough that two NEW frames read as a different picture.
 - two frames a different picture? **YES** — see attached `v11-15s-pair.png`: 5s is inside the beam across a striped lattice plane with footage top-left; 15s is low near the screen looking BACK at the credit block from projector-side. Different sides of the room, different framing, different picture.
 New problem the rail exposed, banked for v12 if the rail survives: at 15s the camera sits near the screen, and the near beam's additive slices fill half the frame with a striped wash — the rail needs a beam-opacity falloff when the camera closes to the beam/screen.
 (15s frame note: the Ullman credit visible there is the FILM's own content at that playhead, not a first-paint regression — gate 2 is judged on the first screenshot only.)
+
+## v13 (2699cdf) — seq-27 five-load worst-frame verification, 17:45Z
+
+Determinism fix shipped: map=null at mount, assigned ONLY on `seeked` from
+the CURRENT element at SEEK_TO(63s). Stale-element events ignored (the v8
+race: an old element already at 55s fired seeked while the fresh element
+sat at 0 — card full-screen).
+
+**Five loads, 5s screenshots, worst attached as v13-worst-5s.png:**
+1. load1: screen EMPTY flat grey (map=null held — nothing unchosen shown). ✅
+2. load2: footage (dark interior). ✅
+3. load3: footage (top-left frame edge). ✅
+4. load4: footage (top-left sliver). ✅
+5. load5: footage (machinery, camera close). ✅
+
+**WORST frame (load1): screen is empty, NOT the card.** No load showed the
+RKO card in any of the five. Trade-off honestly named: determinism bought a
+possible 0.5-1s of empty screen before the chosen frame lands — that is the
+correct failure mode (blank > unchosen card).
+**Dark-screen complaint fixed:** in-point moved 55s → 63s (brighter footage);
+load5's frame shows the brightness lift.
