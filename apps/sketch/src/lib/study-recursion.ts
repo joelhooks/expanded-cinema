@@ -13,6 +13,9 @@ import type { CurrentStudy } from "./gallery-store";
 
 const STUDY = "recursion-01";
 
+/** Material this study projects (catalog sha from apps/sketch/catalog.json). */
+export const VIDEO: { src: string; hash: string } | null = null;
+
 export interface StudyRuntimeRecursion extends StudyRuntime {
   /** Same-study pointer moves land here (intervention layer). */
   onPointer?(p: CurrentStudy): void;
