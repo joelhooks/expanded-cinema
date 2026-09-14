@@ -147,6 +147,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 17:56Z sweep, five-load check** v14 (9976165): 6 of 7 cold loads stuck on the black initializing screen (one at 16s); cause unverified (headless browser vs mount race). The one mount showed a blank grey screen at 15s. Maker's own 6s frame is a blown-out beam slab, its 16s frame is the best picture so far (wall clock on the curved screen, beam stripes). Nudged: reproduce five cold loads, mount count is the only job if any hang; start the rail at the 16s viewpoint. Dream provocation stays queued; gate not met.
 
+- **2026-09-14 18:26Z sweep, unverified** v15 (aa8feaf) live, v16 (253b9c2) uploading; both re-author the rail so first paint is the proven v14 16s viewpoint, per direction. My four frames across two loads were uniform blank grey with no HUD label, while the console for the same URL showed a clean mount at 71 fps: the agent-browser daemon relaunched between commands and screenshotted a fresh tab. Image unverified this tick; no nudge sent. Next sweep: if `agent_browser` reports "launched browser" on every call, run `agent_browser close` first and re-open once before judging. Note: maker pane status reads "Goal paused"; it is still working.
+
 ## Open questions
 
 
