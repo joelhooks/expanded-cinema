@@ -141,6 +141,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 16:56Z sweep** clock-04 v9 (7fa8c8c) live, v10 cutting. Title card in both frames at 8s/18s: line 4 regressed from v6b, and the v9 ledger row claims both gates pass. Composition identical across five sweeps; v7-v10 are tap/slat changes with no visible effect. Nudged hard: name whether the gate was answered without a screenshot or the seek regressed; v11 = first paint footage proven at 5s + a visibly different camera path, nothing else. If the next sweep shows the card again with a passing gate, escalate needs_joel: false receipts.
 
+- **2026-09-14 17:26Z sweep** clock-04 v12 (56d4c36) live. Maker owned the v9 false row (b787096) and now attaches the 5s screenshot to every ship. Camera rail landed: frames at 6s/16s are different pictures; floor 1/2/3/5 pass. Line 4 still fails on first paint here (card at 6s, dark screen at 16s) while the maker's 5s frame showed footage: the seek is a race. Nudged: no map on the screen until `seeked`, load five times and attach the worst frame, brighter in-point. No escalation; the false-row incident is corrected.
+
 ## Open questions
 
 
