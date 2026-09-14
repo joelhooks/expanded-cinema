@@ -361,9 +361,7 @@ export async function mountRuntime(
         // per-slice beams: brightness = the FRAME at that slice's row band
         // (live bands for beam 0; DELAY-late history for beam 1)
         const live = tap ? tap.bands : null;
-        const liveDetail = tap ? tap.bandDetail : null;
         const past = tap ? study.bandAt(DELAY) : null;
-        const pastDetail = tap ? study.detailAt(DELAY) : null;
         for (const m of study.canvases) {
           const { beam, idx, yMid } = m.userData as { beam: number; idx: number; yMid: number };
           const org = beam === 0 ? PROJ : PROJ_OFF;
@@ -387,16 +385,32 @@ export async function mountRuntime(
           const pitch = Math.atan2(dir.y, Math.hypot(dir.x, dir.z));
           m.rotation.set(0, -yaw, pitch);
           m.rotateY(Math.PI / 2);
+          // v7: the cone IS the picture's footprint. UV-space of this
+          // slice's landing point on the screen: u spans [-0.02, +0.14],
+          // map to a col window of the luma tap (LUMA_W wide); the row is
+          // this slice's band. That sampled patch's MEAN drives the slice —
+          // dark picture regions read as dark gaps IN the beam cone.
           const bands = beam === 0 ? live : past;
-          const detail = beam === 0 ? liveDetail : pastDetail;
+          const lumaTap = tap ? tap.luma : null;
           const bandL = bands?.[idx] ?? 0;
-          // horizontal position of this slice on the cone: left/mid/right
-          const colP = Math.min(2, Math.max(0, Math.floor(((yMid * 0.16 + 0.02) / 0.16 + 0.5) * 1 % 3)));
-          const colW = detail?.[idx * 3 + colP] ?? bandL;
-          // picture detail rides ON the band mean; cut flash luminesces all
-          const bright = Math.min(1, bandL * 1.1 + colW * 1.6 + cutGlow * 0.35);
+          const uMid = yMid * 0.16 - 0.02 + 0.06; // landing u, mid of quad span
+          const colF = Math.max(0, Math.min(LUMA_W - 1, (beam === 0 ? uMid / 0.14 : 0.5) * LUMA_W));
+          const col0 = Math.max(0, Math.floor(colF - 2));
+          const rowF = Math.max(0, Math.min(LUMA_H - 1, (idx / SLICES) * LUMA_H));
+          const patchRow = Math.floor(rowF);
+          let patchAcc = 0;
+          let patchN = 0;
+          if (lumaTap) {
+            for (let dx = 0; dx < 5 && col0 + dx < LUMA_W; dx++) {
+              patchAcc += lumaTap[patchRow * LUMA_W + col0 + dx] ?? 0;
+              patchN++;
+            }
+          }
+          const patchL = patchN > 0 ? patchAcc / patchN : bandL;
+          // footprint weighted by its band mean so the cone keeps a body
+          const bright = Math.min(1, patchL * 1.35 + bandL * 0.5 + cutGlow * 0.35);
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = beam === 0 ? 0.03 + bright * 0.22 : 0.02 + bright * 0.18;
+          mm.opacity = beam === 0 ? 0.03 + bright * 0.26 : 0.02 + bright * 0.2;
         }
 
         // lens breathing: projectors inhale on their own cadence; cut flash
