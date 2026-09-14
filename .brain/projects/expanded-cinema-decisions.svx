@@ -151,6 +151,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 18:56Z sweep** v16b (ccbf545) live, verified with a clean browser (daemon needed a close and one retry). Composition holds and the opening viewpoint is right: beam, curved screen, wall band. Screen is a blank grey plate at 8s and 18s with meanLuma 0.38 in the console, so the reveal never fires. Line 4 fails outright, line 3 marginal. Nudged: reveal on seeked or readyState fallback, emit a reveal event, attach a 6s frame with footage. Last tick's "6/7 stuck on initializing" is now attributed to the browser daemon, not the app.
 
+- **2026-09-14 19:26Z sweep** v17 (70811fe). My 8s frame: wide view, blank grey screen, no screen.reveal event in the console within 6s of mount, so the backstop did not fire. Maker's attached 6s frame: camera inside the near beam with footage dimly on the screen, breaking its own no-beam-in-20s rule, and its critique passed it. Same version, same second, two viewpoints: the rail is not keyed to mount time. Nudged: prove reveal by the console event, key the rail to elapsed-since-reveal, read the attached frame against the floor. Line 4 has failed v14 through v17; escalate if v18 does not show footage in the wide opening view. Browser daemon still needs close + one retry each tick; second frame was a blank tab.
+
 ## Open questions
 
 
