@@ -252,7 +252,15 @@ export async function mountRuntime(
 ): Promise<ClockRuntime> {
   return await sketchEvents.measured("study", "study.mount", { study: STUDY }, async () => {
     const study = buildScene();
-    (study.screen.material as THREE.MeshBasicMaterial).map = videoLayer.texture;
+    const vid = (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image;
+    if (vid) {
+      // seq-23: open on moving footage, not the RKO card
+      vid.currentTime = 40;
+    }
+    const screenMap = videoLayer.texture;
+    screenMap.wrapS = THREE.RepeatWrapping;
+    screenMap.repeat.x = -1; // cylinder inner face reads mirrored otherwise (seq-23)
+    (study.screen.material as THREE.MeshBasicMaterial).map = screenMap;
     const detector = new CutDetector();
     let lumaFramesSeen = 0;
     void sketchEvents.emitInfo("study", "study.ready", { study: STUDY, delay: DELAY }).catch(() => undefined);
@@ -297,14 +305,16 @@ export async function mountRuntime(
           }
         }
 
-        // camera: EYE HEIGHT, seated-back, both projectors behind the
-        // viewer's shoulder; slow 20-degree arc over 30s + breathing height
+        // camera: eye height, both projectors behind the shoulder; a WIDE
+        // arc (~±20 deg over 30s => ~7 deg per 10s frame pair, per seq-23)
+        // plus a slow dolly 6.6 -> 7.4 over ~45s so the gap is unmissable
         const phase = (now % 30_000) / 30_000;
-        const ang = (phase * Math.PI) / 9 - Math.PI / 18; // ±10 deg
+        const ang = (phase * Math.PI) / 4.5 - Math.PI / 9; // ±20 deg
+        const dolly = 7.0 + Math.sin(((now % 45_000) / 45_000) * Math.PI * 2) * 0.4;
         study.camera.position.set(
-          1.6 + Math.sin(ang) * 0.9,
-          1.05 + Math.sin((now / 5200) % (Math.PI * 2)) * 0.1,
-          6.9 + Math.cos(ang) * 0.55,
+          1.35 + Math.sin(ang) * 1.15,
+          1.05 + Math.sin((now / 5200) % (Math.PI * 2)) * 0.12,
+          dolly + Math.cos(ang) * 0.5,
         );
         study.camera.lookAt(-0.75, 1.05, -2.2);
 
@@ -322,7 +332,12 @@ export async function mountRuntime(
           const u = -0.02 + yMid * 0.16;
           const sx = SCREEN_R * Math.sin(u);
           const sz = SCREEN_R * Math.cos(u) - 2.2;
-          const dir = new THREE.Vector3(sx - org.x, 1.1 + yMid - org.y, sz - org.z);
+          // beam 1 (the delayed past) misses the screen and lands on the
+          // BACK WALL, spread wide so its half of the room is lit (seq-23)
+          const tx = beam === 0 ? sx : 2.2 + yMid * 2.1;
+          const ty = beam === 0 ? 1.1 + yMid : 1.0 + yMid * 1.35;
+          const tz = beam === 0 ? sz : -7.55;
+          const dir = new THREE.Vector3(tx - org.x, ty - org.y, tz - org.z);
           const len = dir.length();
           m.position.copy(org).addScaledVector(dir, 0.5);
           m.scale.set(len, 1, 1);
