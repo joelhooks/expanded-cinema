@@ -1,0 +1,16 @@
+{
+  "study": "clock-03",
+  "sha": "b03234c",
+  "pointer": "b03234c-look3",
+  "soakWindow": {"start": "2026-09-14T07:05:50Z", "checked": "2026-09-14T07:31:00Z"},
+  "durationMin": 25,
+  "evidence": {
+    "frames": ["/tmp/look-c03-longrun-a.png", "/tmp/look-c03-longrun-b.png"],
+    "consoleFpsRange": [50, 82],
+    "heartbeatContinuous": true,
+    "errors": 0,
+    "temporalAdvancementAtProbes": true,
+    "lagPanelTracksOneSceneBehind": true
+  },
+  "verdictBearing": "supports unresolved->retainability; soak stability for critique"
+}
