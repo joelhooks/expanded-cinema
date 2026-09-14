@@ -43,3 +43,14 @@ sha256:    02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056 (stu
 used in:   clock-01
 publish:   ok (PD dedication on item metadata)
 ```
+
+```
+id:        transcript-01-conquerb1943-audio
+source:    https://archive.org/download/Conquerb1943/Conquerb1943.mp3
+title:     Conquer by the Clock — full audio track (MP3 64kbps 22.05kHz mono, 639.8s)
+license:   http://creativecommons.org/licenses/publicdomain/ (CC PD Dedication, same item)
+pulled:    2026-09-14 manual curl (5120000 bytes = exact archive.org metadata size)
+sha256:    3a07f59e5ffb86949f00b87923aaeddde3a861404c4c497aa24daf0f93b93b46
+used in:   transcript-01 (planned; inline cut is audio-less per ffprobe, audio consumed separately)
+publish:   ok (PD dedication); stays out of git per source rule (videos/.gitignore)
+```
