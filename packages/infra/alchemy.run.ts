@@ -145,11 +145,24 @@ export default Alchemy.Stack(
           // deterministic reveal can never fire.
           if (url.pathname.startsWith("/videos/")) {
             const mediaKey = \`media\${url.pathname}\`;
-            const mediaObj = await env.ARCHIVE.get(mediaKey, {
-              range: request.headers.has("range")
-                ? (request.headers.get("range") ?? undefined)
-                : undefined,
-            });
+            // parse the Range header into R2's {offset,length|suffix} shape
+            let r2range;
+            const rh = request.headers.get("range");
+            if (rh) {
+              const spec = rh.trim().replace("bytes=", "");
+              const dash = spec.indexOf("-");
+              const left = dash > 0 ? spec.slice(0, dash) : "";
+              const right = dash >= 0 ? spec.slice(dash + 1) : "";
+              if (left) {
+                const start = Number(left);
+                r2range = right
+                  ? { offset: start, length: Number(right) - start + 1 }
+                  : { offset: start };
+              } else if (right) {
+                r2range = { suffix: Number(right) };
+              }
+            }
+            const mediaObj = await env.ARCHIVE.get(mediaKey, { range: r2range });
             if (!mediaObj) {
               return new Response(JSON.stringify({ error: "media not in archive", key: mediaKey }), {
                 status: 404,
@@ -162,12 +175,40 @@ export default Alchemy.Stack(
               "cache-control": "public, max-age=3600",
             });
             if (mediaObj.httpEtag) mediaHeaders.set("etag", mediaObj.httpEtag);
+            if (rh && (r2range || mediaObj.range)) {
+              // R2 honoured the range: mediaObj.size is the PARTIAL size and
+              // mediaObj.range describes it. Recompute absolute positions
+              // from the REQUESTED range (not from a re-slice of the body).
+              const full = (mediaObj.range && "end" in mediaObj.range)
+                ? Number(mediaObj.range.end) + 1
+                : 0;
+              const head = await env.ARCHIVE.head(mediaKey);
+              const size = head ? head.size : full;
+              const start = r2range && "offset" in r2range ? (r2range.offset ?? 0)
+                : r2range && "suffix" in r2range ? Math.max(0, size - r2range.suffix) : 0;
+              const end = r2range && "offset" in r2range
+                ? (r2range.length !== undefined ? start + r2range.length - 1 : size - 1)
+                : size - 1;
+              mediaHeaders.set("content-range", \`bytes \${start}-\${end}/\${size}\`);
+              return new Response(mediaObj.body, { status: 206, headers: mediaHeaders });
+            }
             if (mediaObj.range) {
               const size = mediaObj.size;
-              if (mediaObj.range.offset !== undefined && mediaObj.range.length !== undefined) {
-                mediaHeaders.set("content-range", \`bytes \${mediaObj.range.offset}-\${mediaObj.range.offset + mediaObj.range.length - 1}/\${size}\`);
-                return new Response(mediaObj.body, { status: 206, headers: mediaHeaders });
+              const r = mediaObj.range;
+              let start;
+              let end;
+              if (r.suffix !== undefined) {
+                start = Math.max(0, size - r.suffix);
+                end = size - 1;
+              } else {
+                start = r.offset ?? 0;
+                end = r.length !== undefined ? start + r.length - 1 : size - 1;
               }
+              mediaHeaders.set(
+                "content-range",
+                \`bytes \${start}-\${end}/\${size}\`,
+              );
+              return new Response(mediaObj.body, { status: 206, headers: mediaHeaders });
             }
             return new Response(mediaObj.body, { status: 200, headers: mediaHeaders });
           }
