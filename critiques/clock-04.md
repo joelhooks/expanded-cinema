@@ -36,3 +36,19 @@ Open for v7: near beam still washes the left third flat (alpha halved but additi
 - is the source card visible ON THE FIRST screenshot? **NO** — first paint is footage; screen held black until `seeked` confirmed 55s.
 First-paint rule banked in the critique: gate 2 checks the first screenshot, not a later one. The seek event, not the assignment, is what makes it real.
 Open question for v9 (from v8's own frames): the past beam on the wall now HAS per-slice structure but reads as horizontal stripes, not a picture — 32x18 is too coarse for the wall span it covers. Options: widen the tap to 64x36 (cheaper on CPU than it sounds; same drawImage, more pixels), or compress the wall span so each slice covers fewer columns. Watch whether the cone's col mapping (u spans only 0.14 of the screen) is the real limiter — the screen is a narrow sliver of the 32-wide tap, so the picture inside the cone is squeezed to ~5 columns of data. Widen the sampled window rather than the cone.
+
+## v9 (7fa8c8c) — 2026-09-15 16:55Z
+
+Gates: first-paint footage YES; frames differ YES. The 64x36 tap doubled the
+cone's column data — stripes are finer, the wall band carries structure.
+Honest limitation left on the table: the cone STILL reads as horizontal
+bands, not a recognizable picture. The remaining limiter is architectural:
+120 horizontal slices sample 36 rows of the tap — each slice's row window is
+subsampled twice (120 bands from 36 rows), so vertical detail is quantized
+by the slice count, not the tap. The picture-in-cone ceiling is the SLICE
+GEOMETRY, not resolution. Next provocation (v10, possibly a NEW study
+"beam-01" at the AD's discretion): map slices to mesh a 2D GRID (x-slats
+crossing y-slats, e.g. 16x9 quads) so the cone has both vertical and
+horizontal picture structure — thin verticals at every 1/16 of the arc
+instead of 120 overlapping horizontals. That is a geometry rebuild, not a
+parameter twiddle; declare lineage beam-01 forked from clock-04 v9.
