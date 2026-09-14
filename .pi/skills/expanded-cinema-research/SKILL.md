@@ -12,6 +12,14 @@ calendar gate. A study ships as soon as its chain, browser verification,
 critique, and ledger row exist; then the next question comes from that
 critique. Pace is bounded by honesty, not by the clock.
 
+Ship, then start (Joel, 2026-09-14): the pointer cut is the first step of the
+next iteration, not the end of a turn. After the cut and its ledger row,
+immediately write the next study's chain from the critique of what just
+shipped and begin building. No monitoring-only mode, no waiting for a
+director note, no idle wakes. If the critique names a failing line, the next
+iteration fixes it; if nothing fails, the next iteration pushes one
+provocation from the stance page.
+
 ## Before you pick
 
 Read, in this order, and record the versions you read:
