@@ -78,8 +78,24 @@ writeFileSync(join(versionsDir, "manifest.json"), `${JSON.stringify(manifest, nu
 writeFileSync(join(versionsDir, "note.md"), `# ${studyId} @ ${sha}\n\n${note}\n`);
 
 // append to ledger if not already there
+// Ledger truthfulness (2026-09-14): this row may only claim what THIS tool
+// produced. The bundle hash is self-computed above; turbo/http-200 receipts
+// belong to the caller's ship chain, not to this snapshot step — hardcoding
+// them made every archive row assert unverified facts (caught 2026-09-14
+// during a positive-path rehearsal).
 const ledgerPath = join(root, "state", "ledger.jsonl");
-const row = `{"runId":"archive-${studyId}-${sha.slice(0,7)}","date":"${manifest.archivedAt.slice(0,10)}","stage":"archived","study":"${studyId}","sha":"${sha}","bundleHash":"${manifest.bundleHash}","archive":"archive/${studyId}/${sha}/","verified":["turbo check test build","http 200"],"lineage":[],"notes":"${note.replace(/"/g, "'")}"}`;
+const row = JSON.stringify({
+  runId: `archive-${studyId}-${sha.slice(0,7)}`,
+  date: manifest.archivedAt.slice(0,10),
+  stage: "archived",
+  study: studyId,
+  sha,
+  bundleHash: manifest.bundleHash,
+  archive: `archive/${studyId}/${sha}/`,
+  verified: [`bundle-hash ${manifest.bundleHash.slice(0,12)}`],
+  lineage: [],
+  notes: note,
+});
 const ledger = readFileSync(ledgerPath, "utf8");
 if (!ledger.includes(`"sha":"${sha}"`)) {
   writeFileSync(ledgerPath, ledger.trimEnd() + "\n" + row + "\n");

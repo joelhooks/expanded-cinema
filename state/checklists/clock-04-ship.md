@@ -37,6 +37,10 @@ maker's own cadence. Ship inside a normal bounded pass.
        holds ~6s with ~2s quad decay — catch it right after a film cut.
        — NO-CUTOVER GATE: keep clock-03 pointed until this step passes.
 8. [ ] Commit explicit paths; truthful ledger row (lineage: branches clock-03-b03234c)
+       — NOTE (2026-09-14 fix): archive-ship's auto-row now claims ONLY the
+       bundle-hash (self-computed). After steps 2/5 pass APPEND the turbo +
+       http-200 receipts into the row's "verified" array (python one-liner
+       over state/ledger.jsonl) so the canonical row carries the full chain.
 9. [ ] message_shitrat kind=link
 10. [ ] Critique with the local-eye pass (two frames to Qwen2.5-VL; quote + written disagreement)
 11. [ ] (folded into 7's NO-CUTOVER GATE)
