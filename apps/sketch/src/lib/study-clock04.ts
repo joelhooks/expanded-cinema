@@ -49,8 +49,8 @@ interface ClockScene {
 }
 
 /** Beam rig geometry (mirrors clock-02/03's scene scale for archive comparability). */
-const LUMA_W = 32;
-const LUMA_H = 18;
+const LUMA_W = 64;
+const LUMA_H = 36;
 const SLICES = 120;
 const SLICE_H = 2.2;
 const BEAM_LEN = 3.1; // projector -> screen throw
@@ -438,7 +438,7 @@ export async function mountRuntime(
           let patchAcc = 0;
           let patchN = 0;
           if (lumaTap) {
-            for (let dx = 0; dx < 5 && col0 + dx < LUMA_W; dx++) {
+            for (let dx = 0; dx < 7 && col0 + dx < LUMA_W; dx++) {
               patchAcc += lumaTap[patchRow * LUMA_W + col0 + dx] ?? 0;
               patchN++;
             }
