@@ -393,18 +393,28 @@ export async function mountRuntime(
           }
         }
 
-        // camera: eye height, both projectors behind the shoulder; a WIDE
-        // arc (~±20 deg over 30s => ~7 deg per 10s frame pair, per seq-23)
-        // plus a slow dolly 6.6 -> 7.4 over ~45s so the gap is unmissable
-        const phase = (now % 30_000) / 30_000;
-        const ang = (phase * Math.PI) / 3 - Math.PI / 6; // ±30 deg in 30s
-        const dolly = 7.0 + Math.sin(((now % 45_000) / 45_000) * Math.PI * 2) * 0.4;
-        study.camera.position.set(
-          1.35 + Math.sin(ang) * 1.15,
-          1.05 + Math.sin((now / 5200) % (Math.PI * 2)) * 0.12,
-          dolly + Math.cos(ang) * 0.5,
-        );
-        study.camera.lookAt(-0.75, 1.05, -2.2);
+        // v11 (seq-26): materially different composition — the camera
+        // TRAVELS the room on a 40s rail, not an orbit around one spot:
+        // wide right -> dives THROUGH the beam -> lands low near the
+        // screen looking back at the projectors -> swings up and out.
+        // Two frames 10s apart land on visibly different sides of the room.
+        const rp = ((now % 40_000) / 40_000) * Math.PI * 2;
+        // Catmull-like hand-tuned rail: three control points blended
+        const w1 = Math.max(0, Math.cos(rp));
+        const w2 = Math.max(0, Math.sin(rp * 0.5 + 0.6));
+        const w3 = Math.max(0, -Math.cos(rp * 0.7));
+        const tot = w1 + w2 + w3 + 1e-6;
+        const ax = w1 * 3.4 + w2 * 0.4 + w3 * -2.8;
+        const ay = w1 * 1.6 + w2 * 2.4 + w3 * 0.55;
+        const az = w1 * 6.8 + w2 * 3.1 + w3 * 0.2;
+        void tot;
+        study.camera.position.set(ax, ay, az);
+        // look ahead along the rail so the view sweeps, not locks
+        const rp2 = rp + 0.35;
+        const lx = Math.max(0, Math.cos(rp2)) * 3.4 + Math.max(0, Math.sin(rp2 * 0.5 + 0.6)) * 0.4;
+        const ly = Math.max(0, Math.sin(rp2 * 0.5 + 0.6)) * 2.4;
+        const lz = Math.max(0, -Math.cos(rp2 * 0.7)) * 0.2 + Math.max(0, Math.cos(rp2)) * 6.8;
+        study.camera.lookAt(lx, ly, lz);
 
         // transient flash: the intervention trace the room feels
         const since = now - (study.traceAt ?? -1e9);
