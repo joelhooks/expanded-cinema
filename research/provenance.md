@@ -39,7 +39,7 @@ source:    https://archive.org/details/Conquerb1943
 title / maker / date: Conquer by the Clock, 1943, sponsor n/a per metadata
 license:   http://creativecommons.org/licenses/publicdomain/ (CC PD Dedication)
 pulled:    2026-09-14, via pipeline/video.requested event 01M2F2AMZADPPHM8DX00B97TMX
-sha256:    33ea3cf331d3d4ee4f9bcb8d99fb3f8dc6f7db228e8a04012ef06544b391722c (manual fallback pull after pipeline video-download FAILED twice: 01M2F2AN3YXVK36GDV676GQQ8C, 01M2F2NSPCPSXDGYVZSN8YEKFR)
+sha256:    02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056 (study cut: 90s 480p re-encode, 2.6MB, inline; full 45MB source pull NOT committed per AD handoff rule — lives locally + NAS copy pending pipeline fix) (manual fallback pull after pipeline video-download FAILED twice: 01M2F2AN3YXVK36GDV676GQQ8C, 01M2F2NSPCPSXDGYVZSN8YEKFR)
 used in:   clock-01
 publish:   ok (PD dedication on item metadata)
 ```
