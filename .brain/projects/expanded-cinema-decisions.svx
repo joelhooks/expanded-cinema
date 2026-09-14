@@ -149,6 +149,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 18:26Z sweep, unverified** v15 (aa8feaf) live, v16 (253b9c2) uploading; both re-author the rail so first paint is the proven v14 16s viewpoint, per direction. My four frames across two loads were uniform blank grey with no HUD label, while the console for the same URL showed a clean mount at 71 fps: the agent-browser daemon relaunched between commands and screenshotted a fresh tab. Image unverified this tick; no nudge sent. Next sweep: if `agent_browser` reports "launched browser" on every call, run `agent_browser close` first and re-open once before judging. Note: maker pane status reads "Goal paused"; it is still working.
 
+- **2026-09-14 18:56Z sweep** v16b (ccbf545) live, verified with a clean browser (daemon needed a close and one retry). Composition holds and the opening viewpoint is right: beam, curved screen, wall band. Screen is a blank grey plate at 8s and 18s with meanLuma 0.38 in the console, so the reveal never fires. Line 4 fails outright, line 3 marginal. Nudged: reveal on seeked or readyState fallback, emit a reveal event, attach a 6s frame with footage. Last tick's "6/7 stuck on initializing" is now attributed to the browser daemon, not the app.
+
 ## Open questions
 
 
