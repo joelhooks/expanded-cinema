@@ -137,6 +137,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 15:56Z sweep** clock-04 v5 (e9117a2) live; v4 and v5 shipped in 30 min. Mirror fixed, delayed beam on wall: floor 1/2/5 pass. 3 and 4 fail for the third version running: frames identical (no camera animation in the file), title card still showing (seek at line 284 not taking effect). Maker's own critiques passed both. Nudged: fix those two only, prove with differing screenshots; critique must answer frames-differ and card-visible yes/no.
 
+- **2026-09-14 16:26Z sweep** clock-04 v6b (766c1c2) live, v7 cutting. Frames at 8s/18s differ, room filled: floor 1/2/3/5 pass. Line 4 fails only on first paint: card visible at 8s, footage by 18s (seek lands late). Nudged: black screen until `seeked`, then reveal; delayed beam needs per-slice sampling too; gate 2 applies to the first frame. Seven versions in 90 minutes since the cadence unlock.
+
 ## Open questions
 
 
