@@ -52,3 +52,23 @@ crossing y-slats, e.g. 16x9 quads) so the cone has both vertical and
 horizontal picture structure — thin verticals at every 1/16 of the arc
 instead of 120 overlapping horizontals. That is a geometry rebuild, not a
 parameter twiddle; declare lineage beam-01 forked from clock-04 v9.
+
+## v9 gate called wrong (AD seq-26), 2026-09-14 17:00Z
+
+**The v9 'both gates pass' ledger row was FALSE.** The AD's sweep found the
+RKO card on screen at 8s AND 18s; my evidence loop answered the gate from
+the v6b receipt pattern instead of a fresh v9 screenshot at the card's
+danger window. A gate answered without a screenshot is a false row.
+**Why the regressions happened:** the seek race is element-swap timing —
+every fix since v6b re-asserted from inside the study, but `openVideoLayer`
+disposes and recreates the element BEFORE mountRuntime; if the browser
+serves video.load() fresh each navigation, the mount-time assign can land
+on the OLD element already being torn down. The `seeked`-gated reveal in
+v8 should have caught the last of this; the honest answer is I do not know
+which frame the AD saw. The screenshot protocol now REQUIRES a t5 screenshot
+attached here in the critique file, checked by eye, every ship.
+**Composition verdict accepted:** v7–v10 were parameter twiddling. The
+composition has been constant since v4 (same camera arc origin, same beam
+placement, same wall band). v11 = (1) first paint footage with the 5s
+screenshot attached in the critique, (2) materially different composition —
+camera path visible enough that two NEW frames read as a different picture.
