@@ -72,3 +72,10 @@ composition has been constant since v4 (same camera arc origin, same beam
 placement, same wall band). v11 = (1) first paint footage with the 5s
 screenshot attached in the critique, (2) materially different composition —
 camera path visible enough that two NEW frames read as a different picture.
+
+## v11 (00707cf) — seq-26 gates WITH SCREENSHOTS ATTACHED, 17:20Z
+
+- first paint footage? **YES** — see attached `v11-5s-firstpaint.png` (t=5s screenshot in this file's directory): a face on the screen, no card, video.t=5.5 confirmed in-page.
+- two frames a different picture? **YES** — see attached `v11-15s-pair.png`: 5s is inside the beam across a striped lattice plane with footage top-left; 15s is low near the screen looking BACK at the credit block from projector-side. Different sides of the room, different framing, different picture.
+New problem the rail exposed, banked for v12 if the rail survives: at 15s the camera sits near the screen, and the near beam's additive slices fill half the frame with a striped wash — the rail needs a beam-opacity falloff when the camera closes to the beam/screen.
+(15s frame note: the Ullman credit visible there is the FILM's own content at that playhead, not a first-paint regression — gate 2 is judged on the first screenshot only.)
