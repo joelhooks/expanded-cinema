@@ -400,19 +400,19 @@ export async function mountRuntime(
           }
         }
 
-        // v16 (seq-28): stop guessing with rotated phases — AUTHOR the rail
-        // as explicit waypoints. Start at the proven-good v14 16s viewpoint
-        // (low near the screen looking back at the projectors = "the best
-        // picture this project has made"). Hold it, travel the good wide
-        // arc, cross the beam only after 20s, return. Two frames 10s apart
-        // are different pictures AND no beam bubble before 20s.
+        // v16b: rail coordinates DERIVED from the original proven-good
+        // default camera (0.4, 0.85, 5.9) lookAt (-0.5, 1.1, 0) — the
+        // setup that read before the rail existed. Open there, sway along
+        // a shallow arc that keeps distance from the projector bubbles,
+        // return. Nearing PROJ is forbidden: both beam origins stay >=3.5
+        // away from every rail point.
         const RAIL: Array<{ t: number; p: [number, number, number]; l: [number, number, number] }> = [
-          { t: 0.0, p: [0.6, 0.9, 1.4], l: [-3.9, 1.35, 2.4] }, // look at projector 1 from low right
-          { t: 0.15, p: [0.6, 0.9, 1.4], l: [-3.9, 1.35, 2.4] }, // HOLD first ~7s
-          { t: 0.4, p: [1.4, 1.5, 4.6], l: [-1.5, 1.1, -1.8] }, // pull back to the wide
-          { t: 0.6, p: [2.6, 1.9, 5.9], l: [-2.2, 1.1, -2.0] }, // wide right, outside beam
-          { t: 0.8, p: [2.2, 1.6, 5.4], l: [-3.0, 1.2, -1.5] }, // cross toward beam side (later, allowed)
-          { t: 1.0, p: [0.6, 0.9, 1.4], l: [-3.9, 1.35, 2.4] }, // return to the opening frame
+          { t: 0.0, p: [0.4, 0.85, 5.9], l: [-0.5, 1.1, 0.0] }, // the proven default view
+          { t: 0.2, p: [0.75, 1.0, 6.1], l: [-0.6, 1.15, -0.2] }, // slow sway right
+          { t: 0.45, p: [1.5, 1.35, 6.3], l: [-0.9, 1.1, -0.6] }, // mostly right of default
+          { t: 0.7, p: [0.9, 1.1, 6.5], l: [-0.7, 1.2, 0.1] }, // back left
+          { t: 0.9, p: [0.3, 0.95, 6.2], l: [-0.5, 1.1, 0.0] }, // near default again
+          { t: 1.0, p: [0.4, 0.85, 5.9], l: [-0.5, 1.1, 0.0] }, // loop close
         ];
         const railAt = (f: number): { p: THREE.Vector3; l: THREE.Vector3 } => {
           let i = 0;
