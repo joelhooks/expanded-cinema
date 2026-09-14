@@ -43,6 +43,9 @@ export default Alchemy.Stack(
       routes: [
         { pattern: `${host}/archive/*`, zoneName: ZONE },
         { pattern: `${host}/mcp/*`, zoneName: ZONE },
+        // /videos/* also routes here (seq-30): the media element cannot
+        // seek without Range/206 support, and the Website static-assets
+        // path returns full-body 200s. R2 get() honours obj.range.
       ],
       env: {
         ARCHIVE: archive,
@@ -139,6 +142,37 @@ export default Alchemy.Stack(
           }
           let path = url.pathname.slice("/archive".length);
           if (path.startsWith("/")) path = path.slice(1);
+          // /videos/* reads MEDIA objects with Range support (seq-30):
+          // without 206 the media element refuses to seek and the
+          // deterministic reveal can never fire.
+          if (url.pathname.startsWith("/videos/")) {
+            const mediaKey = \`media\${url.pathname}\`;
+            const mediaObj = await env.ARCHIVE.get(mediaKey, {
+              range: request.headers.has("range")
+                ? (request.headers.get("range") ?? undefined)
+                : undefined,
+            });
+            if (!mediaObj) {
+              return new Response(JSON.stringify({ error: "media not in archive", key: mediaKey }), {
+                status: 404,
+                headers: { "content-type": "application/json" },
+              });
+            }
+            const mediaHeaders = new Headers({
+              "content-type": mediaObj.httpMetadata?.contentType || "video/mp4",
+              "accept-ranges": "bytes",
+              "cache-control": "public, max-age=3600",
+            });
+            if (mediaObj.httpEtag) mediaHeaders.set("etag", mediaObj.httpEtag);
+            if (mediaObj.range) {
+              const size = mediaObj.size;
+              if (mediaObj.range.offset !== undefined && mediaObj.range.length !== undefined) {
+                mediaHeaders.set("content-range", \`bytes \${mediaObj.range.offset}-\${mediaObj.range.offset + mediaObj.range.length - 1}/\${size}\`);
+                return new Response(mediaObj.body, { status: 206, headers: mediaHeaders });
+              }
+            }
+            return new Response(mediaObj.body, { status: 200, headers: mediaHeaders });
+          }
           if (path === "") path = "index.html";
           if (path.endsWith("/")) path += "index.html";
           const key = \`archive/\${path}\`;
