@@ -92,11 +92,14 @@ function buildScene(videoTexture: THREE.VideoTexture): RecursionScene {
   pointerCanvas.width = 512;
   pointerCanvas.height = 192;
   const pointerTexture = new THREE.CanvasTexture(pointerCanvas);
+  // critique-saved correction (recursion-01 unresolved): scale the pointer
+  // plane up so the intervention layer reads at frame scale, and bias it
+  // off-center so the composition doesn't dead-center it.
   const pointerPlane = new THREE.Mesh(
-    new THREE.PlaneGeometry(3.2, 1.2),
+    new THREE.PlaneGeometry(4.0, 1.5),
     new THREE.MeshBasicMaterial({ map: pointerTexture }),
   );
-  pointerPlane.position.set(3.3, 0.9, -1.4);
+  pointerPlane.position.set(3.6, 1.05, -1.4);
   scene.add(pointerPlane);
 
   const flash = { until: 0, level: 0 };
