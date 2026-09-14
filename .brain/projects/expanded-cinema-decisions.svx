@@ -159,6 +159,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 20:56Z sweep** v20 (77616ad): the whole viewport is a flat white slab at 8s and 18s, every floor line fails. Bubble fade not effective; reveal re-fires via seeked every ~0.75s pinned at t=63, so the film is frozen (new bug from the proof loop); both v20 builds cut live without a room in the 6s frame. Directed: re-cut the pointer to v18 now, then v21 with one-shot reveal, fade alpha logged, and a 6s frame showing the screen larger than any beam before any cut. If v21 ships white or frozen again, escalate needs_joel: the maker cannot see its own frames.
 
+- **2026-09-14 21:26Z sweep** Rollback to v18 happened, then v21b (73038f7) was cut over it at 21:20 while still a white slab; my 18s frame confirms. Console confirms the one-shot reveal and the bubble alpha log, and the maker has diagnosed the white wall correctly (16 coplanar additive slats stacked at one depth; v21c adds grazing-angle attenuation, uploading). Nudged: re-cut to v18 and stay there; verify candidates on the archive URL, never by cutting the pointer. Held the needs_joel escalation one more tick because the diagnosis is real; if v21c is cut white, escalate.
+
 ## Open questions
 
 
