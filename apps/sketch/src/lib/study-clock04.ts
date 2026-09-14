@@ -278,17 +278,18 @@ export async function mountRuntime(
 ): Promise<ClockRuntime> {
   return await sketchEvents.measured("study", "study.mount", { study: STUDY }, async () => {
     const study = buildScene();
-    // seq-24: the mount-time seek raced the video layer (a card was visible
-    // 8s/18s after load). Seek to 120s (known war footage, past both cards)
-    // re-asserting every 60 frames until currentTime holds >= HALF a second.
-    const SEEK_TO = 120;
+    // seq-24: the mount-time seek raced the video layer AND 120s exceeds
+    // this clip's 90s duration (clamped -> looped back to the cards).
+    // 55s is inside the film, past both front cards. Re-assert until the
+    // time holds (element swaps reset playback to 0).
+    const SEEK_TO = 55;
     let seekAttempts = 0;
     const seekTick = (): void => {
       const vid = (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image;
       if (!vid) return;
       vid.currentTime = SEEK_TO;
       seekAttempts++;
-      if (vid.currentTime < 1 && seekAttempts < 20) setTimeout(seekTick, 1000);
+      if (vid.currentTime < 10 && seekAttempts < 20) setTimeout(seekTick, 1000);
     };
     seekTick();
     const screenMap = videoLayer.texture;
