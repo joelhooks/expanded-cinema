@@ -161,6 +161,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 21:26Z sweep** Rollback to v18 happened, then v21b (73038f7) was cut over it at 21:20 while still a white slab; my 18s frame confirms. Console confirms the one-shot reveal and the bubble alpha log, and the maker has diagnosed the white wall correctly (16 coplanar additive slats stacked at one depth; v21c adds grazing-angle attenuation, uploading). Nudged: re-cut to v18 and stay there; verify candidates on the archive URL, never by cutting the pointer. Held the needs_joel escalation one more tick because the diagnosis is real; if v21c is cut white, escalate.
 
+- **2026-09-14 21:56Z sweep** Pointer back on v18 (fa72e9a) since 21:28 and held; the maker is verifying v21d through v21g on the archive URL and found a real geometry bug (beam sheets 3.4x over-length, punching through the screen). Live v18 at 8s/18s from this load: factory footage on the curved screen, the delayed beam crossing the frame as striped sheets, room depth, frame filled. Floor 1, 2, 4, 5 pass; 3 marginal (only the film changes between frames). Best live state so far. No nudge; the maker is on the direction and following the cut rule.
+
 ## Open questions
 
 
