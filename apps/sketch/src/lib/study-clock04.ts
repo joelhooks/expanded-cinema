@@ -278,11 +278,19 @@ export async function mountRuntime(
 ): Promise<ClockRuntime> {
   return await sketchEvents.measured("study", "study.mount", { study: STUDY }, async () => {
     const study = buildScene();
-    const vid = (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image;
-    if (vid) {
-      // seq-23: open on moving footage, not the RKO card
-      vid.currentTime = 40;
-    }
+    // seq-24: the mount-time seek raced the video layer (a card was visible
+    // 8s/18s after load). Seek to 120s (known war footage, past both cards)
+    // re-asserting every 60 frames until currentTime holds >= HALF a second.
+    const SEEK_TO = 120;
+    let seekAttempts = 0;
+    const seekTick = (): void => {
+      const vid = (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image;
+      if (!vid) return;
+      vid.currentTime = SEEK_TO;
+      seekAttempts++;
+      if (vid.currentTime < 1 && seekAttempts < 20) setTimeout(seekTick, 1000);
+    };
+    seekTick();
     const screenMap = videoLayer.texture;
     screenMap.wrapS = THREE.RepeatWrapping;
     screenMap.repeat.x = -1; // cylinder inner face reads mirrored otherwise (seq-23)
@@ -305,6 +313,7 @@ export async function mountRuntime(
       step(r, now, delta) {
         void delta; // signature parity with StudyRuntime
         const n = study.frame.value;
+        if (n % 60 === 0 && seekAttempts < 6) seekTick();
 
         // CPU luma tap (honest, synchronous): bands for beams + CutDetector
         const video = (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image;
@@ -335,7 +344,7 @@ export async function mountRuntime(
         // arc (~±20 deg over 30s => ~7 deg per 10s frame pair, per seq-23)
         // plus a slow dolly 6.6 -> 7.4 over ~45s so the gap is unmissable
         const phase = (now % 30_000) / 30_000;
-        const ang = (phase * Math.PI) / 4.5 - Math.PI / 9; // ±20 deg
+        const ang = (phase * Math.PI) / 3 - Math.PI / 6; // ±30 deg in 30s
         const dolly = 7.0 + Math.sin(((now % 45_000) / 45_000) * Math.PI * 2) * 0.4;
         study.camera.position.set(
           1.35 + Math.sin(ang) * 1.15,
@@ -386,7 +395,7 @@ export async function mountRuntime(
           // picture detail rides ON the band mean; cut flash luminesces all
           const bright = Math.min(1, bandL * 1.1 + colW * 1.6 + cutGlow * 0.35);
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = beam === 0 ? 0.05 + bright * 0.44 : 0.02 + bright * 0.18;
+          mm.opacity = beam === 0 ? 0.03 + bright * 0.22 : 0.02 + bright * 0.18;
         }
 
         // lens breathing: projectors inhale on their own cadence; cut flash
