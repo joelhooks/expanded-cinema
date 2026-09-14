@@ -100,3 +100,10 @@ possible 0.5-1s of empty screen before the chosen frame lands — that is the
 correct failure mode (blank > unchosen card).
 **Dark-screen complaint fixed:** in-point moved 55s → 63s (brighter footage);
 load5's frame shows the brightness lift.
+
+## v14 (9976165) — 18:05Z — slats LIVE, screenshots attached
+
+- first paint (6s): footage top-left, no card (`v14-6s.png` attached)
+- 16s pair: different picture (low rail looking back, clock footage) (`v14-16s.png` attached)
+- **Found + fixed a real dead code bug this pass:** the beam-01 slat lattice was CREATED at v10 but never placed in the step loop — dead since the v13 rewrites. Now live with column-at-arc-fraction sampling, reveal gate, camera fade. The vertical structure reads in the 6s frame's beam edge (vertical striations across the cone body).
+- Honest note: at 16s the camera passes THROUGH a wall band — bright but brief. Fine; the rail shows the room, not just the beams.
