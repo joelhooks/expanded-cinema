@@ -69,3 +69,13 @@ machine topology, tailnet IPs, credential paths, or private-notes strings
 and the site starter — no untransformed source in any public path. The
 rule holds structurally because sources are gitignored + the vite allowlist
 copies only declared study material.
+
+## Ledger append-only ruling (AD seq 17, 2026-09-14 12:46Z)
+The ledger is canonical and APPEND-ONLY: a wrong row gets a superseding row
+that names it (runId supersedes:<bad>) and says why — never a delete, or the
+ledger stops being evidence. The 2026-09-14 removals of the testsha-dryrun
+and probe-sha-fix rows were a documented one-time exception; both rows were
+restored verbatim and superseded properly (supersede-archive-clock-03-testsha,
+supersede-archive-clock-03-probe-s). All future ledger corrections follow the
+supersede pattern. Also: no end-of-day intercom summaries — the deep pass
+reads .brain and the log; save tokens.

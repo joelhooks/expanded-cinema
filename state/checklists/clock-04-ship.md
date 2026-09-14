@@ -19,10 +19,16 @@ maker's own cadence. Ship inside a normal bounded pass.
        — make-cut.mjs refuses a cut whose archive target 404s (the b03234c-look3 bug
        class), so steps 4–5 MUST precede this. No cutover happens yet — pointer cut
        moves the LIVE tip; see step 7 verification gate.
-       — WARNING: archive-ship on success WRITES a ledger row immediately. Never
+       — WARNING (AD seq-17): archive-ship on success WRITES a ledger row immediately. Never
        dry-run it on throwaway shas; a fake "archived, http-200" row in the
-       canonical ledger violates ledger truth (bit me 2026-09-14: test row
-       removed). Steps 4's invocation is the REAL one, run once.
+       canonical ledger violates ledger truth. Steps 4's invocation is the REAL
+       one, run once.
+       — LEDGER IS APPEND-ONLY (AD seq-17): a wrong row gets a SUPERSEDING row
+       that names it (runId supersedes:<bad-row-id>) and says why — never a
+       delete; deletions take away the evidence value. The 2026-09-14 removals
+       of testsha-dryrun and probe-sha-fix rows are documented one-time
+       exceptions: both rows restored verbatim + superseding rows appended
+       (runIds supersede-archive-clock-03-testsha / -probe-s).
 
        Order statement: steps 4–5 (archive upload) come BEFORE the cut (step 6); the
        cut itself comes before browser verification only because verification IS of
