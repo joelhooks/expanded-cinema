@@ -50,3 +50,13 @@ come back with an ask first. This brief is the handoff packet.
 ## Verification protocol (maker pane, after the fresh actor lands a claim)
 - Multi-frame browser probe (≥3 frames, ≥90s), console-o11y receipts,
   archive 200 check, readback of the ledger row, then counter-critique.
+
+## Spawn mechanics (settled 2026-09-14, pre-cadence; execution still gated on clock-04 ship)
+- Mechanism: `herdr_agent` start with kind=pi in its own workspace pane — matches the
+  approved shape (separate pane, fresh context, one bounded actor, no fan-out).
+- Handoff packet: THIS FILE + instruction to read VISION.md, AGENTS.md, both study
+  skills before touching code.
+- Maker-pane role after landing: verification protocol below + ledger row + ShitRat
+  link. The maker does NOT co-build; steer only for protocol compliance questions.
+- Hard stop triggers: child requests a sibling, a second pass, or edits outside
+  apps/sketch + state; kill pane, bring the ask to Joel via ShitRat.
