@@ -420,6 +420,14 @@ export async function mountRuntime(
         const since = now - (study.traceAt ?? -1e9);
         const cutGlow = since >= 0 && since < 900 ? Math.max(0, 1 - since / 900) : 0;
 
+        // v12: camera-beam proximity falloff — the camera's distance from
+        // each projector drives a fade on that beam; at close range the
+        // wash back off so room + picture stay readable (v11 15s frame)
+        const camD1 = study.camera.position.distanceTo(PROJ);
+        const camD2 = study.camera.position.distanceTo(PROJ_OFF);
+        const fade1 = Math.min(1, Math.max(0.25, (camD1 - 1.2) / 3.4));
+        const fade2 = Math.min(1, Math.max(0.25, (camD2 - 1.2) / 3.4));
+
         // per-slice beams: brightness = the FRAME at that slice's row band
         // (live bands for beam 0; DELAY-late history for beam 1)
         const live = revealHolder.revealed && tap ? tap.bands : null;
@@ -482,8 +490,9 @@ export async function mountRuntime(
           const patchL = patchN > 0 ? patchAcc / patchN : bandL;
           // footprint weighted by its band mean so the cone keeps a body
           const bright = Math.min(1, patchL * 1.35 + bandL * 0.5 + cutGlow * 0.35);
+          const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = beam === 0 ? 0.03 + bright * 0.26 : 0.02 + bright * 0.2;
+          mm.opacity = (beam === 0 ? 0.03 + bright * 0.26 : 0.02 + bright * 0.2) * fade;
         }
 
         // lens breathing: projectors inhale on their own cadence; cut flash
