@@ -24,3 +24,5 @@ export function rotate(sources: readonly SourceRef[], index: number): SourceRef 
   const i = ((index % sources.length) + sources.length) % sources.length;
   return sources[i] ?? null;
 }
+
+export * from "./cut-detection";
