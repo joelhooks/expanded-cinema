@@ -145,3 +145,14 @@ the subtraction test by deleting the right-hand panel entirely.
   90s two-frame: machinery scene with the lag panel on a DIFFERENT scene —
   grammar intact on the rebuilt worker. Bundle serves only declared material
   (conquerb1943.mp4 + starter.mp4).
+
+## PM look pass (2026-09-14 ~12:19Z, 90s two-frame on the fixed pointer)
+- f1: the film's own credit titles (Frederic Ullman Jr. / Slavko Vorkapich —
+  the montage-time master himself); f2 (95s later): typewriter machinery.
+  The lag panel on f2 holds the SAME credits — the viewer literally watches
+  the past's titles play over the present's machines. The clock lane's
+  grammar at its clearest: the study that disciplined bodies now shows its
+  own making.
+- Irony bank for the critique only: Vorkapich reads as a name in the film
+  ABOUT clocks and time-on-the-wall; the study's delay is the modern reader
+  of that montage grammar. No factual claim beyond the two frames.
