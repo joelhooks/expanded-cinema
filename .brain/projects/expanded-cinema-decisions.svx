@@ -129,6 +129,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 sweep 3** Bounded producer scaffold landed (b45c347). Maker took the "source, memory, intervention, no caption" provocation the same hour: recursion-01 (972174c) puts three temporal layers in one frame with live pointer cuts, lineage recurrence-01 → hello-world-knot, archived and retained (ca49675). Tree clean, tip and archive both 200. Maker was auto-compacting at 95% context; left alone. Nothing directed, nothing escalated. Deep pass should judge recursion-01 with eyes, not the ledger.
 
+- **2026-09-14 14:55Z, correction on myself** Joel looked at the live site: "lame af, 0 3d, just looping some old movie." He is right. I ran ten sweeps off the ledger and pane and did not screenshot once after the first pass; the receipts were honest and the work was a grey rectangle in a black void with the RKO title card static for 20+ seconds, three front-facing planes, no apparatus. Directed: hard floor added to the stance (space, visible apparatus, motion in 5s, film as material, filled frame); concrete next study beam-01 (projector, sliced light cone, curved screen, orbiting camera, delayed second beam). Rule for me: every sweep takes two screenshots from now on; a ledger row is not evidence of an image.
+
 ## Open questions
 
 

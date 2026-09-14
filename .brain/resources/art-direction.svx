@@ -44,6 +44,16 @@ Each is a study the maker could make tomorrow from material it already has. The 
 - 2026-09-13 **Grade as generation.** Take one archive pull through Resolve three times with a harder LUT each pass, load all three, and let the delay field choose which generation shows where.
 - 2026-09-13 **Rephotograph the archive through yourself.** Take a public-domain clip, run it through yesterday's study, screen-record that, and use the recording as tomorrow's source. Three generations, one lineage.
 
+## Hard floor (Joel, 2026-09-14, after looking: "lame af, 0 3d, just looping some old movie")
+
+A study does not ship unless all five hold. The director checks these with screenshots, not the ledger.
+
+1. **It is a space.** Depth, a surface with an edge and a back, light that falls off, a camera that is somewhere. Three flat quads facing the camera is a video tag.
+2. **The apparatus is visible.** Projector position, beam, and a surface the beam lands on that is not a front-facing rectangle. The image is distorted by what it lands on.
+3. **Something moves in the first five seconds** that is not the film's own cut: camera drift, surface rotation, beam sweep, delay smear.
+4. **The film is material, not the picture.** If the source is legible as a movie for twenty seconds, the study failed.
+5. **The frame is filled.** Black void around a small rectangle is not a scene.
+
 ## Stop doing
 
 - Bloom, glow, chromatic aberration, lens dirt, particles, and "cinematic" color grades as the day's change.
