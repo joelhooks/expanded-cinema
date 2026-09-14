@@ -44,3 +44,15 @@ overlay — i.e., the past band SPLIT OFF from the footage (plane torn out of
 the surface, physically displaced) instead of a translucent strip pasted on?
 That is the "surface as sculpture" boundary move, and it would also answer
 the subtraction test by deleting the right-hand panel entirely.
+
+## Watch notes (2026-09-14, pass 2 of the looking cadence)
+- 90s two-frame watch (/tmp/look-c03-a.png, /tmp/look-c03-b.png), pointer
+  `b03234c-f00d`: frame A shows the credits card with the "CONQUER BY THE
+  CLOCK" title CARD ghosted beneath it — the memory panel at n−180 is
+  CROSSING A HARD CUT and produces a visible double exposure. Frame B
+  (clock room) shows the panel still on credits: the lag lands a full scene
+  behind, exactly one cut late.
+- This refines the open question: the past band ("surface as sculpture")
+  is most visible precisely AT cut crossings. A split-off surface seeded at
+  the film's own cuts would make the archive's interruptions and the
+  gallery's interruptions agree — one interruption grammar instead of two.
