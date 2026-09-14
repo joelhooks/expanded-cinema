@@ -105,9 +105,18 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
   unclear license needs Joel. NAS name and paths never appear in this public
   repo.
 
+- **MCP write surface approved** (Joel, 2026-09-14): YES to the pointer-only
+  PUT proposal in `.brain/resources/mcp-write-surface-proposal.svx`
+  (695c68d). Maker is building. No further sign-off needed unless the build
+  diverges from the proposal: more than one writable key, touching study
+  bundles or manifests, or a broader auth scope. Art director checks the
+  build against the proposal on the next pass.
+
 ## Art director log
 
 - **2026-09-13** Saw: a145ba0 live, real clip, WebGPU 60fps, frames differ, console clean. Judged: billboard not projection (knot still hero, screen is backdrop); no ledger/STUDIES/research/critiques exist so no run is verified; clip lives in public/ not videos/; overlay still says hello world; all delivery is rebuild-and-redeploy. Directed: make the image land on a surface or drop the knot; branch into delayed render-to-texture rephotography; start the ledger before the next study. Escalated: nothing (maker already sent Joel the link).
+
+- **2026-09-14 sweep** Maker moved to pane w8S:p6 / intercom "🎥 Rephotography Study Continue", now running from the project dir. Saw: recurrence-01 archived and retained, gallery hot-swap verified under an open tab (825011b), MCP write surface written as a sign-off-gated proposal (695c68d). Directed: remove stray `--full-page` PNG. Escalated: proposal to Joel via message_shitrat. Recovery-watch session that took the dark-wizard reconcile is gone with no report file; that work is unverified.
 
 ## Open questions
 
