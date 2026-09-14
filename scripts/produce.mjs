@@ -124,10 +124,18 @@ console.log(JSON.stringify({ started: pass.id, resumed }, null, 2));
 // then flip producer.json to completed. A pass that throws keeps the lock —
 // intentionally: the next invocation sees it as stale/resumable evidence.
 try {
-  // Pass body = the standard verified ship chain (VISION D). Study selection
-  // from the registry is a later increment; intent names the study explicitly.
+  // Pass body = the standard verified ship chain (VISION D). The study id is
+  // validated against the live registry (STUDY_LOADERS ids in main.ts) so a
+  // producer pass can never archive a study the pointing tab cannot mount.
   const [study, ...noteParts] = intent.split("\n")[0].split(" ");
   if (!study) throw new Error("intent must start with the study id");
+  const registry = (() => {
+    const src = readFileSync(join(root, "apps/sketch/src/main.ts"), "utf8");
+    return [...src.matchAll(/"([a-z0-9-]+)": \(\) => import/g)].map((m) => m[1]);
+  })();
+  if (!registry.includes(study)) {
+    throw Object.assign(new Error(`study "${study}" is not in the registry [${registry.join(", ")}] — register it in main.ts before a producer pass can ship it`), { registry });
+  }
   const note = noteParts.join(" ") || `producer pass ${pass.id}`;
   const sh = (cmd, args) => {
     const out = execFileSync(cmd, args, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "inherit"] });
