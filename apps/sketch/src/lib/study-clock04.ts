@@ -1,13 +1,5 @@
 import * as THREE from "three/webgpu";
-import {
-  CutDetector,
-  Sequencer,
-  ringLength,
-  readSlot,
-  traceState,
-  writeSlot,
-  type LumaFrame,
-} from "@expanded-cinema/core";
+import { CutDetector, ringLength } from "@expanded-cinema/core";
 import { sketchEvents } from "./o11y";
 import type { StudyRuntime } from "./study-recurrence";
 import type { CurrentStudy } from "./gallery-store";
@@ -42,29 +34,22 @@ interface ClockScene {
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
   pastCamera: THREE.PerspectiveCamera;
-  sourceNow: THREE.Mesh;
-  sourceThen: THREE.Mesh;
   screen: THREE.Mesh;
   proj1: THREE.Mesh;
   proj2: THREE.Mesh;
   canvases: THREE.Mesh[];
-  videoTexture: THREE.VideoTexture;
-  targets: THREE.RenderTarget[];
   frame: { value: number };
   // intervention trace wall-clock
   traceAt: number | null;
-  // cut detection
-  lumaSeq: Sequencer<Uint8Array>;
-  lumaTarget: THREE.RenderTarget;
-  lastPointerKey: string;
-  lastReadErrorAt: number;
-  lumaFrameSample: Uint8Array | null;
+  computeBandsFromVideo: (video: HTMLVideoElement) => { bands: Float32Array; luma: Float32Array } | null;
+  bandAt: (framesAgo: number) => Float32Array | null;
+  pushBandHistory: (bands: Float32Array) => void;
 }
 
 /** Beam rig geometry (mirrors clock-02/03's scene scale for archive comparability). */
 const LUMA_W = 32;
 const LUMA_H = 18;
-const SLICES = 200;
+const SLICES = 120;
 const SLICE_H = 2.2;
 const BEAM_LEN = 3.1; // projector -> screen throw
 const PROJ = new THREE.Vector3(-3.9, 1.35, 2.4);
@@ -90,20 +75,6 @@ function buildScene() {
   const pastCamera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
   pastCamera.position.set(0.4, 0.85, 5.9);
   pastCamera.lookAt(-0.5, 1.1, 0);
-
-  // invisible luma sources: two unlit quads, one live, one delayed — these
-  // are what pastCamera rasterizes into the ring for luma sampling
-  const hidden = new THREE.MeshBasicMaterial({ colorWrite: false, depthWrite: false });
-  const sourceNow = new THREE.Mesh(new THREE.PlaneGeometry(FM_U, FM_V), hidden);
-  sourceNow.material.map = null;
-  sourceNow.position.set(0, 4.5, 0);
-  sourceNow.renderOrder = -1;
-  scene.add(sourceNow);
-
-  const sourceThen = new THREE.Mesh(new THREE.PlaneGeometry(FM_U, FM_V), hidden);
-  sourceThen.position.set(0, 4.5, 0);
-  sourceThen.renderOrder = -1;
-  scene.add(sourceThen);
 
   // room: floor, back wall, curved screen — light receivers, not void
   const roomMat = new THREE.MeshLambertMaterial({ color: 0x1b1626 });
@@ -140,9 +111,11 @@ function buildScene() {
   const screenGeo = new THREE.CylinderGeometry(
     SCREEN_R, SCREEN_R, SCREEN_H, 48, 1, true, -SCREEN_ARC / 2, SCREEN_ARC,
   );
-  const screenMat = new THREE.MeshLambertMaterial({
-    color: 0xf2f4f8,
-    emissive: 0x101014,
+  // the film ON the curve: plain UVs initially (seq-21 fix 1); beam misses
+  // dim it globally until per-vertex beam shading lands (v4 refinement)
+  const screenMat = new THREE.MeshBasicMaterial({
+    map: null, // videoTexture assigned at mount
+    color: 0x0b0d12, // beam-dark until the beam luma drives it up
     side: THREE.DoubleSide,
   });
   const screen = new THREE.Mesh(screenGeo, screenMat);
@@ -198,95 +171,79 @@ function buildScene() {
     }
   }
 
-const targetSize = 640;
-  const targetHeight = Math.round((targetSize * window.innerHeight) / window.innerWidth);
-  const targets = Array.from(
-    { length: RING },
-    () => new THREE.RenderTarget(targetSize, targetHeight, { depthBuffer: false }),
-  );
   const frame = { value: 0 };
 
-  const lumaTarget = new THREE.RenderTarget(LUMA_W, LUMA_H, { depthBuffer: false });
-  const lumaBuf = new Uint8Array(LUMA_W * LUMA_H * 4);
+  // ---------- CPU luma tap (seq-21 fix 2) ----------
+  // The WebGPU readback path resolved but rendered black (diagnosed via
+  // clock04.luma.stats). A 2D canvas tap is synchronous and honest: draw
+  // the video frame at 32x18, read the pixels, feed CutDetector directly
+  // AND per-slice band means for the beam modulation (no more mean-only
+  // wash). Band history drives the DELAY-late past beam without ring reads.
+  const lumaCanvas = document.createElement("canvas");
+  lumaCanvas.width = LUMA_W;
+  lumaCanvas.height = LUMA_H;
+  const lumaCtx = lumaCanvas.getContext("2d", { willReadFrequently: true }) as CanvasRenderingContext2D;
 
-  // detection lives in a closure so the sequencer can drive it in-order;
-  // traceAt is a mutable holder shared with the scene object
+  // per-frame band means (SLICES bands, luma 0..1), ring of length RING
+  const bandHistory: Float32Array[] = [];
+  const pushBandHistory = (bands: Float32Array): void => {
+    bandHistory.push(bands);
+    if (bandHistory.length > RING) bandHistory.shift();
+  };
+  const bandAt = (framesAgo: number): Float32Array | null => {
+    const idx = bandHistory.length - 1 - framesAgo;
+    return idx >= 0 ? (bandHistory[idx] ?? null) : null;
+  };
+
+  const computeBandsFromVideo = (video: HTMLVideoElement): { bands: Float32Array; luma: Float32Array } | null => {
+    if (video.readyState < 2) return null;
+    lumaCtx.drawImage(video, 0, 0, LUMA_W, LUMA_H);
+    const data = lumaCtx.getImageData(0, 0, LUMA_W, LUMA_H).data;
+    const luma = new Float32Array(LUMA_W * LUMA_H);
+    for (let i = 0; i < LUMA_W * LUMA_H; i++) {
+      const o = i * 4;
+      luma[i] = (0.299 * (data[o] ?? 0) + 0.587 * (data[o + 1] ?? 0) + 0.114 * (data[o + 2] ?? 0)) / 255;
+    }
+    // 120 bands over 18 rows: each band maps to a fractional row range
+    const bands = new Float32Array(SLICES);
+    const rowsF = bandAt(0);
+    void rowsF;
+    for (let bi = 0; bi < SLICES; bi++) {
+      // slice idx 0 = TOP of frame (y1 above y0 in buildScene ordering)
+      const y01 = bi / SLICES; // 0 top .. 1 bottom
+      const rowStart = Math.floor(y01 * LUMA_H);
+      const rowEnd = Math.max(rowStart + 1, Math.floor(((bi + 1) / SLICES) * LUMA_H));
+      let acc = 0;
+      let count = 0;
+      for (let ry = rowStart; ry < Math.min(rowEnd, LUMA_H); ry++) {
+        for (let rx = 0; rx < LUMA_W; rx++) {
+          acc += luma[ry * LUMA_W + rx] ?? 0;
+          count++;
+        }
+      }
+      bands[bi] = count > 0 ? acc / count : 0;
+    }
+    return { bands, luma };
+  };
+
   const cutDetector = new CutDetector();
   let lumaFramesSeen = 0;
   const traceAtHolder: { at: number | null } = { at: null };
-  const sampleHolder: { sample: Uint8Array | null } = { sample: null };
-  const lumaSeq = new Sequencer<Uint8Array>((buf: Uint8Array) => {
-    sampleHolder.sample = buf;
-    // luma-chain diagnostic: every ~10s, emit what the detector actually
-    // sees (mean luma + buffer length). Distinguishes "reads resolve but
-    // constant" from "reads dead" on the live console — verification evidence,
-    // not per-frame noise (removable once clock-04's shard gate passes).
-    lumaFramesSeen++;
-    if (lumaFramesSeen % 600 === 1) {
-      let sum = 0;
-      for (let i = 0; i < buf.length; i += 4) sum += buf[i] ?? 0;
-      const frame = lumaFrameOf(buf);
-      let lumaSum = 0;
-      for (const v of frame.pixels) lumaSum += v;
-      void sketchEvents
-        .emitInfo("study", "clock04.luma.stats", {
-          seen: lumaFramesSeen,
-          bufLen: buf.length,
-          meanR: Number((sum / (buf.length / 4)).toFixed(1)),
-          meanLuma: Number((lumaSum / frame.pixels.length).toFixed(1)),
-        })
-        .catch(() => undefined);
-    }
-    const cut = cutDetector.push(lumaFrameOf(buf));
-    if (!cut) return;
-    traceAtHolder.at = performance.now();
-    void sketchEvents
-      .emitInfo("study", "clock04.shard", { at: Number(traceAtHolder.at.toFixed(0)), source: "cut" })
-      .catch(() => undefined);
-  });
 
   return {
     scene,
     camera,
     pastCamera,
-    sourceNow,
-    sourceThen,
     screen,
     proj1,
     proj2,
     canvases,
-    targets,
     frame,
     traceAt: traceAtHolder.at,
-    lumaSeq,
-    lumaTarget,
-    lastPointerKey: "",
-    lastReadErrorAt: 0,
-    lumaFrameSample: sampleHolder.sample,
+    computeBandsFromVideo,
+    bandAt,
+    pushBandHistory,
   };
-}
-
-function lumaFrameOf(buf: Uint8Array): LumaFrame {
-  // Downsample RGBA → luma (Rec. 601). The WebGPU backend pads each row of
-  // copyTextureToBuffer to a 256-byte boundary (WebGPUTextureUtils), so the
-  // buffer may be WIDER than width*4 bytes per row — compute the actual
-  // stride from the buffer length instead of assuming tight packing.
-  const texelsLaidOut = new Array<number>(LUMA_W * LUMA_H);
-  const bytesPerRow = Math.max(1, Math.floor(buf.length / LUMA_H));
-  const texelsPerRow = Math.floor(bytesPerRow / 4); // stride in texels
-  for (let ry = 0; ry < LUMA_H; ry++) {
-    const srcRow = Math.min(ry, LUMA_H - 1);
-    const rowBase = srcRow * texelsPerRow;
-    const dstBase = ry * LUMA_W;
-    for (let x = 0; x < LUMA_W; x++) {
-      const o = (rowBase + x) * 4;
-      const r = buf[o];
-      const g = buf[o + 1];
-      const b = buf[o + 2];
-      texelsLaidOut[dstBase + x] = 0.299 * (r ?? 0) + 0.587 * (g ?? 0) + 0.114 * (b ?? 0);
-    }
-  }
-  return { pixels: texelsLaidOut, width: LUMA_W, height: LUMA_H };
 }
 
 export async function mountRuntime(
@@ -295,7 +252,9 @@ export async function mountRuntime(
 ): Promise<ClockRuntime> {
   return await sketchEvents.measured("study", "study.mount", { study: STUDY }, async () => {
     const study = buildScene();
-    study.sourceNow.material.map = videoLayer.texture;
+    (study.screen.material as THREE.MeshBasicMaterial).map = videoLayer.texture;
+    const detector = new CutDetector();
+    let lumaFramesSeen = 0;
     void sketchEvents.emitInfo("study", "study.ready", { study: STUDY, delay: DELAY }).catch(() => undefined);
 
     return {
@@ -303,10 +262,7 @@ export async function mountRuntime(
       camera: study.camera,
       delay: DELAY,
       onPointer(p) {
-        const key = `${p.study}@${p.sha}@${p.updatedAt}`;
-        if (key === study.lastPointerKey) return;
-        study.lastPointerKey = key;
-        // pointer cut = an intervention: durably displace the shard
+        // pointer cut = an intervention the room feels: projector pulse
         study.traceAt = performance.now();
         void sketchEvents
           .emitInfo("study", "clock04.intervention", { sha: p.sha.slice(0, 16), source: "pointer" })
@@ -314,58 +270,56 @@ export async function mountRuntime(
       },
       step(r, now, delta) {
         void delta; // signature parity with StudyRuntime
-        study.sourceNow.material.map = videoLayer.texture;
-
         const n = study.frame.value;
-        const write = study.targets[writeSlot(n, RING)];
-        const read = study.targets[readSlot(n, DELAY, RING)];
 
-        // cut detection on a tiny downsample of the luma sources.
-        // The async read resolves out of order under load — the Sequencer
-        // guarantees the detector sees frames in submission order (stale
-        // reads dropped, newest-wins), so no false cuts from reordering.
-        r.setRenderTarget(study.lumaTarget);
-        r.render(study.scene, study.pastCamera);
-        r.setRenderTarget(null);
-        const seqN = n;
-        void r
-          .readRenderTargetPixelsAsync(study.lumaTarget, 0, 0, LUMA_W, LUMA_H)
-          .then((buf) => {
-            study.lumaSeq.submit(seqN, buf as Uint8Array);
-          })
-          .catch((err: unknown) => {
-            // Never silent again: emit ONCE so a dead read chain is visible
-            // on the live surface instead of quietly disabling cut detection.
-            const now = Date.now();
-            if (now - study.lastReadErrorAt > 30_000) {
-              study.lastReadErrorAt = now;
-              void sketchEvents
-                .emitFailure("study", "clock04.read.error", err instanceof Error ? err.message : String(err))
-                .catch(() => undefined);
-            }
-          });
+        // CPU luma tap (honest, synchronous): bands for beams + CutDetector
+        const video = (videoLayer.texture as unknown as { image?: HTMLVideoElement }).image;
+        const tap = video ? study.computeBandsFromVideo(video) : null;
+        if (tap) {
+          study.pushBandHistory(tap.bands);
+          const frame = { pixels: Array.from(tap.luma), width: LUMA_W, height: LUMA_H };
+          lumaFramesSeen++;
+          if (lumaFramesSeen % 600 === 1) {
+            let sum = 0;
+            for (const v of tap.luma) sum += v;
+            void sketchEvents
+              .emitInfo("study", "clock04.luma.stats", {
+                seen: lumaFramesSeen,
+                meanLuma: Number((sum / tap.luma.length).toFixed(2)),
+              })
+              .catch(() => undefined);
+          }
+          if (detector.push(frame)) {
+            study.traceAt = performance.now();
+            void sketchEvents
+              .emitInfo("study", "clock04.cut", { at: Number(study.traceAt.toFixed(0)), source: "film" })
+              .catch(() => undefined);
+          }
+        }
 
-        // camera drift: slow arc, ~20 degrees over 30s, breathing height
+        // camera: EYE HEIGHT, seated-back, both projectors behind the
+        // viewer's shoulder; slow 20-degree arc over 30s + breathing height
         const phase = (now % 30_000) / 30_000;
         const ang = (phase * Math.PI) / 9 - Math.PI / 18; // ±10 deg
-        const camR = 5.9;
         study.camera.position.set(
-          0.4 + Math.sin(ang) * camR,
-          0.85 + Math.sin((now / 5200) % (Math.PI * 2)) * 0.18,
-          0.4 + Math.cos(ang) * camR,
+          1.6 + Math.sin(ang) * 0.9,
+          1.05 + Math.sin((now / 5200) % (Math.PI * 2)) * 0.1,
+          6.9 + Math.cos(ang) * 0.55,
         );
-        study.camera.lookAt(-0.5, 1.1, 0);
+        study.camera.lookAt(-0.75, 1.05, -2.2);
 
-        // per-slice: aim each quad from its beam origin at the curved screen,
-        // brightness = film luma at that slice's row (ring-late for beam 1)
-        const liveTex = study.sourceNow.material.map as THREE.VideoTexture | null;
-        const pastTex = (read?.texture ?? null) as THREE.Texture | null;
-        const lumaBuf = study.lumaFrameSample;
+        // transient flash: the intervention trace the room feels
+        const since = now - (study.traceAt ?? -1e9);
+        const cutGlow = since >= 0 && since < 900 ? Math.max(0, 1 - since / 900) : 0;
+
+        // per-slice beams: brightness = the FRAME at that slice's row band
+        // (live bands for beam 0; DELAY-late history for beam 1)
+        const live = tap ? tap.bands : null;
+        const past = tap ? study.bandAt(DELAY) : null;
         for (const m of study.canvases) {
           const { beam, idx, yMid } = m.userData as { beam: number; idx: number; yMid: number };
           const org = beam === 0 ? PROJ : PROJ_OFF;
-          // target point on the screen: cylinder parametric axis point
-          const u = -0.02 + yMid * 0.16; // aim spread across screen height
+          const u = -0.02 + yMid * 0.16;
           const sx = SCREEN_R * Math.sin(u);
           const sz = SCREEN_R * Math.cos(u) - 2.2;
           const dir = new THREE.Vector3(sx - org.x, 1.1 + yMid - org.y, sz - org.z);
@@ -373,38 +327,25 @@ export async function mountRuntime(
           m.position.copy(org).addScaledVector(dir, 0.5);
           m.scale.set(len, 1, 1);
           m.visible = true;
-          // face the beam: rotate to align the quad's +x with dir
           const yaw = Math.atan2(dir.z, dir.x);
           const pitch = Math.atan2(dir.y, Math.hypot(dir.x, dir.z));
           m.rotation.set(0, -yaw, pitch);
           m.rotateY(Math.PI / 2);
-          // brightness: split the luma buffer into SLICES bands, live or past
-          const tex = beam === 0 ? liveTex : pastTex;
-          void tex;
-          const base = idx * SLICE_BAND * 4;
-          let acc = 0;
-          if (lumaBuf) {
-            for (let k = 0; k < SLICE_BAND * 4; k += 4) acc += lumaBuf[base + k] ?? 0;
-            acc /= SLICE_BAND;
-          }
-          const bright = Math.min(1, (acc / 255) * 2.4);
-          mat: {
-            const mm = m.material as THREE.MeshBasicMaterial;
-            mm.opacity = beam === 0 ? 0.16 + bright * 0.7 : 0.05 + bright * 0.28;
-          }
+          const bands = beam === 0 ? live : past;
+          const bright = Math.min(1, ((bands?.[idx] ?? 0) * 2.1 + cutGlow * 0.35));
+          const mm = m.material as THREE.MeshBasicMaterial;
+          mm.opacity = beam === 0 ? 0.05 + bright * 0.42 : 0.02 + bright * 0.16;
         }
 
-        // lens breathing: projectors inhale on their own cadence
+        // lens breathing: projectors inhale on their own cadence; cut flash
         const pulse = Math.sin((now / 2400) % (Math.PI * 2)) * 0.5 + 0.5;
-        (study.proj1.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.2 + pulse * 0.4;
-        (study.proj2.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.2 + (1 - pulse) * 0.3;
-
-        // write the CURRENT luma view into the ring AFTER reads (map-before-write)
-        if (write) {
-          r.setRenderTarget(write);
-          r.render(study.scene, study.pastCamera);
-          r.setRenderTarget(null);
-        }
+        const p1 = study.proj1.material as THREE.MeshStandardMaterial;
+        const p2 = study.proj2.material as THREE.MeshStandardMaterial;
+        p1.emissiveIntensity = 0.25 + pulse * 0.45 + cutGlow * 0.8;
+        p2.emissiveIntensity = 0.25 + (1 - pulse) * 0.35 + cutGlow * 0.5;
+        // screen brightens with the cut flash (beam carries the jolt)
+        const sm = study.screen.material as THREE.MeshBasicMaterial;
+        sm.color.setScalar(0.06 + cutGlow * 0.55);
 
         r.render(study.scene, study.camera);
         study.frame.value = n + 1;
@@ -416,8 +357,6 @@ export async function mountRuntime(
         study.pastCamera.updateProjectionMatrix();
       },
       dispose() {
-        for (const t of study.targets) t.dispose();
-        study.lumaTarget.dispose();
         for (const m of study.canvases) {
           m.geometry.dispose();
           (m.material as THREE.Material).dispose();
