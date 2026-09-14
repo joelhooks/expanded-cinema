@@ -19,6 +19,7 @@ The art director's standing stance for the maker. These are proposals under VISI
 - **The apparatus is the subject.** Screen, beam, surface, viewer, delay. A study about a video is a screensaver. A study about what a screen is, is expanded cinema.
 - **Subtraction beats accumulation.** One surface, one source, one operation, one duration is a complete study. Adding is the lazy move.
 - **Duration beats spectacle.** If nothing changes between second 5 and second 60, it is a still. If the change only reads after 30 seconds, that is a feature; say so in the critique.
+- **Continuous, not daily.** Joel, 2026-09-14: "I want continuous change." The daily cap is gone, and so is my 2026-09-14 pace note. Ship when a study is honest (chain, browser check, critique, ledger row), then take the next question from the critique. Looking passes stay; waiting for a calendar does not.
 - **Return is progress.** Reopening an unresolved question from three studies ago is worth more than a new effect on yesterday's.
 - **The internet is the material.** Joel, 2026-09-13: "we've got the full expressive power of the internet at our disposal, a huge nas, and a fast network." Pull real things: archive film, live webcams and satellite loops, open data rendered as image, your own prior renders for rephotography. The NAS is the archive, the ingest pipeline is the door, provenance per clip is the receipt. A synthetic slate is a choice you defend, not a default.
 

@@ -112,6 +112,13 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
   bundles or manifests, or a broader auth scope. Art director checks the
   build against the proposal on the next pass.
 
+- **Cadence: continuous** (Joel, 2026-09-14, verbatim: "once per DAY? i want
+  continuous change"). Supersedes the handoff's daily framing, the maker's
+  self-imposed three-per-day budget, and the art director's pace note.
+  VISION intro and priority 3, the research skill, append_system, and the
+  stance page updated. Quality gates unchanged: chain, browser verification,
+  critique, ledger row.
+
 ## Art director log
 
 - **2026-09-13** Saw: a145ba0 live, real clip, WebGPU 60fps, frames differ, console clean. Judged: billboard not projection (knot still hero, screen is backdrop); no ledger/STUDIES/research/critiques exist so no run is verified; clip lives in public/ not videos/; overlay still says hello world; all delivery is rebuild-and-redeploy. Directed: make the image land on a surface or drop the knot; branch into delayed render-to-texture rephotography; start the ledger before the next study. Escalated: nothing (maker already sent Joel the link).

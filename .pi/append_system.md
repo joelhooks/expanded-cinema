@@ -10,7 +10,7 @@ will-not-do list. Quote it when a choice turns on intent.
 `VISION.md` is not permission to bypass `AGENTS.md`. Commands, validation,
 model pin, ledger rules, and completion gates live there.
 
-Two roles share this repo. The **maker** (daily agent, pinned local model)
+Two roles share this repo. The **maker** (continuous agent, pinned local model)
 builds studies and owns `apps/`, `packages/`, `videos/`, `state/`. The **art
 director** (`.pi/agents/art-director.md`, run by hand with
 `/art-director-pass`) judges rendered output, sends direction over intercom,

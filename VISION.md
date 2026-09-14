@@ -1,10 +1,12 @@
 # Vision
 
-Expanded cinema is a daily Three.js sketch agent. Each day it researches one
-question from roughly the last fifty years of expanded cinema practice
-(projection, rephotography, remix, temporal relationships), turns that finding
+Expanded cinema is a continuously running Three.js sketch agent. It researches
+questions from roughly the last fifty years of expanded cinema practice
+(projection, rephotography, remix, temporal relationships), turns each finding
 into a WebGPU sketch, looks at what it actually rendered, critiques it, and
-carries the judgment into later work.
+carries the judgment into the next one. There is no daily quota in either
+direction: a study ships when its chain, critique, and ledger row exist, and
+the gallery is expected to change often.
 
 The output is a related body of work, not a linear evolution of one sketch and
 not a random daily challenge. Studies bounce around inside a recognizable
@@ -54,13 +56,13 @@ pull request. It is not an agent instruction file; operational rules live in
    through MCP shows up in an already-open page without redeploying.
 2. Make the first researched study by hand. Then, in a fresh session, make a
    related second version that applies a saved correction.
-3. Build one bounded daily producer: lock, date-keyed dedupe, resumption,
-   spend records, and a stop policy. Schedule it only after those pass.
+3. Build one bounded producer: lock, per-pass dedupe, resumption, spend
+   records, and a stop policy. Runs continuously once those pass.
 
 ## Actors
 
 - **Owner:** Joel. Approves aesthetics, spend, schedule, and publishing.
-- **The daily agent:** runs on a pinned local model. It proposes, builds,
+- **The maker:** runs on a pinned local model. It proposes, builds,
   critiques, and records. Its proposals never silently become rules.
 - **Contributors:** welcome for fixes, tests, verification, and research
   notes. Creative direction is not open for pull requests.

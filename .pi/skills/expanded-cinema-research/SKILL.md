@@ -5,7 +5,12 @@ description: Daily research and sourcing method for the expanded-cinema maker. U
 
 # Expanded cinema research
 
-One question a day. Not one artist a day. The artist is evidence for the question.
+One question per study. Not one artist per study. The artist is evidence for the question.
+
+Cadence (Joel, 2026-09-14): continuous. No daily cap and no waiting for a
+calendar gate. A study ships as soon as its chain, browser verification,
+critique, and ledger row exist; then the next question comes from that
+critique. Pace is bounded by honesty, not by the clock.
 
 ## Before you pick
 
