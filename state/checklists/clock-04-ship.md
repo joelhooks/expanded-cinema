@@ -19,6 +19,10 @@ maker's own cadence. Ship inside a normal bounded pass.
        — make-cut.mjs refuses a cut whose archive target 404s (the b03234c-look3 bug
        class), so steps 4–5 MUST precede this. No cutover happens yet — pointer cut
        moves the LIVE tip; see step 7 verification gate.
+       — WARNING: archive-ship on success WRITES a ledger row immediately. Never
+       dry-run it on throwaway shas; a fake "archived, http-200" row in the
+       canonical ledger violates ledger truth (bit me 2026-09-14: test row
+       removed). Steps 4's invocation is the REAL one, run once.
 
        Order statement: steps 4–5 (archive upload) come BEFORE the cut (step 6); the
        cut itself comes before browser verification only because verification IS of

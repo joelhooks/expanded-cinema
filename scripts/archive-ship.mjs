@@ -26,6 +26,22 @@ if (!existsSync(distDir)) {
   console.error("dist/ missing — build first: pnpm build");
   process.exit(1);
 }
+
+// Defense-in-depth (2026-09-14): an unregistered study is tree-shaken out of
+// dist, so a stale build would archive a bundle WITHOUT the study. Check the
+// built JS actually carries the study id before snapshotting. The registry-add
+// (checklist step 1) must precede the build that produced this dist.
+const distSrc = readdirSync(join(distDir, "assets"), { withFileTypes: true })
+  .filter((e) => e.isFile() && e.name.endsWith(".js"))
+  .map((e) => readFileSync(join(distDir, "assets", e.name), "utf8"))
+  .join("\n");
+if (!distSrc.includes(studyId)) {
+  console.error(
+    `refusing: dist/ does not reference "${studyId}" — the module is likely still tree-shaken (unregistered). Run the registry-add + rebuild, then re-run this step.`,
+  );
+  process.exit(2);
+}
+
 mkdirSync(versionsDir, { recursive: true });
 cpSync(distDir, join(versionsDir, "dist"), { recursive: true });
 
