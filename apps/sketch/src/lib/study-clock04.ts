@@ -124,8 +124,29 @@ function buildScene(videoTexture: THREE.VideoTexture): ClockScene {
   // detection lives in a closure so the sequencer can drive it in-order;
   // traceAt is a mutable holder shared with the scene object
   const cutDetector = new CutDetector();
+  let lumaFramesSeen = 0;
   const traceAtHolder: { at: number | null } = { at: null };
   const lumaSeq = new Sequencer<Uint8Array>((buf: Uint8Array) => {
+    // luma-chain diagnostic: every ~10s, emit what the detector actually
+    // sees (mean luma + buffer length). Distinguishes "reads resolve but
+    // constant" from "reads dead" on the live console — verification evidence,
+    // not per-frame noise (removable once clock-04's shard gate passes).
+    lumaFramesSeen++;
+    if (lumaFramesSeen % 600 === 1) {
+      let sum = 0;
+      for (let i = 0; i < buf.length; i += 4) sum += buf[i] ?? 0;
+      const frame = lumaFrameOf(buf);
+      let lumaSum = 0;
+      for (const v of frame.pixels) lumaSum += v;
+      void sketchEvents
+        .emitInfo("study", "clock04.luma.stats", {
+          seen: lumaFramesSeen,
+          bufLen: buf.length,
+          meanR: Number((sum / (buf.length / 4)).toFixed(1)),
+          meanLuma: Number((lumaSum / frame.pixels.length).toFixed(1)),
+        })
+        .catch(() => undefined);
+    }
     const cut = cutDetector.push(lumaFrameOf(buf));
     if (!cut) return;
     traceAtHolder.at = performance.now();
