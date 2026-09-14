@@ -351,6 +351,22 @@ export async function mountRuntime(
     vidOf()?.addEventListener("seeked", onSeeked);
     // backstop reveal check (seq-29): runs every frame; fires if seeked
     // never does — readyState>=2 AND currentTime within 0.5s of SEEK_TO
+    let firstStepAt: number | null = null;
+    let revealProofLogs = 0;
+    const revealProofTick = (elapsed: number): void => {
+      if (revealHolder.revealed) return;
+      if (revealProofLogs >= 30 || elapsed - revealProofLogs * 1000 < 1000) return;
+      revealProofLogs++;
+      const vid = vidOf();
+      void sketchEvents
+        .emitInfo("study", "clock04.reveal.proof", {
+          elapsed: Number(elapsed.toFixed(0)),
+          readyState: vid?.readyState ?? -1,
+          t: Number((vid?.currentTime ?? -1).toFixed(2)),
+          want: SEEK_TO,
+        })
+        .catch(() => undefined);
+    };
     const revealBackstop = (): void => {
       if (revealHolder.revealed) return;
       const vid = vidOf();
@@ -390,7 +406,13 @@ export async function mountRuntime(
       },
       step(r, now, delta) {
         void delta; // signature parity with StudyRuntime
+        // seq-30: key the rail (and everything else time-based) to
+        // ELAPSED SINCE FIRST STEP, not the shared animation clock —
+        // two loads of the same sha must open on the same authored frame
+        if (firstStepAt === null) firstStepAt = now;
+        const elapsed = now - (firstStepAt ?? now);
         revealBackstop();
+        revealProofTick(elapsed);
         const n = study.frame.value;
         if (n % 60 === 0 && seekAttempts < 6) seekTick();
 
@@ -459,7 +481,7 @@ export async function mountRuntime(
             ),
           };
         };
-        const rail = railAt((now % 48_000) / 48_000);
+        const rail = railAt((elapsed % 48_000) / 48_000);
         study.camera.position.copy(rail.p);
         study.camera.lookAt(rail.l);
         // transient flash: the intervention trace the room feels
