@@ -514,6 +514,19 @@ export async function mountRuntime(
         };
         const fade1 = bubble(segDist(PROJ, B0_END));
         const fade2 = bubble(segDist(PROJ_OFF, B1_END));
+        // v21c: grazing-angle attenuation — a thin additive quad sheet
+        // viewed edge-on stacks 120 slabs onto the same pixels (the white
+        // wall). Attenuate each beam slice by |dot(viewDir, planeNormal)|:
+        // face-on reads full, edge-on reads ~0, so the cone keeps a body
+        // from most views but dissolves along its own plane.
+        const viewDir = new THREE.Vector3();
+        const planeNormalLocal = new THREE.Vector3(0, 0, 1); // quad normal before rotation
+        study.camera.getWorldDirection(viewDir);
+        const graze = (mesh: THREE.Mesh): number => {
+          const nrm = planeNormalLocal.clone().applyQuaternion(mesh.quaternion).normalize();
+          const a = Math.abs(nrm.dot(viewDir));
+          return 0.08 + 0.92 * a; // keep a faint body even at grazing
+        };
         // v21 (AD seq-32): bubble-proof — computed alphas, once a second,
         // first 10s, so a non-biting fade is VISIBLE in the console
         if (bubbleLogs < 10) {
@@ -601,7 +614,7 @@ export async function mountRuntime(
           const bright = Math.min(1, patchL * 1.35 + bandL * 0.5 + cutGlow * 0.35);
           const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = (beam === 0 ? 0.03 + bright * 0.26 : 0.02 + bright * 0.2) * fade;
+          mm.opacity = (beam === 0 ? 0.03 + bright * 0.26 : 0.02 + bright * 0.2) * fade * graze(m);
         }
 
         // beam-01 vertical slats (now live, was dead since v13 rewrites):
@@ -644,7 +657,7 @@ export async function mountRuntime(
           const bbright = Math.min(1, bcolL * 1.35 + cutGlow * 0.3);
           const bfade = bBeam === 0 ? fade1 : fade2;
           const bmm = sm2.material as THREE.MeshBasicMaterial;
-          bmm.opacity = (bBeam === 0 ? 0.02 + bbright * 0.28 : 0.015 + bbright * 0.13) * bfade;
+          bmm.opacity = (bBeam === 0 ? 0.02 + bbright * 0.28 : 0.015 + bbright * 0.13) * bfade * graze(sm2);
         }
         void SLATS;
 
