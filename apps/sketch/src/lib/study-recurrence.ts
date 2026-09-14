@@ -13,6 +13,13 @@ import { sketchEvents } from "./o11y";
  */
 
 const DELAY = 24;
+/**
+ * Ring length must exceed the delay: with length == DELAY the target we
+ * want to read is always the one being written this frame, which WebGPU
+ * rejects (render-attachment + texture-binding in one scope). One extra
+ * slot keeps read and write永远 distinct.
+ */
+const RING = DELAY + 1;
 const STUDY = "recurrence-01";
 
 export interface StudyScene {
@@ -23,6 +30,8 @@ export interface StudyScene {
   videoTexture: THREE.VideoTexture;
   feedbackMesh: THREE.Mesh;
   targets: THREE.RenderTarget[];
+  /** Monotonic frame counter; write = targets[frame % RING]. */
+  frame: { value: number };
   readIndex: { value: number };
   targetSize: number;
   targetHeight: number;
@@ -64,10 +73,11 @@ function buildScene(videoTexture: THREE.VideoTexture): StudyScene {
 
   const targetSize = 640;
   const targetHeight = Math.round((targetSize * window.innerHeight) / window.innerWidth);
-  const targets = Array.from({ length: DELAY }, () => new THREE.RenderTarget(targetSize, targetHeight, { depthBuffer: false }));
+  const targets = Array.from({ length: RING }, () => new THREE.RenderTarget(targetSize, targetHeight, { depthBuffer: false }));
+  const frame = { value: 0 };
   const readIndex = { value: 0 };
 
-  return { scene, camera, knot, screen, videoTexture, feedbackMesh, targets, readIndex, targetSize, targetHeight };
+  return { scene, camera, knot, screen, videoTexture, feedbackMesh, targets, frame, readIndex, targetSize, targetHeight };
 }
 
 export async function mountScene(
@@ -82,9 +92,11 @@ export async function mountScene(
       const study = buildScene(videoLayer.texture);
 
       // Wire the feedback loop: the screen shows the target written DELAY
-      // frames ago. The composite happens in the animation loop (caller).
+      // frames ago. Initially that is targets[1] (targets[0] is written
+      // this frame and must never be sampled while attached). The composite
+      // happens in the animation loop (caller).
       const screenMat = study.feedbackMesh.material as THREE.MeshBasicMaterial;
-      screenMat.map = study.targets[study.readIndex.value]?.texture ?? null;
+      screenMat.map = study.targets[1 % RING]?.texture ?? null;
       screenMat.color.set(0xffffff);
       sceneSwap(study);
 
@@ -103,4 +115,4 @@ function sceneSwap(study: StudyScene): void {
   study.screen = study.feedbackMesh;
 }
 
-export { DELAY, STUDY };
+export { DELAY, RING, STUDY };

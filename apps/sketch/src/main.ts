@@ -1,7 +1,7 @@
 import * as THREE from "three/webgpu";
 import { sketchEvents } from "./lib/o11y";
 import { openVideoLayer } from "./lib/video-layer";
-import { DELAY, STUDY, mountScene, type StudyScene } from "./lib/study-recurrence";
+import { DELAY, RING, STUDY, mountScene, type StudyScene } from "./lib/study-recurrence";
 
 /**
  * Hello world: one animated knot on a WebGPU renderer. Renderer init and the
@@ -103,22 +103,28 @@ try {
       study.knot.rotation.y += delta * 0.55;
       study.screen.rotation.y = Math.sin(now / 2400) * 0.18;
 
-      // Rephotography: render the scene to the ring's write target, then
-      // swap read/write so the screen always shows DELAY-frames-ago.
-      const write = study.targets[study.readIndex.value % study.targets.length];
+      // Rephotography: the screen shows the frame from DELAY-frames-ago.
+      // The map MUST move before the write pass: read = targets[(n+1)%RING]
+      // holds frame n-DELAY and is never the write target (targets[n%RING],
+      // RING = DELAY + 1), so no texture is attachment-bound and
+      // texture-bound in the same WebGPU render pass.
+      const n = study.frame.value;
+      const write = study.targets[n % RING];
+      const read = study.targets[(n + 1) % RING];
+      const mat = study.screen.material as THREE.MeshBasicMaterial;
+      if (read && mat.map !== read.texture) {
+        mat.map = read.texture;
+        mat.needsUpdate = true;
+      }
       if (write) {
         renderer.setRenderTarget(write);
         renderer.render(study.scene, study.camera);
         renderer.setRenderTarget(null);
-        study.readIndex.value = (study.readIndex.value + 1) % study.targets.length;
-        const read = study.targets[study.readIndex.value];
-        const mat = study.screen.material as THREE.MeshBasicMaterial;
-        mat.map = read?.texture ?? null;
-        mat.needsUpdate = true;
       }
       // Give the present scene a final render to the canvas so what the
       // viewer sees is the CURRENT frame plus a screen showing the past.
       renderer.render(study.scene, study.camera);
+      study.frame.value = n + 1;
     }
     framesSinceHeartbeat++;
 
