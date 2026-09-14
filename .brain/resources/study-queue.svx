@@ -16,3 +16,5 @@ open cadence day is the AD's call unless the queue is silent.
 Watch findings feeding these chains live in `critiques/clock-03.md`
 (2026-09-14 watch notes 1–4). Ship chain and budget gates per AGENTS.md;
 one study per day; the queue is banking, not an override of the cadence.
+
+Method state 2026-09-14: the "local eye as first critic" doctrine has been APPLIED once on clock-03 (Qwen2.5-VL quoted, missed the hard cut, disagreement recorded in `critiques/clock-03.md`). Future critiques should include the outside-eye pass by default.
