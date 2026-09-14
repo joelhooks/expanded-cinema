@@ -1,0 +1,13 @@
+{
+  "study": "clock-02",
+  "sha": "076405c",
+  "bundleHash": "48ce499426707736a82e589012ee312bbe163f02962e1907738a90c2686fabab",
+  "catalogHashes": {
+    "Conquerb1943_512kb.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "clock-02: archive footage centered; memory panel = same view delayed ~3s (visible mismatch)",
+  "archivedAt": "2026-09-14T05:22:11.914Z",
+  "url": "https://cinema.wzrrd.sh/",
+  "archive": "https://cinema.wzrrd.sh/archive/clock-02/076405c/"
+}
