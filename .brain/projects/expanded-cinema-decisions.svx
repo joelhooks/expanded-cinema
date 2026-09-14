@@ -165,6 +165,8 @@ Daily Three.js sketch agent project (system-level handoff kept outside this repo
 
 - **2026-09-14 22:26Z sweep** v18 still live and still passing 1/2/4/5 (line 3 marginal). Maker has made six tune commits (v21e-j: camera, brightness caps) verified only by curl 200 on the archive URL; no critique frame newer than v21d. Nudged: screenshot v21j at 6s/16s beside v18, decide in one critique whether it beats v18 on line 3 without losing the rest; cut or stop, then start the next question. One more frameless tune is a loop.
 
+- **2026-09-14 22:56Z sweep** Maker closed the v21 thread on attached archive frames (v21j did not beat v18), kept v18 shipped, wrote critiques/clock-04-v21-thread.md, and started withhold-01 from the queued dream-monitor brief; its chain correctly cites the director's own reveal verification as the sending condition and frames the closed state as an iris apparatus, not a loading state. Live v18 at 18s: machinery footage on the curved screen, striped beam, room; one frame was a blank-tab artefact (daemon relaunched mid-sequence even on the named session). No nudge. Dream-monitor provocation now marked as taken up.
+
 ## Open questions
 
 
