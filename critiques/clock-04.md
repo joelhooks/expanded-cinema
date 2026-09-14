@@ -22,3 +22,10 @@ at that slice's y-crossing sampled at 3 x-positions), so dark frame
 regions read as dark patches IN the cone and the cut event flashes from
 inside the beam. Secondary: the wall-wash is static in shape — let its
 landing point drift with the delayed bands so the past moves on the wall.
+
+## v6b (766c1c2) — seq-24 gates, 2026-09-15 16:20Z
+
+- did the two frames differ? **YES** — /tmp/beam-v6b-t01.png vs -t11.png: cone apex moved, beam band changed, footage different.
+- is the source card visible? **NO** — screen at t0+t10 shows aircraft/factory footage; video.t=80.9 (seek 55 held, film looped past 90).
+Root cause of 3x card failure recorded: seek 120s > 90s duration clamped to loop. Critique rubric now carries both yes/no gates with screenshots attached.
+Open for v7: near beam still washes the left third flat (alpha halved but additive stack saturates); picture-in-cone is band-mean+col-detail, still not identifiable as THIS film. Next provocation: sample the cone from the SAME canvas tap but at (row≈slice-y, col≈cone-x) so the cone IS the picture's footprint; kill the wall-wash if the cone carries enough image to fill the frame alone.
