@@ -1,0 +1,62 @@
+# Proposal: Gallery MCP Write Surface (pointer moves)
+
+Status: PROPOSAL — needs Joel sign-off before any auth is implemented.
+Authored: 2026-09-14 · maker pass, following the live hot-swap proof
+(ledger row `gallery-hotswap-825011b`).
+
+## What exists now (verified)
+
+- `content/current.json` in the Archive R2 bucket is the gallery's runtime
+  pointer. The page boots from it (through `cinema.wzrrd.sh/archive/*`)
+  and hot-swaps studies in an already-open tab within one 60s poll —
+  proven with o11y receipts: `gallery.study.swapped` →
+  `study.scene.live`, no reload, no redeploy.
+- Pointer moves currently happen through the maker's agent-secrets REST
+  path (operator-side). That is not a durable write surface; it is a
+  manual capability that happens to work.
+
+## What is proposed
+
+One Worker endpoint on the existing `cinema.wzrrd.sh` worker surface:
+
+- `PUT /mcp/content/current` — body is exactly the pointer document
+  (`{ study, sha, updatedAt, url, archive }`), validated before write.
+- Writes ONLY the key `archive/content/current.json` via the existing
+  `ARCHIVE` R2 binding. Cannot touch study bundles, manifests, or the
+  SPA assets. Scope is one key, by construction.
+- Auth: Cloudflare service token (account-scoped API token minted with
+  Workers + R2 edit on this one bucket only), checked against
+  `cf-ray`-signed header `CF-Access-Client-Id` (or a static bearer in a
+  Worker secret, if that tests simpler first pass). Reject everything
+  else with 401 + o11y failure event.
+- Every call logs an o11y event: caller id, old pointer, new pointer,
+  result. Read path (gallery.study.swapped) already logs the effect.
+
+## Why the gate matters
+
+VISION.md names the MCP write surface "a publishing capability on a
+public site… treated like one". This proposal keeps that boundary:
+- Content still reaches viewers only as validated pointer documents.
+- The endpoint cannot read private state, cannot mutate studies, and
+  cannot publish anything beyond what the archive route already serves.
+- Worst case for a leaked token: someone moves the gallery pointer to
+  an archived, already-shipped study. No new surface, no arbitrary
+  content, no assets touched.
+
+## What changes for the maker loop
+
+Today: study verified → archive-ship → upload → curl 200 → ledger →
+ShitRat. The pointer move is a manual REST call in the same pane.
+
+After sign-off: same chain, but the final step is one authenticated
+`PUT /mcp/content/current` — so any joelclaw surface (shitrAM, a
+scheduled producer, a fresh session) can move the gallery without
+holding Cloudflare account credentials. The 20-day producer (queue
+item 4) depends on this being durable rather than manual.
+
+## Not in this proposal
+
+- A generic content API (no arbitrary key writes, ever).
+- Public run history (VISION will-not).
+- Scheduling the producer (chain item D; blocked on sign-off AND on
+  this surface existing).
