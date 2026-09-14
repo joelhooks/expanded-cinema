@@ -33,6 +33,7 @@ const STUDY_LOADERS: Record<
   "recursion-01": () => import("./lib/study-recursion"),
   "clock-01": () => import("./lib/study-clock"),
   "clock-02": () => import("./lib/study-clock02"),
+  "clock-03": () => import("./lib/study-clock03"),
 };
 
 async function initRenderer(): Promise<RenderHarness> {
