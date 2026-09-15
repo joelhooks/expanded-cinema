@@ -112,11 +112,25 @@ function buildScene() {
   sideR.rotation.y = -Math.PI / 2;
   scene.add(sideR);
 
+  // colour-01 palette in the room: channel primaries at the lens, amber
+  // spill overhead (Lis Rhodes Light Music 1975 palette, AD seq-42)
   scene.add(new THREE.AmbientLight(0x2a2440, 0.55));
-  const spill1 = new THREE.PointLight(0x99aaff, 2.2, 16, 1.7);
-  spill1.position.copy(PROJ);
+  const spillR = new THREE.PointLight(0xff2a1a, 22, 18, 1.6);
+  spillR.position.copy(PROJ);
+  scene.add(spillR);
+  const spillB = new THREE.PointLight(0x2a6aff, 26, 20, 1.55);
+  spillB.position.set(PROJ.x + 1, PROJ.y - 0.2, PROJ.z);
+  scene.add(spillB);
+  const spillG = new THREE.PointLight(0x2bff6a, 30, 22, 1.5);
+  spillG.position.set(PROJ.x + 0.5, PROJ.y + 0.6, PROJ.z - 0.8);
+  scene.add(spillG);
+  const amber = new THREE.PointLight(0xffa02a, 8, 22, 1.9);
+  amber.position.set(1.6, 3.4, 1.4);
+  scene.add(amber);
+  const spill1 = new THREE.PointLight(0xffe0c0, 2.0, 16, 1.7);
+  spill1.position.set(2.0, 2.4, -1.0);
   scene.add(spill1);
-  const spill2 = new THREE.PointLight(0x88ccff, 1.2, 16, 1.8);
+  const spill2 = new THREE.PointLight(0x88ccff, 0.8, 16, 1.8);
   spill2.position.set(PROJ.x + 1, PROJ.y - 0.2, PROJ.z);
   scene.add(spill2);
 
@@ -375,6 +389,26 @@ export async function mountRuntime(
     // 55s is inside the film, past both front cards. Re-assert until the
     // time holds (element swaps reset playback to 0).
     const SEEK_TO = 63; // brighter in-point (55s reads too dark on the wall, seq-27)
+
+    // --- the delay line (colour-01): two hidden decoders locked to main ---
+    const D_G = 1.5;
+    const D_B = 3.0;
+    const MAIN_DUR = 90.02;
+    const DRIFT_LIMIT = 0.12;
+    const makeDelayVideo = (): { video: HTMLVideoElement; texture: THREE.VideoTexture } => {
+      const video = document.createElement("video");
+      video.src = "/videos/conquerb1943.mp4";
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.style.display = "none";
+      document.body.appendChild(video);
+      const texture = new THREE.VideoTexture(video);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      return { video, texture };
+    };
+    const delayed = { g: makeDelayVideo(), b: makeDelayVideo() };
+    let decodersLive = false;
     let seekAttempts = 0;
     const revealHolder = { revealed: false };
     const vidOf = (): HTMLVideoElement | null =>
@@ -504,6 +538,57 @@ export async function mountRuntime(
     seekTick();
     document.addEventListener("seeked", onSeeked, true); // capture phase: element swaps included
     const detector = new CutDetector();
+
+    // drift lock + delay live swap (colour-01)
+    let splitLive = false;
+    let driftEMA = { g: 1, b: 1 };
+    let driftTick = 0;
+    const colourStep = (): void => {
+      const main = vidOf();
+      if (!main || main.readyState < 2 || main.currentTime < D_B + 0.4) return;
+      if (!decodersLive) {
+        void delayed.g.video.play().catch(() => undefined);
+        void delayed.b.video.play().catch(() => undefined);
+        decodersLive = true;
+      }
+      for (const [which, dec, d] of [["g", delayed.g, D_G], ["b", delayed.b, D_B]] as const) {
+        if (dec.video.readyState < 1) continue;
+        const want = (main.currentTime - d + MAIN_DUR) % MAIN_DUR;
+        let diff = dec.video.currentTime - want;
+        if (Math.abs(diff) > MAIN_DUR / 2) diff -= Math.sign(diff) * MAIN_DUR;
+        if (Math.abs(diff) > DRIFT_LIMIT) dec.video.currentTime = want;
+        driftEMA[which] = driftEMA[which] * 0.9 + Math.min(Math.abs(diff), MAIN_DUR / 2) * 0.1;
+      }
+      driftTick++;
+      if (!splitLive && delayed.g.video.readyState >= 2 && delayed.b.video.readyState >= 2
+        && driftEMA.g < 0.05 && driftEMA.b < 0.05) {
+        splitLive = true;
+        const uvm = vec2(uv().x.mul(-1).add(1), uv().y);
+        const tG = texture(delayed.g.texture, uvm as never);
+        const tB = texture(delayed.b.texture, uvm as never);
+        const tR = texture(videoLayer.texture, uvm as never);
+        const sm = study.screen.material as unknown as { colorNode: unknown; needsUpdate: boolean };
+        sm.colorNode = vec3(tR.r, tG.g, tB.b);
+        sm.needsUpdate = true;
+        void sketchEvents
+          .emitInfo("study", "colour01.splitLive", {
+            mainT: Number(main.currentTime.toFixed(2)),
+            gT: Number(delayed.g.video.currentTime.toFixed(2)),
+            bT: Number(delayed.b.video.currentTime.toFixed(2)),
+          })
+          .catch(() => undefined);
+      }
+      if (driftTick % 180 === 1) {
+        void sketchEvents
+          .emitInfo("study", "colour01.drift", {
+            main: Number(main.currentTime.toFixed(2)),
+            g: Number(delayed.g.video.currentTime.toFixed(2)),
+            b: Number(delayed.b.video.currentTime.toFixed(2)),
+            split: splitLive,
+          })
+          .catch(() => undefined);
+      }
+    };
     let lumaFramesSeen = 0;
     void sketchEvents.emitInfo("study", "study.ready", { study: STUDY, delay: DELAY }).catch(() => undefined);
 
@@ -520,6 +605,7 @@ export async function mountRuntime(
       },
       step(r, now, delta) {
         void delta; // signature parity with StudyRuntime
+        colourStep();
         // seq-30: key the rail (and everything else time-based) to
         // ELAPSED SINCE FIRST STEP, not the shared animation clock —
         // two loads of the same sha must open on the same authored frame
