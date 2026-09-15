@@ -401,6 +401,7 @@ export async function mountRuntime(
     // on the wall 3 seconds later. The past is visibly behind: the screen
     // moves on, the wall holds the shutter frame.
     const shutterSnapshot: { bands: Float32Array | null } = { bands: null };
+    const snapProof: { mean: number; count: number } = { mean: -1, count: 0 };
     const openAperture = (at: number, via: "seeked" | "backstop"): void => {
       if (revealHolder.revealed) return;
       revealHolder.revealed = true;
@@ -410,6 +411,17 @@ export async function mountRuntime(
         if (snap) shutterSnapshot.bands = snap.bands;
         study.snapCtx.drawImage(vidNow, 0, 0, 256, 144); // the legible past
         study.snapTex.needsUpdate = true;
+        // freeze proof: sample the snapshot's mean at capture and again at
+        // +10s; both events must carry the SAME number if the wall is frozen
+        const px = study.snapCtx.getImageData(0, 0, 256, 144).data;
+        let acc = 0;
+        let cnt = 0;
+        for (let i = 0; i < px.length; i += 160) {
+          acc += (px[i]! + px[i + 1]! + px[i + 2]!) / 3;
+          cnt++;
+        }
+        snapProof.mean = acc / cnt;
+        snapProof.count = 0;
       }
       irisMat.color.setHex(0xbcd4ff);
       irisMat.opacity = 1;
@@ -775,6 +787,19 @@ export async function mountRuntime(
         // .3: the wall picture fades in at arrival (+3s), holds the past
         const wallMat = study.wallPic.material as THREE.MeshBasicMaterial;
         const openMs = aperturedAtMs === null ? -1e9 : now - aperturedAtMs;
+        if (openMs >= 3_000 && snapProof.count < 3 && (snapProof.count === 0 || openMs >= (snapProof.count + 1) * 10_000)) {
+          snapProof.count++;
+          const px = study.snapCtx.getImageData(0, 0, 256, 144).data;
+          let acc = 0;
+          let cnt = 0;
+          for (let i = 0; i < px.length; i += 160) {
+            acc += (px[i]! + px[i + 1]! + px[i + 2]!) / 3;
+            cnt++;
+          }
+          void sketchEvents
+            .emitInfo("study", "withhold01.wall.proof", { sample: snapProof.count, mean: Number((acc / cnt).toFixed(2)) })
+            .catch(() => undefined);
+        }
         wallMat.opacity = openMs >= 3_000
           ? Math.min(1, (openMs - 3_000) / 900)
           : 0;
