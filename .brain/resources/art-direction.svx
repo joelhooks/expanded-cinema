@@ -35,6 +35,8 @@ The apparatus stays the subject. The material it is made of gets richer. Every c
 - **Geometry with relief.** Surfaces have thickness, curvature, displacement, or count. A screen may be a mesh of two hundred thousand instanced facets, a displaced grid, a torn sheet, a heap of shards. The image lands on form, and form changes the image.
 - **Node shaders as the tool.** Each study writes at least one TSL node material: luma-driven displacement, per-channel time offsets, custom fog scattering, per-facet sampling. The WebGPU renderer is the instrument, and the shader is where the study's operation lives.
 
+**Razzle dazzle** (Joel, 2026-09-15, verbatim). The bar for every frame a viewer sees: it dazzles. Light moves, colour saturates, the beam has weight, the surface has scale, and the first five seconds make a stranger stop. Subtraction still governs the operation (one source, one operation), but the rendering of that operation is loud: full-bleed colour, deep contrast, motion in the light itself, surfaces that fill the frame. A quiet study is a choice argued in the critique with a frame beside a loud version.
+
 Three lanes, in order, each a branch of the shipped work:
 
 1. **Colour as time** (Lis Rhodes, *Light Music*, 1975; Paik/Abe video synthesiser). Split the projected image into red, green, and blue and give each channel its own delay (0s, 1.5s, 3s). Still regions stay monochrome; motion fringes into colour. The delay lineage rendered as chroma, on the withhold-01 room.
