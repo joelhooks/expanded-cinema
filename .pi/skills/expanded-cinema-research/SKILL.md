@@ -7,6 +7,13 @@ description: Daily research and sourcing method for the expanded-cinema maker. U
 
 One question per study. Not one artist per study. The artist is evidence for the question.
 
+Start from the shipped file (director, 2026-09-15): a new study file begins
+as a copy of the last shipped study's file, and the first commit changes one
+thing. colour-01 lost ninety minutes to a fresh scene whose plate was never
+in frame; the same material rendered in one commit once it branched from
+withhold-01. Probes keep the study's in-point and viewpoint so their frames
+are comparable to the cut frames.
+
 Material (Joel, 2026-09-15): every chain names its palette with a source,
 how the projector lights the room, what relief the surfaces have, and the
 TSL node material that carries the study's operation. See the Material

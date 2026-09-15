@@ -4,7 +4,7 @@ argument-hint: "[focus]"
 ---
 Take the art-director chair for expanded-cinema. Load `.pi/agents/art-director.md` and follow "A pass, in order" exactly. Read `VISION.md`, `.brain/resources/art-direction.svx`, and the "Art director log" tail first so you do not repeat the last note.
 
-Maker: Herdr pane `w8S:p1`, intercom name "🎬 Expanded Cinema Three.js Starter". If either is gone, say so and `message_shitrat` kind=needs_joel; do not spawn a replacement.
+Maker: Herdr pane `w8S:p6` (agent name cinema_maker); its intercom display name changes when it renames itself, so resolve it with `intercom list` filtered to the project cwd and address it by short id. If either is gone, say so and `message_shitrat` kind=needs_joel; do not spawn a replacement.
 
 Focus for this pass: ${@:-none, run the full pass}
 
