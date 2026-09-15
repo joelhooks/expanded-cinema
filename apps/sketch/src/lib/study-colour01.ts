@@ -394,8 +394,8 @@ export async function mountRuntime(
     const SEEK_TO = 48; // in-point chosen by scrub sheets: +5s = swinging hand on the "11 12 1" dial, +16s = machining/workers — both moving footage, no cards
 
     // --- the delay line (colour-01): two hidden decoders locked to main ---
-    const D_G = 2.0;
-    const D_B = 4.0;
+    const D_G = 3.0;
+    const D_B = 6.0;
     const MAIN_DUR = 90.02;
     const DRIFT_LIMIT = 0.12;
     const makeDelayVideo = (): { video: HTMLVideoElement; texture: THREE.VideoTexture } => {
@@ -567,6 +567,11 @@ export async function mountRuntime(
       if (!splitLive && delayed.g.video.readyState >= 2 && delayed.b.video.readyState >= 2
         && driftEMA.g < 0.05 && driftEMA.b < 0.05) {
         splitLive = true;
+        void sketchEvents
+          .emitInfo("study", "colour01.lockAt", {
+            mainT: Number(main.currentTime.toFixed(2)),
+          })
+          .catch(() => undefined);
         const uvm = vec2(uv().x.mul(-1).add(1), uv().y);
         const tG = texture(delayed.g.texture, uvm as never);
         const tB = texture(delayed.b.texture, uvm as never);
@@ -871,7 +876,7 @@ export async function mountRuntime(
           const bright = Math.min(1, bandL * 1.3 + cutGlow * 0.35);
           const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = (beam === 0 ? 0.04 + bright * 0.26 : 0.02 + bright * 0.12) * fade * graze(m) * (beam === 0 ? 0.5 : 0.35);
+          mm.opacity = (beam === 0 ? 0.08 + bright * 0.5 : 0.04 + bright * 0.24) * fade * graze(m) * (beam === 0 ? 0.5 : 0.35);
         }
 
         // beam-01 vertical slats (now live, was dead since v13 rewrites):
@@ -914,7 +919,7 @@ export async function mountRuntime(
           const bbright = Math.min(1, bcolL * 1.35 + cutGlow * 0.3);
           const bfade = bBeam === 0 ? fade1 : fade2;
           const bmm = sm2.material as THREE.MeshBasicMaterial;
-          bmm.opacity = (bBeam === 0 ? 0.015 + bbright * 0.2 : 0.01 + bbright * 0.07) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 0.35);
+          bmm.opacity = (bBeam === 0 ? 0.03 + bbright * 0.4 : 0.02 + bbright * 0.14) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 0.35);
         }
         void SLATS;
 
@@ -939,6 +944,16 @@ export async function mountRuntime(
           void sketchEvents
             .emitInfo("study", "colour01.wall.proof", { sample: snapProof.count, mean: Number((acc / cnt).toFixed(2)) })
             .catch(() => undefined);
+        }
+        // colour-01.2 regression fix (AD seq-50 #1): the aperture-time
+        // capture can land on a blank frame (seek race). Redraw every
+        // frame for 2.5s of open time — the last draw is a decoded frame.
+        if (openMs >= 0 && openMs < 2_500) {
+          const vw = vidOf();
+          if (vw && vw.readyState >= 2) {
+            study.snapCtx.drawImage(vw, 0, 0, 256, 144);
+            study.snapTex.needsUpdate = true;
+          }
         }
         wallMat.opacity = openMs >= 3_000
           ? Math.min(1, (openMs - 3_000) / 900)
