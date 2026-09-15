@@ -38,6 +38,7 @@ const STUDY_LOADERS: Record<
   "withhold-01": () => import("./lib/study-withhold01"),
   "clock-05": () => import("./lib/study-clock05"),
   "colour-01": () => import("./lib/study-colour01"),
+  "wallform-01": () => import("./lib/study-wallform01"),
 };
 
 async function initRenderer(): Promise<RenderHarness> {
