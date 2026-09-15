@@ -98,7 +98,10 @@ function probeGradient(): unknown {
 
 function buildScene(): Colour01Scene {
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x150a02, 0.045); // amber fog with a body
+  // PROBE: fog disabled - FogExp2 + MeshBasicNodeMaterial colorNode is the
+  // last suspect for the black-plate fallback (AD seq-45 isolation)
+  const fogWanted = false;
+  if (fogWanted) scene.fog = new THREE.FogExp2(0x150a02, 0.045);
   scene.background = new THREE.Color(0x030204);
 
   const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
