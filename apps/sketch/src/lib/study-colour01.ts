@@ -1,6 +1,6 @@
 import * as THREE from "three/webgpu";
 import { MeshBasicNodeMaterial } from "three/webgpu";
-import { texture, uv, vec2, vec3 } from "three/tsl";
+import { mix, saturate, texture, uv, vec2, vec3 } from "three/tsl";
 import { CutDetector, ringLength } from "@expanded-cinema/core";
 import { sketchEvents } from "./o11y";
 import type { StudyRuntime } from "./study-recurrence";
@@ -473,9 +473,9 @@ export async function mountRuntime(
       // mirrored UV inside the node (cylinder inner face reads flipped)
       const uvm = vec2(uv().x.mul(-1).add(1), uv().y);
       const tR = texture(videoLayer.texture, uvm as never);
-      (screenMat as unknown as { colorNode: unknown }).colorNode = vec3(
-        tR.r, tR.g, tR.b,
-      );
+      const splitC = vec3(tR.r, tR.g, tR.b);
+      const greyC = splitC.r.mul(0.299).add(splitC.g.mul(0.587)).add(splitC.b.mul(0.114));
+      (screenMat as unknown as { colorNode: unknown }).colorNode = mix(greyC, splitC, 2.0).mul(1.25);
       (screenMat as unknown as { needsUpdate: boolean }).needsUpdate = true;
       aperturedAtMs = performance.now();
       void sketchEvents
@@ -567,8 +567,12 @@ export async function mountRuntime(
         const tG = texture(delayed.g.texture, uvm as never);
         const tB = texture(delayed.b.texture, uvm as never);
         const tR = texture(videoLayer.texture, uvm as never);
+        const split = vec3(tR.r, tG.g, tB.b);
+        const grey = split.r.mul(0.299).add(split.g.mul(0.587)).add(split.b.mul(0.114));
         const sm = study.screen.material as unknown as { colorNode: unknown; needsUpdate: boolean };
-        sm.colorNode = vec3(tR.r, tG.g, tB.b);
+        // same operation, louder rendering: 2x chroma punch so 1.5s/3s
+        // offsets read as fringe colour, not grey smudge (razzle bar)
+        sm.colorNode = mix(grey, split, 2.0).mul(1.25);
         sm.needsUpdate = true;
         void sketchEvents
           .emitInfo("study", "colour01.splitLive", {
@@ -605,6 +609,18 @@ export async function mountRuntime(
       },
       step(r, now, delta) {
         void delta; // signature parity with StudyRuntime
+        // colour-01 in-point hard guard (AD seq-48): during the first 30s
+        // a re-opened or wrapped element must return to SEEK_TO before the
+        // film plays free — the in-point survives every element swap.
+        {
+          const vMain = vidOf();
+          const elapsedNow = now - (firstStepAt ?? now);
+          if (vMain && elapsedNow < 30_000 && firstStepAt === firstStepAt) {
+            if (vMain.readyState >= 1 && vMain.currentTime < 60) {
+              vMain.currentTime = SEEK_TO;
+            }
+          }
+        }
         colourStep();
         // seq-30: key the rail (and everything else time-based) to
         // ELAPSED SINCE FIRST STEP, not the shared animation clock —
