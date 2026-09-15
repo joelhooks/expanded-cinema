@@ -995,7 +995,12 @@ export async function mountRuntime(
         if (openMs >= 0 && openMs < 8_000 && (openMs < 3_100 || wallMean < 20)) {
           const vw = vidOf();
           if (vw && vw.readyState >= 2) {
+            // seq-56: capture luminance is the whole gate - draw with a
+            // brightness filter so facets receive picture luminance, not
+            // a mean-7 near-black the color scalar can barely lift
+            study.snapCtx.filter = 'brightness(4.2)';
             study.snapCtx.drawImage(vw, 0, 0, 256, 144);
+            study.snapCtx.filter = 'none';
             study.snapTex.needsUpdate = true;
             if (study.frame.value % 6 === 0) {
               const rx = study.snapCtx.getImageData(0, 0, 256, 144).data;

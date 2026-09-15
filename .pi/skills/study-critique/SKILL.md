@@ -70,3 +70,13 @@ When a critique lands on "fine but not interesting", pick one of these for the n
 - Use a test card or synthetic slate as source without saying so in the chain.
 - Publish an untransformed clip with unclear license on the gallery without Joel's sign-off.
 - Let a critique rewrite the brief, the schedule, the model pin, or the budget. Propose; Joel approves.
+
+## Gate 3 — name the operation (AD seq-56, 2026-09-15)
+
+When writing a crit verdict for a cut candidate, name WHERE IN THE 16s
+FRAME the study's operation is visible. If you cannot point at a region of
+the attached frame and say "the operation is visible there — that region is
+X doing Y", the verdict is FAIL regardless of any receipt, o11y event, or
+prior gate pass. Paste the region description into the critique document.
+A real frame + a misread is the failure mode this gate exists for
+(colour-01 a5aabcd/1cfc302, wallform-01 82e6de2 all cut on misread frames).
