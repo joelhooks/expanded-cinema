@@ -36,6 +36,7 @@ const STUDY_LOADERS: Record<
   "clock-03": () => import("./lib/study-clock03"),
   "clock-04": () => import("./lib/study-clock04"),
   "withhold-01": () => import("./lib/study-withhold01"),
+  "clock-05": () => import("./lib/study-clock05"),
 };
 
 async function initRenderer(): Promise<RenderHarness> {
