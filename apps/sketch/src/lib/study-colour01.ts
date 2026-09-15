@@ -115,16 +115,16 @@ function buildScene() {
   // colour-01 palette in the room: channel primaries at the lens, amber
   // spill overhead (Lis Rhodes Light Music 1975 palette, AD seq-42)
   scene.add(new THREE.AmbientLight(0x2a2440, 0.55));
-  const spillR = new THREE.PointLight(0xff2a1a, 22, 18, 1.6);
+  const spillR = new THREE.PointLight(0xff2a1a, 280, 30, 1.4);
   spillR.position.copy(PROJ);
   scene.add(spillR);
-  const spillB = new THREE.PointLight(0x2a6aff, 26, 20, 1.55);
+  const spillB = new THREE.PointLight(0x2a6aff, 340, 34, 1.35);
   spillB.position.set(PROJ.x + 1, PROJ.y - 0.2, PROJ.z);
   scene.add(spillB);
-  const spillG = new THREE.PointLight(0x2bff6a, 30, 22, 1.5);
+  const spillG = new THREE.PointLight(0x2bff6a, 380, 36, 1.3);
   spillG.position.set(PROJ.x + 0.5, PROJ.y + 0.6, PROJ.z - 0.8);
   scene.add(spillG);
-  const amber = new THREE.PointLight(0xffa02a, 8, 22, 1.9);
+  const amber = new THREE.PointLight(0xffa02a, 110, 30, 1.6);
   amber.position.set(1.6, 3.4, 1.4);
   scene.add(amber);
   const spill1 = new THREE.PointLight(0xffe0c0, 2.0, 16, 1.7);
@@ -384,15 +384,18 @@ export async function mountRuntime(
 ): Promise<WithholdRuntime> {
   return await sketchEvents.measured("study", "study.mount", { study: STUDY }, async () => {
     const study = buildScene();
+    // keep hot colour clipping to a roll-off, not a flat wash (AD seq-49)
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
     // seq-24: the mount-time seek raced the video layer AND 120s exceeds
     // this clip's 90s duration (clamped -> looped back to the cards).
     // 55s is inside the film, past both front cards. Re-assert until the
     // time holds (element swaps reset playback to 0).
-    const SEEK_TO = 67; // in-point tuned so the shutter+5s frame lands on the moving clock sweep (fringe window) and +16s on the credit fade
+    const SEEK_TO = 48; // in-point chosen by scrub sheets: +5s = swinging hand on the "11 12 1" dial, +16s = machining/workers — both moving footage, no cards
 
     // --- the delay line (colour-01): two hidden decoders locked to main ---
-    const D_G = 1.5;
-    const D_B = 3.0;
+    const D_G = 2.0;
+    const D_B = 4.0;
     const MAIN_DUR = 90.02;
     const DRIFT_LIMIT = 0.12;
     const makeDelayVideo = (): { video: HTMLVideoElement; texture: THREE.VideoTexture } => {
@@ -541,6 +544,7 @@ export async function mountRuntime(
 
     // drift lock + delay live swap (colour-01)
     let splitLive = false;
+    let probeFrames = 0;
     let driftEMA = { g: 1, b: 1 };
     let driftTick = 0;
     const colourStep = (): void => {
@@ -570,9 +574,11 @@ export async function mountRuntime(
         const split = vec3(tR.r, tG.g, tB.b);
         const grey = split.r.mul(0.299).add(split.g.mul(0.587)).add(split.b.mul(0.114));
         const sm = study.screen.material as unknown as { colorNode: unknown; needsUpdate: boolean };
-        // same operation, louder rendering: 2x chroma punch so 1.5s/3s
-        // offsets read as fringe colour, not grey smudge (razzle bar)
-        sm.colorNode = mix(grey, split, 2.0).mul(1.25);
+        // AD seq-49 probe: for the first 200 locked frames the plate renders
+        // abs(R-B) as PURE magenta — black plate proves the ring is not
+        // offset, magenta proves the offset is there. Then the real split.
+        const mag = split.b.sub(split.r).abs().mul(6);
+        sm.colorNode = vec3(mag, mag, mag);
         sm.needsUpdate = true;
         void sketchEvents
           .emitInfo("study", "colour01.splitLive", {
@@ -581,6 +587,23 @@ export async function mountRuntime(
             bT: Number(delayed.b.video.currentTime.toFixed(2)),
           })
           .catch(() => undefined);
+      }
+      if (splitLive && probeFrames < 200) {
+        probeFrames++;
+        if (probeFrames === 200) {
+          const uvm2 = vec2(uv().x.mul(-1).add(1), uv().y);
+          const tG2 = texture(delayed.g.texture, uvm2 as never);
+          const tB2 = texture(delayed.b.texture, uvm2 as never);
+          const tR2 = texture(videoLayer.texture, uvm2 as never);
+          const split2 = vec3(tR2.r, tG2.g, tB2.b);
+          const grey2 = split2.r.mul(0.299).add(split2.g.mul(0.587)).add(split2.b.mul(0.114));
+          const sm2 = study.screen.material as unknown as { colorNode: unknown; needsUpdate: boolean };
+          sm2.colorNode = mix(grey2, split2, 2.0).mul(1.25);
+          sm2.needsUpdate = true;
+          void sketchEvents
+            .emitInfo("study", "colour01.probeDone", {})
+            .catch(() => undefined);
+        }
       }
       if (driftTick % 180 === 1) {
         void sketchEvents
