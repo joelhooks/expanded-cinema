@@ -388,7 +388,7 @@ export async function mountRuntime(
     // this clip's 90s duration (clamped -> looped back to the cards).
     // 55s is inside the film, past both front cards. Re-assert until the
     // time holds (element swaps reset playback to 0).
-    const SEEK_TO = 63; // brighter in-point (55s reads too dark on the wall, seq-27)
+    const SEEK_TO = 67; // in-point tuned so the shutter+5s frame lands on the moving clock sweep (fringe window) and +16s on the credit fade
 
     // --- the delay line (colour-01): two hidden decoders locked to main ---
     const D_G = 1.5;
