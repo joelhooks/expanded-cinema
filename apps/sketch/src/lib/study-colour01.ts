@@ -20,7 +20,7 @@
 
 import * as THREE from "three/webgpu";
 import { MeshBasicNodeMaterial } from "three/webgpu";
-import { texture, vec3, uv } from "three/tsl";
+import { texture, vec2, vec3, uv } from "three/tsl";
 import { sketchEvents } from "./o11y";
 import type { StudyRuntime } from "./study-recurrence";
 import type { CurrentStudy } from "./gallery-store";
@@ -79,10 +79,14 @@ function makeSplitColorNode(
   texG: THREE.Texture,
   texB: THREE.Texture,
 ): unknown {
-  const tR = texture(texR, uv());
-  const tG = texture(texG, uv());
-  const tB = texture(texB, uv());
-  return vec3(tR.r, tG.g, tB.b);
+  // cylinder inner face reads mirrored otherwise: mirror inside the node
+  const uvm = vec2(uv().x.mul(-1).add(1), uv().y);
+  const tR = texture(texR, uvm);
+  const tG = texture(texG, uvm);
+  const tB = texture(texB, uvm);
+  // 0.4% luminance floor: a black film frame keeps the plate faintly
+  // readable so "dark surface" can never read as "missing surface"
+  return vec3(tR.r, tG.g, tB.b).add(vec3(0.01, 0.006, 0.004));
 }
 
 function buildScene(): Colour01Scene {
@@ -163,8 +167,9 @@ function buildScene(): Colour01Scene {
   const throwLen = throwVec.length();
   for (let ci = 0; ci < 3; ci++) {
     const spread = 0.9 + ci * 0.45;
+    // wide end at the screen: throwVec maps +Y toward the landing point
     const cone = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.06, spread, 1, 24, 1, true),
+      new THREE.CylinderGeometry(spread, 0.06, 1, 24, 1, true),
       new THREE.MeshBasicMaterial({
         color: coneCols[ci] ?? 0xffffff,
         transparent: true,
@@ -218,8 +223,6 @@ function makeDelayVideo(src: string): DelayVideo {
   document.body.appendChild(video);
   const texture = new THREE.VideoTexture(video);
   texture.colorSpace = THREE.SRGBColorSpace;
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.repeat.x = -1;
   return { video, texture };
 }
 
@@ -239,11 +242,7 @@ export async function mountRuntime(
     const study = buildScene();
     const screenMat = study.screen.material as MeshBasicNodeMaterial;
 
-    const unwrapRepeat = (tex: THREE.Texture): void => {
-      tex.wrapS = THREE.RepeatWrapping;
-      tex.repeat.x = -1; // cylinder inner face reads mirrored otherwise
-    };
-    unwrapRepeat(videoLayer.texture);
+    // mirroring lives inside the split node's UV; no repeat tricks
     screenMat.map = null;
     screenMat.color = new THREE.Color(0xffffff);
 
