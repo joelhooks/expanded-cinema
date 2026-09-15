@@ -514,10 +514,10 @@ export async function mountRuntime(
         // each catching a different relation of source / withheld past /
         // live cut. Opening = the v18 proven default (AD seq-36).
         const RAIL: Array<{ t: number; p: [number, number, number]; l: [number, number, number] }> = [
-          { t: 0.0, p: [0.4, 0.85, 5.9], l: [-0.5, 1.1, 0.0] }, // relation (a): aperture closed, beam dark
+          { t: 0.0, p: [0.4, 0.85, 5.9], l: [-0.15, 1.1, 0.0] }, // relation (a): aperture closed, beam dark
           { t: 0.25, p: [0.55, 0.95, 6.1], l: [-0.6, 1.1, -0.1] }, // dwelled hold ~12s across the shutter moment
           { t: 0.55, p: [1.0, 1.05, 6.2], l: [-0.7, 1.15, -0.3] }, // relation (c): beam lit, opening historic
-          { t: 1.0, p: [0.4, 0.85, 5.9], l: [-0.5, 1.1, 0.0] }, // loop close
+          { t: 1.0, p: [0.4, 0.85, 5.9], l: [-0.15, 1.1, 0.0] }, // loop close
         ];
         const railAt = (f: number): { p: THREE.Vector3; l: THREE.Vector3 } => {
           let i = 0;
@@ -585,7 +585,7 @@ export async function mountRuntime(
           const lands1: THREE.Vector3[] = [];
           for (const drift of [-0.9, 0, 0.9]) {
             for (const yMid of [-1.1, 0, 1.1]) {
-              lands1.push(new THREE.Vector3(2.2 + yMid * 2.1 + drift, 1.0 + yMid * 1.35 + drift * 0.4, -7.55));
+              lands1.push(new THREE.Vector3(1.2 + yMid * 2.0 + drift, 1.0 + yMid * 1.35 + drift * 0.4, -7.55));
             }
           }
           const dToLands = (org: THREE.Vector3, lands: THREE.Vector3[]): number =>
@@ -662,7 +662,7 @@ export async function mountRuntime(
           // delayed bands so the past visibly moves on the wall (critique)
           const pastBand = past?.[idx] ?? 0;
           const drift = (pastBand - 0.35) * 2.6;
-          const tx = beam === 0 ? sx : 2.2 + yMid * 2.1 + drift;
+          const tx = beam === 0 ? sx : 1.2 + yMid * 2.0 + drift;
           const ty = beam === 0 ? 1.1 + yMid : 1.0 + yMid * 1.35 + drift * 0.4;
           const tz = beam === 0 ? sz : -7.55;
           const dir = new THREE.Vector3(tx - org.x, ty - org.y, tz - org.z);
@@ -691,7 +691,10 @@ export async function mountRuntime(
           const bright = Math.min(1, bandL * 1.3 + cutGlow * 0.35);
           const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = (beam === 0 ? 0.04 + bright * 0.26 : 0.02 + bright * 0.12) * fade * graze(m) * (beam === 0 ? 0.5 : 0.35);
+          // .3 (AD seq-40): the wall snapshot IS a picture and must read at
+          // the screen's luminance order — same alpha law as beam 0, no
+          // 0.35 burial (the .2 wall band was invisible in the sweep).
+          mm.opacity = (beam === 0 ? 0.04 + bright * 0.26 : 0.05 + bright * 0.34) * fade * graze(m) * (beam === 0 ? 0.5 : 1.0);
         }
 
         // beam-01 vertical slats (now live, was dead since v13 rewrites):
@@ -734,7 +737,7 @@ export async function mountRuntime(
           const bbright = Math.min(1, bcolL * 1.35 + cutGlow * 0.3);
           const bfade = bBeam === 0 ? fade1 : fade2;
           const bmm = sm2.material as THREE.MeshBasicMaterial;
-          bmm.opacity = (bBeam === 0 ? 0.015 + bbright * 0.2 : 0.01 + bbright * 0.07) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 0.35);
+          bmm.opacity = (bBeam === 0 ? 0.015 + bbright * 0.2 : 0.02 + bbright * 0.26) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 1.0);
         }
         void SLATS;
 
