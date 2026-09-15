@@ -75,3 +75,27 @@ This file exists because AD seq-47 flagged 81% context. If compacted before
 cut, resume from: `apps/sketch/src/lib/study-colour01.ts` (verbatim withhold
 copy + gradient plate), `/tmp/init-c01.js` (pointer stub for preview),
 `scripts/upload-archive.mjs` (rerun on JSON SyntaxError — idempotent).
+
+## Later same turn (post seq-47, ~07:50Z)
+- VERDICT: the double-import theory was WRONG. The real repro was scene
+  construction: a verbatim copy of withhold-01.ts + ONE change (plate =
+  MeshBasicNodeMaterial with a gradient colorNode) rendered the gradient on
+  the plate perfectly (5b1e6fe, c01f-gradient-plate.png). Proven base cases
+  since: film through the node at 0/0/0 (893975e, c01g), delay line locked
+  via two hidden decoders (g = main−1.5s, b = main−3.0s, EMA-gated swap to
+  split; o11y colour01.drift split:true), palette lights (R/G/B at lens +
+  amber spill).
+- Builds: 5738cf4 = in-point hard guard (re-seek to SEEK_TO during the first
+  30s after any swap) + 2x chroma mix on the split (mix(grey, split, 2)). x
+  1.25 luminance, same op louder). 4d666ee = SEEK_TO 63→67 so the +5s frame
+  lands on moving footage instead of the card.
+- NOTE: the film's 63–67s actually CONTAINS the RKO title composite over
+  machinery; the filesystem of readings converged: c01j-5s IS the in-point.
+- AD cut judgment pending on the archive pair c01j-5s/c01j-16s (fringes
+  legible? colour on walls?). If cut: pointer via PUT /mcp/content/current
+  with make-cut.mjs output.
+- Whitman Shower (1964) boundary queued as lane-2 branch in this room (the
+  wall snapshot seats on a form).
+- TIMING LAW learned: the shutter (mount+9s) opens onto film t = SEEK_TO ->
+  the +5s frame shows SEEK_TO+5 — pick the in-point for the VIEWER, not for
+  the seek.
