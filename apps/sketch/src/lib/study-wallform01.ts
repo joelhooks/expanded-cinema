@@ -970,7 +970,7 @@ export async function mountRuntime(
         const wallMat = study.wallPic.material as THREE.MeshBasicMaterial;
         for (const sh of study.shards) {
           (sh.material as THREE.MeshBasicMaterial).opacity = wallMat.opacity;
-          (sh.material as THREE.MeshBasicMaterial).color.setScalar(4.6);
+          (sh.material as THREE.MeshBasicMaterial).color.setScalar(6.4);
           // cloned CanvasTextures do not follow the original's needsUpdate
           const st = (sh.material as THREE.MeshBasicMaterial).map;
           if (st) st.needsUpdate = true;
@@ -1001,7 +1001,7 @@ export async function mountRuntime(
             // seq-56: capture luminance is the whole gate - draw with a
             // brightness filter so facets receive picture luminance, not
             // a mean-7 near-black the color scalar can barely lift
-            study.snapCtx.filter = 'brightness(4.2)';
+            study.snapCtx.filter = 'brightness(5.0)';
             study.snapCtx.drawImage(vw, 0, 0, 256, 144);
             study.snapCtx.filter = 'none';
             study.snapTex.needsUpdate = true;
