@@ -970,7 +970,7 @@ export async function mountRuntime(
         const wallMat = study.wallPic.material as THREE.MeshBasicMaterial;
         for (const sh of study.shards) {
           (sh.material as THREE.MeshBasicMaterial).opacity = wallMat.opacity;
-          (sh.material as THREE.MeshBasicMaterial).color.setScalar(6.4);
+          (sh.material as THREE.MeshBasicMaterial).color.setScalar(8.0);
           // cloned CanvasTextures do not follow the original's needsUpdate
           const st = (sh.material as THREE.MeshBasicMaterial).map;
           if (st) st.needsUpdate = true;
