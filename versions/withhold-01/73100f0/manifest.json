@@ -1,0 +1,15 @@
+{
+  "study": "withhold-01",
+  "sha": "73100f0",
+  "bundleHash": "9b1ea3608c666ebd4c13e4f4d4d07e6b06736a45a8735a8940c07894ac474e9d",
+  "catalogHashes": {
+    "Conquerb1943_512kb.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "Technico1949_512kb.mp4": "d67a9c38f7f3535714dc54aa8a2797491ce047baa2f29a79fb775af3f576420e",
+    "conquerb1943.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "wall snapshot at picture luminance",
+  "archivedAt": "2026-09-15T01:35:17.834Z",
+  "url": "https://cinema.wzrrd.sh/",
+  "archive": "https://cinema.wzrrd.sh/archive/withhold-01/73100f0/"
+}

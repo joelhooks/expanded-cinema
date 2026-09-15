@@ -1,0 +1,15 @@
+{
+  "study": "clock-04",
+  "sha": "5e8879b",
+  "bundleHash": "2afd69af391473c589a43c105e9783a26e8b91bf643eab8474be84112ec79a7d",
+  "catalogHashes": {
+    "Conquerb1943_512kb.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "Technico1949_512kb.mp4": "d67a9c38f7f3535714dc54aa8a2797491ce047baa2f29a79fb775af3f576420e",
+    "conquerb1943.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "v21i: cap + right-shifted opening",
+  "archivedAt": "2026-09-14T22:16:13.280Z",
+  "url": "https://cinema.wzrrd.sh/",
+  "archive": "https://cinema.wzrrd.sh/archive/clock-04/5e8879b/"
+}
