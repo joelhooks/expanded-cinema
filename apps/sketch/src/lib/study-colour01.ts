@@ -988,6 +988,25 @@ export async function mountRuntime(
           study.snapTex.needsUpdate = true;
           wallMat.color.setScalar(2.6 + (20 - bestWallMean) * 0.12); // darker capture, louder drive
         }
+        // seq-53 diagnostic: 1/s for 20s after the shutter, log main video
+        // paused/currentTime/readyState — the freeze suspicion target
+        if (openMs >= 0 && openMs < 20_000 && study.frame.value % 60 === 0) {
+          const dv = vidOf();
+          const all = document.querySelectorAll('video');
+          for (let di = 0; di < all.length; di++) {
+            const dvv = all[di]!;
+            void sketchEvents
+              .emitInfo("study", "colour01.vstate", {
+                idx: di,
+                t: Number(dvv.currentTime.toFixed(2)),
+                rs: dvv.readyState,
+                paused: dvv.paused,
+                els: all.length,
+              })
+              .catch(() => undefined);
+          }
+          void dv;
+        }
         wallMat.opacity = openMs >= 3_000
           ? Math.min(1, (openMs - 3_000) / 900)
           : 0;
