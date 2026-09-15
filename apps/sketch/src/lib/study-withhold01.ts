@@ -356,9 +356,20 @@ export async function mountRuntime(
     };
     unwrapRepeat(videoLayer.texture);
     screenMat.map = null; // nothing chosen yet -> nothing shown
-    // withhold-01 SHUTTER: one operation, one cut. Ring lights from the
-    // projector side, plate becomes the film plane in the same frame.
+    // withhold-01 SHUTTER: one operation, one cut — but AUTHORED. The
+    // seeked event ARMS the aperture (the image is ready); the shutter
+    // opens only once the authored withhold has elapsed (WITHHOLD_MS
+    // after mount), so the closed plate reads long enough to be a state,
+    // not a frame. Ring lights + film in the same frame: a cut, not a fade.
+    const WITHHOLD_MS = 9_000;
     const irisMat = study.iris.material as THREE.MeshBasicMaterial;
+    let armedAtMs: number | null = null;
+    const maybeOpen = (elapsed: number): void => {
+      if (armedAtMs === null || elapsed < WITHHOLD_MS) return;
+      const vid = vidOf();
+      if (!vid || Math.abs(vid.currentTime - SEEK_TO) > 1.5) return;
+      openAperture(Number(vid.currentTime.toFixed(2)), armedAtMs === null ? "backstop" : "seeked");
+    };
     const openAperture = (at: number, via: "seeked" | "backstop"): void => {
       if (revealHolder.revealed) return;
       revealHolder.revealed = true;
@@ -378,8 +389,12 @@ export async function mountRuntime(
       const vid = ev.target as HTMLVideoElement;
       if (vid !== vidOf()) return; // stale element's event: ignore
       if (Math.abs(vid.currentTime - SEEK_TO) >= 1.5) return; // wrong place
-      openAperture(Number(vid.currentTime.toFixed(2)), "seeked");
+      if (armedAtMs === null) { armedAtMs = performance.now(); armedVia = "seeked"; }
+      void sketchEvents
+        .emitInfo("study", "withhold01.armed", { at: Number(vid.currentTime.toFixed(2)) })
+        .catch(() => undefined);
     };
+    let armedVia: "seeked" | "backstop" = "backstop";
     videoLayer.texture.addEventListener?.("dispose", () => {
       if (screenMat.map === videoLayer.texture) screenMat.map = null;
     });
@@ -408,7 +423,7 @@ export async function mountRuntime(
       const vid = vidOf();
       if (!vid) return;
       if (vid.readyState >= 2 && Math.abs(vid.currentTime - SEEK_TO) <= 0.5) {
-        openAperture(Number(vid.currentTime.toFixed(2)), "backstop");
+        if (armedAtMs === null) { armedAtMs = performance.now(); armedVia = "backstop"; }
       }
     };
     const seekTick = (): void => {
@@ -446,6 +461,7 @@ export async function mountRuntime(
         const elapsed = now - (firstStepAt ?? now);
         revealBackstop();
         revealProofTick(elapsed);
+        maybeOpen(elapsed);
         const n = study.frame.value;
         const apertured = revealHolder.revealed;
         // v21 (AD seq-32): the re-assert loop pinned the video at 63
