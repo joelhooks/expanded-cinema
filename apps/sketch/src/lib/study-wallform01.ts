@@ -168,7 +168,7 @@ function buildScene() {
   snapCtx.fillRect(0, 0, 256, 144);
   const snapTex = new THREE.CanvasTexture(snapCanvas);
   snapTex.colorSpace = THREE.SRGBColorSpace;
-  const HEAP_C = new THREE.Vector3(3.6, 1.15, -2.3); // heap base on the floor, right third
+  const HEAP_C = new THREE.Vector3(2.9, 1.35, -1.6); // heap base on the floor, right third
   const shards: THREE.Mesh[] = [];
   for (let si = 0; si < 30; si++) {
     const w = 0.6 + Math.random() * 0.7;
@@ -176,13 +176,7 @@ function buildScene() {
     const d = 0.05 + Math.random() * 0.12;
     const m = new THREE.Mesh(
       new THREE.BoxGeometry(w, h, d),
-      (() => {
-        const t = snapTex.clone();
-        t.needsUpdate = true;
-        t.repeat.set(0.22 + Math.random() * 0.13, 0.22 + Math.random() * 0.13);
-        t.offset.set(Math.random() * 0.6, Math.random() * 0.6);
-        return new THREE.MeshBasicMaterial({ map: t, transparent: true, opacity: 0 });
-      })(),
+      new THREE.MeshBasicMaterial({ color: 0xff00ff, transparent: true, opacity: 0 }), // BUILD A: solid magenta probe (AD seq-59)
     );
     // rough cone heap
     const a = Math.random() * Math.PI * 2;
@@ -970,7 +964,7 @@ export async function mountRuntime(
         const wallMat = study.wallPic.material as THREE.MeshBasicMaterial;
         for (const sh of study.shards) {
           (sh.material as THREE.MeshBasicMaterial).opacity = wallMat.opacity;
-          (sh.material as THREE.MeshBasicMaterial).color.setScalar(8.0);
+          // color untouched during probe
           // cloned CanvasTextures do not follow the original's needsUpdate
           const st = (sh.material as THREE.MeshBasicMaterial).map;
           if (st) st.needsUpdate = true;
