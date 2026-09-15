@@ -423,7 +423,7 @@ export async function mountRuntime(
     // this clip's 90s duration (clamped -> looped back to the cards).
     // 55s is inside the film, past both front cards. Re-assert until the
     // time holds (element swaps reset playback to 0).
-    const SEEK_TO = 48; // in-point chosen by scrub sheets: +5s = swinging hand on the "11 12 1" dial, +16s = machining/workers — both moving footage, no cards
+    const SEEK_TO = 57; // bright high-motion stretch so the frozen capture lands at plate luminance // in-point chosen by scrub sheets: +5s = swinging hand on the "11 12 1" dial, +16s = machining/workers — both moving footage, no cards
 
     // --- the delay line (colour-01): two hidden decoders locked to main ---
     const D_G = 3.0;
