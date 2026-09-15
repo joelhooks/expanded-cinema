@@ -404,6 +404,7 @@ export async function mountRuntime(
     let firstStepAt: number | null = null;
     let revealProofLogs = 0;
     let bubbleLogs = 0;
+    const railAudit: { mins?: { d0: number; d1: number }; minD0: number; minD1: number; reported: boolean } = { minD0: Infinity, minD1: Infinity, reported: false };
     const revealProofTick = (elapsed: number): void => {
       if (revealHolder.revealed) return;
       if (revealProofLogs >= 30 || elapsed - revealProofLogs * 1000 < 1000) return;
@@ -561,6 +562,38 @@ export async function mountRuntime(
         };
         const fade1 = bubble(segDist(PROJ, B0_END));
         const fade2 = bubble(segDist(PROJ_OFF, B1_END));
+        // AD seq-38 rail-bubble audit: distance from the camera to every
+        // beam-slice SEGMENT each frame; per-load minimum logged at exit.
+        // Assert: never <3m. Beam lands sampled from the real geometry.
+        if (!railAudit.mins) {
+          const lands0: THREE.Vector3[] = [];
+          for (let i = 0; i <= 24; i++) {
+            const yMid = -1.1 + (2.2 * i) / 24;
+            const u = -0.02 + yMid * 0.16;
+            lands0.push(new THREE.Vector3(SCREEN_R * Math.sin(u), 1.1 + yMid, SCREEN_R * Math.cos(u) - 2.2));
+          }
+          const lands1: THREE.Vector3[] = [];
+          for (const drift of [-0.9, 0, 0.9]) {
+            for (const yMid of [-1.1, 0, 1.1]) {
+              lands1.push(new THREE.Vector3(2.2 + yMid * 2.1 + drift, 1.0 + yMid * 1.35 + drift * 0.4, -7.55));
+            }
+          }
+          const dToLands = (org: THREE.Vector3, lands: THREE.Vector3[]): number =>
+            Math.min(...lands.map((L) => segDist(org, L)));
+          railAudit.mins = { d0: dToLands(PROJ, lands0), d1: dToLands(PROJ_OFF, lands1) };
+        }
+        railAudit.minD0 = Math.min(railAudit.minD0, fade1 < 1 ? segDist(PROJ, B0_END) : railAudit.minD0);
+        railAudit.minD1 = Math.min(railAudit.minD1, fade2 < 1 ? segDist(PROJ_OFF, B1_END) : railAudit.minD1);
+        if (!railAudit.reported && elapsed > 48_000) {
+          railAudit.reported = true;
+          void sketchEvents
+            .emitInfo("study", "withhold01.rail.audit", {
+              minD0: Number(railAudit.minD0.toFixed(2)),
+              minD1: Number(railAudit.minD1.toFixed(2)),
+              pass: railAudit.minD0 >= 3 && railAudit.minD1 >= 3,
+            })
+            .catch(() => undefined);
+        }
         // v21c: grazing-angle attenuation — a thin additive quad sheet
         // viewed edge-on stacks 120 slabs onto the same pixels (the white
         // wall). Attenuate each beam slice by |dot(viewDir, planeNormal)|:
