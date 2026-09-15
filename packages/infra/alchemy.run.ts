@@ -39,12 +39,6 @@ export default Alchemy.Stack(
     // owns `${host}/*`; this more-specific route wins `archive/…` and
     // serves objects straight from the ARCHIVE R2 binding.
     const archiveGateway = yield* Cloudflare.Worker("ArchiveGateway", {
-      workersDev: false,
-      routes: [
-        { pattern: `${host}/archive/*`, zoneName: ZONE },
-        { pattern: `${host}/mcp/*`, zoneName: ZONE },
-        { pattern: `${host}/videos/*`, zoneName: ZONE },
-      ],
       env: {
         ARCHIVE: archive,
         // secret_text binding — static bearer for the pointer-write
@@ -52,6 +46,11 @@ export default Alchemy.Stack(
         // owner sign-off 2026-09-14). Resolved from deployment env.
         POINTER_TOKEN: Redacted.make(process.env.POINTER_TOKEN ?? ""),
       },
+      routes: [
+        { pattern: `${host}/archive/*`, zoneName: ZONE },
+        { pattern: `${host}/mcp/*`, zoneName: ZONE },
+        { pattern: `${host}/videos/*`, zoneName: ZONE },
+      ],
       script: `const CT = {
         html: "text/html; charset=utf-8",
         js: "text/javascript; charset=utf-8",
@@ -230,12 +229,19 @@ export default Alchemy.Stack(
           return new Response(obj.body, { headers });
         },
       };`,
+      workersDev: false,
     });
 
     const site = yield* Cloudflare.Website.Vite("ExpandedCinemaWeb", {
       rootDir: "../../archives/expanded-cinema-2026-09",
       memo: {
-        include: ["src/**", "index.html", "package.json", "vite.config.ts", "catalog.json"],
+        include: [
+          "src/**",
+          "index.html",
+          "package.json",
+          "vite.config.ts",
+          "catalog.json",
+        ],
         lockfile: true,
       },
       domain: host,
@@ -249,8 +255,8 @@ export default Alchemy.Stack(
     });
 
     return {
-      url: site.url,
       stage,
+      url: site.url,
     };
-  }),
+  })
 );

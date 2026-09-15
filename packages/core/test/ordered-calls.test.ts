@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
+
 import { Sequencer } from "../src/ordered-calls";
 
 function collect(): { seq: Sequencer<number>; out: number[] } {
   const out: number[] = [];
-  return { seq: new Sequencer<number>((v) => out.push(v)), out };
+  return { out, seq: new Sequencer<number>((v) => out.push(v)) };
 }
 
 describe("Sequencer", () => {

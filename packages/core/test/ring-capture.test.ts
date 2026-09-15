@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { isSameScopeCollision, readSlot, ringLength, writeSlot } from "../src/ring-capture";
+
+import {
+  isSameScopeCollision,
+  readSlot,
+  ringLength,
+  writeSlot,
+} from "../src/ring-capture";
 
 describe("ringLength", () => {
   it("is delay + 1", () => {

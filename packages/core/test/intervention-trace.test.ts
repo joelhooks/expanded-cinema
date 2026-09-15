@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { TRACE_DECAY_MS, TRACE_HOLD_MS, traceState, type TraceEvent } from "../src/intervention-trace";
+
+import {
+  TRACE_DECAY_MS,
+  TRACE_HOLD_MS,
+  traceState,
+} from "../src/intervention-trace";
+import type { TraceEvent } from "../src/intervention-trace";
 
 const at = (ms: number): TraceEvent => ({ at: ms });
 
@@ -9,11 +15,17 @@ describe("traceState", () => {
   });
 
   it("at the intervention instant = fully displaced immediately", () => {
-    expect(traceState(at(1000), 1000)).toEqual({ displacement: 1, legible: true });
+    expect(traceState(at(1000), 1000)).toEqual({
+      displacement: 1,
+      legible: true,
+    });
   });
 
   it("holds rest state through the hold window", () => {
-    const { displacement, legible } = traceState(at(1000), 1000 + TRACE_HOLD_MS - 1);
+    const { displacement, legible } = traceState(
+      at(1000),
+      1000 + TRACE_HOLD_MS - 1
+    );
     expect(displacement).toBe(1);
     expect(legible).toBe(true);
   });

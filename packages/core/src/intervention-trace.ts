@@ -38,7 +38,13 @@ export interface TraceState {
  * The latest event wins; superseded events are irrelevant. No event or a
  * fully-decayed history means displacement 0.
  */
-export function traceState(latest: TraceEvent | null, now: number, holdMs = TRACE_HOLD_MS, decayMs = TRACE_DECAY_MS, ease = TRACE_DECAY_EASE): TraceState {
+export function traceState(
+  latest: TraceEvent | null,
+  now: number,
+  holdMs = TRACE_HOLD_MS,
+  decayMs = TRACE_DECAY_MS,
+  ease = TRACE_DECAY_EASE
+): TraceState {
   if (!latest || now < latest.at) {
     return { displacement: 0, legible: false };
   }
@@ -50,6 +56,6 @@ export function traceState(latest: TraceEvent | null, now: number, holdMs = TRAC
   if (t >= 1) {
     return { displacement: 0, legible: false };
   }
-  const eased = Math.pow(1 - t, ease);
+  const eased = (1 - t) ** ease;
   return { displacement: eased, legible: t < 0.2 };
 }

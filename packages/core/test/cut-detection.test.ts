@@ -1,12 +1,18 @@
 import { describe, expect, it } from "vitest";
-import { CutDetector, isHardCut, meanAbsDiff, type LumaFrame } from "../src/cut-detection";
 
-const frame = (v: number, w = 4, h = 4): LumaFrame => ({ pixels: Array(w * h).fill(v), width: w, height: h });
+import { CutDetector, isHardCut, meanAbsDiff } from "../src/cut-detection";
+import type { LumaFrame } from "../src/cut-detection";
+
+const frame = (v: number, w = 4, h = 4): LumaFrame => ({
+  height: h,
+  pixels: Array(w * h).fill(v),
+  width: w,
+});
 
 const frameFrom = (vals: readonly number[], w = 4, h = 4): LumaFrame => ({
+  height: h,
   pixels: [...vals],
   width: w,
-  height: h,
 });
 
 describe("meanAbsDiff", () => {
@@ -16,17 +22,19 @@ describe("meanAbsDiff", () => {
 
   it("is normalized to 0..1 over the luma scale", () => {
     // every pixel differs by 255 → 1.0
-    expect(meanAbsDiff(frame(0), frame(255))).toBeCloseTo(1.0);
+    expect(meanAbsDiff(frame(0), frame(255))).toBeCloseTo(1);
     // every pixel differs by 25.5 → 0.1
     expect(meanAbsDiff(frame(0), frame(25))).toBeCloseTo(25 / 255, 5);
   });
 
   it("rejects mismatched frame sizes", () => {
-    expect(() => meanAbsDiff(frame(0, 4, 4), frame(0, 2, 2))).toThrow(/mismatch/);
+    expect(() => meanAbsDiff(frame(0, 4, 4), frame(0, 2, 2))).toThrow(
+      /mismatch/
+    );
   });
 
   it("rejects wrong pixel array lengths", () => {
-    const bad = { pixels: [1, 2, 3], width: 4, height: 4 };
+    const bad = { height: 4, pixels: [1, 2, 3], width: 4 };
     expect(() => meanAbsDiff(frame(0), bad as LumaFrame)).toThrow(/length/);
   });
 });

@@ -21,7 +21,9 @@ export class Sequencer<T> {
 
   /** Submit payload for frame index; invokes handle() in order, skipping gaps. */
   submit(index: number, value: T): void {
-    if (index < this.next) return; // stale
+    if (index < this.next) {
+      return;
+    } // stale
     if (index === this.held?.index) {
       this.held.value = value; // replace held same-frame value with newest
       return;

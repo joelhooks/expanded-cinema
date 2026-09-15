@@ -17,12 +17,15 @@ const studies = readdirSync(versionsDir, { withFileTypes: true })
     const shas = readdirSync(dir, { withFileTypes: true })
       .filter((s) => s.isDirectory())
       .map((s) => s.name)
-      .sort((a, b) => statSync(join(dir, b)).mtimeMs - statSync(join(dir, a)).mtimeMs);
-    return { study: d.name, shas, mtime: statSync(dir).mtimeMs };
+      .toSorted(
+        (a, b) =>
+          statSync(join(dir, b)).mtimeMs - statSync(join(dir, a)).mtimeMs
+      );
+    return { mtime: statSync(dir).mtimeMs, shas, study: d.name };
   })
-  .sort((a, b) => b.mtime - a.mtime);
+  .toSorted((a, b) => b.mtime - a.mtime);
 
-const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const esc = (s) => s.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
 const sections = studies
   .map(
     ({ study, shas }) => `<section>
@@ -30,10 +33,10 @@ const sections = studies
   ${shas
     .map(
       (sha) =>
-        `<p class="meta"><a href="/archive/${study}/${sha}/index.html">${study}/${sha}</a> · <a href="/archive/${study}/${sha}/manifest.json">manifest</a></p>`,
+        `<p class="meta"><a href="/archive/${study}/${sha}/index.html">${study}/${sha}</a> · <a href="/archive/${study}/${sha}/manifest.json">manifest</a></p>`
     )
     .join("\n  ")}
-</section>`,
+</section>`
   )
   .join("\n");
 
@@ -86,4 +89,6 @@ ${sections}
 `;
 
 writeFileSync(join(versionsDir, "index.html"), html);
-console.log(`archive index: ${studies.length} studies, ${studies.reduce((n, s) => n + s.shas.length, 0)} versions`);
+console.log(
+  `archive index: ${studies.length} studies, ${studies.reduce((n, s) => n + s.shas.length, 0)} versions`
+);

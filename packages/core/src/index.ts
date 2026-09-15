@@ -17,7 +17,10 @@ export interface LoopOrder {
  * Rotates deterministically through sources in sorted order. The loop is a
  * stepping stone: the daily pipeline will replace rotation with questions.
  */
-export function rotate(sources: readonly SourceRef[], index: number): SourceRef | null {
+export function rotate(
+  sources: readonly SourceRef[],
+  index: number
+): SourceRef | null {
   if (sources.length === 0) {
     return null;
   }

@@ -8,11 +8,16 @@ import { join, relative, sep } from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
 const videosDir = join(root, "videos");
-const outPath = join(root, "archives", "expanded-cinema-2026-09", "catalog.json");
+const outPath = join(
+  root,
+  "archives",
+  "expanded-cinema-2026-09",
+  "catalog.json"
+);
 
 const files = (await readdir(videosDir, { recursive: false }))
   .filter((f) => f.endsWith(".mp4"))
-  .sort();
+  .toSorted();
 
 const entries = [];
 for (const file of files) {
@@ -24,9 +29,9 @@ for (const file of files) {
 }
 
 const doc = {
+  entries,
   generatedAt: new Date().toISOString(),
   generator: "scripts/catalog-videos.mjs",
-  entries,
 };
 
 await writeFile(outPath, `${JSON.stringify(doc, null, 2)}\n`);

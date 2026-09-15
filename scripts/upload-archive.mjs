@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { execFileSync } from "node:child_process";
 /**
  * Upload the version archive (versions/) into the R2 Archive bucket under
  * archive/…, so the live Worker gateway can serve
@@ -12,39 +13,45 @@
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { extname, join, relative, sep } from "node:path";
-import { execFileSync } from "node:child_process";
 
 const root = join(import.meta.dirname, "..");
 const versionsDir = join(root, "versions");
 
 function lease(name) {
-  return execFileSync("secrets", ["lease", name, "--ttl", "1h", "--client-id", "cinema-maker"], {
-    encoding: "utf8",
-  }).trim();
+  return execFileSync(
+    "secrets",
+    ["lease", name, "--ttl", "1h", "--client-id", "cinema-maker"],
+    {
+      encoding: "utf-8",
+    }
+  ).trim();
 }
 
 const CT = {
-  ".html": "text/html; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".mjs": "text/javascript; charset=utf-8",
   ".css": "text/css; charset=utf-8",
+  ".html": "text/html; charset=utf-8",
+  ".jpg": "image/jpeg",
+  ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
   ".map": "application/json; charset=utf-8",
   ".md": "text/markdown; charset=utf-8",
-  ".txt": "text/plain; charset=utf-8",
+  ".mjs": "text/javascript; charset=utf-8",
   ".mp4": "video/mp4",
-  ".webm": "video/webm",
   ".png": "image/png",
-  ".jpg": "image/jpeg",
   ".svg": "image/svg+xml",
+  ".txt": "text/plain; charset=utf-8",
   ".wasm": "application/wasm",
+  ".webm": "video/webm",
 };
 
 function walk(dir, out = []) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     const p = join(dir, entry.name);
-    if (entry.isDirectory()) walk(p, out);
-    else out.push(p);
+    if (entry.isDirectory()) {
+      walk(p, out);
+    } else {
+      out.push(p);
+    }
   }
   return out;
 }
@@ -58,9 +65,12 @@ async function main() {
   }
 
   // resolve archive bucket name from the account listing
-  const listResp = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/r2/buckets`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  const listResp = await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${accountId}/r2/buckets`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
   const list = await listResp.json();
   if (!list.success) {
     console.error("bucket list failed:", list.errors);
@@ -86,17 +96,23 @@ async function main() {
   //   versions/<study>/<sha>/dist/**     -> archive/<study>/<sha>/**   (hoisted — dist IS the served root)
   //   versions/<study>/<sha>/manifest.json, note.md -> kept as-is
   function keyFor(rel) {
-    if (rel === "index.html") return "archive/index.html";
+    if (rel === "index.html") {
+      return "archive/index.html";
+    }
     const m = rel.match(/^([^/]+)\/([^/]+)\/(.*)$/);
-    if (!m) return `archive/${rel}`;
+    if (!m) {
+      return `archive/${rel}`;
+    }
     const [, study, sha, rest] = m;
-    if (rest.startsWith("dist/")) return `archive/${study}/${sha}/${rest.slice("dist/".length)}`;
+    if (rest.startsWith("dist/")) {
+      return `archive/${study}/${sha}/${rest.slice("dist/".length)}`;
+    }
     return `archive/${study}/${sha}/${rest}`;
   }
 
   const results = [];
   let skipped = 0;
-  let uploaded = [];
+  const uploaded = [];
   for (const path of files) {
     const rel = relative(versionsDir, path).split(sep).join("/");
     const key = keyFor(rel);
@@ -108,45 +124,47 @@ async function main() {
     // Idempotency (delivered 2026-09-14 — the docstring claimed it before the
     // code did): fetch the stored object, compare hashes, skip the PUT if
     // identical. Saves ~261MB per noop run across R2 Class-B ops.
-    const stored = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    const stored = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     if (stored.ok) {
       const arr = new Uint8Array(await stored.arrayBuffer());
       if (createHash("sha256").update(arr).digest("hex") === etag) {
         skipped++;
-        results.push({ key, bytes: body.length, etag, status: "skipped" });
+        results.push({ bytes: body.length, etag, key, status: "skipped" });
         console.log(`skipped ${key} (hash match)`);
         continue;
       }
     }
     const res = await fetch(url, {
-      method: "PUT",
+      body: new Uint8Array(body),
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": ct,
         "Cache-Control": "public, max-age=3600",
+        "Content-Type": ct,
       },
-      body: new Uint8Array(body),
+      method: "PUT",
     });
     const json = await res.json();
     if (!json.success) {
       console.error(`FAIL ${key}: ${JSON.stringify(json.errors)}`);
       process.exit(1);
     }
-    results.push({ key, bytes: body.length, etag, status: "uploaded" });
+    results.push({ bytes: body.length, etag, key, status: "uploaded" });
     uploaded.push(key);
     console.log(`uploaded ${key} (${body.length})`);
   }
 
   writeFileSync(
     join(root, "state", "archive-upload-manifest.json"),
-    `${JSON.stringify({ bucket, files: results }, null, 2)}\n`,
+    `${JSON.stringify({ bucket, files: results }, null, 2)}\n`
   );
   console.log(
-    `done: ${results.length} objects (${uploaded.length} uploaded, ${skipped} skipped), ${results.reduce((a, r) => a + r.bytes, 0)} bytes accounted`,
+    `done: ${results.length} objects (${uploaded.length} uploaded, ${skipped} skipped), ${results.reduce((a, r) => a + r.bytes, 0)} bytes accounted`
   );
 }
 
-main().catch((err) => {
-  console.error(err);
+main().catch((error) => {
+  console.error(error);
   process.exit(1);
 });

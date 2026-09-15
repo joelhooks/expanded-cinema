@@ -20,13 +20,19 @@ export interface LumaFrame {
  */
 export function meanAbsDiff(a: LumaFrame, b: LumaFrame): number {
   if (a.width !== b.width || a.height !== b.height) {
-    throw new Error(`frame size mismatch: ${a.width}x${a.height} vs ${b.width}x${b.height}`);
+    throw new Error(
+      `frame size mismatch: ${a.width}x${a.height} vs ${b.width}x${b.height}`
+    );
   }
   if (a.pixels.length !== a.width * a.height) {
-    throw new Error(`frame a length ${a.pixels.length} != ${a.width * a.height}`);
+    throw new Error(
+      `frame a length ${a.pixels.length} != ${a.width * a.height}`
+    );
   }
   if (b.pixels.length !== b.width * b.height) {
-    throw new Error(`frame b length ${b.pixels.length} != ${b.width * b.height}`);
+    throw new Error(
+      `frame b length ${b.pixels.length} != ${b.width * b.height}`
+    );
   }
   let sum = 0;
   const pa = a.pixels;
@@ -47,7 +53,11 @@ export function meanAbsDiff(a: LumaFrame, b: LumaFrame): number {
 export const CUT_THRESHOLD = 0.12;
 
 /** True when the transition a→b is a hard cut. */
-export function isHardCut(a: LumaFrame, b: LumaFrame, threshold = CUT_THRESHOLD): boolean {
+export function isHardCut(
+  a: LumaFrame,
+  b: LumaFrame,
+  threshold = CUT_THRESHOLD
+): boolean {
   return meanAbsDiff(a, b) >= threshold;
 }
 

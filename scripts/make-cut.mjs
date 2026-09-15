@@ -15,31 +15,34 @@ if (!study || !sha) {
   process.exit(1);
 }
 const rootIdx = args.indexOf("--archive-root");
-const archiveRoot = rootIdx !== -1 ? args[rootIdx + 1] : "https://cinema.wzrrd.sh";
+const archiveRoot =
+  rootIdx === -1 ? "https://cinema.wzrrd.sh" : args[rootIdx + 1];
 const archive = `/archive/${study}/${sha}/`;
 if (!noVerify) {
   const target = `${archiveRoot}${archive}index.html`;
   let res;
   try {
     res = await fetch(target, { method: "HEAD" });
-  } catch (e) {
-    console.error(`make-cut: archive check failed for ${target}: ${e.message}`);
+  } catch (error) {
+    console.error(
+      `make-cut: archive check failed for ${target}: ${error.message}`
+    );
     process.exit(2);
   }
   if (!res.ok) {
     console.error(
-      `make-cut: refusing cut — archive target ${target} is ${res.status}. Ship/upload the archive first, or pass --no-verify for a legacy label.`,
+      `make-cut: refusing cut — archive target ${target} is ${res.status}. Ship/upload the archive first, or pass --no-verify for a legacy label.`
     );
     process.exit(2);
   }
-  console.error(`make-cut: archive target verified (${res.status})`, );
+  console.error(`make-cut: archive target verified (${res.status})`);
 }
 const now = new Date().toISOString();
 const cut = {
-  study,
+  archive,
   sha,
+  study,
   updatedAt: now,
   url: "https://cinema.wzrrd.sh/",
-  archive,
 };
 process.stdout.write(JSON.stringify(cut));

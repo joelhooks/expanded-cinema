@@ -11,9 +11,12 @@ export interface EventSink {
 }
 
 /** Keeps the most recent `capacity` events in memory for tests and agents. */
-export function memorySink(capacity = 256): EventSink & { events(): readonly OtelEvent[] } {
+export function memorySink(
+  capacity = 256
+): EventSink & { events(): readonly OtelEvent[] } {
   const buffer: OtelEvent[] = [];
   return {
+    events: () => [...buffer],
     name: "memory",
     async write(event) {
       buffer.push(event);
@@ -22,7 +25,6 @@ export function memorySink(capacity = 256): EventSink & { events(): readonly Ote
       }
       return null;
     },
-    events: () => [...buffer],
   };
 }
 
@@ -42,9 +44,12 @@ export function consoleSink(): EventSink {
  * so the daily agent can inspect real runtime telemetry in the page — visual
  * critique backed by events, not vibes.
  */
-export function windowRingSink(capacity = 512): EventSink & { events(): readonly OtelEvent[] } {
+export function windowRingSink(
+  capacity = 512
+): EventSink & { events(): readonly OtelEvent[] } {
   const buffer: OtelEvent[] = [];
   const sink: EventSink & { events(): readonly OtelEvent[] } = {
+    events: () => [...buffer],
     name: "window-ring",
     async write(event) {
       buffer.push(event);
@@ -53,10 +58,11 @@ export function windowRingSink(capacity = 512): EventSink & { events(): readonly
       }
       return null;
     },
-    events: () => [...buffer],
   };
   if (typeof window !== "undefined") {
-    const w = window as { __expandedCinemaOtel?: { events(): readonly OtelEvent[] } };
+    const w = window as {
+      __expandedCinemaOtel?: { events(): readonly OtelEvent[] };
+    };
     w.__expandedCinemaOtel = { events: () => sink.events() };
   }
   return sink;

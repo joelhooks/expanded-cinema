@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { execSync } from "node:child_process";
 /**
  * Archive a shipped version: snapshot bundle + study note + manifest to
  * versions/<study>/<sha>/ and emit an R2-upload plan the infra step reads.
@@ -6,8 +7,14 @@
  * Usage: node scripts/archive-ship.mjs <git-sha> <study-id> "<note>"
  */
 import { createHash } from "node:crypto";
-import { mkdirSync, readdirSync, readFileSync, writeFileSync, cpSync, existsSync } from "node:fs";
-import { execSync } from "node:child_process";
+import {
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+  cpSync,
+  existsSync,
+} from "node:fs";
 import { join, relative } from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
@@ -33,11 +40,11 @@ if (!existsSync(distDir)) {
 // (checklist step 1) must precede the build that produced this dist.
 const distSrc = readdirSync(join(distDir, "assets"), { withFileTypes: true })
   .filter((e) => e.isFile() && e.name.endsWith(".js"))
-  .map((e) => readFileSync(join(distDir, "assets", e.name), "utf8"))
+  .map((e) => readFileSync(join(distDir, "assets", e.name), "utf-8"))
   .join("\n");
 if (!distSrc.includes(studyId)) {
   console.error(
-    `refusing: dist/ does not reference "${studyId}" — the module is likely still tree-shaken (unregistered). Run the registry-add + rebuild, then re-run this step.`,
+    `refusing: dist/ does not reference "${studyId}" — the module is likely still tree-shaken (unregistered). Run the registry-add + rebuild, then re-run this step.`
   );
   process.exit(2);
 }
@@ -51,31 +58,49 @@ function hashTree(dir) {
   const walk = (d) => {
     for (const entry of readdirSync(d, { withFileTypes: true })) {
       const p = join(d, entry.name);
-      if (entry.isDirectory()) walk(p);
-      else parts.push(`${relative(dir, p)}:${createHash("sha256").update(readFileSync(p)).digest("hex")}`);
+      if (entry.isDirectory()) {
+        walk(p);
+      } else {
+        parts.push(
+          `${relative(dir, p)}:${createHash("sha256").update(readFileSync(p)).digest("hex")}`
+        );
+      }
     }
   };
   walk(dir);
-  return createHash("sha256").update(parts.sort().join("\n")).digest("hex");
+  return createHash("sha256").update(parts.toSorted().join("\n")).digest("hex");
 }
 
-const catalogPath = join(root, "archives", "expanded-cinema-2026-09", "catalog.json");
-const catalog = JSON.parse(readFileSync(catalogPath, "utf8"));
-const catalogHashes = Object.fromEntries(catalog.entries.map((e) => [e.file, e.sha256]));
+const catalogPath = join(
+  root,
+  "archives",
+  "expanded-cinema-2026-09",
+  "catalog.json"
+);
+const catalog = JSON.parse(readFileSync(catalogPath, "utf-8"));
+const catalogHashes = Object.fromEntries(
+  catalog.entries.map((e) => [e.file, e.sha256])
+);
 
 const manifest = {
-  study: studyId,
-  sha,
+  archive: `https://cinema.wzrrd.sh/archive/${studyId}/${sha}/`,
+  archivedAt: new Date().toISOString(),
   bundleHash: hashTree(distDir),
   catalogHashes,
   note,
-  archivedAt: new Date().toISOString(),
+  sha,
+  study: studyId,
   url: `https://cinema.wzrrd.sh/`,
-  archive: `https://cinema.wzrrd.sh/archive/${studyId}/${sha}/`,
 };
 
-writeFileSync(join(versionsDir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
-writeFileSync(join(versionsDir, "note.md"), `# ${studyId} @ ${sha}\n\n${note}\n`);
+writeFileSync(
+  join(versionsDir, "manifest.json"),
+  `${JSON.stringify(manifest, null, 2)}\n`
+);
+writeFileSync(
+  join(versionsDir, "note.md"),
+  `# ${studyId} @ ${sha}\n\n${note}\n`
+);
 
 // append to ledger if not already there
 // Ledger truthfulness (2026-09-14): this row may only claim what THIS tool
@@ -85,20 +110,20 @@ writeFileSync(join(versionsDir, "note.md"), `# ${studyId} @ ${sha}\n\n${note}\n`
 // during a positive-path rehearsal).
 const ledgerPath = join(root, "state", "ledger.jsonl");
 const row = JSON.stringify({
-  runId: `archive-${studyId}-${sha.slice(0,7)}`,
-  date: manifest.archivedAt.slice(0,10),
-  stage: "archived",
-  study: studyId,
-  sha,
-  bundleHash: manifest.bundleHash,
   archive: `archive/${studyId}/${sha}/`,
-  verified: [`bundle-hash ${manifest.bundleHash.slice(0,12)}`],
+  bundleHash: manifest.bundleHash,
+  date: manifest.archivedAt.slice(0, 10),
   lineage: [],
   notes: note,
+  runId: `archive-${studyId}-${sha.slice(0, 7)}`,
+  sha,
+  stage: "archived",
+  study: studyId,
+  verified: [`bundle-hash ${manifest.bundleHash.slice(0, 12)}`],
 });
-const ledger = readFileSync(ledgerPath, "utf8");
+const ledger = readFileSync(ledgerPath, "utf-8");
 if (!ledger.includes(`"sha":"${sha}"`)) {
-  writeFileSync(ledgerPath, ledger.trimEnd() + "\n" + row + "\n");
+  writeFileSync(ledgerPath, `${ledger.trimEnd()}\n${row}\n`);
 }
 
 console.log(JSON.stringify(manifest, null, 2));

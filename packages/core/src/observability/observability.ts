@@ -1,4 +1,5 @@
-import { makeEvent, validateEvent, type OtelEvent } from "./event";
+import { makeEvent, validateEvent } from "./event";
+import type { OtelEvent } from "./event";
 import type { EventSink } from "./sinks";
 
 export interface EmitInput {
@@ -29,7 +30,7 @@ export interface Observability {
   measured<T>(
     action: MeasuredAction,
     metadata: Readonly<Record<string, unknown>> | undefined,
-    operation: () => Promise<T>,
+    operation: () => Promise<T>
   ): Promise<T>;
   /** Events rejected by validation or by a sink; inspect in tests/probes. */
   deadLetters(): readonly OtelEvent[];
@@ -42,26 +43,35 @@ export interface ObservabilityOptions {
   readonly now?: () => number;
 }
 
-export function makeObservability(options: ObservabilityOptions): Observability {
+export function makeObservability(
+  options: ObservabilityOptions
+): Observability {
   const dead: OtelEvent[] = [];
 
   return {
+    deadLetters: () => [...dead],
+
     async emit(input): Promise<void> {
       const event = makeEvent({
+        action: input.action,
+        component: input.component,
         level: input.level,
         source: input.source ?? options.source,
-        component: input.component,
-        action: input.action,
         success: input.success ?? true,
-        ...(input.error !== undefined ? { error: input.error } : {}),
-        ...(input.durationMs !== undefined ? { durationMs: input.durationMs } : {}),
-        ...(input.metadata !== undefined ? { metadata: input.metadata } : {}),
+        ...(input.error === undefined ? {} : { error: input.error }),
+        ...(input.durationMs === undefined
+          ? {}
+          : { durationMs: input.durationMs }),
+        ...(input.metadata === undefined ? {} : { metadata: input.metadata }),
       });
       const validation = validateEvent(event);
       if (!validation.ok) {
         dead.push({
           ...event,
-          metadata: { ...event.metadata, validationProblems: validation.problems },
+          metadata: {
+            ...event.metadata,
+            validationProblems: validation.problems,
+          },
         });
         return;
       }
@@ -70,7 +80,11 @@ export function makeObservability(options: ObservabilityOptions): Observability 
         if (rejection !== null) {
           dead.push({
             ...event,
-            metadata: { ...event.metadata, sink: sink.name, sinkError: rejection },
+            metadata: {
+              ...event.metadata,
+              sink: sink.name,
+              sinkError: rejection,
+            },
           });
         }
       }
@@ -79,36 +93,34 @@ export function makeObservability(options: ObservabilityOptions): Observability 
     async measured<T>(
       action: MeasuredAction,
       metadata: Readonly<Record<string, unknown>> | undefined,
-      operation: () => Promise<T>,
+      operation: () => Promise<T>
     ): Promise<T> {
       const start = (options.now ?? Date.now)();
       try {
         const result = await operation();
         await this.emit({
+          action: action.action,
+          component: action.component,
+          durationMs: (options.now ?? Date.now)() - start,
           level: action.level ?? "info",
           source: action.source ?? options.source,
-          component: action.component,
-          action: action.action,
           success: true,
-          durationMs: (options.now ?? Date.now)() - start,
-          ...(metadata !== undefined ? { metadata } : {}),
+          ...(metadata === undefined ? {} : { metadata }),
         });
         return result;
-      } catch (caught) {
+      } catch (error) {
         await this.emit({
           level: action.level ?? "error",
           source: action.source ?? options.source,
           component: action.component,
           action: action.action,
           success: false,
-          error: caught instanceof Error ? caught.message : String(caught),
+          error: error instanceof Error ? error.message : String(error),
           durationMs: (options.now ?? Date.now)() - start,
           ...(metadata !== undefined ? { metadata } : {}),
         });
-        throw caught;
+        throw error;
       }
     },
-
-    deadLetters: () => [...dead],
   };
 }

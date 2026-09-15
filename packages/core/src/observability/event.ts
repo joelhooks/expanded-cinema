@@ -30,7 +30,13 @@ export interface OtelEvent {
   readonly metadata?: Readonly<Record<string, unknown>>;
 }
 
-const LEVELS: ReadonlySet<string> = new Set(["debug", "info", "warn", "error", "fatal"]);
+const LEVELS: ReadonlySet<string> = new Set([
+  "debug",
+  "info",
+  "warn",
+  "error",
+  "fatal",
+]);
 
 export interface ValidationResult {
   readonly ok: boolean;
@@ -55,7 +61,10 @@ export function validateEvent(event: OtelEvent): ValidationResult {
   if (event.action.trim() === "" || !/^[a-z][a-z0-9_.]*$/.test(event.action)) {
     problems.push(`action: must be dotted lowercase, got "${event.action}"`);
   }
-  if (!event.success && (event.error === undefined || event.error.trim() === "")) {
+  if (
+    !event.success &&
+    (event.error === undefined || event.error.trim() === "")
+  ) {
     problems.push("error: required when success is false");
   }
   if (
@@ -63,15 +72,24 @@ export function validateEvent(event: OtelEvent): ValidationResult {
     (!Number.isFinite(event.durationMs) || event.durationMs < 0)
   ) {
     problems.push(
-      `durationMs: must be a finite non-negative number, got ${event.durationMs}`,
+      `durationMs: must be a finite non-negative number, got ${event.durationMs}`
     );
   }
-  if (event.success && event.level === "error" && event.metadata?.["handled"] !== true) {
+  if (
+    event.success &&
+    event.level === "error" &&
+    event.metadata?.handled !== true
+  ) {
     problems.push("level error without success:false is ambiguous");
   }
   return { ok: problems.length === 0, problems };
 }
 
-export function makeEvent(input: Omit<OtelEvent, "time"> & { time?: string }): OtelEvent {
-  return { time: input.time ?? new Date().toISOString(), ...input } as OtelEvent;
+export function makeEvent(
+  input: Omit<OtelEvent, "time"> & { time?: string }
+): OtelEvent {
+  return {
+    time: input.time ?? new Date().toISOString(),
+    ...input,
+  };
 }

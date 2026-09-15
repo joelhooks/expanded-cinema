@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { execFileSync } from "node:child_process";
 /**
  * Bounded daily producer — VISION.md priority D, built un-scheduled.
  *
@@ -24,8 +25,13 @@
  *   node scripts/produce.mjs --status            # today's counters, no side effects
  *   node scripts/produce.mjs --clear-lock        # operator escape hatch
  */
-import { readFileSync, writeFileSync, existsSync, unlinkSync, mkdirSync } from "node:fs";
-import { execFileSync } from "node:child_process";
+import {
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  unlinkSync,
+  mkdirSync,
+} from "node:fs";
 import { join } from "node:path";
 
 const root = join(import.meta.dirname, "..");
@@ -40,9 +46,14 @@ const LOCK_STALE_MS = 30 * 60 * 1000;
 const [arg0, ...rest] = process.argv.slice(2);
 const today = new Date().toISOString().slice(0, 10);
 
+/**
+ * @param {string} path
+ * @param {{ passes?: Array<Record<string, unknown>> }} fallback
+ * @returns {{ passes?: Array<Record<string, unknown>> }}
+ */
 function readJson(path, fallback) {
   try {
-    return JSON.parse(readFileSync(path, "utf8"));
+    return JSON.parse(readFileSync(path, "utf-8"));
   } catch {
     return fallback;
   }
@@ -52,8 +63,8 @@ function ledgerAppend(record) {
   record.date = record.date ?? today;
   record.stage = record.stage ?? "producer";
   mkdirSync(stateDir, { recursive: true });
-  const prev = readFileSync(ledgerPath, "utf8");
-  writeFileSync(ledgerPath, prev.trimEnd() + "\n" + JSON.stringify(record) + "\n");
+  const prev = readFileSync(ledgerPath, "utf-8");
+  writeFileSync(ledgerPath, `${prev.trimEnd()}\n${JSON.stringify(record)}\n`);
 }
 
 function todayPasses(state) {
@@ -63,7 +74,18 @@ function todayPasses(state) {
 if (arg0 === "--status") {
   const state = readJson(passStatePath, { passes: [] });
   const passes = todayPasses(state);
-  console.log(JSON.stringify({ date: today, passes: passes.length, max: MAX_PASSES_PER_DAY, recent: passes.slice(-3) }, null, 2));
+  console.log(
+    JSON.stringify(
+      {
+        date: today,
+        max: MAX_PASSES_PER_DAY,
+        passes: passes.length,
+        recent: passes.slice(-3),
+      },
+      null,
+      2
+    )
+  );
   process.exit(0);
 }
 
@@ -79,7 +101,9 @@ if (arg0 === "--clear-lock") {
 
 const intent = [arg0, ...rest].join(" ").trim();
 if (!intent) {
-  console.error("usage: produce.mjs \"<study> <one-line intent>\" | --status | --clear-lock");
+  console.error(
+    'usage: produce.mjs "<study> <one-line intent>" | --status | --clear-lock'
+  );
   process.exit(2);
 }
 
@@ -87,19 +111,30 @@ if (!intent) {
 const state = readJson(passStatePath, { passes: [] });
 const passesToday = todayPasses(state);
 
-const done = passesToday.find((p) => p.status === "completed" && p.intent === intent);
+const done = passesToday.find(
+  (p) => p.status === "completed" && p.intent === intent
+);
 if (done) {
   console.log(JSON.stringify({ dedupe: true, receipt: done }, null, 2));
   process.exit(0);
 }
 
-if (passesToday.filter((p) => p.status === "completed" || p.status === "failed").length >= MAX_PASSES_PER_DAY) {
-  console.log(JSON.stringify({ stopPolicy: true, date: today, max: MAX_PASSES_PER_DAY }, null, 2));
+if (
+  passesToday.filter((p) => p.status === "completed" || p.status === "failed")
+    .length >= MAX_PASSES_PER_DAY
+) {
+  console.log(
+    JSON.stringify(
+      { date: today, max: MAX_PASSES_PER_DAY, stopPolicy: true },
+      null,
+      2
+    )
+  );
   process.exit(0);
 }
 
 // ---- lock -----------------------------------------------------------------
-let lock = readJson(lockPath, null);
+const lock = readJson(lockPath, null);
 const stale = lock && Date.now() - new Date(lock.at).getTime() > LOCK_STALE_MS;
 if (lock && !stale && lock.date === today) {
   // A pass is mid-flight in another invocation — bounded producer exits.
@@ -108,16 +143,21 @@ if (lock && !stale && lock.date === today) {
 }
 const resumed = Boolean(lock && lock.date === today && stale);
 const pass = {
-  id: `pass-${today}-${(passesToday.length + 1).toString().padStart(2, "0")}`,
-  date: today,
-  intent,
-  status: "started",
-  resumed,
   at: new Date().toISOString(),
+  date: today,
+  id: `pass-${today}-${(passesToday.length + 1).toString().padStart(2, "0")}`,
+  intent,
+  resumed,
+  status: "started",
 };
-writeFileSync(lockPath, JSON.stringify(pass) + "\n");
-ledgerAppend({ runId: pass.id, intent: pass.intent, status: "started", resumed });
-console.log(JSON.stringify({ started: pass.id, resumed }, null, 2));
+writeFileSync(lockPath, `${JSON.stringify(pass)}\n`);
+ledgerAppend({
+  intent: pass.intent,
+  resumed,
+  runId: pass.id,
+  status: "started",
+});
+console.log(JSON.stringify({ resumed, started: pass.id }, null, 2));
 
 // The actual pass body lives in the closing motion below; this script's
 // contract is to run the standard ship chain for the named study and only
@@ -128,17 +168,33 @@ try {
   // validated against the live registry (STUDY_LOADERS ids in main.ts) so a
   // producer pass can never archive a study the pointing tab cannot mount.
   const [study, ...noteParts] = intent.split("\n")[0].split(" ");
-  if (!study) throw new Error("intent must start with the study id");
+  if (!study) {
+    throw new Error("intent must start with the study id");
+  }
   const registry = (() => {
-    const src = readFileSync(join(root, "archives/expanded-cinema-2026-09/src/main.ts"), "utf8");
-    return [...src.matchAll(/"([a-z0-9-]+)": \(\) => import/g)].map((m) => m[1]);
+    const src = readFileSync(
+      join(root, "archives/expanded-cinema-2026-09/src/main.ts"),
+      "utf-8"
+    );
+    return [...src.matchAll(/"([a-z0-9-]+)": \(\) => import/g)].map(
+      (m) => m[1]
+    );
   })();
   if (!registry.includes(study)) {
-    throw Object.assign(new Error(`study "${study}" is not in the registry [${registry.join(", ")}] — register it in main.ts before a producer pass can ship it`), { registry });
+    throw Object.assign(
+      new Error(
+        `study "${study}" is not in the registry [${registry.join(", ")}] — register it in main.ts before a producer pass can ship it`
+      ),
+      { registry }
+    );
   }
   const note = noteParts.join(" ") || `producer pass ${pass.id}`;
   const sh = (cmd, args) => {
-    const out = execFileSync(cmd, args, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "inherit"] });
+    const out = execFileSync(cmd, args, {
+      cwd: root,
+      encoding: "utf-8",
+      stdio: ["ignore", "pipe", "inherit"],
+    });
     return out.trim();
   };
 
@@ -148,7 +204,9 @@ try {
   sh("node", ["scripts/upload-archive.mjs"]);
   const url = `https://cinema.wzrrd.sh/archive/${study}/${sha}/index.html`;
   const res = await fetch(url, { method: "HEAD" });
-  if (!res.ok) throw new Error(`archive check ${res.status} for ${url}`);
+  if (!res.ok) {
+    throw new Error(`archive check ${res.status} for ${url}`);
+  }
 
   pass.status = "completed";
   pass.study = study;
@@ -156,24 +214,50 @@ try {
   pass.archive = url;
   pass.completedAt = new Date().toISOString();
   ledgerAppend({
-    runId: pass.id,
-    study,
-    sha,
     archive: `archive/${study}/${sha}/`,
-    status: "completed",
-    stage: "producer",
     intent,
+    runId: pass.id,
+    sha,
+    stage: "producer",
+    status: "completed",
+    study,
     verified: ["turbo check test build", `archive 200 (${url})`],
   });
-  writeFileSync(passStatePath, JSON.stringify({ ...state, passes: [...(state.passes ?? []), pass] }, null, 2) + "\n");
+  writeFileSync(
+    passStatePath,
+    `${JSON.stringify(
+      { ...state, passes: [...(state.passes ?? []), pass] },
+      null,
+      2
+    )}\n`
+  );
   unlinkSync(lockPath);
-  console.log(JSON.stringify({ completed: pass.id, study, sha, url }, null, 2));
-} catch (err) {
+  console.log(JSON.stringify({ completed: pass.id, sha, study, url }, null, 2));
+} catch (error) {
+  const message = error instanceof Error ? error.message : String(error);
   pass.status = "failed";
-  pass.error = err.message;
+  pass.error = message;
   pass.failedAt = new Date().toISOString();
-  ledgerAppend({ runId: pass.id, intent: pass.intent, status: "failed", error: err.message });
-  writeFileSync(passStatePath, JSON.stringify({ ...state, passes: [...(state.passes ?? []), pass] }, null, 2) + "\n");
-  console.error(JSON.stringify({ failed: pass.id, error: err.message, note: "lock retained as resumption evidence" }));
+  ledgerAppend({
+    error: message,
+    intent: pass.intent,
+    runId: pass.id,
+    status: "failed",
+  });
+  writeFileSync(
+    passStatePath,
+    `${JSON.stringify(
+      { ...state, passes: [...(state.passes ?? []), pass] },
+      null,
+      2
+    )}\n`
+  );
+  console.error(
+    JSON.stringify({
+      error: message,
+      failed: pass.id,
+      note: "lock retained as resumption evidence",
+    })
+  );
   process.exit(1);
 }

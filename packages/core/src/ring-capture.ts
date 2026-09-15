@@ -42,7 +42,11 @@ export function readSlot(n: number, delay: number, length: number): number {
  * overwrite this same frame — the same-scope violation class of the
  * recurrence-01 black screen. length = delay + 1 always answers false.
  */
-export function isSameScopeCollision(n: number, delay: number, length: number): boolean {
+export function isSameScopeCollision(
+  n: number,
+  delay: number,
+  length: number
+): boolean {
   return readSlot(n, delay, length) === writeSlot(n, length);
 }
 
