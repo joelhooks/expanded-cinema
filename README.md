@@ -26,7 +26,9 @@ public surface is this gallery plus occasional review links.
 ## Workspace
 
 ```
-apps/sketch      Vite + three.js WebGPU sketch (browser app)
+apps/            the active experiment (empty between experiments)
+archives/        closed experiments as buildable workspace packages
+  expanded-cinema-2026-09   the first run: Vite + three.js WebGPU sketch (browser app)
 packages/core    shared domain logic
 videos/          source clips (ingest target), cataloged with sha256
 state/           run ledger + pointers

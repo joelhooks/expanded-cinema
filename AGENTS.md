@@ -12,7 +12,7 @@ here.
 
 ```bash
 pnpm install                      # workspace install
-pnpm dev                          # vite dev server (apps/sketch)
+pnpm dev                          # vite dev server (the sketch package, now under archives/)
 pnpm check                        # typecheck + ultracite + oxfmt check
 pnpm fix                          # apply oxlint/oxfmt fixes
 pnpm test                         # vitest suites
@@ -57,7 +57,8 @@ output.
 
 | Path             | Role                                            |
 | ---------------- | ----------------------------------------------- |
-| `apps/sketch`    | Vite + three.js WebGPU sketch (browser app)     |
+| `apps/*`         | the active experiment (empty between experiments) |
+| `archives/*`     | closed experiments, kept buildable as workspace packages; first is `expanded-cinema-2026-09` (the Vite + three.js WebGPU sketch) |
 | `packages/core`  | shared domain logic (rotation, contracts)       |
 | `videos/`        | root source clips (ingest pipeline target)      |
 | `scripts/`       | catalog generation + vendoring helpers          |
@@ -74,5 +75,5 @@ output.
   content in published artifacts (pages, R2, wzrrd output, repo issues).
 - `state/ledger.jsonl` is the canonical record of run outcomes; do not treat
   `STATE.json` or chat as the source of truth for "did it run".
-- Video sources are authoritative via `apps/sketch/catalog.json` hashes.
+- Video sources are authoritative via the sketch package's `catalog.json` hashes (`archives/expanded-cinema-2026-09/catalog.json`).
 - xstate v6 alpha is pinned with caretless exactness; bump deliberately.

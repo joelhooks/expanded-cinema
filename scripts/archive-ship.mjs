@@ -19,7 +19,7 @@ if (!sha || !studyId) {
 }
 const note = noteParts.join(" ") || "";
 
-const distDir = join(root, "apps", "sketch", "dist");
+const distDir = join(root, "archives", "expanded-cinema-2026-09", "dist");
 const versionsDir = join(root, "versions", studyId, sha);
 
 if (!existsSync(distDir)) {
@@ -59,7 +59,7 @@ function hashTree(dir) {
   return createHash("sha256").update(parts.sort().join("\n")).digest("hex");
 }
 
-const catalogPath = join(root, "apps", "sketch", "catalog.json");
+const catalogPath = join(root, "archives", "expanded-cinema-2026-09", "catalog.json");
 const catalog = JSON.parse(readFileSync(catalogPath, "utf8"));
 const catalogHashes = Object.fromEntries(catalog.entries.map((e) => [e.file, e.sha256]));
 

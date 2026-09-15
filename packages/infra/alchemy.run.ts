@@ -1,7 +1,7 @@
 /**
  * expanded-cinema on wzrrd.sh.
  *
- * The sketch app (apps/sketch) deploys as a Vite SPA on a Worker with
+ * The sketch app (archives/expanded-cinema-2026-09) deploys as a Vite SPA on a Worker with
  * `cinema.wzrrd.sh` as its custom domain. The zone carries a
  * `*.wzrrd.sh/*` route to the wzrrd router and Workers routes beat custom
  * domains, so an explicit exact-host route wins the hostname back — the
@@ -233,7 +233,7 @@ export default Alchemy.Stack(
     });
 
     const site = yield* Cloudflare.Website.Vite("ExpandedCinemaWeb", {
-      rootDir: "../../apps/sketch",
+      rootDir: "../../archives/expanded-cinema-2026-09",
       memo: {
         include: ["src/**", "index.html", "package.json", "vite.config.ts", "catalog.json"],
         lockfile: true,
@@ -242,7 +242,7 @@ export default Alchemy.Stack(
       routes: [{ pattern: `${host}/*`, zoneName: ZONE }],
       observability: { enabled: true },
       // The R2 bucket rides the worker env so a worker route can read
-      // archive manifest objects (see apps/sketch worker-side code).
+      // archive manifest objects (see archives/expanded-cinema-2026-09 worker-side code).
       env: {
         ARCHIVE: archive,
       },

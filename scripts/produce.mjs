@@ -130,7 +130,7 @@ try {
   const [study, ...noteParts] = intent.split("\n")[0].split(" ");
   if (!study) throw new Error("intent must start with the study id");
   const registry = (() => {
-    const src = readFileSync(join(root, "apps/sketch/src/main.ts"), "utf8");
+    const src = readFileSync(join(root, "archives/expanded-cinema-2026-09/src/main.ts"), "utf8");
     return [...src.matchAll(/"([a-z0-9-]+)": \(\) => import/g)].map((m) => m[1]);
   })();
   if (!registry.includes(study)) {

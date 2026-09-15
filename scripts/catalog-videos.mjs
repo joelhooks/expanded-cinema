@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Generate apps/sketch/catalog.json from videos/ (workspace root).
+// Generate archives/expanded-cinema-2026-09/catalog.json from videos/ (workspace root).
 // Hashes every supported video so the browser loop can pin exact bytes.
 // Usage: node scripts/catalog-videos.mjs
 import { createHash } from "node:crypto";
@@ -8,7 +8,7 @@ import { join, relative, sep } from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
 const videosDir = join(root, "videos");
-const outPath = join(root, "apps", "sketch", "catalog.json");
+const outPath = join(root, "archives", "expanded-cinema-2026-09", "catalog.json");
 
 const files = (await readdir(videosDir, { recursive: false }))
   .filter((f) => f.endsWith(".mp4"))
