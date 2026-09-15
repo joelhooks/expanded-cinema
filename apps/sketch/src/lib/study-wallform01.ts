@@ -970,7 +970,7 @@ export async function mountRuntime(
         const wallMat = study.wallPic.material as THREE.MeshBasicMaterial;
         for (const sh of study.shards) {
           (sh.material as THREE.MeshBasicMaterial).opacity = wallMat.opacity;
-          (sh.material as THREE.MeshBasicMaterial).color.setScalar(3.6);
+          (sh.material as THREE.MeshBasicMaterial).color.setScalar(4.6);
         }
         const openMs = aperturedAtMs === null ? -1e9 : now - aperturedAtMs;
         if (openMs >= 3_000 && snapProof.count < 3 && (snapProof.count === 0 || openMs >= (snapProof.count + 1) * 10_000)) {
