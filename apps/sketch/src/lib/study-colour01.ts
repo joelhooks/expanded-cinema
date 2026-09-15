@@ -486,15 +486,22 @@ export async function mountRuntime(
         .catch(() => undefined);
     };
     let aperturedAtMs: number | null = null;
+    let armEmitted = false; // seq-62: one-shot guard — this handler fires on
+    // EVERY seeked in the first 30s (the in-point hard guard re-seeks each
+    // frame), so without it the arm loop pinned the video and the plate
+    // froze on one frame (the v20 class again, in the arm path).
     const onSeeked = (ev: Event): void => {
       if (revealHolder.revealed) return; // v21: one-shot guard
       const vid = ev.target as HTMLVideoElement;
       if (vid !== vidOf()) return; // stale element's event: ignore
       if (Math.abs(vid.currentTime - SEEK_TO) >= 1.5) return; // wrong place
       if (armedAtMs === null) { armedAtMs = performance.now(); armedVia = "seeked"; }
-      void sketchEvents
-        .emitInfo("study", "colour01.armed", { at: Number(vid.currentTime.toFixed(2)) })
-        .catch(() => undefined);
+      if (!armEmitted) {
+        armEmitted = true;
+        void sketchEvents
+          .emitInfo("study", "colour01.armed", { at: Number(vid.currentTime.toFixed(2)) })
+          .catch(() => undefined);
+      }
     };
     let armedVia: "seeked" | "backstop" = "backstop";
     videoLayer.texture.addEventListener?.("dispose", () => {
