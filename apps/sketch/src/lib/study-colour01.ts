@@ -225,7 +225,7 @@ function buildScene() {
         depthWrite: false,
         blending: THREE.AdditiveBlending,
         side: THREE.DoubleSide,
-        color: beam === 0 ? 0xdfe8ff : 0x9fd4ff,
+        color: beam === 0 ? 0xffd6cc : 0xb8d4ff,
       });
       const mesh = new THREE.Mesh(geo, mat);
       mesh.userData = { beam, slatIdx: si, uFrac };
@@ -253,7 +253,7 @@ function buildScene() {
         // the whole room and summed to a white wall); slats stay additive.
         blending: THREE.NormalBlending,
         side: THREE.DoubleSide,
-        color: (beam === 0 ? 0xdfe8ff : 0x9fd4ff),
+        color: (beam === 0 ? 0xffd6cc : 0xb8d4ff),
       });
       const mesh = new THREE.Mesh(geo, mat);
       const org = beam === 0 ? PROJ : PROJ.clone().setX(PROJ.x + 1.0).setY(PROJ.y - 0.15);
@@ -547,6 +547,9 @@ export async function mountRuntime(
     let probeFrames = 0;
     let wallProofEmitted = false;
     let wallMean = 0;
+    let bestWallMean = 0;
+    let bestWallData: ImageData | null = null;
+    let bestCommitted = false;
     let driftEMA = { g: 1, b: 1 };
     let driftTick = 0;
     const colourStep = (): void => {
@@ -878,7 +881,7 @@ export async function mountRuntime(
           const bright = Math.min(1, bandL * 1.3 + cutGlow * 0.35);
           const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = (beam === 0 ? 0.05 + bright * 0.3 : 0.03 + bright * 0.15) * fade * graze(m) * (beam === 0 ? 0.5 : 0.35);
+          mm.opacity = (beam === 0 ? 0.04 + bright * 0.24 : 0.025 + bright * 0.12) * fade * graze(m) * (beam === 0 ? 0.5 : 0.35);
         }
 
         // beam-01 vertical slats (now live, was dead since v13 rewrites):
@@ -921,7 +924,7 @@ export async function mountRuntime(
           const bbright = Math.min(1, bcolL * 1.35 + cutGlow * 0.3);
           const bfade = bBeam === 0 ? fade1 : fade2;
           const bmm = sm2.material as THREE.MeshBasicMaterial;
-          bmm.opacity = (bBeam === 0 ? 0.02 + bbright * 0.22 : 0.015 + bbright * 0.09) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 0.35);
+          bmm.opacity = (bBeam === 0 ? 0.016 + bbright * 0.18 : 0.012 + bbright * 0.075) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 0.35);
         }
         void SLATS;
 
@@ -965,8 +968,18 @@ export async function mountRuntime(
                 ra += (rx[ri]! + rx[ri + 1]! + rx[ri + 2]!) / 3;
               }
               wallMean = ra / ((rx.length / 640) | 0);
+              if (wallMean > bestWallMean) {
+                bestWallMean = wallMean;
+                bestWallData = study.snapCtx.getImageData(0, 0, 256, 144);
+              }
             }
           }
+        } else if (openMs >= 8_000 && wallMean < 20 && bestWallData && !bestCommitted) {
+          // the first 8s never cleared 20: commit the brightest frame seen
+          bestCommitted = true;
+          study.snapCtx.putImageData(bestWallData, 0, 0);
+          study.snapTex.needsUpdate = true;
+          wallMat.color.setScalar(2.6 + (20 - bestWallMean) * 0.12); // darker capture, louder drive
         }
         wallMat.opacity = openMs >= 3_000
           ? Math.min(1, (openMs - 3_000) / 900)
