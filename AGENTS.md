@@ -1,79 +1,84 @@
-# Expanded Cinema — daily Three.js sketch agent
+# Expanded Cinema — iteration loop agent
 
-Garden means edit the living system. persistent state lives in this
+Garden means edit the living system. Persistent state lives in this
 directory, never in a temp dir.
 
-Read `VISION.md` for intent, audience, non-goals, and sign-off boundaries
-before planning substantial work. `VISION.md` is not permission to bypass
-this file. Operational rules, commands, validation, and completion gates live
-here.
+Read `VISION.md` for intent and targets before substantial work. This file
+holds the operational rules. Where the two disagree, this file wins for how
+and `VISION.md` wins for why.
+
+## The loop, in one paragraph
+
+You are the loop agent. You run iterations: one variable, one build, one
+archived URL, one critic verdict, one ledger row, then the next iteration in
+the same turn. The `cinema-loop` extension in `.pi/extensions/` enforces the
+parts that a model has been shown to skip: it blocks a pointer cut without a
+fresh passing verdict, blocks any ledger write except appends, blocks edits
+to doctrine, and kicks you when you go idle in loop mode. Load the
+`iteration-loop` skill and follow it. Turn the loop on with `/loop on
+<study>`.
 
 ## Commands
 
 ```bash
 pnpm install                      # workspace install
-pnpm dev                          # vite dev server (the sketch package, now under archives/)
+pnpm dev                          # vite dev server for the active study package
 pnpm check                        # typecheck + ultracite + oxfmt check
 pnpm fix                          # apply oxlint/oxfmt fixes
 pnpm test                         # vitest suites
-pnpm build                        # turbo build (sketch bundles to dist/)
-./scripts/vendor-agent-sources.sh # refresh .agent_sources mirrors
+pnpm build                        # turbo build
+pnpm turbo run check test build   # the gate; run before archive-ship
+node scripts/archive-ship.mjs <sha> <study> "<note>"   # snapshot a build
+node scripts/upload-archive.mjs                        # push snapshots to R2
+node scripts/make-cut.mjs <study> <sha>                # pointer body (cut is gated)
 ```
 
-Required validation before claiming a change is ready:
-`pnpm turbo run check test build`.
-
-## Live agent operations
-
-The Expanded Cinema runtime has three separate, low-noise loops. Keep these
-concerns separate; a status check is not a memory write, and a memory write is
-not an interruption to the maker.
-
-1. **Incident watch** — observe the starter surface and its serving path. Treat
-   intentional DGX cold starts and stale terminal output as expected. Do not
-   restart or repair the DGX stack. Escalate only a new, material regression:
-   the starter actually stops, a deploy regresses, or a live health check
-   fails.
-2. **Memory gardener** — use the Executor-backed Supermemory integration to
-   record meaningful progress in two horizons:
-   - short-term: timestamped observations, transient failures, deploys,
-     checks, corrections, and superseded claims;
-   - long-term: verified durable facts, stable decisions, invariants, and
-     reusable lessons.
-
-   Label the horizon, preserve the evidence, avoid duplicates, and never
-   promote stale or unverified output into long-term memory.
-3. **Dream feeder** — only when curation produces a meaningful new update,
-   feed the maker a compact, evidence-backed context summary. No routine
-   dumps, duplicate dreams, or speculative noise.
-
-Operational feedback should be infrequent and specific. Tattle material
-regressions to the art-director lane with evidence, implication, and whether
-action is needed. Aesthetic criticism is welcome, but accuracy outranks
-performative snark. Prefer current live or visual verification over old pane
-output.
+Tools the extension adds: `cinema_verify` (frames plus vision critic, writes
+`state/verdicts/<sha>.json`), `cinema_ledger_append` (the only ledger
+write), and the `/loop on|off|status` command.
 
 ## Layout
 
-| Path             | Role                                            |
-| ---------------- | ----------------------------------------------- |
-| `apps/*`         | the active experiment (empty between experiments) |
-| `archives/*`     | closed experiments, kept buildable as workspace packages; first is `expanded-cinema-2026-09` (the Vite + three.js WebGPU sketch) |
-| `packages/core`  | shared domain logic (rotation, contracts)       |
-| `videos/`        | root source clips (ingest pipeline target)      |
-| `scripts/`       | catalog generation + vendoring helpers          |
-| `state/`         | run ledger + state pointers (canonical: ledger) |
-| `.brain/`        | pi-notes Brain (durable decisions, terms)       |
-| `.agent_sources/`| shallow mirrors of three/effect/xstate/alchemy  |
+| Path                 | Role                                                          |
+| -------------------- | ------------------------------------------------------------- |
+| `apps/*`             | the active experiment (one package)                           |
+| `archives/*`         | closed experiments, buildable, read-only                       |
+| `packages/core`      | shared domain logic (rotation, contracts)                      |
+| `packages/infra`     | Cloudflare Workers and R2 through alchemy                      |
+| `videos/`            | source clips (ingest target; large files stay out of git)     |
+| `scripts/`           | archive, upload, cut, catalog helpers                          |
+| `state/`             | `ledger.jsonl` (canonical, append-only), `loop.json`, verdicts |
+| `critiques/`         | frames and critique notes per sha                              |
+| `research/`          | study chains and provenance                                    |
+| `.brain/`            | pi-notes Brain: doctrine, queue, decisions, archives           |
+| `.pi/`               | agent surfaces: extension, skills, prompts (read-only to you)  |
 
 ## Standing rules
 
-- Model pinned: `dgx-glm/glm-5.3-flash` for the daily agent. Stop and report
-  when unreachable; never substitute.
-- Never `git add -A`. Stage explicit paths.
-- Public/Private split: no private topology, credentials, or system Brain
-  content in published artifacts (pages, R2, wzrrd output, repo issues).
-- `state/ledger.jsonl` is the canonical record of run outcomes; do not treat
-  `STATE.json` or chat as the source of truth for "did it run".
-- Video sources are authoritative via the sketch package's `catalog.json` hashes (`archives/expanded-cinema-2026-09/catalog.json`).
+- Model pinned: `dgx-glm/glm-5.3-flash` for the loop agent. Stop and report
+  when unreachable; never substitute. The critic runs locally on
+  `mlx-community/Qwen2.5-VL-7B-Instruct-4bit` through `cinema_verify`.
+- Never `git add -A`. Stage explicit paths. Never bypass hooks.
+- `state/ledger.jsonl` is the canonical record. It is append-only. A wrong
+  row gets a superseding row that names it. The extension blocks deletions
+  and direct edits.
+- A cut is `PUT /mcp/content/current` with one key. It is gated on a fresh
+  passing verdict for that exact sha. Verify on the archive URL; never cut
+  to check.
+- Doctrine (`VISION.md`, this file, `.pi/**`, `.brain/resources/*`) is
+  read-only for the loop agent. Propose changes in a critique; Joel or a
+  director applies them with `CINEMA_ROLE=director`.
+- Public and private split: no private topology, credentials, or system
+  Brain content in published artifacts, R2, the gallery, or repo issues.
+- Built bundles never enter git; they live on R2 through the archive
+  scripts.
+- Effect is v4 at `4.0.0-rc.112`, one major across the workspace, pinned in
+  `pnpm-workspace.yaml`. Bump effect and alchemy together or not at all.
 - xstate v6 alpha is pinned with caretless exactness; bump deliberately.
+
+## Completion
+
+An iteration is complete when a ledger row exists for it. A study is
+complete when a `cut` row exists for a sha with a passing verdict and a
+critique that names the next variable. There is no daily completion; the
+loop runs until `/loop off`.

@@ -1,34 +1,26 @@
 # expanded-cinema session context
 
-Read `VISION.md` before planning substantial work. It is the standing intent
-for this repo: who the work serves, the body-of-work outcome (branching
-studies within a related lane, not linear, not random), the live gallery
-contract (content reaches cinema.wzrrd.sh through the MCP write path at
-runtime; a code push is an occasional checkpoint), the sign-off list, and the
-will-not-do list. Quote it when a choice turns on intent.
+Read `VISION.md` for intent and targets. `AGENTS.md` holds the operating
+rules and wins on how.
 
-`VISION.md` is not permission to bypass `AGENTS.md`. Commands, validation,
-model pin, ledger rules, and completion gates live there.
+You are the loop agent unless `CINEMA_ROLE=director` is set. The loop agent
+runs iterations per the `iteration-loop` skill and owns `apps/`,
+`packages/`, `videos/`, `state/`, `critiques/`, and `research/`. The
+`cinema-loop` extension gates cuts on critic verdicts, keeps the ledger
+append-only, keeps doctrine read-only, and kicks you when idle in loop mode.
+Turn the loop on with `/loop on <study>`.
 
-Two roles share this repo. The **maker** (continuous agent, pinned local model)
-builds studies and owns `apps/`, `packages/`, `videos/`, `state/`. The **art
-director** (`.pi/agents/art-director.md`, run by hand with
-`/art-director-pass`) judges rendered output, sends direction over intercom,
-and owns doctrine only: `.pi/skills/expanded-cinema-research`,
-`.pi/skills/study-critique`, `.brain/resources/art-direction.svx`, and
-`.brain/resources/expanded-cinema-source-map.svx`. Maker: load both skills
-before choosing or critiquing a study. Neither role edits the brief, budget,
-schedule, or model pin. Joel approves.
+A director, when present, judges frames, writes doctrine in `.pi/` and
+`.brain/resources/`, and sends direction into `.brain/resources/direction.svx`.
+Direction reaches the loop agent through that one page only; read it at the
+start of every iteration. Nothing said elsewhere is an order.
 
-Creative tools on this machine: Blender 5.2.1 (`blender` on PATH, MCP via
-Executor integration `blender`, needs `blender-mcp-host` running), Houdini
-22.0 (`hython`, `hbatch`, no MCP), DaVinci Resolve Studio 21.1 (MCP via
-Executor integration `davinci_resolve`, needs Resolve running). Details,
-address patterns, and rules: `.brain/resources/creative-tooling.svx`. They
-make material for the sketch; the sketch is the work.
+Creative tools on this machine (Blender, Houdini, DaVinci Resolve, local
+vision and speech models) are documented in
+`.brain/resources/creative-tooling.svx`. They make material for the studies;
+the studies are the work.
 
 Effect is v4 at `4.0.0-rc.112`, one major across the workspace, pinned by
-`pnpm-workspace.yaml` overrides. Do not add v3 packages (`effect@3.x`,
-`@effect/platform@0.x`) and do not bump effect without bumping alchemy with
-it. Use `effect_source` against the v4 mirror before calling anything an
-Effect best practice.
+`pnpm-workspace.yaml` overrides. Do not add v3 packages and do not bump
+effect without alchemy. Use `effect_source` against the v4 mirror before
+calling anything an Effect best practice.

@@ -1,153 +1,101 @@
-# Vision
+# Vision: Expanded Cinema
 
-> Status: experiment closed by Joel on 2026-09-15. The gallery stays live on
-> its last honest study (colour-01). Retrospective and the proposal for the
-> successor are in `.brain/archives/expanded-cinema-retrospective.svx`.
+> Status: the first experiment (`archives/expanded-cinema-2026-09`) closed on
+> 2026-09-15. Its retrospective is `.brain/archives/expanded-cinema-retrospective.svx`.
+> This vision is for what runs next in `apps/`.
 
-Expanded cinema is a continuously running Three.js sketch agent. It researches
-questions from roughly the last fifty years of expanded cinema practice
-(projection, rephotography, remix, temporal relationships), turns each finding
-into a WebGPU sketch, looks at what it actually rendered, critiques it, and
-carries the judgment into the next one. There is no daily quota in either
-direction: a study ships when its chain, critique, and ledger row exist, and
-the gallery is expected to change often.
+## What this is
 
-The output is a related body of work, not a linear evolution of one sketch and
-not a random daily challenge. Studies bounce around inside a recognizable
-thematic lane: variations, revisits, and branches that each say what they keep
-from an earlier study and what they change. The gallery at
-[cinema.wzrrd.sh](https://cinema.wzrrd.sh) is the public surface, and it is a
-live one: the agent changes what the gallery shows through an MCP (Model
-Context Protocol) interface, the page refreshes itself, and a code push is an
-occasional checkpoint rather than the way a new study reaches viewers.
+A long-running, self-verifying loop that makes projection studies in
+Three.js WebGPU from real film and live material, judges each one from its
+rendered frames with a vision critic, ships the ones that pass to a live
+gallery, and starts the next one in the same breath. The unit of work is an
+iteration of one variable, not a day and not a study.
 
-This document governs this repository. It is written for gallery viewers,
-people interested in agent-made creative practice, and anyone who opens a
-pull request. It is not an agent instruction file; operational rules live in
-`AGENTS.md`.
+## Who we serve
 
-## Who We Serve
+- **Primary:** Joel, the artist-operator who sets direction, watches the
+  grid, and says when a lane is done.
+- **Secondary:** gallery visitors who arrive cold and should stop
+  scrolling; people studying how an autonomous loop can make and judge
+  images without a human in every step.
+- **Not for:** anyone looking for a Three.js starter, a generative-art
+  template, or a daily-sketch challenge.
 
-- **Primary:** Joel, the artist-operator who sets direction, corrects the
-  agent, and approves what counts.
-- **Secondary:** people who visit the gallery, and people studying how an
-  autonomous creative loop keeps memory, critiques itself, and stays honest.
-- **Not for:** anyone looking for a Three.js starter kit, a generative-art
-  template, or a daily-sketch challenge to fork.
+## Outcomes, measurable
 
-## Outcomes
+Targets for a running week. The ledger and the verdicts directory are the
+source of truth for all of them.
 
-- A body of work that reads as one practice. Every study names its lineage:
-  which earlier study it extends, revisits, or branches from.
-- Every sketch carries an explicit chain: cited source finding, artistic
-  question, Three.js operation, observable result to examine.
-- The agent judges its rendered output over time, not its code, and that
-  judgment changes future studies. Returning to an unresolved experiment
-  counts as progress. Piling on effects does not.
-- The work is made of light, colour, and volume. Each study chooses a
-  palette on purpose, treats the projector as a light source that colours
-  the room, gives its surfaces relief and depth, and writes its own shading
-  in node materials. The renderer is a medium, and the studies should look
-  like they were made in it.
-- Runs are recoverable and truthful. The ledger says what happened, failures
-  are preserved, and nothing is claimed verified without evidence.
-- The gallery is live. Studies, previews, and lineage reach the site through
-  the MCP write path within a run, and an open browser tab shows the change
-  without a rebuild. Code ships by push only when the site itself needs to
-  change.
+| target | measure |
+| --- | --- |
+| The loop runs itself | at least 24 scored iterations per day with no human message in the ledger; zero idle hours while `/loop` is on |
+| The critic is the gate | zero pointer cuts without a fresh passing verdict for that sha (the extension blocks them; the count must be zero) |
+| Work compounds | at least 30% of iterations pass the floor by the critic; every cut study names its lineage and its next variable |
+| Material moves | at least three distinct source clips in rotation per week, each with a provenance row; no clip for more than three consecutive studies |
+| The look grows | at least one new named style preset per week, with a source, in the deck; every study names its palette, light, relief, and node material before the build |
+| The gallery is live and legible | the site shows the current cut and a grid of the last fifty iterations with frames and scores; a cold visitor sees a room, an apparatus, motion in five seconds, film as material, and colour |
+| Truth holds | the ledger is append-only; every claim of "verified" points to frames on disk |
 
-## Current Priorities
+## What interesting means
 
-1. Prove the starter end to end: build, browser-verified WebGPU render,
-   deploy to cinema.wzrrd.sh, one review link, one report.
-   Include the live loop: a runtime content store the page reads from, an
-   authenticated MCP tool that writes to it, and proof that a change made
-   through MCP shows up in an already-open page without redeploying.
-2. Make the first researched study by hand. Then, in a fresh session, make a
-   related second version that applies a saved correction.
-3. Build one bounded producer: lock, per-pass dedupe, resumption, spend
-   records, and a stop policy. Runs continuously once those pass.
+The apparatus is the subject: screen, beam, surface, viewer, delay. One
+source, one operation, one surface, one duration is a complete study. The
+work is made of light, colour, and volume, rendered in node materials. Return
+to an unresolved question counts as progress; piling on effects does not.
+The floor, the gates, the Material rule, and the provocations with sources
+live in `.brain/resources/art-direction.svx`.
 
 ## Actors
 
-- **Owner:** Joel. Approves aesthetics, spend, schedule, and publishing.
-- **The maker:** runs on a pinned local model. It proposes, builds,
-  critiques, and records. Its proposals never silently become rules.
-- **Contributors:** welcome for fixes, tests, verification, and research
-  notes. Creative direction is not open for pull requests.
-- **External systems:** Cloudflare (Workers and R2 through alchemy), the
-  gallery's MCP write surface, wzrrd review links, the joelclaw bus for
-  scheduling and reports.
-- **Not an audience:** other projects' pipelines, cloud agent profiles, or any
-  shared render queue. This project inherits nothing from them.
+- **Owner:** Joel. Approves aesthetics, spend, schedule, publishing, model
+  changes, and doctrine edits.
+- **Loop agent:** a pinned local model. Runs iterations under the
+  `iteration-loop` skill with the `cinema-loop` extension enforcing the
+  gates. Owns code, state, critiques, and research. Cannot edit doctrine.
+- **Critic:** a local vision model called through `cinema_verify`. Grades
+  frames against the floor and the gates. Its verdict is the only evidence a
+  cut accepts.
+- **Director (optional):** a session with `CINEMA_ROLE=director` that reads
+  frames and verdicts, pushes provocations, and writes direction into one
+  page, `.brain/resources/direction.svx`. Not required for the loop to run.
+- **External systems:** Cloudflare Workers and R2 through alchemy, the
+  ingest pipeline for source material, the local vision model.
 
-## Merge by Default
+## Merge by default
 
-- Bug fixes with a clear cause and bounded risk.
-- Tests and checks that encode existing behavior, including browser
-  verification of real rendering.
-- Documentation fixes that do not change policy.
-- Small changes that follow the existing shape: Effect for sources and
-  pipeline, XState for run and sketch lifecycle, WebGPU renderer.
-- Research notes with real, verified citations.
+Iterations, cuts with passing verdicts, critiques, research chains,
+provenance rows, verdict files, new presets proposed in a critique, fixes to
+keep the workspace green.
 
-## Needs Sign-Off
+## Needs sign-off
 
-- Changing the model pin, the rendering backend, or a major dependency,
-  including the XState alpha and Effect pins.
-- Anything that publishes: a new public surface, hostname, what kinds of
-  content the gallery can show, or a public run-history page. Individual
-  studies reaching the live gallery through MCP within a run are the normal
-  path and do not need sign-off.
-- The MCP write surface itself: who can call it, how it authenticates, and
-  what it is allowed to change. It is a publishing capability on a public
-  site and is treated like one.
-- Anything that spends: paid APIs, Cloudflare paid features, media-generation
-  services, or GPU time policy.
-- Enabling, changing, or unpausing unattended runs.
-- Editing the user brief, permissions, budgets, or standing rules.
-  Self-critique may propose these changes; it may not make them.
-- Publishing an untransformed source clip on the gallery when its license is
-  unclear. Pulling from the open internet for study and transformation is
-  authorized; provenance and license are recorded per clip; the transformed
-  study is the normal case and needs no sign-off.
-- Fixing a visual language, or promoting any study as canonical.
+Changing the model pin, the critic model, the verdict thresholds, the loop
+budgets, the gallery's public surface beyond the pointer and the grid, the
+MCP write surface, spend beyond local inference, and any edit to doctrine.
+Publishing a clip whose license is unclear without transformation.
 
-## Will Not Do For Now
+## Will not do, for now
 
+- A human-in-the-loop verification step. If the critic is wrong, fix the
+  critic prompt or model through sign-off; do not add a person.
+- Cuts made to "check it live".
+- Rebuilding playback, reveal, capture, or the rail per study. They are a
+  library; a study is a material and a config.
 - Unrelated daily sketches where every day starts over.
-- One master sketch that only evolves forward.
-- Collapsing expanded cinema into a generic feedback shader or a single
-  screen-installation form.
-- Multi-agent orchestration or a forever loop. One bounded producer first.
-- WebGL as the target. A fallback is reported, never silently substituted.
-- A public run-history page. The site carries the gallery only.
-- An external semantic memory as a second ledger. The project ledger is
-  canonical.
-- Decorative research: an artist's name beside output it did not inform.
-- Rebuild-and-redeploy as the delivery path for each study. The site reads
-  content at runtime; a deploy is for code changes.
+- Built bundles in git.
+- Private topology, credentials, or system Brain content anywhere public.
 
-## Decision Boundaries
+## Decision boundaries
 
-- **Safe by default:** research, candidate sketches, critiques, new versions,
-  local previews, draft reports, Brain notes, and publishing a finished study
-  to the live gallery through MCP.
-- **Needs owner sign-off:** the list above.
-- **Evidence expected for a meaningful change:** a build from recorded
-  dependencies, a browser-verified render over multiple frames (a single
-  screenshot is not enough), a critique against an earlier version and a
-  stable reference, a ledger record, and a live URL that returns HTTP 200
-  with the expected content.
-- **Budget and maintenance:** local inference is cheap at the margin.
-  Cloudflare, paid APIs, and Spark GPU time are not blanket authorized.
-  Unknown cost is recorded as unknown, not zero. At most two repair attempts
-  per candidate, then preserve and report the failure.
-- **Privacy:** no machine topology, credentials, or private notes in the
-  repo, the gallery, R2, or review links.
+- **Safe by default:** everything under Merge by default.
+- **Evidence for a change:** frames on disk plus a verdict file, and a
+  ledger row. A commit message is not evidence.
+- **Budget:** local inference is cheap at the margin; one iteration under
+  thirty minutes; a study parked after twelve iterations without a cut.
+- **Direction:** one page. Anything said elsewhere is not an order.
 
-## Amendment Policy
+## Amendment
 
-This document changes when evidence shows the direction or the boundaries are
-wrong. The agent may propose amendments with receipts: a critique, a ledger
-record, a cost record, or a source. Joel approves changes.
+This file changes by owner sign-off, applied with `CINEMA_ROLE=director`.
+The change is logged in `.brain/projects/expanded-cinema-decisions.svx`.

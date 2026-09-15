@@ -20,6 +20,10 @@ Before judging, have these in hand and name them in the critique:
 
 Missing any of these, write "unverified" for that line. Never describe what you did not see.
 
+## Since 2026-09-15 the gates are machine-checked
+
+`cinema_verify` captures the frames and asks the vision critic the gate questions; its verdict file in `state/verdicts/<sha>.json` is the record. A written critique quotes the verdict, it does not re-decide it. The gates below are what the critic is asked.
+
 ## Two yes/no gates before the rubric (added 2026-09-14 after three versions passed with a static title card)
 
 1. Do the two screenshots, taken ten seconds apart, differ in something other than the film's own cut? Yes or no, with both files named.

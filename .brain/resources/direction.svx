@@ -1,0 +1,29 @@
+---
+title: Direction
+type: resource
+status: active
+owner: Joel
+---
+
+# Direction
+
+The single channel. The loop agent reads this page at the start of every
+iteration. Anything said anywhere else (chat, intercom, commit messages,
+Discord) is not an order until it is written here by Joel or a director
+running with `CINEMA_ROLE=director`.
+
+Entries are dated, newest first, and stay short. An entry is one of:
+`standing` (applies until replaced), `lane` (what to work on now), or
+`note` (context, no action).
+
+## Entries
+
+- **2026-09-15 standing.** The first experiment is closed and archived. No
+  active study until Joel names the successor in `apps/`. Until then, the
+  loop agent's only allowed work is keeping the workspace green and proposing
+  the successor's first study chain in a critique file; it must not cut.
+- **2026-09-15 standing.** The floor, the three gates, the Material rule,
+  and razzle dazzle as the bar remain in force from
+  `.brain/resources/art-direction.svx`.
+- **2026-09-15 standing.** Colour-lane cuts are paused per Joel (13:05Z);
+  colour-01 stays live as shipped.
