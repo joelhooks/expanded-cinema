@@ -546,6 +546,7 @@ export async function mountRuntime(
     let splitLive = false;
     let probeFrames = 0;
     let wallProofEmitted = false;
+    let wallMean = 0;
     let driftEMA = { g: 1, b: 1 };
     let driftTick = 0;
     const colourStep = (): void => {
@@ -949,24 +950,28 @@ export async function mountRuntime(
         // colour-01.2 regression fix (AD seq-50 #1): the aperture-time
         // capture can land on a blank frame (seek race). Redraw every
         // frame for 2.5s of open time — the last draw is a decoded frame.
-        if (openMs >= 0 && openMs < 2_500) {
+        // colour-01.2c: keep redrawing until the canvas is legible (mean
+        //>=20) or 8s elapses — the shutter lands on a legitimately dark
+        // stretch (well/pendulum at 48), not a race.
+        if (openMs >= 0 && openMs < 8_000 && (openMs < 3_100 || wallMean < 20)) {
           const vw = vidOf();
           if (vw && vw.readyState >= 2) {
             study.snapCtx.drawImage(vw, 0, 0, 256, 144);
             study.snapTex.needsUpdate = true;
-          }
-        }
-        if (openMs >= 0 && openMs < 3100) {
-          const wallVw = vidOf();
-          if (wallVw && wallVw.readyState >= 2) {
-            study.snapCtx.drawImage(wallVw, 0, 0, 256, 144);
-            study.snapTex.needsUpdate = true;
+            if (study.frame.value % 6 === 0) {
+              const rx = study.snapCtx.getImageData(0, 0, 256, 144).data;
+              let ra = 0;
+              for (let ri = 0; ri < rx.length; ri += 640) {
+                ra += (rx[ri]! + rx[ri + 1]! + rx[ri + 2]!) / 3;
+              }
+              wallMean = ra / ((rx.length / 640) | 0);
+            }
           }
         }
         wallMat.opacity = openMs >= 3_000
           ? Math.min(1, (openMs - 3_000) / 900)
           : 0;
-        wallMat.color.setScalar(1.7); // shutter frames are dark (mean ~50/255); overdrive so the past reads
+        wallMat.color.setScalar(2.6); // colour-01.2: capture frames darker than .3 (mean 7 measured); overdrive harder
         wallMat.needsUpdate = true;
         if (!wallProofEmitted && openMs >= 3100) {
           wallProofEmitted = true;
