@@ -145,17 +145,11 @@ function buildScene() {
   const snapTex = new THREE.CanvasTexture(snapCanvas);
   snapTex.colorSpace = THREE.SRGBColorSpace;
   const wallPic = new THREE.Mesh(
-    new THREE.PlaneGeometry(2.2, 1.24),
+    new THREE.PlaneGeometry(5.0, 2.8),
     new THREE.MeshBasicMaterial({ map: snapTex, transparent: true, opacity: 0 }),
   );
-  wallPic.position.set(2.3, 1.3, -2.0);
-  wallPic.rotation.y = 0; // square to the room, slight angle to the camera
-  // seq-41 MAGENTA PROBE: one build, solid color — proves placement vs texture
-  (wallPic.material as THREE.MeshBasicMaterial).map = null;
-  (wallPic.material as THREE.MeshBasicMaterial).color.setHex(0xff00ff);
-  (wallPic.material as THREE.MeshBasicMaterial).opacity = 1;
-  (wallPic.material as THREE.MeshBasicMaterial).transparent = false;
-  (wallPic.material as THREE.MeshBasicMaterial).depthWrite = true;
+  wallPic.position.set(2.8, 1.5, -2.0); // right third, proven visible from the opening rail (magenta probe 5a6e628)
+  wallPic.rotation.y = 0; // square to the room, faces the camera rail
   scene.add(wallPic);
 
   // withhold-01: the IRIS RING — a thin unlit torus tracing the aperture
@@ -809,6 +803,8 @@ export async function mountRuntime(
         wallMat.opacity = openMs >= 3_000
           ? Math.min(1, (openMs - 3_000) / 900)
           : 0;
+        wallMat.color.setScalar(1.7); // shutter frames are dark (mean ~50/255); overdrive so the past reads
+        wallMat.needsUpdate = true;
 
         const sm = study.screen.material as THREE.MeshBasicMaterial;
         if (apertured) {
