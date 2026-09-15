@@ -1,6 +1,6 @@
 import * as THREE from "three/webgpu";
 import { MeshBasicNodeMaterial } from "three/webgpu";
-import { uv, vec3 } from "three/tsl";
+import { texture, uv, vec2, vec3 } from "three/tsl";
 import { CutDetector, ringLength } from "@expanded-cinema/core";
 import { sketchEvents } from "./o11y";
 import type { StudyRuntime } from "./study-recurrence";
@@ -126,8 +126,10 @@ function buildScene() {
     SCREEN_R, SCREEN_R, SCREEN_H, 48, 1, true, -SCREEN_ARC / 2, SCREEN_ARC,
   );
   // the film ON the curve: plain UVs initially (seq-21 fix 1)
-  // THE ONE CHANGE (AD seq-47): the plate's material is the node material,
-  // gradient colorNode first (base case; no texture yet).
+  // THE ONE CHANGE (AD seq-47): the plate's material is the node material.
+  // First state: gradient colorNode (base case). Replaced at shutter time
+  // by the RGB time split (base 0/0/0 through the node, then per-channel
+  // delays from drift-locked decoders).
   const screenMat = new MeshBasicNodeMaterial() as unknown as THREE.MeshBasicMaterial;
   (screenMat as unknown as { colorNode: unknown }).colorNode = vec3(
     uv().x.mul(2).add(0.15), uv().y.mul(1.2).add(0.05), 0.35,
@@ -432,9 +434,15 @@ export async function mountRuntime(
       }
       irisMat.color.setHex(0xbcd4ff);
       irisMat.opacity = 1;
-      screenMat.map = videoLayer.texture;
-      screenMat.color.setScalar(1); // full picture, no dark wash
-      screenMat.needsUpdate = true;
+      // the shutter opens the split: 0/0/0 base — same frame, same texture,
+      // film visible through the node material before any delay offsets
+      // mirrored UV inside the node (cylinder inner face reads flipped)
+      const uvm = vec2(uv().x.mul(-1).add(1), uv().y);
+      const tR = texture(videoLayer.texture, uvm as never);
+      (screenMat as unknown as { colorNode: unknown }).colorNode = vec3(
+        tR.r, tR.g, tR.b,
+      );
+      (screenMat as unknown as { needsUpdate: boolean }).needsUpdate = true;
       aperturedAtMs = performance.now();
       void sketchEvents
         .emitInfo("study", "colour01.aperture", { at, via })
