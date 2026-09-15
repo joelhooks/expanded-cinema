@@ -168,11 +168,11 @@ function buildScene() {
   snapCtx.fillRect(0, 0, 256, 144);
   const snapTex = new THREE.CanvasTexture(snapCanvas);
   snapTex.colorSpace = THREE.SRGBColorSpace;
-  const HEAP_C = new THREE.Vector3(2.8, 0.9, -1.9); // heap base on the floor, right third
+  const HEAP_C = new THREE.Vector3(3.6, 1.15, -2.3); // heap base on the floor, right third
   const shards: THREE.Mesh[] = [];
   for (let si = 0; si < 30; si++) {
-    const w = 0.35 + Math.random() * 0.5;
-    const h = 0.22 + Math.random() * 0.42;
+    const w = 0.6 + Math.random() * 0.7;
+    const h = 0.4 + Math.random() * 0.55;
     const d = 0.05 + Math.random() * 0.12;
     const m = new THREE.Mesh(
       new THREE.BoxGeometry(w, h, d),
@@ -189,7 +189,7 @@ function buildScene() {
     const r = 0.15 + Math.sqrt(Math.random()) * 1.5;
     m.position.set(
       HEAP_C.x + Math.cos(a) * r,
-      HEAP_C.y + (1.5 - r) * (0.3 + Math.random() * 0.5),
+      HEAP_C.y + (1.9 - r) * (0.35 + Math.random() * 0.5),
       HEAP_C.z + Math.sin(a) * r * 0.6,
     );
     m.rotation.set(Math.random() * 0.7 - 0.35, Math.random() * 0.7 - 0.35, Math.random() * 0.7 - 0.35);
@@ -970,7 +970,7 @@ export async function mountRuntime(
         const wallMat = study.wallPic.material as THREE.MeshBasicMaterial;
         for (const sh of study.shards) {
           (sh.material as THREE.MeshBasicMaterial).opacity = wallMat.opacity;
-          (sh.material as THREE.MeshBasicMaterial).color.setScalar(2.6);
+          (sh.material as THREE.MeshBasicMaterial).color.setScalar(3.6);
         }
         const openMs = aperturedAtMs === null ? -1e9 : now - aperturedAtMs;
         if (openMs >= 3_000 && snapProof.count < 3 && (snapProof.count === 0 || openMs >= (snapProof.count + 1) * 10_000)) {
