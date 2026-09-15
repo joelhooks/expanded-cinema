@@ -5,7 +5,7 @@ import {
   memorySink,
   validateEvent,
 } from "../src/observability";
-import type { OtelEvent } from "../src/observability";
+import type { EventSink, OtelEvent } from "../src/observability";
 
 const base: OtelEvent = {
   action: "renderer.initialize",
@@ -28,7 +28,8 @@ describe("validateEvent", () => {
       action: "Bad Action",
       component: "",
       durationMs: -1,
-      level: "loud" as OtelEvent["level"],
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- intentionally invalid input under test.
+      level: "loud" as unknown as OtelEvent["level"],
       success: false,
     });
     expect(result.ok).toBe(false);
@@ -44,8 +45,9 @@ describe("validateEvent", () => {
 describe("makeObservability", () => {
   it("fans out to sinks and records failures without throwing", async () => {
     const good = memorySink();
-    const bad: import("../src/observability").EventSink = {
+    const bad: EventSink = {
       name: "flaky",
+      // eslint-disable-next-line @typescript-eslint/require-await -- intentionally rejecting sink with no async body.
       write: async () => "network down",
     };
     const o = makeObservability({ sinks: [good, bad], source: "sketch" });
@@ -63,8 +65,13 @@ describe("makeObservability", () => {
   it("measured emits success envelope with duration", async () => {
     const sink = memorySink();
     let tick = 0;
+    const ticks = [100, 250];
     const o = makeObservability({
-      now: () => [100, 250][tick++] ?? 300,
+      now: () => {
+        const value = ticks[tick] ?? 300;
+        tick += 1;
+        return value;
+      },
       sinks: [sink],
       source: "sketch",
     });
@@ -72,6 +79,7 @@ describe("makeObservability", () => {
     await o.measured(
       { action: "renderer.initialize", component: "webgpu-renderer" },
       { backend: "webgpu" },
+      // eslint-disable-next-line @typescript-eslint/require-await -- trivial measured op; the promise shape comes from measured().
       async () => "ok"
     );
 
@@ -90,6 +98,7 @@ describe("makeObservability", () => {
       o.measured(
         { action: "video.activate", component: "video" },
         undefined,
+        // eslint-disable-next-line @typescript-eslint/require-await -- pure-throw operation under measurement.
         async () => {
           throw new Error("decode failed");
         }
@@ -106,6 +115,7 @@ describe("makeObservability", () => {
     const sink = memorySink();
     const o = makeObservability({ sinks: [sink], source: "sketch" });
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- intentionally invalid input under test.
     await o.emit({
       action: "nope",
       component: "c",
@@ -113,7 +123,7 @@ describe("makeObservability", () => {
       level: "info",
       source: "sketch",
       success: false,
-    } as never);
+    } as unknown as Parameters<typeof o.emit>[0]);
 
     expect(sink.events().length).toBe(0);
     expect(o.deadLetters().length).toBe(1);

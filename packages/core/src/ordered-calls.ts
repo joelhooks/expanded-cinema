@@ -30,11 +30,11 @@ export class Sequencer<T> {
     }
     if (index === this.next) {
       this.handle(value);
-      this.next++;
+      this.next += 1;
       // drain held subsequent frames
       while (this.held && this.held.index === this.next) {
         this.handle(this.held.value);
-        this.next++;
+        this.next += 1;
         this.held = null;
       }
       return;

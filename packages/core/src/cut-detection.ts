@@ -37,7 +37,7 @@ export function meanAbsDiff(a: LumaFrame, b: LumaFrame): number {
   let sum = 0;
   const pa = a.pixels;
   const pb = b.pixels;
-  for (let i = 0; i < pa.length; i++) {
+  for (let i = 0; i < pa.length; i += 1) {
     sum += Math.abs((pa[i] ?? 0) - (pb[i] ?? 0));
   }
   return sum / (a.pixels.length * 255);

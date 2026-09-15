@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { execSync } from "node:child_process";
 /**
  * Archive a shipped version: snapshot bundle + study note + manifest to
  * versions/<study>/<sha>/ and emit an R2-upload plan the infra step reads.
@@ -15,19 +14,20 @@ import {
   cpSync,
   existsSync,
 } from "node:fs";
-import { join, relative } from "node:path";
+import path from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
 const [sha, studyId, ...noteParts] = process.argv.slice(2);
 
-if (!sha || !studyId) {
+if (sha === undefined || studyId === undefined) {
   console.error("usage: archive-ship.mjs <sha> <study-id> [note]");
   process.exit(1);
 }
-const note = noteParts.join(" ") || "";
+const joinedNote = noteParts.join(" ");
+const note = joinedNote === "" ? "(no note)" : joinedNote;
 
-const distDir = join(root, "archives", "expanded-cinema-2026-09", "dist");
-const versionsDir = join(root, "versions", studyId, sha);
+const distDir = path.join(root, "archives", "expanded-cinema-2026-09", "dist");
+const versionsDir = path.join(root, "versions", studyId, sha);
 
 if (!existsSync(distDir)) {
   console.error("dist/ missing — build first: pnpm build");
@@ -38,9 +38,11 @@ if (!existsSync(distDir)) {
 // dist, so a stale build would archive a bundle WITHOUT the study. Check the
 // built JS actually carries the study id before snapshotting. The registry-add
 // (checklist step 1) must precede the build that produced this dist.
-const distSrc = readdirSync(join(distDir, "assets"), { withFileTypes: true })
+const distSrc = readdirSync(path.join(distDir, "assets"), {
+  withFileTypes: true,
+})
   .filter((e) => e.isFile() && e.name.endsWith(".js"))
-  .map((e) => readFileSync(join(distDir, "assets", e.name), "utf-8"))
+  .map((e) => readFileSync(path.join(distDir, "assets", e.name), "utf-8"))
   .join("\n");
 if (!distSrc.includes(studyId)) {
   console.error(
@@ -50,36 +52,83 @@ if (!distSrc.includes(studyId)) {
 }
 
 mkdirSync(versionsDir, { recursive: true });
-cpSync(distDir, join(versionsDir, "dist"), { recursive: true });
+cpSync(distDir, path.join(versionsDir, "dist"), { recursive: true });
 
-// content hash of the whole bundle (bundle identity, not git identity)
+/**
+ * Content hash of the whole bundle (bundle identity, not git identity).
+ * @param {string} dir — directory tree to hash.
+ * @returns {string} — sha256 over sorted per-file hash lines.
+ */
 function hashTree(dir) {
+  /** @type {string[]} */
   const parts = [];
+  /**
+   * Depth-first hash walk of every file under d.
+   * @param {string} d — current directory.
+   */
   const walk = (d) => {
     for (const entry of readdirSync(d, { withFileTypes: true })) {
-      const p = join(d, entry.name);
+      const p = path.join(d, entry.name);
       if (entry.isDirectory()) {
         walk(p);
       } else {
         parts.push(
-          `${relative(dir, p)}:${createHash("sha256").update(readFileSync(p)).digest("hex")}`
+          `${path.relative(dir, p)}:${createHash("sha256").update(readFileSync(p)).digest("hex")}`
         );
       }
     }
   };
   walk(dir);
-  return createHash("sha256").update(parts.toSorted().join("\n")).digest("hex");
+  return createHash("sha256")
+    .update(parts.toSorted((a, b) => (a < b ? -1 : 1)).join("\n"))
+    .digest("hex");
 }
 
-const catalogPath = join(
+const catalogPath = path.join(
   root,
   "archives",
   "expanded-cinema-2026-09",
   "catalog.json"
 );
-const catalog = JSON.parse(readFileSync(catalogPath, "utf-8"));
+/**
+ * Runtime guard for one catalog row.
+ * @param {unknown} entry — candidate entry.
+ * @returns {entry is { file: string, sha256: string }} — true when file+sha256 are strings.
+ */
+function isCatalogEntry(entry) {
+  return (
+    typeof entry === "object" &&
+    entry !== null &&
+    "file" in entry &&
+    typeof entry.file === "string" &&
+    "sha256" in entry &&
+    typeof entry.sha256 === "string"
+  );
+}
+
+/**
+ * Runtime guard for the archive-era catalog shape (entries keyed by file).
+ * @param {unknown} value — parsed catalog.json.
+ * @returns {value is { entries: Array<{ file: string, sha256: string }> }} — true when the shape is the expected catalog shape.
+ */
+function isCatalog(value) {
+  if (typeof value !== "object" || value === null || !("entries" in value)) {
+    return false;
+  }
+  const { entries } = value;
+  return Array.isArray(entries) && entries.every((e) => isCatalogEntry(e));
+}
+
+/** @type {unknown} */
+const parsedCatalog = JSON.parse(readFileSync(catalogPath, "utf-8"));
+if (!isCatalog(parsedCatalog)) {
+  console.error(
+    "catalog.json does not match the expected { entries: [{ file, sha256 }] } shape"
+  );
+  process.exit(2);
+}
 const catalogHashes = Object.fromEntries(
-  catalog.entries.map((e) => [e.file, e.sha256])
+  parsedCatalog.entries.map((e) => [e.file, e.sha256])
 );
 
 const manifest = {
@@ -94,11 +143,11 @@ const manifest = {
 };
 
 writeFileSync(
-  join(versionsDir, "manifest.json"),
+  path.join(versionsDir, "manifest.json"),
   `${JSON.stringify(manifest, null, 2)}\n`
 );
 writeFileSync(
-  join(versionsDir, "note.md"),
+  path.join(versionsDir, "note.md"),
   `# ${studyId} @ ${sha}\n\n${note}\n`
 );
 
@@ -108,7 +157,7 @@ writeFileSync(
 // belong to the caller's ship chain, not to this snapshot step — hardcoding
 // them made every archive row assert unverified facts (caught 2026-09-14
 // during a positive-path rehearsal).
-const ledgerPath = join(root, "state", "ledger.jsonl");
+const ledgerPath = path.join(root, "state", "ledger.jsonl");
 const row = JSON.stringify({
   archive: `archive/${studyId}/${sha}/`,
   bundleHash: manifest.bundleHash,

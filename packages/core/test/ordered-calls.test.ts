@@ -4,7 +4,7 @@ import { Sequencer } from "../src/ordered-calls";
 
 function collect(): { seq: Sequencer<number>; out: number[] } {
   const out: number[] = [];
-  return { out, seq: new Sequencer<number>((v) => out.push(v)) };
+  return { out, seq: new Sequencer<number>((v) => void out.push(v)) };
 }
 
 describe("Sequencer", () => {

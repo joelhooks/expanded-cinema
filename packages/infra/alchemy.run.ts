@@ -19,7 +19,7 @@ const hostname = (stage: string): string =>
 export default Alchemy.Stack(
   "expanded-cinema",
   { providers: Cloudflare.providers(), state: Cloudflare.state() },
-  Effect.gen(function* () {
+  Effect.gen(function* effectMain() {
     const stage = yield* Alchemy.Stage;
     const host = hostname(stage);
 
@@ -38,7 +38,9 @@ export default Alchemy.Stack(
     // Domestic gateway for the immutable version archive: the SPA worker
     // owns `${host}/*`; this more-specific route wins `archive/…` and
     // serves objects straight from the ARCHIVE R2 binding.
-    const archiveGateway = yield* Cloudflare.Worker("ArchiveGateway", {
+    // Deployed for its side effect: the domestic /archive route is owned by
+    // this worker's registration, not by any later read of the handle.
+    const _archiveGateway = yield* Cloudflare.Worker("ArchiveGateway", {
       env: {
         ARCHIVE: archive,
         // secret_text binding — static bearer for the pointer-write
@@ -233,7 +235,12 @@ export default Alchemy.Stack(
     });
 
     const site = yield* Cloudflare.Website.Vite("ExpandedCinemaWeb", {
-      rootDir: "../../archives/expanded-cinema-2026-09",
+      domain: host,
+      // The R2 bucket rides the worker env so a worker route can read
+      // archive manifest objects (see archives/expanded-cinema-2026-09 worker-side code).
+      env: {
+        ARCHIVE: archive,
+      },
       memo: {
         include: [
           "src/**",
@@ -244,14 +251,9 @@ export default Alchemy.Stack(
         ],
         lockfile: true,
       },
-      domain: host,
-      routes: [{ pattern: `${host}/*`, zoneName: ZONE }],
       observability: { enabled: true },
-      // The R2 bucket rides the worker env so a worker route can read
-      // archive manifest objects (see archives/expanded-cinema-2026-09 worker-side code).
-      env: {
-        ARCHIVE: archive,
-      },
+      rootDir: "../../archives/expanded-cinema-2026-09",
+      routes: [{ pattern: `${host}/*`, zoneName: ZONE }],
     });
 
     return {

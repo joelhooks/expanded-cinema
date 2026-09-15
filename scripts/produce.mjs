@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { execFileSync } from "node:child_process";
 /**
  * Bounded daily producer — VISION.md priority D, built un-scheduled.
  *
@@ -25,20 +24,21 @@ import { execFileSync } from "node:child_process";
  *   node scripts/produce.mjs --status            # today's counters, no side effects
  *   node scripts/produce.mjs --clear-lock        # operator escape hatch
  */
+import { execFileSync } from "node:child_process";
 import {
-  readFileSync,
-  writeFileSync,
   existsSync,
-  unlinkSync,
   mkdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
 } from "node:fs";
-import { join } from "node:path";
+import path from "node:path";
 
-const root = join(import.meta.dirname, "..");
-const stateDir = join(root, "state");
-const lockPath = join(stateDir, "producer.lock");
-const passStatePath = join(stateDir, "producer.json");
-const ledgerPath = join(stateDir, "ledger.jsonl");
+const root = path.join(import.meta.dirname, "..");
+const stateDir = path.join(root, "state");
+const lockPath = path.join(stateDir, "producer.lock");
+const passStatePath = path.join(stateDir, "producer.json");
+const ledgerPath = path.join(stateDir, "ledger.jsonl");
 
 const MAX_PASSES_PER_DAY = 3;
 const LOCK_STALE_MS = 30 * 60 * 1000;
@@ -47,32 +47,130 @@ const [arg0, ...rest] = process.argv.slice(2);
 const today = new Date().toISOString().slice(0, 10);
 
 /**
- * @param {string} path
- * @param {{ passes?: Array<Record<string, unknown>> }} fallback
- * @returns {{ passes?: Array<Record<string, unknown>> }}
+ * One bounded producer pass, as persisted in producer.json.
+ * @typedef {Object} ProducerPass
+ * @property {string} at — ISO timestamp of pass start.
+ * @property {string} date — YYYY-MM-DD pass date key.
+ * @property {string} id — pass id (`pass-<date>-<nn>`).
+ * @property {string} intent — full pass intent line.
+ * @property {boolean} resumed — true when a stale lock was reclaimed.
+ * @property {"started"|"completed"|"failed"} status — pass lifecycle.
+ * @property {string} [study] study id, set on completion.
+ * @property {string} [sha] shipped commit sha, set on completion.
+ * @property {string} [archive] archive URL, set on completion.
+ * @property {string} [completedAt] ISO timestamp, set on completion.
+ * @property {string} [error] failure message, set on failure.
+ * @property {string} [failedAt] ISO timestamp, set on failure.
  */
-function readJson(path, fallback) {
+
+/**
+ * Leader lock in producer.lock while a pass is mid-flight.
+ * @typedef {Object} ProducerLock
+ * @property {string} at — ISO timestamp the lock was written.
+ * @property {string} date — the lock owner's date key.
+ */
+
+/**
+ * Runtime guards: is this parsed JSON plausibly a pass receipt / state / lock?
+ * Deliberately shallow — receipts are written by this script only; a deeper
+ * guard would lie about resilience.
+ * @param {unknown} value — parsed JSON value.
+ * @returns {boolean} — true when the shape can be trusted.
+ */
+function isPassReceipt(value) {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "id" in value &&
+    "status" in value
+  );
+}
+
+/**
+ * @param {unknown} value — parsed JSON value.
+ * @returns {value is { passes?: ProducerPass[] }} — true when trustworthy state.
+ */
+function isProducerState(value) {
+  if (typeof value !== "object" || value === null) {
+    return false;
+  }
+  if (!("passes" in value)) {
+    return true;
+  }
+  const { passes } = value;
+  return Array.isArray(passes) && passes.every((p) => isPassReceipt(p));
+}
+
+/**
+ * @param {unknown} value — parsed JSON value.
+ * @returns {value is ProducerLock} — true when at/date are both strings.
+ */
+function isProducerLock(value) {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "at" in value &&
+    typeof value.at === "string" &&
+    "date" in value &&
+    typeof value.date === "string"
+  );
+}
+
+/**
+ * Read producer.json, falling back to empty state when missing or corrupt.
+ * @param {string} file — path to read.
+ * @returns {{ passes?: ProducerPass[] }} — producer state.
+ */
+function readState(file) {
   try {
-    return JSON.parse(readFileSync(path, "utf-8"));
+    /** @type {unknown} */
+    const parsed = JSON.parse(readFileSync(file, "utf-8"));
+    return isProducerState(parsed) ? parsed : { passes: [] };
   } catch {
-    return fallback;
+    return { passes: [] };
   }
 }
 
+/**
+ * Read producer.lock, falling back to null when missing or corrupt.
+ * @param {string} file — path to read.
+ * @returns {ProducerLock | null} — the lock, if valid.
+ */
+function readLock(file) {
+  try {
+    /** @type {unknown} */
+    const parsed = JSON.parse(readFileSync(file, "utf-8"));
+    return isProducerLock(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Append one canonical record row to the ledger (append-only by contract:
+ * only ever adds lines, never rewrites existing ones).
+ * @param {Record<string, unknown>} record — the ledger row.
+ * @returns {void}
+ */
 function ledgerAppend(record) {
-  record.date = record.date ?? today;
-  record.stage = record.stage ?? "producer";
+  record.date ??= today;
+  record.stage ??= "producer";
   mkdirSync(stateDir, { recursive: true });
   const prev = readFileSync(ledgerPath, "utf-8");
   writeFileSync(ledgerPath, `${prev.trimEnd()}\n${JSON.stringify(record)}\n`);
 }
 
+/**
+ * All passes recorded for today's date.
+ * @param {{ passes?: Array<Record<string, unknown>> }} state — producer state.
+ * @returns {Array<Record<string, unknown>>} — today's pass receipts.
+ */
 function todayPasses(state) {
   return (state.passes ?? []).filter((p) => p.date === today);
 }
 
 if (arg0 === "--status") {
-  const state = readJson(passStatePath, { passes: [] });
+  const state = readState(passStatePath);
   const passes = todayPasses(state);
   console.log(
     JSON.stringify(
@@ -100,7 +198,7 @@ if (arg0 === "--clear-lock") {
 }
 
 const intent = [arg0, ...rest].join(" ").trim();
-if (!intent) {
+if (intent === "") {
   console.error(
     'usage: produce.mjs "<study> <one-line intent>" | --status | --clear-lock'
   );
@@ -108,13 +206,13 @@ if (!intent) {
 }
 
 // ---- dedupe + stop policy -------------------------------------------------
-const state = readJson(passStatePath, { passes: [] });
+const state = readState(passStatePath);
 const passesToday = todayPasses(state);
 
 const done = passesToday.find(
   (p) => p.status === "completed" && p.intent === intent
 );
-if (done) {
+if (done !== undefined) {
   console.log(JSON.stringify({ dedupe: true, receipt: done }, null, 2));
   process.exit(0);
 }
@@ -134,14 +232,17 @@ if (
 }
 
 // ---- lock -----------------------------------------------------------------
-const lock = readJson(lockPath, null);
-const stale = lock && Date.now() - new Date(lock.at).getTime() > LOCK_STALE_MS;
-if (lock && !stale && lock.date === today) {
+const lock = readLock(lockPath);
+let lockIsStale = false;
+if (lock !== null) {
+  lockIsStale = Date.now() - new Date(lock.at).getTime() > LOCK_STALE_MS;
+}
+if (lock !== null && !lockIsStale && lock.date === today) {
   // A pass is mid-flight in another invocation — bounded producer exits.
   console.log(JSON.stringify({ busy: true, holder: lock }, null, 2));
   process.exit(0);
 }
-const resumed = Boolean(lock && lock.date === today && stale);
+const resumed = lock !== null && lock.date === today && lockIsStale;
 const pass = {
   at: new Date().toISOString(),
   date: today,
@@ -167,17 +268,18 @@ try {
   // Pass body = the standard verified ship chain (VISION D). The study id is
   // validated against the live registry (STUDY_LOADERS ids in main.ts) so a
   // producer pass can never archive a study the pointing tab cannot mount.
-  const [study, ...noteParts] = intent.split("\n")[0].split(" ");
-  if (!study) {
+  const firstLine = intent.split("\n")[0] ?? "";
+  const [study, ...noteParts] = firstLine.split(" ");
+  if (study === undefined || study === "") {
     throw new Error("intent must start with the study id");
   }
   const registry = (() => {
     const src = readFileSync(
-      join(root, "archives/expanded-cinema-2026-09/src/main.ts"),
+      path.join(root, "archives/expanded-cinema-2026-09/src/main.ts"),
       "utf-8"
     );
-    return [...src.matchAll(/"([a-z0-9-]+)": \(\) => import/g)].map(
-      (m) => m[1]
+    return [...src.matchAll(/"(?<id>[a-z0-9-]+)": \(\) => import/gu)].map(
+      (m) => m.groups?.id ?? ""
     );
   })();
   if (!registry.includes(study)) {
@@ -188,7 +290,14 @@ try {
       { registry }
     );
   }
-  const note = noteParts.join(" ") || `producer pass ${pass.id}`;
+  const joinedNote = noteParts.join(" ");
+  const note = joinedNote === "" ? `producer pass ${pass.id}` : joinedNote;
+  /**
+   * Run a command synchronously, capture stdout, echo stderr.
+   * @param {string} cmd — executable to run.
+   * @param {readonly string[]} args — argument vector.
+   * @returns {string} — trimmed stdout.
+   */
   const sh = (cmd, args) => {
     const out = execFileSync(cmd, args, {
       cwd: root,
@@ -246,11 +355,7 @@ try {
   });
   writeFileSync(
     passStatePath,
-    `${JSON.stringify(
-      { ...state, passes: [...(state.passes ?? []), pass] },
-      null,
-      2
-    )}\n`
+    `${JSON.stringify({ ...state, passes: [...(state.passes ?? []), pass] }, null, 2)}\n`
   );
   console.error(
     JSON.stringify({

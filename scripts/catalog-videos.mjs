@@ -4,26 +4,30 @@
 // Usage: node scripts/catalog-videos.mjs
 import { createHash } from "node:crypto";
 import { readdir, readFile, writeFile } from "node:fs/promises";
-import { join, relative, sep } from "node:path";
+import path from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
-const videosDir = join(root, "videos");
-const outPath = join(
+const videosDir = path.join(root, "videos");
+const outPath = path.join(
   root,
   "archives",
   "expanded-cinema-2026-09",
   "catalog.json"
 );
 
-const files = (await readdir(videosDir, { recursive: false }))
-  .filter((f) => f.endsWith(".mp4"))
-  .toSorted();
+const dirents = await readdir(videosDir, { recursive: false });
+const files = dirents.filter((f) => f.endsWith(".mp4")).toSorted();
 
 const entries = [];
+// Sequential reads on purpose: the catalog is small and read order is
+// deterministic — harness clarity over parallelism.
+// oxlint-disable-next-line no-await-in-loop
 for (const file of files) {
-  const bytes = await readFile(join(videosDir, file));
+  const filePath = path.join(videosDir, file);
+  // oxlint-disable-next-line no-await-in-loop
+  const bytes = await readFile(filePath);
   entries.push({
-    file: relative(videosDir, join(videosDir, file)).split(sep).join("/"),
+    file: path.relative(videosDir, filePath).split(path.sep).join("/"),
     sha256: createHash("sha256").update(bytes).digest("hex"),
   });
 }
@@ -35,4 +39,6 @@ const doc = {
 };
 
 await writeFile(outPath, `${JSON.stringify(doc, null, 2)}\n`);
-console.log(`catalog: ${entries.length} entries -> ${relative(root, outPath)}`);
+console.log(
+  `catalog: ${entries.length} entries -> ${path.relative(root, outPath)}`
+);

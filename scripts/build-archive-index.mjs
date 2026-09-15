@@ -5,27 +5,33 @@
  * desc), linking /archive/<study>/<sha>/index.html plus the manifest.
  * Idempotent: deterministic output from filesystem state.
  */
-import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { readdirSync, statSync, writeFileSync } from "node:fs";
+import path from "node:path";
 
-const root = join(import.meta.dirname, "..");
-const versionsDir = join(root, "versions");
+const root = path.join(import.meta.dirname, "..");
+const versionsDir = path.join(root, "versions");
 const studies = readdirSync(versionsDir, { withFileTypes: true })
   .filter((d) => d.isDirectory() && !d.name.startsWith("."))
   .map((d) => {
-    const dir = join(versionsDir, d.name);
+    const dir = path.join(versionsDir, d.name);
     const shas = readdirSync(dir, { withFileTypes: true })
       .filter((s) => s.isDirectory())
       .map((s) => s.name)
       .toSorted(
         (a, b) =>
-          statSync(join(dir, b)).mtimeMs - statSync(join(dir, a)).mtimeMs
+          statSync(path.join(dir, b)).mtimeMs -
+          statSync(path.join(dir, a)).mtimeMs
       );
     return { mtime: statSync(dir).mtimeMs, shas, study: d.name };
   })
   .toSorted((a, b) => b.mtime - a.mtime);
 
-const esc = (s) => s.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
+/**
+ * HTML-escape &, < for attribute/element text.
+ * @param {string} value — raw text.
+ * @returns {string} — escaped text.
+ */
+const esc = (value) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
 const sections = studies
   .map(
     ({ study, shas }) => `<section>
@@ -88,7 +94,7 @@ ${sections}
 </html>
 `;
 
-writeFileSync(join(versionsDir, "index.html"), html);
+writeFileSync(path.join(versionsDir, "index.html"), html);
 console.log(
   `archive index: ${studies.length} studies, ${studies.reduce((n, s) => n + s.shas.length, 0)} versions`
 );

@@ -1,5 +1,11 @@
 import type { OtelEvent } from "./event";
 
+declare global {
+  interface Window {
+    __expandedCinemaOtel?: { events(): readonly OtelEvent[] };
+  }
+}
+
 /**
  * A sink receives validated events. Sinks must never throw — a telemetry
  * failure must not take the sketch down. `write` returns a rejection reason
@@ -18,6 +24,7 @@ export function memorySink(
   return {
     events: () => [...buffer],
     name: "memory",
+    // eslint-disable-next-line @typescript-eslint/require-await -- sync sink: no async body exists to await; promise-function-async (interface style) requires async.
     async write(event) {
       buffer.push(event);
       if (buffer.length > capacity) {
@@ -32,6 +39,7 @@ export function memorySink(
 export function consoleSink(): EventSink {
   return {
     name: "console",
+    // eslint-disable-next-line @typescript-eslint/require-await -- sync sink: no async body exists to await; promise-function-async (interface style) requires async.
     async write(event) {
       console.info(JSON.stringify(event));
       return null;
@@ -51,6 +59,7 @@ export function windowRingSink(
   const sink: EventSink & { events(): readonly OtelEvent[] } = {
     events: () => [...buffer],
     name: "window-ring",
+    // eslint-disable-next-line @typescript-eslint/require-await -- sync sink: no async body exists to await; promise-function-async (interface style) requires async.
     async write(event) {
       buffer.push(event);
       if (buffer.length > capacity) {
@@ -60,10 +69,7 @@ export function windowRingSink(
     },
   };
   if (typeof window !== "undefined") {
-    const w = window as {
-      __expandedCinemaOtel?: { events(): readonly OtelEvent[] };
-    };
-    w.__expandedCinemaOtel = { events: () => sink.events() };
+    window.__expandedCinemaOtel = { events: () => sink.events() };
   }
   return sink;
 }

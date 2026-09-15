@@ -28,8 +28,8 @@ export default defineConfig({
     // - method-signature-style: Effect-style services read as methods
     //   (capabilities), not bare function properties.
     "eslint/func-style": "off",
-    "eslint/no-use-before-define": "off",
     "eslint/no-inline-comments": "off",
+    "eslint/no-use-before-define": "off",
     "typescript/method-signature-style": "off",
   },
 });

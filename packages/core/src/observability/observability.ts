@@ -76,6 +76,9 @@ export function makeObservability(
         return;
       }
       for (const sink of options.sinks) {
+        // Sequential by design: sink order is the delivery order contract for
+        // the o11y ring; parallel writes would reorder receipts.
+        // oxlint-disable-next-line no-await-in-loop
         const rejection = await sink.write(event);
         if (rejection !== null) {
           dead.push({
@@ -110,14 +113,14 @@ export function makeObservability(
         return result;
       } catch (error) {
         await this.emit({
+          action: action.action,
+          component: action.component,
+          durationMs: (options.now ?? Date.now)() - start,
+          error: error instanceof Error ? error.message : String(error),
           level: action.level ?? "error",
           source: action.source ?? options.source,
-          component: action.component,
-          action: action.action,
           success: false,
-          error: error instanceof Error ? error.message : String(error),
-          durationMs: (options.now ?? Date.now)() - start,
-          ...(metadata !== undefined ? { metadata } : {}),
+          ...(metadata === undefined ? {} : { metadata }),
         });
         throw error;
       }

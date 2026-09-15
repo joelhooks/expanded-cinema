@@ -10,7 +10,7 @@ const args = process.argv.slice(2);
 const noVerify = args.includes("--no-verify");
 const positional = args.filter((a) => !a.startsWith("--"));
 const [study, sha] = positional;
-if (!study || !sha) {
+if (study === undefined || sha === undefined) {
   console.error("usage: make-cut.mjs <study> <sha> [--no-verify]");
   process.exit(1);
 }
@@ -20,12 +20,13 @@ const archiveRoot =
 const archive = `/archive/${study}/${sha}/`;
 if (!noVerify) {
   const target = `${archiveRoot}${archive}index.html`;
+  /** @type {Response | undefined} */
   let res;
   try {
     res = await fetch(target, { method: "HEAD" });
   } catch (error) {
     console.error(
-      `make-cut: archive check failed for ${target}: ${error.message}`
+      `make-cut: archive check failed for ${target}: ${error instanceof Error ? error.message : String(error)}`
     );
     process.exit(2);
   }

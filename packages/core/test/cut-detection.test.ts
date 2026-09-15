@@ -5,7 +5,7 @@ import type { LumaFrame } from "../src/cut-detection";
 
 const frame = (v: number, w = 4, h = 4): LumaFrame => ({
   height: h,
-  pixels: Array(w * h).fill(v),
+  pixels: Array.from({ length: w * h }, () => v),
   width: w,
 });
 
@@ -29,13 +29,13 @@ describe("meanAbsDiff", () => {
 
   it("rejects mismatched frame sizes", () => {
     expect(() => meanAbsDiff(frame(0, 4, 4), frame(0, 2, 2))).toThrow(
-      /mismatch/
+      /mismatch/u
     );
   });
 
   it("rejects wrong pixel array lengths", () => {
     const bad = { height: 4, pixels: [1, 2, 3], width: 4 };
-    expect(() => meanAbsDiff(frame(0), bad as LumaFrame)).toThrow(/length/);
+    expect(() => meanAbsDiff(frame(0), bad as LumaFrame)).toThrow(/length/u);
   });
 });
 

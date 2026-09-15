@@ -58,7 +58,7 @@ export function validateEvent(event: OtelEvent): ValidationResult {
   if (event.component.trim() === "") {
     problems.push("component: empty");
   }
-  if (event.action.trim() === "" || !/^[a-z][a-z0-9_.]*$/.test(event.action)) {
+  if (event.action.trim() === "" || !/^[a-z][a-z0-9_.]*$/u.test(event.action)) {
     problems.push(`action: must be dotted lowercase, got "${event.action}"`);
   }
   if (

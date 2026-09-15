@@ -7,6 +7,11 @@ import {
   writeSlot,
 } from "../src/ring-capture";
 
+/** Modular read index for a 4-slot ring (delay 3). */
+function mod2(n: number): number {
+  return ((n % 4) + 4) % 4;
+}
+
 describe("ringLength", () => {
   it("is delay + 1", () => {
     expect(ringLength(180)).toBe(181);
@@ -32,16 +37,12 @@ describe("slots", () => {
     expect(readSlot(2, 3, L)).toBe(3); // wraps: reads the slot scheduled next write
     expect(readSlot(200, 3, L)).toBe(mod2(197));
   });
-
-  function mod2(n: number): number {
-    return ((n % 4) + 4) % 4;
-  }
 });
 
 describe("isSameScopeCollision", () => {
   it("never collides when length = delay + 1", () => {
     const L = ringLength(180);
-    for (let n = 0; n < 400; n++) {
+    for (let n = 0; n < 400; n += 1) {
       expect(isSameScopeCollision(n, 180, L)).toBe(false);
     }
   });
