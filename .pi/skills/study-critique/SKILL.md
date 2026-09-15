@@ -25,7 +25,9 @@ Missing any of these, write "unverified" for that line. Never describe what you 
 1. Do the two screenshots, taken ten seconds apart, differ in something other than the film's own cut? Yes or no, with both files named.
 2. Is the source's title card or any static slate visible in either frame? Yes or no.
 
-No to 1 or yes to 2 means the verdict is FAIL regardless of the rest. Write the rest anyway.
+3. Where in the 16s frame is the study's named operation visible? Point to it in words ("the clock face frozen on the wall while the screen moves", "colour fringes on the hand"). Added 2026-09-15 after colour-01 and wallform-01 were each cut on real frames in which the operation was absent.
+
+No to 1, yes to 2, or no answer to 3 means the verdict is FAIL regardless of the rest. Write the rest anyway.
 
 ## The rubric, in order
 
