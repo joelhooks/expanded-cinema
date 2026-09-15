@@ -1,0 +1,142 @@
+---
+title: Expanded Cinema, retrospective and successor proposal
+type: archive
+status: closed
+closed: 2026-09-15
+owner: Joel
+author: art director session
+---
+
+# Expanded Cinema, retrospective
+
+Closed by Joel on 2026-09-15 after roughly 48 hours of maker time on a local
+model, with an art director session steering from 2026-09-14 onward.
+
+## What was made
+
+| measure | value |
+| --- | --- |
+| commits | 290 |
+| ledger rows | 180 |
+| study files | 10 |
+| studies that passed the hard floor on the director's own frames | 2 (withhold-01, colour-01); clock-04 v18 passed four of five lines |
+| ledger rows spent on clock-04 alone | 57 |
+| false "verified" cuts caught by the director | 6 |
+| local tokens through the maker | about 600M |
+
+The gallery stays live on colour-01: the 1943 film split into red, green, and
+blue with 3 and 6 second delays on a curved screen in a coloured room, the
+past held on the wall.
+
+## What worked
+
+- **The MCP pointer path.** Content reached the site at runtime with one
+  writable key; code pushed only when the site changed. This never broke.
+- **Archive URLs per sha.** Every candidate had a stable address, so
+  verification could happen before the cut. Once the maker used it, cuts
+  stopped being the way to check work.
+- **Eyes-first direction.** Ten sweeps judged from the ledger called a static
+  title card "ok". The moment the director took two screenshots per sweep and
+  wrote a five-line hard floor, the work changed within an hour.
+- **Branch from the shipped file.** colour-01 lost ninety minutes to a fresh
+  scene whose plate was never in frame; it rendered in one commit once it was
+  a copy of withhold-01 with one change.
+- **Probe builds.** Solid magenta materials settled placement in one load
+  every time, where parameter twiddling never did.
+- **Root-cause finds by the maker.** Range serving for video seeks, the
+  seek-guard that re-seeked every frame, the reveal and arm loops, the cloned
+  CanvasTexture that never updated. Each was real and each was found by
+  logging state per second, not by reasoning.
+- **Continuous cadence and ship-then-start.** The daily cap was the wrong
+  grain; twenty versions of clock-04 in a day taught more than the previous
+  two days.
+
+## What failed
+
+- **The builder judged itself.** Six cuts went live "verified" on frames that
+  were blank tabs or that plainly failed the gates. A small model reading its
+  own screenshot against its own claim says yes. The director's attention
+  became the only real QA, at thirty-minute cadence.
+- **Every study re-solved playback.** Seek, reveal, arm, texture update, Range
+  support: each study rebuilt the apparatus and broke it in a new place.
+  Roughly half the ledger is infrastructure, not images.
+- **One clip.** All studies used the same ninety seconds of Conquer by the
+  Clock. The material never pushed the work; the ingest pipeline failed on
+  archive.org URLs early and was not revisited.
+- **The grain was too big.** A "study" was a scene with a rail, a beam, a
+  wall, a reveal, and a shader, and every version touched several of them. No
+  version could be compared to the last on one variable.
+- **The default look was a debug scene.** Grey room, white additive beam,
+  flat basic materials, no lights, no shaders. Colour and node materials
+  arrived only after Joel asked for radical changes on day three, and then
+  took six hours to land.
+- **Verification tooling was shared and flaky.** The director and the maker
+  collided on one agent-browser daemon for four sweeps; the maker cut twice on
+  the resulting blank tabs.
+- **Direction reached the maker through three channels** (intercom, the
+  Brain, Joel directly) and the director did not see one of them, which cost
+  a wrong correction.
+- **Idle after ship.** The maker ended its turn after every cut, chain, and
+  honest no-cut until reminded, five times.
+
+## What to keep, verbatim
+
+- The hard floor (space, visible apparatus, motion in five seconds, film as
+  material, filled frame) and the three critique gates (frames differ, no
+  title card, point to the operation in the 16s frame).
+- The Material rule: palette with a source, projector light colours the
+  room, surfaces with relief, one TSL node material per study.
+- The stance page's provocations with sources, especially the ones not yet
+  tried: the beam is the film, the surface is the film, the Ganzfeld room,
+  the image lands on a thing, the phone is the projector.
+
+# Successor proposal: a tournament, not a diary
+
+The change is structural. Separate the roles, lock the apparatus, shrink the
+grain, and make the machine the judge.
+
+## Shape
+
+1. **A locked rig.** One proven scene harness as a library: room, projector,
+   video playback with Range support, one-shot reveal, rail, capture. Studies
+   never touch it. A study is a TSL node material plus a config (palette,
+   source clip, delays, surface). Playback is a dependency, never a problem.
+2. **Three agents, three jobs.**
+   - Builder (local model, cheap): writes one material and one config per
+     iteration, renders three frames on the archive URL, and stops.
+   - Critic (a vision model, local Qwen-VL or Fable): scores each iteration
+     against the floor and the gates from the frames alone, blind to the
+     builder's claims. Nothing cuts without a critic score. The builder never
+     reads its own frame.
+   - Curator (weekly, or the director): picks sources, sets the style of the
+     week, writes the provocation.
+3. **The iteration is the unit.** Ten minutes, one variable, three frames, a
+   score. Best-of-N per hour goes live. The gallery is a grid of the last
+   fifty iterations with their frames and scores, so progress is visible and
+   a viewer can watch the search, not just the winner.
+4. **Material as a palette.** Ten clips at a time from the ingest pipeline
+   (Prelinger, NASA, live radar, webcams, Joel's own footage), each with a
+   provenance row. The curator rotates them; the builder cannot pick the same
+   clip twice in a row.
+5. **A style deck.** Named looks as TSL presets with a source each: Rhodes
+   (channel time), McCall (solid light), Turrell (Ganzfeld), Belson (form
+   from luma), Paik (raster distortion), Conner (found-footage cut), Brakhage
+   (painted frame). The builder composes from the deck; the curator adds one
+   preset a week. Styles compound instead of restarting.
+6. **Direction is one channel.** Joel and the director write into one
+   Brain page the agents read at wake; nothing else counts as an order.
+7. **The critic model is also the sweep.** The director's thirty-minute
+   screenshot loop becomes the critic's job, every ten minutes, in code.
+   The director returns to a daily pass that reads scores and frames, pushes
+   one boundary, and gardens the deck.
+
+## Canary
+
+Three days, one clip, three presets, the locked rig. Success is fifty scored
+iterations on the grid, at least ten passing the floor by the critic and
+confirmed by the director's own frames, and zero cuts made on a claim.
+
+## Name
+
+Working title: Splice. A different repo, scaffolded from this one's rig code,
+with a VISION written for the tournament shape.

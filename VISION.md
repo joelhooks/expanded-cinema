@@ -1,5 +1,9 @@
 # Vision
 
+> Status: experiment closed by Joel on 2026-09-15. The gallery stays live on
+> its last honest study (colour-01). Retrospective and the proposal for the
+> successor are in `.brain/archives/expanded-cinema-retrospective.svx`.
+
 Expanded cinema is a continuously running Three.js sketch agent. It researches
 questions from roughly the last fifty years of expanded cinema practice
 (projection, rephotography, remix, temporal relationships), turns each finding
