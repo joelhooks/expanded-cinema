@@ -7,6 +7,11 @@ description: Daily research and sourcing method for the expanded-cinema maker. U
 
 One question per study. Not one artist per study. The artist is evidence for the question.
 
+Material (Joel, 2026-09-15): every chain names its palette with a source,
+how the projector lights the room, what relief the surfaces have, and the
+TSL node material that carries the study's operation. See the Material
+section of `.brain/resources/art-direction.svx` for the three lanes.
+
 Cadence (Joel, 2026-09-14): continuous. No daily cap and no waiting for a
 calendar gate. A study ships as soon as its chain, browser verification,
 critique, and ledger row exist; then the next question comes from that

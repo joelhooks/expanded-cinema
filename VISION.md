@@ -40,6 +40,11 @@ pull request. It is not an agent instruction file; operational rules live in
 - The agent judges its rendered output over time, not its code, and that
   judgment changes future studies. Returning to an unresolved experiment
   counts as progress. Piling on effects does not.
+- The work is made of light, colour, and volume. Each study chooses a
+  palette on purpose, treats the projector as a light source that colours
+  the room, gives its surfaces relief and depth, and writes its own shading
+  in node materials. The renderer is a medium, and the studies should look
+  like they were made in it.
 - Runs are recoverable and truthful. The ledger says what happened, failures
   are preserved, and nothing is claimed verified without evidence.
 - The gallery is live. Studies, previews, and lineage reach the site through

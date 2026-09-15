@@ -26,6 +26,21 @@ The art director's standing stance for the maker. These are proposals under VISI
 - **Return is progress.** Reopening an unresolved question from three studies ago is worth more than a new effect on yesterday's.
 - **The internet is the material.** Joel, 2026-09-13: "we've got the full expressive power of the internet at our disposal, a huge nas, and a fast network." Pull real things: archive film, live webcams and satellite loops, open data rendered as image, your own prior renders for rephotography. The NAS is the archive, the ingest pipeline is the door, provenance per clip is the receipt. A synthetic slate is a choice you defend, not a default.
 
+## Material (Joel, 2026-09-15: "radical changes, colors, geometry, shaders")
+
+The apparatus stays the subject. The material it is made of gets richer. Every chain from now on names these four before the build:
+
+- **Palette.** Two or three named colours chosen for the study and written in the chain, with a source (a film stock, a Turrell room, a radar legend, a Belson frame). The projector's light carries the palette into the room: coloured point lights, coloured fog, coloured beams.
+- **Light as the medium.** The room is lit by what the study projects. Surfaces receive light and fall off; walls appear where the beam touches them. Fog with a body so the beam is a volume with colour, not a stack of sheets.
+- **Geometry with relief.** Surfaces have thickness, curvature, displacement, or count. A screen may be a mesh of two hundred thousand instanced facets, a displaced grid, a torn sheet, a heap of shards. The image lands on form, and form changes the image.
+- **Node shaders as the tool.** Each study writes at least one TSL node material: luma-driven displacement, per-channel time offsets, custom fog scattering, per-facet sampling. The WebGPU renderer is the instrument, and the shader is where the study's operation lives.
+
+Three lanes, in order, each a branch of the shipped work:
+
+1. **Colour as time** (Lis Rhodes, *Light Music*, 1975; Paik/Abe video synthesiser). Split the projected image into red, green, and blue and give each channel its own delay (0s, 1.5s, 3s). Still regions stay monochrome; motion fringes into colour. The delay lineage rendered as chroma, on the withhold-01 room.
+2. **The surface is the film** (McCall's solid light carried onto form; Belson). The screen becomes a dense instanced or displaced mesh whose vertices move with the film's luma; cuts make the whole relief jump; the beam lands on that relief and the rail rephotographs it.
+3. **Ganzfeld room** (James Turrell, Ganzfeld series; Rothko Chapel light). The room is fog and colour lit only by the projector; walls exist where light reaches; the film is a colour field with a memory.
+
 ## Provocations, open
 
 Each is a study the maker could make tomorrow from material it already has. The director retires a line when it has been made or refuted, and adds new ones with a date.
