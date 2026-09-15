@@ -31,6 +31,12 @@ const FRAME_DIR = join(ROOT, "critiques");
 const ARCHIVE_ROOT = "https://cinema.wzrrd.sh";
 const VL_MODEL = "mlx-community/Qwen2.5-VL-7B-Instruct-4bit";
 const VERDICT_MAX_AGE_MS = 45 * 60 * 1000;
+// Floor lines (space, apparatus, motion, filmAsMaterial, frameFilled) the critic
+// must affirm for a pass. Changing this is a verdict-threshold change (VISION:
+// needs sign-off). First live calibration 2026-09-15: Qwen2.5-VL-7B scored the
+// shipped colour-01 at 3/5 (apparatus and motion false), so 5 may be too strict
+// for this critic; the score is recorded in every verdict for tuning.
+const FLOOR_MIN = 5;
 const KICK_MIN_GAP_MS = 90 * 1000;
 const KICK_MAX_PER_HOUR = 20;
 
@@ -52,6 +58,7 @@ type Verdict = {
   titleCard: boolean;
   operationVisible: string;
   floor: Record<string, boolean>;
+  floorScore: number;
   pass: boolean;
   critic: string;
   raw: string;
@@ -290,8 +297,8 @@ export default function cinemaLoop(pi: ExtensionAPI) {
         frameFilled: g("frameFilled"),
         colour: g("colour"),
       };
-      const floorPass = floor.space && floor.apparatus && floor.motion && floor.filmAsMaterial && floor.frameFilled;
-      const pass = Boolean(parsed) && framesDiffer && !titleCard && operationVisible.toLowerCase() !== "none" && floorPass;
+      const floorScore = [floor.space, floor.apparatus, floor.motion, floor.filmAsMaterial, floor.frameFilled].filter(Boolean).length;
+      const pass = Boolean(parsed) && framesDiffer && !titleCard && operationVisible.toLowerCase() !== "none" && floorScore >= FLOOR_MIN;
       const verdict: Verdict = {
         study: params.study,
         sha: params.sha,
@@ -301,6 +308,7 @@ export default function cinemaLoop(pi: ExtensionAPI) {
         titleCard,
         operationVisible,
         floor,
+        floorScore,
         pass,
         critic: String(parsed?.notes ?? (parsed ? "" : "critic returned no JSON")),
         raw: raw.slice(0, 4000),
@@ -315,7 +323,7 @@ export default function cinemaLoop(pi: ExtensionAPI) {
         `verdict ${pass ? "PASS" : "FAIL"} for ${params.study} ${params.sha}`,
         `frames: ${frames.join(", ")}${identical ? " (byte-identical)" : ""}`,
         `gates: framesDiffer=${framesDiffer} titleCard=${titleCard} operation="${operationVisible}"`,
-        `floor: ${Object.entries(floor)
+        `floor ${floorScore}/5 (min ${FLOOR_MIN}): ${Object.entries(floor)
           .map(([k, v]) => `${k}=${v}`)
           .join(" ")}`,
         `critic: ${verdict.critic}`,
