@@ -38,6 +38,8 @@ The apparatus stays the subject. The material it is made of gets richer. Every c
 
 **Razzle dazzle** (Joel, 2026-09-15, verbatim). The bar for every frame a viewer sees: it dazzles. Light moves, colour saturates, the beam has weight, the surface has scale, and the first five seconds make a stranger stop. Subtraction still governs the operation (one source, one operation), but the rendering of that operation is loud: full-bleed colour, deep contrast, motion in the light itself, surfaces that fill the frame. A quiet study is a choice argued in the critique with a frame beside a loud version.
 
+**Joel, 2026-09-15 ~13:05Z, to the maker directly** (quoted in ledger seq-57): pause further colour-lane cuts; prefer wallform on the withhold/wallform base over more colour-01 or colour-02 work until he says otherwise. colour-01 stays live as shipped. Lane 1 is paused, not closed; lanes 2 and 3 proceed from the wallform base.
+
 Three lanes, in order, each a branch of the shipped work:
 
 1. **Colour as time** (Lis Rhodes, *Light Music*, 1975; Paik/Abe video synthesiser). Split the projected image into red, green, and blue and give each channel its own delay (0s, 1.5s, 3s). Still regions stay monochrome; motion fringes into colour. The delay lineage rendered as chroma, on the withhold-01 room.
