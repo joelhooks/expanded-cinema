@@ -272,6 +272,31 @@ export async function mountRuntime(
     let baseLive = false; // true = node material live, delays all 0
     let driftLogTick = 0;
     let driftAccum = { g: 0, b: 0 };
+    let placementLogged = false;
+    const logPlacement = (): void => {
+      if (placementLogged) return;
+      placementLogged = true;
+      const plate = study.screen;
+      plate.updateWorldMatrix(true, false);
+      const box = new THREE.Box3().setFromObject(plate);
+      const cam = study.camera;
+      const frustum = new THREE.Frustum();
+      frustum.setFromProjectionMatrix(
+        new THREE.Matrix4().multiplyMatrices(cam.projectionMatrix, cam.matrixWorldInverse),
+      );
+      void sketchEvents
+        .emitInfo("study", "colour01.placement", {
+          platePos: [plate.position.x, plate.position.y, plate.position.z],
+          plateBoxMin: [box.min.x, box.min.y, box.min.z].map((v) => Number(v.toFixed(2))),
+          plateBoxMax: [box.max.x, box.max.y, box.max.z].map((v) => Number(v.toFixed(2))),
+          lens: [PROJ.x, PROJ.y, PROJ.z],
+          cam: [cam.position.x, cam.position.y, cam.position.z],
+          inFrustum: frustum.intersectsObject(plate),
+          materialType: (plate.material as THREE.Material).type,
+          colorNodeSet: Boolean((plate.material as MeshBasicNodeMaterial).colorNode),
+        })
+        .catch(() => undefined);
+    };
 
     const handledError = (msg: string, err: unknown): void => {
       void sketchEvents
@@ -373,6 +398,7 @@ export async function mountRuntime(
         study.lights.spill.intensity = 10 + 26 * cutPulse;
 
         r.render(study.scene, study.camera);
+        logPlacement();
       },
       onResize(w: number, h: number) {
         study.camera.aspect = w / h;
