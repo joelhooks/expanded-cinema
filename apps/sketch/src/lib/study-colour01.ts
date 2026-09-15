@@ -655,9 +655,13 @@ export async function mountRuntime(
         {
           const vMain = vidOf();
           const elapsedNow = now - (firstStepAt ?? now);
-          if (vMain && elapsedNow < 30_000 && firstStepAt === firstStepAt) {
-            if (vMain.readyState >= 1 && vMain.currentTime < 60) {
-              vMain.currentTime = SEEK_TO;
+          // seq-64 root cause: the guard re-seeked EVERY FRAME while a
+          // seek was already in flight — setting currentTime restarts the
+          // seek, readyState pinned at 1, the video never advanced and the
+          // whole pipeline starved at colourStep's readyState<2 gate.
+          if (vMain && elapsedNow < 30_000) {
+            if (!vMain.seeking && vMain.readyState >= 1 && vMain.readyState < 2 && vMain.currentTime < 60) {
+              vMain.currentTime = SEEK_TO; // fire ONCE (underrun recovery, not a loop)
             }
           }
         }
