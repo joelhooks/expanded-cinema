@@ -176,7 +176,7 @@ function buildScene() {
     const d = 0.05 + Math.random() * 0.12;
     const m = new THREE.Mesh(
       new THREE.BoxGeometry(w, h, d),
-      new THREE.MeshBasicMaterial({ color: 0xff00ff, transparent: true, opacity: 0 }), // BUILD A: solid magenta probe (AD seq-59)
+      new THREE.MeshBasicMaterial({ map: snapTex, transparent: true, opacity: 0 }), // BUILD B: the ORIGINAL uncloned CanvasTexture, zero offsets (AD seq-59)
     );
     // rough cone heap
     const a = Math.random() * Math.PI * 2;
