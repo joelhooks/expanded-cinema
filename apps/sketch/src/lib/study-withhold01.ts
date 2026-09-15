@@ -370,9 +370,19 @@ export async function mountRuntime(
       if (!vid || Math.abs(vid.currentTime - SEEK_TO) > 1.5) return;
       openAperture(Number(vid.currentTime.toFixed(2)), armedAtMs === null ? "backstop" : "seeked");
     };
+    // withhold-01.2 (AD seq-39): the shutter SNAPSHOT — the frame the
+    // screen shows at the aperture is captured; the second beam lands it
+    // on the wall 3 seconds later. The past is visibly behind: the screen
+    // moves on, the wall holds the shutter frame.
+    const shutterSnapshot: { bands: Float32Array | null } = { bands: null };
     const openAperture = (at: number, via: "seeked" | "backstop"): void => {
       if (revealHolder.revealed) return;
       revealHolder.revealed = true;
+      const vidNow = vidOf();
+      if (vidNow && vidNow.readyState >= 2) {
+        const snap = study.computeBandsFromVideo(vidNow);
+        if (snap) shutterSnapshot.bands = snap.bands;
+      }
       irisMat.color.setHex(0xbcd4ff);
       irisMat.opacity = 1;
       screenMat.map = videoLayer.texture;
@@ -633,7 +643,13 @@ export async function mountRuntime(
         // per-slice beams: brightness = the FRAME at that slice's row band
         // (live bands for beam 0; DELAY-late history for beam 1)
         const live = revealHolder.revealed && tap ? tap.bands : null;
-        const past = revealHolder.revealed && tap ? study.bandAt(DELAY) : null;
+        // the wall beam: dark until ARRIVAL_MS after the shutter, then the
+        // frozen shutter frame — the past is visibly behind the screen.
+        const sinceAperture = aperturedAtMs === null ? -1 : now - aperturedAtMs;
+        const arrival = sinceAperture >= 0 && sinceAperture < 3_000
+          ? null
+          : shutterSnapshot.bands;
+        const past = arrival as Float32Array | null;
         const pastLuma = revealHolder.revealed && tap ? study.lumaAt(DELAY) : null;
         for (const m of study.canvases) {
           const { beam, idx, yMid } = m.userData as { beam: number; idx: number; yMid: number };
@@ -736,9 +752,9 @@ export async function mountRuntime(
         }
         // the iris ring: unlit while closed, lit 1.2s around the shutter,
         // then fades to a faint trace (the boundary happened)
-        const sinceAperture = aperturedAtMs === null ? -1e9 : now - aperturedAtMs;
-        const ringBeat = sinceAperture >= 0 && sinceAperture < 1200
-          ? Math.max(0, 1 - sinceAperture / 1200)
+        const sinceOpen = aperturedAtMs === null ? -1e9 : now - aperturedAtMs;
+        const ringBeat = sinceOpen >= 0 && sinceOpen < 1200
+          ? Math.max(0, 1 - sinceOpen / 1200)
           : 0;
         const im = study.iris.material as THREE.MeshBasicMaterial;
         if (!apertured) {
