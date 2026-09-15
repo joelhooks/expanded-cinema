@@ -89,6 +89,13 @@ function makeSplitColorNode(
   return vec3(tR.r, tG.g, tB.b).add(vec3(0.01, 0.006, 0.004));
 }
 
+// PROBE 2 (AD seq-45): a pure procedural gradientノ — no textures. If the
+// plate shows red->green horizontally, material+geometry are fine and any
+// black is a texture-sampling problem, not a material problem.
+function probeGradient(): unknown {
+  return vec3(uv().x.mul(2).add(0.15), uv().y.mul(1.2).add(0.05), 0.25);
+}
+
 function buildScene(): Colour01Scene {
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x150a02, 0.045); // amber fog with a body
@@ -295,12 +302,9 @@ export async function mountRuntime(
               decodersLive = true;
             }
             if (!baseLive) {
-              // AD seq-44 (1): BASE CASE first — the split node material
-              // with all three delays at 0: the film must show through the
-              // node material before any delay offsets are trusted.
-              screenMat.colorNode = makeSplitColorNode(
-                videoLayer.texture, videoLayer.texture, videoLayer.texture,
-              ) as typeof screenMat.colorNode;
+              // AD seq-45 PROBE: procedural gradient first — proves the
+              // node material is on the mesh before any texture is trusted
+              screenMat.colorNode = probeGradient() as typeof screenMat.colorNode;
               screenMat.needsUpdate = true;
               baseLive = true;
               void sketchEvents
