@@ -150,6 +150,12 @@ function buildScene() {
   );
   wallPic.position.set(1.45, 1.3, -7.4);
   wallPic.rotation.y = 0.12; // square to the room, slight angle to the camera
+  // seq-41 MAGENTA PROBE: one build, solid color — proves placement vs texture
+  (wallPic.material as THREE.MeshBasicMaterial).map = null;
+  (wallPic.material as THREE.MeshBasicMaterial).color.setHex(0xff00ff);
+  (wallPic.material as THREE.MeshBasicMaterial).opacity = 1;
+  (wallPic.material as THREE.MeshBasicMaterial).transparent = false;
+  (wallPic.material as THREE.MeshBasicMaterial).depthWrite = true;
   scene.add(wallPic);
 
   // withhold-01: the IRIS RING — a thin unlit torus tracing the aperture
