@@ -39,6 +39,9 @@ interface ClockScene {
   pastCamera: THREE.PerspectiveCamera;
   screen: THREE.Mesh;
   iris: THREE.Mesh;
+  wallPic: THREE.Mesh;
+  snapCtx: CanvasRenderingContext2D;
+  snapTex: THREE.CanvasTexture;
   proj1: THREE.Mesh;
   proj2: THREE.Mesh;
   canvases: THREE.Mesh[];
@@ -128,6 +131,26 @@ function buildScene() {
   screen.position.set(0, SCREEN_H / 2 - 0.1, -2.2);
   screen.rotation.y = Math.PI; // concave faces the camera/projector side
   scene.add(screen);
+
+  // withhold-01.3: the WALL PICTURE — the shutter snapshot lands here as a
+  // REAL picture (a plane carrying a captured canvas texture), right of the
+  // screen, so the past is readable at picture luminance in the same frame
+  // (AD seq-40: a faint band is not a legible time).
+  const snapCanvas = document.createElement("canvas");
+  snapCanvas.width = 256;
+  snapCanvas.height = 144;
+  const snapCtx = snapCanvas.getContext("2d") as CanvasRenderingContext2D;
+  snapCtx.fillStyle = "#05060a";
+  snapCtx.fillRect(0, 0, 256, 144);
+  const snapTex = new THREE.CanvasTexture(snapCanvas);
+  snapTex.colorSpace = THREE.SRGBColorSpace;
+  const wallPic = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.6, 1.46),
+    new THREE.MeshBasicMaterial({ map: snapTex, transparent: true, opacity: 0 }),
+  );
+  wallPic.position.set(1.9, 1.35, -7.4);
+  wallPic.rotation.y = 0.12; // square to the room, slight angle to the camera
+  scene.add(wallPic);
 
   // withhold-01: the IRIS RING — a thin unlit torus tracing the aperture
   // edge. The closed state reads as an apparatus that has not opened, not
@@ -315,6 +338,9 @@ function buildScene() {
     pastCamera,
     screen,
     iris,
+    wallPic,
+    snapCtx,
+    snapTex,
     proj1,
     proj2,
     canvases,
@@ -382,6 +408,8 @@ export async function mountRuntime(
       if (vidNow && vidNow.readyState >= 2) {
         const snap = study.computeBandsFromVideo(vidNow);
         if (snap) shutterSnapshot.bands = snap.bands;
+        study.snapCtx.drawImage(vidNow, 0, 0, 256, 144); // the legible past
+        study.snapTex.needsUpdate = true;
       }
       irisMat.color.setHex(0xbcd4ff);
       irisMat.opacity = 1;
@@ -514,10 +542,10 @@ export async function mountRuntime(
         // each catching a different relation of source / withheld past /
         // live cut. Opening = the v18 proven default (AD seq-36).
         const RAIL: Array<{ t: number; p: [number, number, number]; l: [number, number, number] }> = [
-          { t: 0.0, p: [0.4, 0.85, 5.9], l: [-0.15, 1.1, 0.0] }, // relation (a): aperture closed, beam dark
+          { t: 0.0, p: [0.4, 0.85, 5.9], l: [-0.5, 1.1, 0.0] }, // relation (a): aperture closed, beam dark
           { t: 0.25, p: [0.55, 0.95, 6.1], l: [-0.6, 1.1, -0.1] }, // dwelled hold ~12s across the shutter moment
           { t: 0.55, p: [1.0, 1.05, 6.2], l: [-0.7, 1.15, -0.3] }, // relation (c): beam lit, opening historic
-          { t: 1.0, p: [0.4, 0.85, 5.9], l: [-0.15, 1.1, 0.0] }, // loop close
+          { t: 1.0, p: [0.4, 0.85, 5.9], l: [-0.5, 1.1, 0.0] }, // loop close
         ];
         const railAt = (f: number): { p: THREE.Vector3; l: THREE.Vector3 } => {
           let i = 0;
@@ -585,7 +613,7 @@ export async function mountRuntime(
           const lands1: THREE.Vector3[] = [];
           for (const drift of [-0.9, 0, 0.9]) {
             for (const yMid of [-1.1, 0, 1.1]) {
-              lands1.push(new THREE.Vector3(1.2 + yMid * 2.0 + drift, 1.0 + yMid * 1.35 + drift * 0.4, -7.55));
+              lands1.push(new THREE.Vector3(2.2 + yMid * 2.1 + drift, 1.0 + yMid * 1.35 + drift * 0.4, -7.55));
             }
           }
           const dToLands = (org: THREE.Vector3, lands: THREE.Vector3[]): number =>
@@ -662,7 +690,7 @@ export async function mountRuntime(
           // delayed bands so the past visibly moves on the wall (critique)
           const pastBand = past?.[idx] ?? 0;
           const drift = (pastBand - 0.35) * 2.6;
-          const tx = beam === 0 ? sx : 1.2 + yMid * 2.0 + drift;
+          const tx = beam === 0 ? sx : 2.2 + yMid * 2.1 + drift;
           const ty = beam === 0 ? 1.1 + yMid : 1.0 + yMid * 1.35 + drift * 0.4;
           const tz = beam === 0 ? sz : -7.55;
           const dir = new THREE.Vector3(tx - org.x, ty - org.y, tz - org.z);
@@ -691,10 +719,7 @@ export async function mountRuntime(
           const bright = Math.min(1, bandL * 1.3 + cutGlow * 0.35);
           const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          // .3 (AD seq-40): the wall snapshot IS a picture and must read at
-          // the screen's luminance order — same alpha law as beam 0, no
-          // 0.35 burial (the .2 wall band was invisible in the sweep).
-          mm.opacity = (beam === 0 ? 0.04 + bright * 0.26 : 0.05 + bright * 0.34) * fade * graze(m) * (beam === 0 ? 0.5 : 1.0);
+          mm.opacity = (beam === 0 ? 0.04 + bright * 0.26 : 0.02 + bright * 0.12) * fade * graze(m) * (beam === 0 ? 0.5 : 0.35);
         }
 
         // beam-01 vertical slats (now live, was dead since v13 rewrites):
@@ -737,7 +762,7 @@ export async function mountRuntime(
           const bbright = Math.min(1, bcolL * 1.35 + cutGlow * 0.3);
           const bfade = bBeam === 0 ? fade1 : fade2;
           const bmm = sm2.material as THREE.MeshBasicMaterial;
-          bmm.opacity = (bBeam === 0 ? 0.015 + bbright * 0.2 : 0.02 + bbright * 0.26) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 1.0);
+          bmm.opacity = (bBeam === 0 ? 0.015 + bbright * 0.2 : 0.01 + bbright * 0.07) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 0.35);
         }
         void SLATS;
 
@@ -747,6 +772,13 @@ export async function mountRuntime(
         const p2 = study.proj2.material as THREE.MeshStandardMaterial;
         p1.emissiveIntensity = 0.25 + pulse * 0.45 + cutGlow * 0.8;
         p2.emissiveIntensity = 0.25 + (1 - pulse) * 0.35 + cutGlow * 0.5;
+        // .3: the wall picture fades in at arrival (+3s), holds the past
+        const wallMat = study.wallPic.material as THREE.MeshBasicMaterial;
+        const openMs = aperturedAtMs === null ? -1e9 : now - aperturedAtMs;
+        wallMat.opacity = openMs >= 3_000
+          ? Math.min(1, (openMs - 3_000) / 900)
+          : 0;
+
         const sm = study.screen.material as THREE.MeshBasicMaterial;
         if (apertured) {
           sm.color.setScalar(1);
@@ -786,6 +818,8 @@ export async function mountRuntime(
           m.geometry.dispose();
           (m.material as THREE.Material).dispose();
         }
+        study.wallPic.geometry.dispose();
+        (study.wallPic.material as THREE.Material).dispose();
         study.screen.geometry.dispose();
         (study.screen.material as THREE.Material).dispose();
         study.proj1.geometry.dispose();
