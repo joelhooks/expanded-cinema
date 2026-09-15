@@ -545,6 +545,7 @@ export async function mountRuntime(
     // drift lock + delay live swap (colour-01)
     let splitLive = false;
     let probeFrames = 0;
+    let wallProofEmitted = false;
     let driftEMA = { g: 1, b: 1 };
     let driftTick = 0;
     const colourStep = (): void => {
@@ -876,7 +877,7 @@ export async function mountRuntime(
           const bright = Math.min(1, bandL * 1.3 + cutGlow * 0.35);
           const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = (beam === 0 ? 0.08 + bright * 0.5 : 0.04 + bright * 0.24) * fade * graze(m) * (beam === 0 ? 0.5 : 0.35);
+          mm.opacity = (beam === 0 ? 0.05 + bright * 0.3 : 0.03 + bright * 0.15) * fade * graze(m) * (beam === 0 ? 0.5 : 0.35);
         }
 
         // beam-01 vertical slats (now live, was dead since v13 rewrites):
@@ -919,7 +920,7 @@ export async function mountRuntime(
           const bbright = Math.min(1, bcolL * 1.35 + cutGlow * 0.3);
           const bfade = bBeam === 0 ? fade1 : fade2;
           const bmm = sm2.material as THREE.MeshBasicMaterial;
-          bmm.opacity = (bBeam === 0 ? 0.03 + bbright * 0.4 : 0.02 + bbright * 0.14) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 0.35);
+          bmm.opacity = (bBeam === 0 ? 0.02 + bbright * 0.22 : 0.015 + bbright * 0.09) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 0.35);
         }
         void SLATS;
 
@@ -955,11 +956,31 @@ export async function mountRuntime(
             study.snapTex.needsUpdate = true;
           }
         }
+        if (openMs >= 0 && openMs < 3100) {
+          const wallVw = vidOf();
+          if (wallVw && wallVw.readyState >= 2) {
+            study.snapCtx.drawImage(wallVw, 0, 0, 256, 144);
+            study.snapTex.needsUpdate = true;
+          }
+        }
         wallMat.opacity = openMs >= 3_000
           ? Math.min(1, (openMs - 3_000) / 900)
           : 0;
         wallMat.color.setScalar(1.7); // shutter frames are dark (mean ~50/255); overdrive so the past reads
         wallMat.needsUpdate = true;
+        if (!wallProofEmitted && openMs >= 3100) {
+          wallProofEmitted = true;
+          const wpx = study.snapCtx.getImageData(0, 0, 256, 144).data;
+          let wacc = 0;
+          let wcnt = 0;
+          for (let wi = 0; wi < wpx.length; wi += 160) {
+            wacc += (wpx[wi]! + wpx[wi + 1]! + wpx[wi + 2]!) / 3;
+            wcnt++;
+          }
+          void sketchEvents
+            .emitInfo("study", "colour01.wall.mean", { mean: Number((wacc / wcnt).toFixed(2)) })
+            .catch(() => undefined);
+        }
 
         const sm = study.screen.material as THREE.MeshBasicMaterial;
         if (apertured) {
