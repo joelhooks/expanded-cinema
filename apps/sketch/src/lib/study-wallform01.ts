@@ -971,6 +971,9 @@ export async function mountRuntime(
         for (const sh of study.shards) {
           (sh.material as THREE.MeshBasicMaterial).opacity = wallMat.opacity;
           (sh.material as THREE.MeshBasicMaterial).color.setScalar(4.6);
+          // cloned CanvasTextures do not follow the original's needsUpdate
+          const st = (sh.material as THREE.MeshBasicMaterial).map;
+          if (st) st.needsUpdate = true;
         }
         const openMs = aperturedAtMs === null ? -1e9 : now - aperturedAtMs;
         if (openMs >= 3_000 && snapProof.count < 3 && (snapProof.count === 0 || openMs >= (snapProof.count + 1) * 10_000)) {
