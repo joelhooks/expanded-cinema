@@ -56,6 +56,26 @@ combines provocation "the surface shows its past" with provocation
   open question for the critic: does stillness healing the relief read as
   memory, or does noise never leave?
 
+## Sharpened after tick 8 (2026-09-16)
+
+- **Honest risk:** the melt moves facets that the projection lands on, so
+  a bad v01 won't read as film dissolved into surface — it reads as sloppy
+  geometry. The tell is motion COUPLED to picture luma, not motion per se.
+  Chain discipline from the wallform lesson: v01 proves the READ (melt only
+  while footage moves), v02 proves the DETONATION (cut-frames tear), v03
+  proves the GRADIENT. Each variable names what it proves before anything
+  is built.
+- **Subtraction test, sharpened:** it is not size parity — v01 carries a
+  new material module, so the bundle grows. The test is behavioural: with
+  the melt material deleted, the page reduces exactly to wallform v8 (same
+  relief stills, same rail path, same o11y ring). Growth is acceptable only if it IS the melt — no restyled
+  surfaces, no new screens, no camera work.
+- **Build plan shipped:** execute-ready v01 spec now lives in
+  research/2026-09-15-melt-01.md (module branch-by-copy beside wallform,
+  one TSL material, displacement clamp so bone-white cut frames cannot tear
+  facets out of the heap, frame-intent for the critic). Awaiting the order
+  to build.
+
 ## Study 2 (queued behind): `beam/psychedelic-cone-01`
 
 McCall's solid light pushed
