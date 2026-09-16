@@ -1,0 +1,28 @@
+{
+  "name": "@expanded-cinema/melt-01",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check": "pnpm run typecheck"
+  },
+  "dependencies": {
+    "@effect/platform-node": "4.0.0-rc.112",
+    "@expanded-cinema/core": "workspace:*",
+    "@types/three": "0.186.0",
+    "effect": "4.0.0-rc.112",
+    "three": "0.186.0",
+    "xstate": "6.0.0-alpha.53",
+    "zustand": "5.0.15"
+  },
+  "devDependencies": {
+    "@types/node": "26.5.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.0",
+    "vitest": "5.0.0"
+  }
+}
