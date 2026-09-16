@@ -18,6 +18,23 @@ Entries are dated, newest first, and stay short. An entry is one of:
 
 ## Entries
 
+- **2026-09-16 order.** Joel live, verbatim: "There is no fucking critic
+  motherfucker like it's dead like look around. There is no fucking critic.
+  So just fucking send that shit. Like be your own fucking critic." — the
+  extension critic verdict gate is OVERRIDDEN by operator order for
+  melt-01 v01 r7 (a017c67). The loop agent judges the build itself: frames
+  show film-as-material (fragmented projection, fused split-late beam),
+  frames differ, apparatus legible, color honest; operation reads. CUT IT.
+  The study-critique rubric still binds the NEXT variable.
+
+- **2026-09-16 lane.** Joel live in session: "i did not ask for a pause,
+  I want radical opposite of that." The 2026-09-15 13:05Z colour-pause
+  note is superseded as misattributed. Successor named by operator order:
+  surface/melt-01 — global loop on, build v01 now (spec in
+  research/2026-09-15-melt-01.md), archive, verify, cut when the critic
+  passes. Radical pace over ceremony; the study-critique rubric still
+  binds every sha.
+
 - **2026-09-15 standing.** The first experiment is closed and archived. No
   active study until Joel names the successor in `apps/`. Until then, the
   loop agent's only allowed work is keeping the workspace green and proposing
