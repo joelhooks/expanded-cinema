@@ -242,6 +242,43 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(@types/node@26.5.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
 
+  apps/melt-01:
+    dependencies:
+      '@effect/platform-node':
+        specifier: 4.0.0-rc.112
+        version: 4.0.0-rc.112(effect@4.0.0-rc.112)(redis@6.2.1)
+      '@expanded-cinema/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@types/three':
+        specifier: 0.186.0
+        version: 0.186.0
+      effect:
+        specifier: 4.0.0-rc.112
+        version: 4.0.0-rc.112
+      three:
+        specifier: 0.186.0
+        version: 0.186.0
+      xstate:
+        specifier: 6.0.0-alpha.53
+        version: 6.0.0-alpha.53
+      zustand:
+        specifier: 5.0.15
+        version: 5.0.15(react@19.3.0)
+    devDependencies:
+      '@types/node':
+        specifier: 26.5.1
+        version: 26.5.1
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+      vite:
+        specifier: 8.3.0
+        version: 8.3.0(@types/node@26.5.1)(yaml@2.9.1)
+      vitest:
+        specifier: 5.0.0
+        version: 5.0.0(@types/node@26.5.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
+
   archives/expanded-cinema-2026-09:
     dependencies:
       '@effect/platform-node':
