@@ -278,7 +278,11 @@ export default Alchemy.Stack(
         lockfile: true,
       },
       observability: { enabled: true },
-      rootDir: "../../archives/expanded-cinema-2026-09",
+      // Active study app (was the frozen archives/expanded-cinema-2026-09
+      // copy — that tree predates melt-01, so the live gallery registry
+      // could never mount the pointed study). apps/melt-01 is the live
+      // surface; its registry carries every study including melt-01.
+      rootDir: "../../apps/melt-01",
       routes: [{ pattern: `${host}/*`, zoneName: ZONE }],
     });
 
