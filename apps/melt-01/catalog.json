@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-09-14T10:29:48.232Z",
+  "generator": "scripts/catalog-videos.mjs",
+  "entries": [
+    {
+      "file": "Conquerb1943_512kb.mp4",
+      "sha256": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056"
+    },
+    {
+      "file": "Technico1949_512kb.mp4",
+      "sha256": "d67a9c38f7f3535714dc54aa8a2797491ce047baa2f29a79fb775af3f576420e"
+    },
+    {
+      "file": "conquerb1943.mp4",
+      "sha256": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056"
+    },
+    {
+      "file": "starter.mp4",
+      "sha256": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+    }
+  ]
+}
