@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "ff413ea",
+  "at": "2026-09-16T15:49:54.965Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-ff413ea-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-ff413ea-16s.png"
+  ],
+  "framesDiffer": true,
+  "titleCard": false,
+  "operationVisible": "The operation of the film is visible as a clock face on the screen.",
+  "floor": {
+    "space": true,
+    "apparatus": true,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 4,
+  "pass": false,
+  "critic": "The second frame introduces a clock face on the screen, indicating a change in the film's content.",
+  "raw": "{\n  \"framesDiffer\": true,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": true,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"The operation of the film is visible as a clock face on the screen.\",\n  \"notes\": \"The second frame introduces a clock face on the screen, indicating a change in the film's content.\"\n}\n"
+}

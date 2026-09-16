@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "67a7c34",
+  "at": "2026-09-16T14:32:19.519Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-67a7c34-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-67a7c34-16s.png"
+  ],
+  "framesDiffer": true,
+  "titleCard": false,
+  "operationVisible": "The operation of the film as a material is visible in the second frame, where the film appears to be projected onto a surface with a grid pattern.",
+  "floor": {
+    "space": true,
+    "apparatus": false,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 3,
+  "pass": false,
+  "critic": "The transition between the two frames shows a change in the film's content, from a colorful abstract pattern to a grayscale image of a bridge, indicating a change in the video content being projected.",
+  "raw": "{\n  \"framesDiffer\": true,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": false,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"The operation of the film as a material is visible in the second frame, where the film appears to be projected onto a surface with a grid pattern.\",\n  \"notes\": \"The transition between the two frames shows a change in the film's content, from a colorful abstract pattern to a grayscale image of a bridge, indicating a change in the video content being projected.\"\n}\n"
+}

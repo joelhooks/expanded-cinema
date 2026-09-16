@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "a017c67",
+  "at": "2026-09-16T20:40:08.929Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-a017c67-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-a017c67-16s.png"
+  ],
+  "framesDiffer": true,
+  "titleCard": false,
+  "operationVisible": "The operation of the film as material is visible in the second frame, where the film appears to be split and delayed, creating a fragmented visual effect.",
+  "floor": {
+    "space": true,
+    "apparatus": false,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 3,
+  "pass": false,
+  "critic": "The transition between the two frames demonstrates a change in the film's material properties, from a continuous image to a fragmented and delayed visual, suggesting a dynamic and evolving projection study.",
+  "raw": "{\n  \"framesDiffer\": true,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": false,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"The operation of the film as material is visible in the second frame, where the film appears to be split and delayed, creating a fragmented visual effect.\",\n  \"notes\": \"The transition between the two frames demonstrates a change in the film's material properties, from a continuous image to a fragmented and delayed visual, suggesting a dynamic and evolving projection study.\"\n}\n"
+}

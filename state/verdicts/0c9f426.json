@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "0c9f426",
+  "at": "2026-09-16T19:16:59.181Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-0c9f426-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-0c9f426-16s.png"
+  ],
+  "framesDiffer": true,
+  "titleCard": false,
+  "operationVisible": "The film's operation is visible in the second frame, where the film appears to be projected onto the curved surface.",
+  "floor": {
+    "space": true,
+    "apparatus": false,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 3,
+  "pass": false,
+  "critic": "The second frame shows the film being projected onto a curved surface, indicating the operation of the projection study.",
+  "raw": "{\n  \"framesDiffer\": true,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": false,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"The film's operation is visible in the second frame, where the film appears to be projected onto the curved surface.\",\n  \"notes\": \"The second frame shows the film being projected onto a curved surface, indicating the operation of the projection study.\"\n}\n"
+}

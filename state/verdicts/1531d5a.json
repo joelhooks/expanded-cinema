@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "1531d5a",
+  "at": "2026-09-16T15:11:04.672Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-1531d5a-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-1531d5a-16s.png"
+  ],
+  "framesDiffer": true,
+  "titleCard": false,
+  "operationVisible": "The film appears to be projected onto a curved surface in the second frame, indicating a change in the projection setup.",
+  "floor": {
+    "space": true,
+    "apparatus": false,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 3,
+  "pass": false,
+  "critic": "The second frame shows a different projection setup, with the film material appearing curved and the room's depth more pronounced, suggesting a change in the projection environment.",
+  "raw": "{\n  \"framesDiffer\": true,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": false,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"The film appears to be projected onto a curved surface in the second frame, indicating a change in the projection setup.\",\n  \"notes\": \"The second frame shows a different projection setup, with the film material appearing curved and the room's depth more pronounced, suggesting a change in the projection environment.\"\n}\n"
+}

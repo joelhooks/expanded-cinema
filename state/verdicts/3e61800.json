@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "3e61800",
+  "at": "2026-09-16T19:58:24.622Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-3e61800-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-3e61800-16s.png"
+  ],
+  "framesDiffer": false,
+  "titleCard": false,
+  "operationVisible": "none",
+  "floor": {
+    "space": true,
+    "apparatus": false,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 3,
+  "pass": false,
+  "critic": "The two frames appear identical, suggesting no change in the scene or the film's material between the two points in time. The film's material is warped, and the room's depth and saturated colors remain consistent.",
+  "raw": "{\n  \"framesDiffer\": false,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": false,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"none\",\n  \"notes\": \"The two frames appear identical, suggesting no change in the scene or the film's material between the two points in time. The film's material is warped, and the room's depth and saturated colors remain consistent.\"\n}\n"
+}
