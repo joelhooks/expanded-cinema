@@ -131,13 +131,32 @@ export default Alchemy.Stack(
                 headers: { "content-type": "application/json" },
               });
             }
-            if (request.method !== "PUT") {
-              return new Response(JSON.stringify({ error: "method not allowed" }), {
-                status: 405,
-                headers: { "content-type": "application/json" },
+            if (request.method === "PUT") {
+              return handlePointerWrite(request, env);
+            }
+            if (request.method === "GET") {
+              // Read parity: the gallery reads /archive/content/current.json
+              // through the same R2 binding, so GET here proxies to it
+              // instead of 404-ing a valid pointer path.
+              const pointerObj = await env.ARCHIVE.get("archive/content/current.json");
+              if (!pointerObj) {
+                return new Response(JSON.stringify({ error: "no pointer yet" }), {
+                  status: 404,
+                  headers: { "content-type": "application/json" },
+                });
+              }
+              return new Response(pointerObj.body, {
+                status: 200,
+                headers: {
+                  "content-type": "application/json; charset=utf-8",
+                  "cache-control": "public, max-age=0, must-revalidate",
+                },
               });
             }
-            return handlePointerWrite(request, env);
+            return new Response(JSON.stringify({ error: "method not allowed" }), {
+              status: 405,
+              headers: { "content-type": "application/json" },
+            });
           }
           let path = url.pathname.slice("/archive".length);
           if (path.startsWith("/")) path = path.slice(1);
@@ -223,9 +242,16 @@ export default Alchemy.Stack(
               { status: 404, headers: { "content-type": "application/json" } },
             );
           }
+          // The live pointer is the ONE mutable object in an immutable
+          // archive: 1h cache here is why cuts looked like they "never
+          // update" — edge/visitors kept the prior pointer up to an hour
+          // after a successful PUT. Everything else stays 3600.
+          const isPointer = key === "archive/content/current.json";
           const headers = new Headers({
             "content-type": obj.httpMetadata?.contentType || contentTypeFor(key),
-            "cache-control": "public, max-age=3600",
+            "cache-control": isPointer
+              ? "public, max-age=0, must-revalidate"
+              : "public, max-age=3600",
           });
           if (obj.httpEtag) headers.set("etag", obj.httpEtag);
           return new Response(obj.body, { headers });
