@@ -11804,18 +11804,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 727,
-      "etag": "fab47b3381268127e14002b31d10d533527c87c9034791b0e1d065cb8aef88c6",
-      "key": "archive/colour-01/1cfc302/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 58,
-      "etag": "3b6740f8f44b0597338b77ab8d5597952079c3753517ef31c7924d4be3304d1b",
-      "key": "archive/colour-01/1cfc302/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11016,
       "etag": "fcdcbb2cdcbbc7842b39579bc0073fa59876feabc605af871c98830c1c48e113",
       "key": "archive/colour-01/28a689a/assets/index-CR-_53nn.js",
@@ -12353,18 +12341,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/colour-01/28a689a/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 716,
-      "etag": "25da823a1a61617b9ea9419277752343609e84c1b77698f581e0c02d46c003ff",
-      "key": "archive/colour-01/28a689a/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 47,
-      "etag": "7b7b6f7aa11ebe491765357bb1939c7e06e2e41967eaf9c0b8163a94aab3d7c8",
-      "key": "archive/colour-01/28a689a/note.md",
       "status": "skipped"
     },
     {
@@ -12956,18 +12932,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 711,
-      "etag": "01aa3f13dc352b6e3903960a56865e11a8380a573759f35712b2e8960f828403",
-      "key": "archive/colour-01/293ad20/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 42,
-      "etag": "406b1cc35b2ae6deed7639707b1b6bf921a2b3a5228e07e63e0924b4609f50b5",
-      "key": "archive/colour-01/293ad20/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11018,
       "etag": "d1819956ee0f3991ee0f0134ce4ed3dad78214453a21f4023eae07c676b68c9c",
       "key": "archive/colour-01/2b51ee8/assets/index-B3TKRu8r.js",
@@ -13505,18 +13469,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/colour-01/2b51ee8/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 736,
-      "etag": "ea54e8e95676d16b6ac13949466adfb6301bb0a7bc3c41543c2a0534cdd835fa",
-      "key": "archive/colour-01/2b51ee8/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 67,
-      "etag": "96e5665c517461ef2c1719cb2ca03221d60dbe1e89e0e1d4699e0111ed2c3a25",
-      "key": "archive/colour-01/2b51ee8/note.md",
       "status": "skipped"
     },
     {
@@ -14060,18 +14012,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 713,
-      "etag": "4cdaa88754e55d2856cd4cdbf407ff4b176165aea7276e934011969f7a315045",
-      "key": "archive/colour-01/4134637/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 44,
-      "etag": "1d61880492189b2551551d21a8166c6d0e2ee115ba9f32d47d3a69c30c6724b9",
-      "key": "archive/colour-01/4134637/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11016,
       "etag": "a16620adcddb40ed61b8285951ea11a040477659635638d186a3ea32d712b034",
       "key": "archive/colour-01/42c039f/assets/index-BlzAScGO.js",
@@ -14609,18 +14549,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/colour-01/42c039f/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 710,
-      "etag": "a82eea4026ee4c640895ff74da85b432dc70f0073176d9de8ce9103bef000584",
-      "key": "archive/colour-01/42c039f/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 41,
-      "etag": "255aab49fd19ca0acb74748f36d53cb1178a29653ac75d68122151482be1aa1d",
-      "key": "archive/colour-01/42c039f/note.md",
       "status": "skipped"
     },
     {
@@ -15164,18 +15092,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 715,
-      "etag": "ad1d738d8d804b43b49d2b3fbe649c6f066d8ae016c49ca4b920a2591645ac59",
-      "key": "archive/colour-01/4d666ee/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 46,
-      "etag": "1e97851d3f7ad01813ed408611f1e633e59fa9d0da64dd631facd5a15f6d7c22",
-      "key": "archive/colour-01/4d666ee/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11016,
       "etag": "59907e70bc64417e032ee6d60205520bf1220f967ac9c0853c5704449da32ffb",
       "key": "archive/colour-01/53696f4/assets/index-DtRlezUw.js",
@@ -15713,18 +15629,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/colour-01/53696f4/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 707,
-      "etag": "d69114e0d5060be041d4e38f9e778eedfd7aed203172f2abcae1f4c3236edd6c",
-      "key": "archive/colour-01/53696f4/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 38,
-      "etag": "b231994cedddfcc44fdc6614b058e27699914b23d78bb20f537ecbb51a5dd20c",
-      "key": "archive/colour-01/53696f4/note.md",
       "status": "skipped"
     },
     {
@@ -16268,18 +16172,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 720,
-      "etag": "95d030b3f974f8c1942ee18cefbb86c940a218dc60e0f916a089d54ad7a384ba",
-      "key": "archive/colour-01/5738cf4/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 51,
-      "etag": "319c7364bc677b681b3c318d33d59ce4ed201fbf3818a5b3fe1e5af764c14d88",
-      "key": "archive/colour-01/5738cf4/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11018,
       "etag": "0b00a430879513c4154fef45c2086e2f37a67c8cb176d2e3eb96952322eeefcb",
       "key": "archive/colour-01/5b1e6fe/assets/index-dEAMbUR1.js",
@@ -16817,18 +16709,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/colour-01/5b1e6fe/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 731,
-      "etag": "10e1b0808d1adf8ea845e0118cb298519ec320b44e9e8602d50107d5076dcf40",
-      "key": "archive/colour-01/5b1e6fe/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 62,
-      "etag": "3348c4d3efa61489ed6ffd2d0be328dd0523fb39edf5e765edea611210a90523",
-      "key": "archive/colour-01/5b1e6fe/note.md",
       "status": "skipped"
     },
     {
@@ -17420,18 +17300,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 709,
-      "etag": "38b5ed3c712a5d30f2ddb580d6965ac1ee6547e358639a57e7323a0bb5b1e2e3",
-      "key": "archive/colour-01/5f8b65f/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 40,
-      "etag": "38aff6e3bb1b7495195589d4562f60471e2b51f8889e4d9d7501303e172ac74a",
-      "key": "archive/colour-01/5f8b65f/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11016,
       "etag": "a16620adcddb40ed61b8285951ea11a040477659635638d186a3ea32d712b034",
       "key": "archive/colour-01/68cbb62/assets/index-BlzAScGO.js",
@@ -17969,18 +17837,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/colour-01/68cbb62/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 706,
-      "etag": "8a71fc86f5a7e2a12aa75bff577cd238c71868fa51e1f9a0cc3696b0fa72fe1e",
-      "key": "archive/colour-01/68cbb62/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 37,
-      "etag": "61c2e1a1346644234debfb5b8bcc1d9ba7c6739021378ff122b76994b518772c",
-      "key": "archive/colour-01/68cbb62/note.md",
       "status": "skipped"
     },
     {
@@ -18524,18 +18380,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 717,
-      "etag": "ef6cadb418086baacb9b70b5c9904dd0f9df91256f36bffbd8524ebec91b0b6f",
-      "key": "archive/colour-01/8051009/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 48,
-      "etag": "e84de0f0e12ca79902955d4ed620ab6b90cea53a0bb3bdb601d71c15e1cdd1bf",
-      "key": "archive/colour-01/8051009/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11018,
       "etag": "d411199df277b1b402c932c85ad0de4df7e1b2ed7d7c266bcdd7ade3583a282e",
       "key": "archive/colour-01/893975e/assets/index-DBDgV-pg.js",
@@ -19073,18 +18917,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/colour-01/893975e/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 720,
-      "etag": "7500a67628c14bcd934e08bd6034d107344448f30a28997370f181540cfdf263",
-      "key": "archive/colour-01/893975e/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 51,
-      "etag": "bb3be846d35faf78af97385310586847dde83cd4b2ac33b4fa9c4dbfdf75bdc9",
-      "key": "archive/colour-01/893975e/note.md",
       "status": "skipped"
     },
     {
@@ -19628,18 +19460,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 712,
-      "etag": "7958113ac4d8ce64a073545585eb3fe504fbbe540fe2498d9766a21190e5decc",
-      "key": "archive/colour-01/9fdd82f/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 43,
-      "etag": "3ca22db72dd58c784b16745a3a83b7a2d5c761e3840651319e9ef063b2f5e7ca",
-      "key": "archive/colour-01/9fdd82f/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11018,
       "etag": "7c0f03b3b657780b3b66e066ab65c3fe11386e34eb27f9e7be6fc8dff928cf4d",
       "key": "archive/colour-01/a5aabcd/assets/index-BBCVm3cX.js",
@@ -20177,18 +19997,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/colour-01/a5aabcd/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 754,
-      "etag": "2f7f3074b5fcded6864b2630b88c3df7778044dee40582dbf22abfe158dbe2f1",
-      "key": "archive/colour-01/a5aabcd/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 85,
-      "etag": "03bfc66397629765400e45d3063c396603e1e4d93fe856f1baf616ccd2e04b28",
-      "key": "archive/colour-01/a5aabcd/note.md",
       "status": "skipped"
     },
     {
@@ -20732,18 +20540,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 716,
-      "etag": "19f749e78513476514a891636a5eec20fcfc7389abae7c85c15ef02e5b8cec90",
-      "key": "archive/colour-01/b382832/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 47,
-      "etag": "ee51144e67018a44a29bc7565c0ee2e1aff0e2405ab7047aa4e07429658c2043",
-      "key": "archive/colour-01/b382832/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11016,
       "etag": "17fcc0e76530b1c18e7eb1956bd7717cab54c71cf40282d8114c5c26e38f8248",
       "key": "archive/colour-01/b6d92c7/assets/index-BPAvHrIP.js",
@@ -21281,18 +21077,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/colour-01/b6d92c7/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 729,
-      "etag": "5f3027b635153b36403b746b04c93ea5c9a3a4a5ecbc8493d32a6c5c0a99f0c5",
-      "key": "archive/colour-01/b6d92c7/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 60,
-      "etag": "8141d82b527676f91a5af26b896fa94d3cb524ba49a806c6e567f9e3e42df187",
-      "key": "archive/colour-01/b6d92c7/note.md",
       "status": "skipped"
     },
     {
@@ -21884,18 +21668,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 710,
-      "etag": "d55dd5879b20d5dd0d97f8f4e082d9ba13b9e13bcecc001aa7085d0e63f638ef",
-      "key": "archive/colour-01/c7afea0/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 41,
-      "etag": "4d7cdc26743cc3c271e69e27d6d7355015fd512aff1e1a7106515d2150c747dc",
-      "key": "archive/colour-01/c7afea0/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11018,
       "etag": "e67597db0261164bd8a8661e2f36915a3684186a96252405b3f215c195e26c9e",
       "key": "archive/colour-01/d0af926/assets/index-DETqiKT1.js",
@@ -22436,18 +22208,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 726,
-      "etag": "17217f642a1b03649ee36e72785ab6acc8fa8609043d717e750f2b0d0bdc9ce0",
-      "key": "archive/colour-01/d0af926/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 57,
-      "etag": "7c3d25ca7c279a03309c67413c814f2636b68eafddc110c0a0ec68eaf995fa5c",
-      "key": "archive/colour-01/d0af926/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 794529,
       "etag": "f65ded9f95f856f6e005a41b5a9d5fcd285abc08b2af2ec4b6660c59a7b3a78d",
       "key": "archive/hello-world-knot/574f3b9/assets/index-CrISFYx_.js",
@@ -22520,10 +22280,328 @@
       "status": "skipped"
     },
     {
-      "bytes": 18130,
-      "etag": "8bdd9e974fa03be34a02a7546435d0c059f202ee89359800dcbeca5ff235919f",
+      "bytes": 19048,
+      "etag": "0e13c9bdafcfb1b5591e0eebd8c80894415054601a25ed1cbc736acac16fdc3b",
       "key": "archive/index.html",
       "status": "uploaded"
+    },
+    {
+      "bytes": 11575,
+      "etag": "85b6ceb99561cd07349111144bdb9a7410faf81b523659400be1bac48bc28c42",
+      "key": "archive/melt-01/0125015/assets/index-DNnIASEX.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 47321,
+      "etag": "dcd9da3728ffbb3248e0dd3ffa9b4bf41a16a99f36da5ce2e768c048eeecebcc",
+      "key": "archive/melt-01/0125015/assets/index-DNnIASEX.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 212627,
+      "etag": "400b75896baf41e1406ba7faa93bb0759efb3af167bd28f144cd2b606174e55a",
+      "key": "archive/melt-01/0125015/assets/o11y-CzJjQfRE.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1856359,
+      "etag": "8384a33c9da4c7b5ef22c4d088c0c56d188d7b58362ec562e94e54d3552aa398",
+      "key": "archive/melt-01/0125015/assets/o11y-CzJjQfRE.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 912,
+      "etag": "8fd33da592fa2c3e21d1351eade9137532e2d7e11e65562d05d8ae97343b4be0",
+      "key": "archive/melt-01/0125015/assets/ring-capture-VrqvsPdT.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 6034,
+      "etag": "a02ca077505a9b3d151e5d663bf2875835eedd6cc010e0befe05222807674907",
+      "key": "archive/melt-01/0125015/assets/ring-capture-VrqvsPdT.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3646,
+      "etag": "7cba7c08645518f9d8647465d0cebf89c19980f53ace55da7dd72be2ef54f887",
+      "key": "archive/melt-01/0125015/assets/study-clock-CIjrHPxg.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 13096,
+      "etag": "cf6fba2d556dd3790c3070dcc08565ad720b4eb98b5c97e42e734f8be73dd18a",
+      "key": "archive/melt-01/0125015/assets/study-clock-CIjrHPxg.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3297,
+      "etag": "074aa635ea43178d355ef456f6400c74338b849f6443ebe195541fb326f426cb",
+      "key": "archive/melt-01/0125015/assets/study-clock02-L1DIy8kw.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11897,
+      "etag": "4b311dd6efadd0d0d2bcb796d489c774670cd73dfa1accc2a2e2aa213d4538d6",
+      "key": "archive/melt-01/0125015/assets/study-clock02-L1DIy8kw.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 4280,
+      "etag": "d5640085cea0609d168cb8d765b2391a2eda6891a65eae4dd0359977bd3bd845",
+      "key": "archive/melt-01/0125015/assets/study-clock03-CK9jmBqK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 16058,
+      "etag": "28a17444b08f6269621d88166ebcc78b2f427ea7ba04135f6b64d5b346e624c8",
+      "key": "archive/melt-01/0125015/assets/study-clock03-CK9jmBqK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9613,
+      "etag": "5c7e25e1b03876333b1f03a0630eb58ad1f28cd4dce2d5dca2b6d55f9b04ac26",
+      "key": "archive/melt-01/0125015/assets/study-clock04-Bdn8RcTK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46985,
+      "etag": "feddb23d0c52c95a31c29f30dc4bc488f9961fcda6955e9913b4e2bb1e62584b",
+      "key": "archive/melt-01/0125015/assets/study-clock04-Bdn8RcTK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3138,
+      "etag": "a3ac76fd29c0d940a43e6bd0e732c229c39159e733ba864a7303ac1ba0916d05",
+      "key": "archive/melt-01/0125015/assets/study-clock05-BsX7yan9.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12357,
+      "etag": "6448e244227837d5bb31d8436704e8a1ca975f3cc8ab9da47c65709455238909",
+      "key": "archive/melt-01/0125015/assets/study-clock05-BsX7yan9.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15333,
+      "etag": "f67680837c25ec06c7096b71c74866abc3a0ee1074ad27a001c8d5887cc0f8ca",
+      "key": "archive/melt-01/0125015/assets/study-colour01-D9x08cXp.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 73654,
+      "etag": "7eadd72040220301b102d59c978df4e2783d93611b9dbbf9b34b039b0b9c888a",
+      "key": "archive/melt-01/0125015/assets/study-colour01-D9x08cXp.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 18051,
+      "etag": "943d2a44dba7aeb6d914fe1472e79633bc2029faf22cb6508501bac7e5d455ee",
+      "key": "archive/melt-01/0125015/assets/study-melt01-CW6HaFQ_.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 89979,
+      "etag": "6a803acaa26de6222ae25b6b8dd3a677b3059c4a9985c59b2f0f317b52b12d6b",
+      "key": "archive/melt-01/0125015/assets/study-melt01-CW6HaFQ_.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 166,
+      "etag": "a311a1454ed15880bf9dbbbefee6ef301a3da185775152972e99e2a3013f5043",
+      "key": "archive/melt-01/0125015/assets/study-recurrence-Bk7aXSP2.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2103,
+      "etag": "70149cf3e0053617ce32a2eccf786d7a05696b7b4fc1f4ca7409fe81006b8458",
+      "key": "archive/melt-01/0125015/assets/study-recurrence-C6njJ4Fc.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9839,
+      "etag": "1c3fda7d57d17113e44750eb72395c8ef5aedff241e143d1d891d682cab33953",
+      "key": "archive/melt-01/0125015/assets/study-recurrence-C6njJ4Fc.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 176,
+      "etag": "7e3b0235420c28a14ee3d50263298b9df1882922f8acc3622ba69f8f48febc84",
+      "key": "archive/melt-01/0125015/assets/study-recursion-B6kz2kr1.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3495,
+      "etag": "bbe03478b553d7d87f8bad450111bff47e6f04c7a1efb817c017deb8f0ef10b9",
+      "key": "archive/melt-01/0125015/assets/study-recursion-B7bhiP67.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12817,
+      "etag": "d3a5b314044a01d42dada065c481b4457d875340fe815ed8be0bde5b68862705",
+      "key": "archive/melt-01/0125015/assets/study-recursion-B7bhiP67.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15689,
+      "etag": "9f1f10c3d245f2545fcf87964d576dc561edcf392239ec8720801a1a6b04bb0c",
+      "key": "archive/melt-01/0125015/assets/study-wallform01-CjPSGz-g.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 74293,
+      "etag": "bb7f7e145a87b759f5b7eb4597214501417dea6f3796d46eea0ed975e9a0bd9b",
+      "key": "archive/melt-01/0125015/assets/study-wallform01-CjPSGz-g.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11762,
+      "etag": "ec5c86893bb93abedc31eba1c7475adc6ad2668cb6c51314961ec66b524bcea7",
+      "key": "archive/melt-01/0125015/assets/study-withhold01-CT63DFgD.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 57291,
+      "etag": "7e7d5b266d3dec7b1684b5615bce001519114617589a7d6a1e260dd7b725ad78",
+      "key": "archive/melt-01/0125015/assets/study-withhold01-CT63DFgD.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 10581,
+      "etag": "02ef4f6848a4a5e90b7f09ee223186aec6ce566a9fbc94582474ba5e49d05238",
+      "key": "archive/melt-01/0125015/assets/three.tsl-D4OlXbG3.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 44942,
+      "etag": "a10078b3b1f3c3960ae4bf87c40fb25f946c6f458b82f995103d7711b4ccbc51",
+      "key": "archive/melt-01/0125015/assets/three.tsl-D4OlXbG3.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 675558,
+      "etag": "8f87bfe2f558fceb270bd2d1429bd91edbf8acaadc7c806f77ae84e925c03758",
+      "key": "archive/melt-01/0125015/assets/three.webgpu-BNKDU8q4.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3223944,
+      "etag": "bbb4fad79d0863bc9a86352dc83485cfb121b9d8970cc3bb281b4101d84572ed",
+      "key": "archive/melt-01/0125015/assets/three.webgpu-BNKDU8q4.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1927,
+      "etag": "fe859119be3defc8a30f7677b7d12a8ddbed1a430166da8ec805fecbad9b5d0e",
+      "key": "archive/melt-01/0125015/index.html",
+      "status": "skipped"
+    },
+    {
+      "bytes": 126201,
+      "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
+      "key": "archive/melt-01/0125015/og-image.png",
+      "status": "skipped"
+    },
+    {
+      "bytes": 746,
+      "etag": "abcc5a10f3e652f3b87360d2c7ff423e6d6947cb6269f036c2b1d162c3e080e2",
+      "key": "archive/melt-01/0125015/radar/clock05/provenance.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198774,
+      "etag": "89154c1144c10f99d73c494caf14d4fcf9b3a82eb8d3f59d8e54fdc04679ba3d",
+      "key": "archive/melt-01/0125015/radar/clock05/rad01.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198231,
+      "etag": "9a95ebb8d11631334a00c0ceac1461a3ae787c4bf971445c3770aef75a7fb5f7",
+      "key": "archive/melt-01/0125015/radar/clock05/rad02.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198237,
+      "etag": "649c425f846e79f7b3b51f0b4ec4900c28b7d282cdf83bac5c82f9f814a3a40e",
+      "key": "archive/melt-01/0125015/radar/clock05/rad03.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198205,
+      "etag": "45325bd4a5edde5a75f42ce86c1e673da19b5b3575058f3e11385b2b0534258a",
+      "key": "archive/melt-01/0125015/radar/clock05/rad04.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198103,
+      "etag": "b2917dba7aefa0a8ff7dffe71ddfd92be40fd48ec3f8efa88101ca146ea892c7",
+      "key": "archive/melt-01/0125015/radar/clock05/rad05.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198077,
+      "etag": "27883e976c5fab6b1a4de8dab5729f1ddf463ee4e4bd448fe9b9afefff6f955a",
+      "key": "archive/melt-01/0125015/radar/clock05/rad06.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198067,
+      "etag": "8c4a15001dada6940c618715b1378085962b4bf6596a0864ab87e0312498ec2e",
+      "key": "archive/melt-01/0125015/radar/clock05/rad07.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198003,
+      "etag": "7f89e25c75821007c12d38a95f36c454bdac192f04ff45b5923fa6b1460c8dac",
+      "key": "archive/melt-01/0125015/radar/clock05/rad08.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198068,
+      "etag": "07c2198607a9ecf1c568e16650a0f00b2f0f882bd668f6fa1787b425b5f1f171",
+      "key": "archive/melt-01/0125015/radar/clock05/rad09.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 197377,
+      "etag": "6064e1828aa0207b192477eb4858e61853545179ec07a21dcfe1bf542af6a251",
+      "key": "archive/melt-01/0125015/radar/clock05/rad10.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46,
+      "etag": "18c44e2b24db04e239c9efd9326ecb43e1350c47fbd53ee3e65a3eced0963190",
+      "key": "archive/melt-01/0125015/videos/.gitignore",
+      "status": "skipped"
+    },
+    {
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "key": "archive/melt-01/0125015/videos/README.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "key": "archive/melt-01/0125015/videos/conquerb1943.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "key": "archive/melt-01/0125015/videos/starter.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 977,
+      "etag": "761ce1e99e0f525ab5a2053b5833856819f06176624f298cd318451c5d2a4fe9",
+      "key": "archive/melt-01/0125015/manifest.json",
+      "status": "skipped"
+    },
+    {
+      "bytes": 310,
+      "etag": "b9781c12bc3f6065bd4560bcf5405305711df7d525738da48b291f9f80087b47",
+      "key": "archive/melt-01/0125015/note.md",
+      "status": "skipped"
     },
     {
       "bytes": 11414,
@@ -23123,18 +23201,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/melt-01/0c9f426/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 925,
-      "etag": "3a040de1e9c09562d09d317df3ca0e40ba37553fb52a7d48ea2494e5c4fdde80",
-      "key": "archive/melt-01/0c9f426/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 258,
-      "etag": "cb8eadf0eec20978af9e9e1b4d9696e79c3ad4bcc394c570d4e6deb6bdba54ea",
-      "key": "archive/melt-01/0c9f426/note.md",
       "status": "skipped"
     },
     {
@@ -23759,18 +23825,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/melt-01/1531d5a/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 819,
-      "etag": "44f6a8cee696338b1dc20c71fff81880fab75b90a0f6295518581a0596b4ef24",
-      "key": "archive/melt-01/1531d5a/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 152,
-      "etag": "92b25dc83497a5409313e06f940f14b45b02f384bf5fb75dcd6828ad6620db6a",
-      "key": "archive/melt-01/1531d5a/note.md",
       "status": "skipped"
     },
     {
@@ -24434,18 +24488,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 931,
-      "etag": "feaa92722077fda4f497503aa1791705d70161eda445ea3099ab09901ddb2ce4",
-      "key": "archive/melt-01/3039853/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 264,
-      "etag": "e6ef69c1ebc03754eb5636b407d1aafc72d7aab4105c6891c2f0c0fbb0a45d61",
-      "key": "archive/melt-01/3039853/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11414,
       "etag": "9a21f1922faa2753e6a3c0d3e1fa55618a917cec4238ede2297ba9f639bf1df6",
       "key": "archive/melt-01/3e61800/assets/index-BWsU4YgE.js",
@@ -25070,676 +25112,652 @@
       "status": "skipped"
     },
     {
-      "bytes": 925,
-      "etag": "13034c06911956c370ea818160aae0b8d1f8da0580d5ca737a337129460a27d8",
-      "key": "archive/melt-01/3e61800/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 258,
-      "etag": "8337037ea417dba49f171b60e84a2dea0dd045d30e106503810c7949ba44b8d9",
-      "key": "archive/melt-01/3e61800/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11414,
       "etag": "9a21f1922faa2753e6a3c0d3e1fa55618a917cec4238ede2297ba9f639bf1df6",
       "key": "archive/melt-01/5e9fc3a/assets/index-BWsU4YgE.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 46401,
       "etag": "a4cdd25fde0b796bd0c6ff71cc5dc946393caea906799f9f3e926d23e3f9d6f7",
       "key": "archive/melt-01/5e9fc3a/assets/index-BWsU4YgE.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 11414,
       "etag": "632eb5c3ddddfeed369af28c0336aa8cdd53c2f3de03c077bbe9afc11fe73d26",
       "key": "archive/melt-01/5e9fc3a/assets/index-CT_Q0DzI.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 46401,
       "etag": "6233f0b79b338ce2116112fe496b22773dd8d75b34bb8be381d8e78f4c7bdb01",
       "key": "archive/melt-01/5e9fc3a/assets/index-CT_Q0DzI.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 11575,
       "etag": "716d565cbc313e70776eae9ee6af8c64954fc5c86af9c3b395a47baffff77f2a",
       "key": "archive/melt-01/5e9fc3a/assets/index-CyVLFq7H.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 47321,
       "etag": "ecc29c87d20e7402458d9f6f2a2b2ba8acb1146e88e681d001591bddc13fa453",
       "key": "archive/melt-01/5e9fc3a/assets/index-CyVLFq7H.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 11194,
       "etag": "f8e350e516e6fe37ea26f943bec9fafaba270d22de6bc6aa8c38df55a50becfe",
       "key": "archive/melt-01/5e9fc3a/assets/index-DAyb6wFo.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 45338,
       "etag": "93643ffbd02cff79d2f019c86839f3a2947e393208d7724fbdd275a067cadde5",
       "key": "archive/melt-01/5e9fc3a/assets/index-DAyb6wFo.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 212627,
       "etag": "400b75896baf41e1406ba7faa93bb0759efb3af167bd28f144cd2b606174e55a",
       "key": "archive/melt-01/5e9fc3a/assets/o11y-CzJjQfRE.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 1856359,
       "etag": "8384a33c9da4c7b5ef22c4d088c0c56d188d7b58362ec562e94e54d3552aa398",
       "key": "archive/melt-01/5e9fc3a/assets/o11y-CzJjQfRE.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 912,
       "etag": "8fd33da592fa2c3e21d1351eade9137532e2d7e11e65562d05d8ae97343b4be0",
       "key": "archive/melt-01/5e9fc3a/assets/ring-capture-VrqvsPdT.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 6034,
       "etag": "a02ca077505a9b3d151e5d663bf2875835eedd6cc010e0befe05222807674907",
       "key": "archive/melt-01/5e9fc3a/assets/ring-capture-VrqvsPdT.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 3646,
       "etag": "7cba7c08645518f9d8647465d0cebf89c19980f53ace55da7dd72be2ef54f887",
       "key": "archive/melt-01/5e9fc3a/assets/study-clock-CIjrHPxg.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 13096,
       "etag": "cf6fba2d556dd3790c3070dcc08565ad720b4eb98b5c97e42e734f8be73dd18a",
       "key": "archive/melt-01/5e9fc3a/assets/study-clock-CIjrHPxg.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 3297,
       "etag": "074aa635ea43178d355ef456f6400c74338b849f6443ebe195541fb326f426cb",
       "key": "archive/melt-01/5e9fc3a/assets/study-clock02-L1DIy8kw.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 11897,
       "etag": "4b311dd6efadd0d0d2bcb796d489c774670cd73dfa1accc2a2e2aa213d4538d6",
       "key": "archive/melt-01/5e9fc3a/assets/study-clock02-L1DIy8kw.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 4280,
       "etag": "d5640085cea0609d168cb8d765b2391a2eda6891a65eae4dd0359977bd3bd845",
       "key": "archive/melt-01/5e9fc3a/assets/study-clock03-CK9jmBqK.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 16058,
       "etag": "28a17444b08f6269621d88166ebcc78b2f427ea7ba04135f6b64d5b346e624c8",
       "key": "archive/melt-01/5e9fc3a/assets/study-clock03-CK9jmBqK.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 9613,
       "etag": "5c7e25e1b03876333b1f03a0630eb58ad1f28cd4dce2d5dca2b6d55f9b04ac26",
       "key": "archive/melt-01/5e9fc3a/assets/study-clock04-Bdn8RcTK.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 46985,
       "etag": "feddb23d0c52c95a31c29f30dc4bc488f9961fcda6955e9913b4e2bb1e62584b",
       "key": "archive/melt-01/5e9fc3a/assets/study-clock04-Bdn8RcTK.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 3138,
       "etag": "a3ac76fd29c0d940a43e6bd0e732c229c39159e733ba864a7303ac1ba0916d05",
       "key": "archive/melt-01/5e9fc3a/assets/study-clock05-BsX7yan9.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 12357,
       "etag": "6448e244227837d5bb31d8436704e8a1ca975f3cc8ab9da47c65709455238909",
       "key": "archive/melt-01/5e9fc3a/assets/study-clock05-BsX7yan9.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 15333,
       "etag": "51e94a80fd630bd24128d747a55aedf28d5d3321867eb9a0c9b4314be03b3bf2",
       "key": "archive/melt-01/5e9fc3a/assets/study-colour01-CasVwc4L.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 73654,
       "etag": "36b53712103faead2af38a47ef6e473cddd51dac49fa52a12611fec857df7943",
       "key": "archive/melt-01/5e9fc3a/assets/study-colour01-CasVwc4L.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 16907,
       "etag": "5ed1027bdfb26637548b79d8d766086f759212ac59cae18d1f26c022545d861a",
       "key": "archive/melt-01/5e9fc3a/assets/study-melt01-6NGyvsMT.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 81585,
       "etag": "366f2c45eb0e2c5ddcb6e5bf14400cf144a8e4fca921121b7b8d8f6d62cdbbc1",
       "key": "archive/melt-01/5e9fc3a/assets/study-melt01-6NGyvsMT.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 16939,
       "etag": "bce03b1411d9f882b6650080c1f3d0ef7e1aa8020cacff9b7bbff92de77b0c3e",
       "key": "archive/melt-01/5e9fc3a/assets/study-melt01-DIyCVIoC.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 82187,
       "etag": "71bf677d86237198d419a7ed93f87ed42cc57731068d369e4a78e345ba54f9d3",
       "key": "archive/melt-01/5e9fc3a/assets/study-melt01-DIyCVIoC.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 166,
       "etag": "a311a1454ed15880bf9dbbbefee6ef301a3da185775152972e99e2a3013f5043",
       "key": "archive/melt-01/5e9fc3a/assets/study-recurrence-Bk7aXSP2.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 2103,
       "etag": "70149cf3e0053617ce32a2eccf786d7a05696b7b4fc1f4ca7409fe81006b8458",
       "key": "archive/melt-01/5e9fc3a/assets/study-recurrence-C6njJ4Fc.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 9839,
       "etag": "1c3fda7d57d17113e44750eb72395c8ef5aedff241e143d1d891d682cab33953",
       "key": "archive/melt-01/5e9fc3a/assets/study-recurrence-C6njJ4Fc.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 176,
       "etag": "7e3b0235420c28a14ee3d50263298b9df1882922f8acc3622ba69f8f48febc84",
       "key": "archive/melt-01/5e9fc3a/assets/study-recursion-B6kz2kr1.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 3495,
       "etag": "bbe03478b553d7d87f8bad450111bff47e6f04c7a1efb817c017deb8f0ef10b9",
       "key": "archive/melt-01/5e9fc3a/assets/study-recursion-B7bhiP67.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 12817,
       "etag": "d3a5b314044a01d42dada065c481b4457d875340fe815ed8be0bde5b68862705",
       "key": "archive/melt-01/5e9fc3a/assets/study-recursion-B7bhiP67.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 15689,
       "etag": "1ad978eb97d8b59d0ddae23e137a389d604430f5dcb68c7d3b8cdd1784b33095",
       "key": "archive/melt-01/5e9fc3a/assets/study-wallform01-lia1bAwD.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 74293,
       "etag": "623a787abde4c61c167f395ccdeb3e5ccc7b719450fd8b9a4536e29c06b7178c",
       "key": "archive/melt-01/5e9fc3a/assets/study-wallform01-lia1bAwD.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 11762,
       "etag": "ec5c86893bb93abedc31eba1c7475adc6ad2668cb6c51314961ec66b524bcea7",
       "key": "archive/melt-01/5e9fc3a/assets/study-withhold01-CT63DFgD.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 57291,
       "etag": "7e7d5b266d3dec7b1684b5615bce001519114617589a7d6a1e260dd7b725ad78",
       "key": "archive/melt-01/5e9fc3a/assets/study-withhold01-CT63DFgD.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 10557,
       "etag": "e8e7a70509774a5ec3cce52f4d3b128621b676c6e47c02b5b4bb17a7d1ecb523",
       "key": "archive/melt-01/5e9fc3a/assets/three.tsl-BHsVEojy.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 44908,
       "etag": "331e628579836f4edf16268f4ebd8c4bea09f0f13edfef8d7bc0308d63ccf538",
       "key": "archive/melt-01/5e9fc3a/assets/three.tsl-BHsVEojy.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 675558,
       "etag": "8f87bfe2f558fceb270bd2d1429bd91edbf8acaadc7c806f77ae84e925c03758",
       "key": "archive/melt-01/5e9fc3a/assets/three.webgpu-BNKDU8q4.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 3223944,
       "etag": "bbb4fad79d0863bc9a86352dc83485cfb121b9d8970cc3bb281b4101d84572ed",
       "key": "archive/melt-01/5e9fc3a/assets/three.webgpu-BNKDU8q4.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 11194,
       "etag": "f8e350e516e6fe37ea26f943bec9fafaba270d22de6bc6aa8c38df55a50becfe",
       "key": "archive/melt-01/5e9fc3a/client/assets/index-DAyb6wFo.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 45362,
       "etag": "29996485cfba780262fd2e0688625c508385b777fab2aa892a26bb33f268c5c3",
       "key": "archive/melt-01/5e9fc3a/client/assets/index-DAyb6wFo.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 212627,
       "etag": "400b75896baf41e1406ba7faa93bb0759efb3af167bd28f144cd2b606174e55a",
       "key": "archive/melt-01/5e9fc3a/client/assets/o11y-CzJjQfRE.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 1856374,
       "etag": "a8507c9adf7b9bac34d8599b45e46a4e8138ee6d42c5ceb65742075c2f2a8987",
       "key": "archive/melt-01/5e9fc3a/client/assets/o11y-CzJjQfRE.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 912,
       "etag": "8fd33da592fa2c3e21d1351eade9137532e2d7e11e65562d05d8ae97343b4be0",
       "key": "archive/melt-01/5e9fc3a/client/assets/ring-capture-VrqvsPdT.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 6040,
       "etag": "840b5bb922917e6f8daedc0d606eccd488e56c38e8c228949c91730a91e41591",
       "key": "archive/melt-01/5e9fc3a/client/assets/ring-capture-VrqvsPdT.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 3646,
       "etag": "7cba7c08645518f9d8647465d0cebf89c19980f53ace55da7dd72be2ef54f887",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-clock-CIjrHPxg.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 13099,
       "etag": "3b12a3c972f89ef8289095e88ac12c1d6db3877e2752ee9fa7a5c21a21f24260",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-clock-CIjrHPxg.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 3297,
       "etag": "074aa635ea43178d355ef456f6400c74338b849f6443ebe195541fb326f426cb",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-clock02-L1DIy8kw.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 11900,
       "etag": "c92f1bcd694ca39d05f9cc23d3ab4d7eeac2bed9f2a2594aca22dec504729281",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-clock02-L1DIy8kw.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 4280,
       "etag": "d5640085cea0609d168cb8d765b2391a2eda6891a65eae4dd0359977bd3bd845",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-clock03-CK9jmBqK.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 16061,
       "etag": "a0a449cef61c43b478d71b47fd8f93fa524db80b3673099f450ce8912b3776ee",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-clock03-CK9jmBqK.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 9613,
       "etag": "5c7e25e1b03876333b1f03a0630eb58ad1f28cd4dce2d5dca2b6d55f9b04ac26",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-clock04-Bdn8RcTK.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 46988,
       "etag": "ea2fd1aeb8dd372bb7963cfcd53afe0d2e82848febbda9596b695e40a9a091d4",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-clock04-Bdn8RcTK.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 3138,
       "etag": "a3ac76fd29c0d940a43e6bd0e732c229c39159e733ba864a7303ac1ba0916d05",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-clock05-BsX7yan9.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 12360,
       "etag": "de3aa4df1d6a3c921e3fd66f66c516bbc86a011aada37040a7d48e723241f9a2",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-clock05-BsX7yan9.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 15333,
       "etag": "51e94a80fd630bd24128d747a55aedf28d5d3321867eb9a0c9b4314be03b3bf2",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-colour01-CasVwc4L.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 73657,
       "etag": "54c46d02e9df347f974f07ac09d58ff49ab61dbd16a803d9178c222d741118c1",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-colour01-CasVwc4L.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 166,
       "etag": "a311a1454ed15880bf9dbbbefee6ef301a3da185775152972e99e2a3013f5043",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-recurrence-Bk7aXSP2.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 2103,
       "etag": "70149cf3e0053617ce32a2eccf786d7a05696b7b4fc1f4ca7409fe81006b8458",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-recurrence-C6njJ4Fc.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 9842,
       "etag": "8a39e1ed0ccab2aef305fe940f80808f2acbf06270a93ee9fe59aec219a36e69",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-recurrence-C6njJ4Fc.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 176,
       "etag": "7e3b0235420c28a14ee3d50263298b9df1882922f8acc3622ba69f8f48febc84",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-recursion-B6kz2kr1.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 3495,
       "etag": "bbe03478b553d7d87f8bad450111bff47e6f04c7a1efb817c017deb8f0ef10b9",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-recursion-B7bhiP67.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 12820,
       "etag": "924f19e83cff8a8fb93428938998aa524a7bf65172b9b2d3c7660cf56104425b",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-recursion-B7bhiP67.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 15689,
       "etag": "1ad978eb97d8b59d0ddae23e137a389d604430f5dcb68c7d3b8cdd1784b33095",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-wallform01-lia1bAwD.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 74296,
       "etag": "2a8844fcbcd79a6981a81ab27b2053ce4507546c5d280a64ecc10e1174862bb8",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-wallform01-lia1bAwD.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 11762,
       "etag": "ec5c86893bb93abedc31eba1c7475adc6ad2668cb6c51314961ec66b524bcea7",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-withhold01-CT63DFgD.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 57294,
       "etag": "f9b3452d61da51a0e989cd3e2c7049d5821465ce20b5b1781d0ce8bf33abe073",
       "key": "archive/melt-01/5e9fc3a/client/assets/study-withhold01-CT63DFgD.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 10557,
       "etag": "e8e7a70509774a5ec3cce52f4d3b128621b676c6e47c02b5b4bb17a7d1ecb523",
       "key": "archive/melt-01/5e9fc3a/client/assets/three.tsl-BHsVEojy.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 44911,
       "etag": "32225733838f20151f7baf77fb2e4f2bd396b514d25aed2625a7748170427235",
       "key": "archive/melt-01/5e9fc3a/client/assets/three.tsl-BHsVEojy.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 675558,
       "etag": "8f87bfe2f558fceb270bd2d1429bd91edbf8acaadc7c806f77ae84e925c03758",
       "key": "archive/melt-01/5e9fc3a/client/assets/three.webgpu-BNKDU8q4.js",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 3223947,
       "etag": "e9dae77a78010268191986b651c241fd521dd1722f259364f18f0330141726e6",
       "key": "archive/melt-01/5e9fc3a/client/assets/three.webgpu-BNKDU8q4.js.map",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 1927,
       "etag": "24413544b95feddd4dc8357cbb8830f2c2d25dc1e2650eaaedb33a462c755e1f",
       "key": "archive/melt-01/5e9fc3a/client/index.html",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 126201,
       "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
       "key": "archive/melt-01/5e9fc3a/client/og-image.png",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 746,
       "etag": "abcc5a10f3e652f3b87360d2c7ff423e6d6947cb6269f036c2b1d162c3e080e2",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/provenance.md",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198774,
       "etag": "89154c1144c10f99d73c494caf14d4fcf9b3a82eb8d3f59d8e54fdc04679ba3d",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/rad01.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198231,
       "etag": "9a95ebb8d11631334a00c0ceac1461a3ae787c4bf971445c3770aef75a7fb5f7",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/rad02.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198237,
       "etag": "649c425f846e79f7b3b51f0b4ec4900c28b7d282cdf83bac5c82f9f814a3a40e",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/rad03.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198205,
       "etag": "45325bd4a5edde5a75f42ce86c1e673da19b5b3575058f3e11385b2b0534258a",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/rad04.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198103,
       "etag": "b2917dba7aefa0a8ff7dffe71ddfd92be40fd48ec3f8efa88101ca146ea892c7",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/rad05.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198077,
       "etag": "27883e976c5fab6b1a4de8dab5729f1ddf463ee4e4bd448fe9b9afefff6f955a",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/rad06.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198067,
       "etag": "8c4a15001dada6940c618715b1378085962b4bf6596a0864ab87e0312498ec2e",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/rad07.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198003,
       "etag": "7f89e25c75821007c12d38a95f36c454bdac192f04ff45b5923fa6b1460c8dac",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/rad08.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198068,
       "etag": "07c2198607a9ecf1c568e16650a0f00b2f0f882bd668f6fa1787b425b5f1f171",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/rad09.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 197377,
       "etag": "6064e1828aa0207b192477eb4858e61853545179ec07a21dcfe1bf542af6a251",
       "key": "archive/melt-01/5e9fc3a/client/radar/clock05/rad10.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 46,
       "etag": "18c44e2b24db04e239c9efd9326ecb43e1350c47fbd53ee3e65a3eced0963190",
       "key": "archive/melt-01/5e9fc3a/client/videos/.gitignore",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 281,
       "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
       "key": "archive/melt-01/5e9fc3a/client/videos/README.md",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 2602709,
       "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
       "key": "archive/melt-01/5e9fc3a/client/videos/conquerb1943.mp4",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/melt-01/5e9fc3a/client/videos/starter.mp4",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 1927,
       "etag": "013ffdf09ed65cd50b9296ef602db34787571eb8d34e40593c407f5dcabf762a",
       "key": "archive/melt-01/5e9fc3a/index.html",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 126201,
       "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
       "key": "archive/melt-01/5e9fc3a/og-image.png",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 746,
       "etag": "abcc5a10f3e652f3b87360d2c7ff423e6d6947cb6269f036c2b1d162c3e080e2",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/provenance.md",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198774,
       "etag": "89154c1144c10f99d73c494caf14d4fcf9b3a82eb8d3f59d8e54fdc04679ba3d",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/rad01.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198231,
       "etag": "9a95ebb8d11631334a00c0ceac1461a3ae787c4bf971445c3770aef75a7fb5f7",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/rad02.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198237,
       "etag": "649c425f846e79f7b3b51f0b4ec4900c28b7d282cdf83bac5c82f9f814a3a40e",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/rad03.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198205,
       "etag": "45325bd4a5edde5a75f42ce86c1e673da19b5b3575058f3e11385b2b0534258a",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/rad04.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198103,
       "etag": "b2917dba7aefa0a8ff7dffe71ddfd92be40fd48ec3f8efa88101ca146ea892c7",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/rad05.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198077,
       "etag": "27883e976c5fab6b1a4de8dab5729f1ddf463ee4e4bd448fe9b9afefff6f955a",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/rad06.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198067,
       "etag": "8c4a15001dada6940c618715b1378085962b4bf6596a0864ab87e0312498ec2e",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/rad07.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198003,
       "etag": "7f89e25c75821007c12d38a95f36c454bdac192f04ff45b5923fa6b1460c8dac",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/rad08.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 198068,
       "etag": "07c2198607a9ecf1c568e16650a0f00b2f0f882bd668f6fa1787b425b5f1f171",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/rad09.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 197377,
       "etag": "6064e1828aa0207b192477eb4858e61853545179ec07a21dcfe1bf542af6a251",
       "key": "archive/melt-01/5e9fc3a/radar/clock05/rad10.jpg",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 46,
       "etag": "18c44e2b24db04e239c9efd9326ecb43e1350c47fbd53ee3e65a3eced0963190",
       "key": "archive/melt-01/5e9fc3a/videos/.gitignore",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 281,
       "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
       "key": "archive/melt-01/5e9fc3a/videos/README.md",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 2602709,
       "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
       "key": "archive/melt-01/5e9fc3a/videos/conquerb1943.mp4",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/melt-01/5e9fc3a/videos/starter.mp4",
-      "status": "uploaded"
-    },
-    {
-      "bytes": 931,
-      "etag": "3c2b5d66155fbf33649e74c3df950f2018543e6b5333906fe1c392ad92c84e8a",
-      "key": "archive/melt-01/5e9fc3a/manifest.json",
-      "status": "uploaded"
-    },
-    {
-      "bytes": 264,
-      "etag": "97917cbc973d5158f1ceb42410cfe6ea917df5b96a69f06875533555000f532f",
-      "key": "archive/melt-01/5e9fc3a/note.md",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 11329,
@@ -26351,18 +26369,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/melt-01/67a7c34/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 856,
-      "etag": "c93926601e8ad0d4536ec63a09850096bbeb1750e36694371a9a072beed1019c",
-      "key": "archive/melt-01/67a7c34/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 189,
-      "etag": "5b8909b11dd4363624bc0f75c7e85aebd0efa4db2f3731a1c4fc34a714a33244",
-      "key": "archive/melt-01/67a7c34/note.md",
       "status": "skipped"
     },
     {
@@ -27014,16 +27020,958 @@
       "status": "skipped"
     },
     {
-      "bytes": 938,
-      "etag": "700e0a27ef91f7045b6a1e29a510787d6ff0bd8359735d8f60b494e49c78f6da",
-      "key": "archive/melt-01/a017c67/manifest.json",
+      "bytes": 11575,
+      "etag": "fdd3f9cbb6ee857295e723d8653cebb9599c2f071fdd867ccab063267b3c12a7",
+      "key": "archive/melt-01/a4509df/assets/index-KHBzgXNZ.js",
       "status": "skipped"
     },
     {
-      "bytes": 271,
-      "etag": "621b33d23c04bf4eb677b7350e95378355ed489cdab529035df00ae881802fd0",
-      "key": "archive/melt-01/a017c67/note.md",
+      "bytes": 47321,
+      "etag": "e6701f6cd9d52f3986214073d906e8483db6e31216d2cdd50979c29653022425",
+      "key": "archive/melt-01/a4509df/assets/index-KHBzgXNZ.js.map",
       "status": "skipped"
+    },
+    {
+      "bytes": 212627,
+      "etag": "400b75896baf41e1406ba7faa93bb0759efb3af167bd28f144cd2b606174e55a",
+      "key": "archive/melt-01/a4509df/assets/o11y-CzJjQfRE.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1856359,
+      "etag": "8384a33c9da4c7b5ef22c4d088c0c56d188d7b58362ec562e94e54d3552aa398",
+      "key": "archive/melt-01/a4509df/assets/o11y-CzJjQfRE.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 912,
+      "etag": "8fd33da592fa2c3e21d1351eade9137532e2d7e11e65562d05d8ae97343b4be0",
+      "key": "archive/melt-01/a4509df/assets/ring-capture-VrqvsPdT.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 6034,
+      "etag": "a02ca077505a9b3d151e5d663bf2875835eedd6cc010e0befe05222807674907",
+      "key": "archive/melt-01/a4509df/assets/ring-capture-VrqvsPdT.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3646,
+      "etag": "7cba7c08645518f9d8647465d0cebf89c19980f53ace55da7dd72be2ef54f887",
+      "key": "archive/melt-01/a4509df/assets/study-clock-CIjrHPxg.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 13096,
+      "etag": "cf6fba2d556dd3790c3070dcc08565ad720b4eb98b5c97e42e734f8be73dd18a",
+      "key": "archive/melt-01/a4509df/assets/study-clock-CIjrHPxg.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3297,
+      "etag": "074aa635ea43178d355ef456f6400c74338b849f6443ebe195541fb326f426cb",
+      "key": "archive/melt-01/a4509df/assets/study-clock02-L1DIy8kw.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11897,
+      "etag": "4b311dd6efadd0d0d2bcb796d489c774670cd73dfa1accc2a2e2aa213d4538d6",
+      "key": "archive/melt-01/a4509df/assets/study-clock02-L1DIy8kw.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 4280,
+      "etag": "d5640085cea0609d168cb8d765b2391a2eda6891a65eae4dd0359977bd3bd845",
+      "key": "archive/melt-01/a4509df/assets/study-clock03-CK9jmBqK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 16058,
+      "etag": "28a17444b08f6269621d88166ebcc78b2f427ea7ba04135f6b64d5b346e624c8",
+      "key": "archive/melt-01/a4509df/assets/study-clock03-CK9jmBqK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9613,
+      "etag": "5c7e25e1b03876333b1f03a0630eb58ad1f28cd4dce2d5dca2b6d55f9b04ac26",
+      "key": "archive/melt-01/a4509df/assets/study-clock04-Bdn8RcTK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46985,
+      "etag": "feddb23d0c52c95a31c29f30dc4bc488f9961fcda6955e9913b4e2bb1e62584b",
+      "key": "archive/melt-01/a4509df/assets/study-clock04-Bdn8RcTK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3138,
+      "etag": "a3ac76fd29c0d940a43e6bd0e732c229c39159e733ba864a7303ac1ba0916d05",
+      "key": "archive/melt-01/a4509df/assets/study-clock05-BsX7yan9.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12357,
+      "etag": "6448e244227837d5bb31d8436704e8a1ca975f3cc8ab9da47c65709455238909",
+      "key": "archive/melt-01/a4509df/assets/study-clock05-BsX7yan9.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15333,
+      "etag": "f67680837c25ec06c7096b71c74866abc3a0ee1074ad27a001c8d5887cc0f8ca",
+      "key": "archive/melt-01/a4509df/assets/study-colour01-D9x08cXp.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 73654,
+      "etag": "7eadd72040220301b102d59c978df4e2783d93611b9dbbf9b34b039b0b9c888a",
+      "key": "archive/melt-01/a4509df/assets/study-colour01-D9x08cXp.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 18061,
+      "etag": "3d4e24d21b1c841eefd7ea301bbb300590c0e2e792d9a186b00820730007ef13",
+      "key": "archive/melt-01/a4509df/assets/study-melt01-DuXUWThR.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 89777,
+      "etag": "e0f04f274fb85f7cea473f9d0bfa888b9dab3fdf5df41613d1286e8ba79ea06f",
+      "key": "archive/melt-01/a4509df/assets/study-melt01-DuXUWThR.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 166,
+      "etag": "a311a1454ed15880bf9dbbbefee6ef301a3da185775152972e99e2a3013f5043",
+      "key": "archive/melt-01/a4509df/assets/study-recurrence-Bk7aXSP2.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2103,
+      "etag": "70149cf3e0053617ce32a2eccf786d7a05696b7b4fc1f4ca7409fe81006b8458",
+      "key": "archive/melt-01/a4509df/assets/study-recurrence-C6njJ4Fc.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9839,
+      "etag": "1c3fda7d57d17113e44750eb72395c8ef5aedff241e143d1d891d682cab33953",
+      "key": "archive/melt-01/a4509df/assets/study-recurrence-C6njJ4Fc.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 176,
+      "etag": "7e3b0235420c28a14ee3d50263298b9df1882922f8acc3622ba69f8f48febc84",
+      "key": "archive/melt-01/a4509df/assets/study-recursion-B6kz2kr1.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3495,
+      "etag": "bbe03478b553d7d87f8bad450111bff47e6f04c7a1efb817c017deb8f0ef10b9",
+      "key": "archive/melt-01/a4509df/assets/study-recursion-B7bhiP67.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12817,
+      "etag": "d3a5b314044a01d42dada065c481b4457d875340fe815ed8be0bde5b68862705",
+      "key": "archive/melt-01/a4509df/assets/study-recursion-B7bhiP67.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15689,
+      "etag": "9f1f10c3d245f2545fcf87964d576dc561edcf392239ec8720801a1a6b04bb0c",
+      "key": "archive/melt-01/a4509df/assets/study-wallform01-CjPSGz-g.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 74293,
+      "etag": "bb7f7e145a87b759f5b7eb4597214501417dea6f3796d46eea0ed975e9a0bd9b",
+      "key": "archive/melt-01/a4509df/assets/study-wallform01-CjPSGz-g.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11762,
+      "etag": "ec5c86893bb93abedc31eba1c7475adc6ad2668cb6c51314961ec66b524bcea7",
+      "key": "archive/melt-01/a4509df/assets/study-withhold01-CT63DFgD.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 57291,
+      "etag": "7e7d5b266d3dec7b1684b5615bce001519114617589a7d6a1e260dd7b725ad78",
+      "key": "archive/melt-01/a4509df/assets/study-withhold01-CT63DFgD.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 10581,
+      "etag": "02ef4f6848a4a5e90b7f09ee223186aec6ce566a9fbc94582474ba5e49d05238",
+      "key": "archive/melt-01/a4509df/assets/three.tsl-D4OlXbG3.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 44942,
+      "etag": "a10078b3b1f3c3960ae4bf87c40fb25f946c6f458b82f995103d7711b4ccbc51",
+      "key": "archive/melt-01/a4509df/assets/three.tsl-D4OlXbG3.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 675558,
+      "etag": "8f87bfe2f558fceb270bd2d1429bd91edbf8acaadc7c806f77ae84e925c03758",
+      "key": "archive/melt-01/a4509df/assets/three.webgpu-BNKDU8q4.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3223944,
+      "etag": "bbb4fad79d0863bc9a86352dc83485cfb121b9d8970cc3bb281b4101d84572ed",
+      "key": "archive/melt-01/a4509df/assets/three.webgpu-BNKDU8q4.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1927,
+      "etag": "7c1b583c90a7ae780309f4d499bd6a9e522a86e07430ebe97cb76e1fcba76337",
+      "key": "archive/melt-01/a4509df/index.html",
+      "status": "skipped"
+    },
+    {
+      "bytes": 126201,
+      "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
+      "key": "archive/melt-01/a4509df/og-image.png",
+      "status": "skipped"
+    },
+    {
+      "bytes": 746,
+      "etag": "abcc5a10f3e652f3b87360d2c7ff423e6d6947cb6269f036c2b1d162c3e080e2",
+      "key": "archive/melt-01/a4509df/radar/clock05/provenance.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198774,
+      "etag": "89154c1144c10f99d73c494caf14d4fcf9b3a82eb8d3f59d8e54fdc04679ba3d",
+      "key": "archive/melt-01/a4509df/radar/clock05/rad01.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198231,
+      "etag": "9a95ebb8d11631334a00c0ceac1461a3ae787c4bf971445c3770aef75a7fb5f7",
+      "key": "archive/melt-01/a4509df/radar/clock05/rad02.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198237,
+      "etag": "649c425f846e79f7b3b51f0b4ec4900c28b7d282cdf83bac5c82f9f814a3a40e",
+      "key": "archive/melt-01/a4509df/radar/clock05/rad03.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198205,
+      "etag": "45325bd4a5edde5a75f42ce86c1e673da19b5b3575058f3e11385b2b0534258a",
+      "key": "archive/melt-01/a4509df/radar/clock05/rad04.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198103,
+      "etag": "b2917dba7aefa0a8ff7dffe71ddfd92be40fd48ec3f8efa88101ca146ea892c7",
+      "key": "archive/melt-01/a4509df/radar/clock05/rad05.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198077,
+      "etag": "27883e976c5fab6b1a4de8dab5729f1ddf463ee4e4bd448fe9b9afefff6f955a",
+      "key": "archive/melt-01/a4509df/radar/clock05/rad06.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198067,
+      "etag": "8c4a15001dada6940c618715b1378085962b4bf6596a0864ab87e0312498ec2e",
+      "key": "archive/melt-01/a4509df/radar/clock05/rad07.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198003,
+      "etag": "7f89e25c75821007c12d38a95f36c454bdac192f04ff45b5923fa6b1460c8dac",
+      "key": "archive/melt-01/a4509df/radar/clock05/rad08.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198068,
+      "etag": "07c2198607a9ecf1c568e16650a0f00b2f0f882bd668f6fa1787b425b5f1f171",
+      "key": "archive/melt-01/a4509df/radar/clock05/rad09.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 197377,
+      "etag": "6064e1828aa0207b192477eb4858e61853545179ec07a21dcfe1bf542af6a251",
+      "key": "archive/melt-01/a4509df/radar/clock05/rad10.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46,
+      "etag": "18c44e2b24db04e239c9efd9326ecb43e1350c47fbd53ee3e65a3eced0963190",
+      "key": "archive/melt-01/a4509df/videos/.gitignore",
+      "status": "skipped"
+    },
+    {
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "key": "archive/melt-01/a4509df/videos/README.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "key": "archive/melt-01/a4509df/videos/conquerb1943.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "key": "archive/melt-01/a4509df/videos/starter.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1028,
+      "etag": "b3521be2e48c5da94b64e105cd9522e7e8a4fd3e958df80bd2ad98a0b5c17dfc",
+      "key": "archive/melt-01/a4509df/manifest.json",
+      "status": "skipped"
+    },
+    {
+      "bytes": 361,
+      "etag": "51f52007ccb8124c2ac2cbc4acf04bbcf83a438a973a38c8112d100c7167c08d",
+      "key": "archive/melt-01/a4509df/note.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11575,
+      "etag": "ce3858f7356a9edc39476418105c9f91447ab507cae10fccbf740fa632617fff",
+      "key": "archive/melt-01/c58df79/assets/index-CbKtcKhZ.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 47321,
+      "etag": "c3b53ab4f8dc39f1a1b701136c230aa973128ff0e97548f4b86d1e97148f6901",
+      "key": "archive/melt-01/c58df79/assets/index-CbKtcKhZ.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 212627,
+      "etag": "400b75896baf41e1406ba7faa93bb0759efb3af167bd28f144cd2b606174e55a",
+      "key": "archive/melt-01/c58df79/assets/o11y-CzJjQfRE.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1856359,
+      "etag": "8384a33c9da4c7b5ef22c4d088c0c56d188d7b58362ec562e94e54d3552aa398",
+      "key": "archive/melt-01/c58df79/assets/o11y-CzJjQfRE.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 912,
+      "etag": "8fd33da592fa2c3e21d1351eade9137532e2d7e11e65562d05d8ae97343b4be0",
+      "key": "archive/melt-01/c58df79/assets/ring-capture-VrqvsPdT.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 6034,
+      "etag": "a02ca077505a9b3d151e5d663bf2875835eedd6cc010e0befe05222807674907",
+      "key": "archive/melt-01/c58df79/assets/ring-capture-VrqvsPdT.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3646,
+      "etag": "7cba7c08645518f9d8647465d0cebf89c19980f53ace55da7dd72be2ef54f887",
+      "key": "archive/melt-01/c58df79/assets/study-clock-CIjrHPxg.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 13096,
+      "etag": "cf6fba2d556dd3790c3070dcc08565ad720b4eb98b5c97e42e734f8be73dd18a",
+      "key": "archive/melt-01/c58df79/assets/study-clock-CIjrHPxg.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3297,
+      "etag": "074aa635ea43178d355ef456f6400c74338b849f6443ebe195541fb326f426cb",
+      "key": "archive/melt-01/c58df79/assets/study-clock02-L1DIy8kw.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11897,
+      "etag": "4b311dd6efadd0d0d2bcb796d489c774670cd73dfa1accc2a2e2aa213d4538d6",
+      "key": "archive/melt-01/c58df79/assets/study-clock02-L1DIy8kw.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 4280,
+      "etag": "d5640085cea0609d168cb8d765b2391a2eda6891a65eae4dd0359977bd3bd845",
+      "key": "archive/melt-01/c58df79/assets/study-clock03-CK9jmBqK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 16058,
+      "etag": "28a17444b08f6269621d88166ebcc78b2f427ea7ba04135f6b64d5b346e624c8",
+      "key": "archive/melt-01/c58df79/assets/study-clock03-CK9jmBqK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9613,
+      "etag": "5c7e25e1b03876333b1f03a0630eb58ad1f28cd4dce2d5dca2b6d55f9b04ac26",
+      "key": "archive/melt-01/c58df79/assets/study-clock04-Bdn8RcTK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46985,
+      "etag": "feddb23d0c52c95a31c29f30dc4bc488f9961fcda6955e9913b4e2bb1e62584b",
+      "key": "archive/melt-01/c58df79/assets/study-clock04-Bdn8RcTK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3138,
+      "etag": "a3ac76fd29c0d940a43e6bd0e732c229c39159e733ba864a7303ac1ba0916d05",
+      "key": "archive/melt-01/c58df79/assets/study-clock05-BsX7yan9.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12357,
+      "etag": "6448e244227837d5bb31d8436704e8a1ca975f3cc8ab9da47c65709455238909",
+      "key": "archive/melt-01/c58df79/assets/study-clock05-BsX7yan9.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15333,
+      "etag": "f67680837c25ec06c7096b71c74866abc3a0ee1074ad27a001c8d5887cc0f8ca",
+      "key": "archive/melt-01/c58df79/assets/study-colour01-D9x08cXp.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 73654,
+      "etag": "7eadd72040220301b102d59c978df4e2783d93611b9dbbf9b34b039b0b9c888a",
+      "key": "archive/melt-01/c58df79/assets/study-colour01-D9x08cXp.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 18054,
+      "etag": "df48b4e9e83199d84b513bb32bc6bcefda69067dbd16e102c3bfff64ef3dee18",
+      "key": "archive/melt-01/c58df79/assets/study-melt01-UYV3ot91.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 89482,
+      "etag": "c4c68657d00d068d932779feb95fd7abd56b0fd22606e3c69ad78d7008f3afa7",
+      "key": "archive/melt-01/c58df79/assets/study-melt01-UYV3ot91.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 166,
+      "etag": "a311a1454ed15880bf9dbbbefee6ef301a3da185775152972e99e2a3013f5043",
+      "key": "archive/melt-01/c58df79/assets/study-recurrence-Bk7aXSP2.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2103,
+      "etag": "70149cf3e0053617ce32a2eccf786d7a05696b7b4fc1f4ca7409fe81006b8458",
+      "key": "archive/melt-01/c58df79/assets/study-recurrence-C6njJ4Fc.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9839,
+      "etag": "1c3fda7d57d17113e44750eb72395c8ef5aedff241e143d1d891d682cab33953",
+      "key": "archive/melt-01/c58df79/assets/study-recurrence-C6njJ4Fc.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 176,
+      "etag": "7e3b0235420c28a14ee3d50263298b9df1882922f8acc3622ba69f8f48febc84",
+      "key": "archive/melt-01/c58df79/assets/study-recursion-B6kz2kr1.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3495,
+      "etag": "bbe03478b553d7d87f8bad450111bff47e6f04c7a1efb817c017deb8f0ef10b9",
+      "key": "archive/melt-01/c58df79/assets/study-recursion-B7bhiP67.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12817,
+      "etag": "d3a5b314044a01d42dada065c481b4457d875340fe815ed8be0bde5b68862705",
+      "key": "archive/melt-01/c58df79/assets/study-recursion-B7bhiP67.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15689,
+      "etag": "9f1f10c3d245f2545fcf87964d576dc561edcf392239ec8720801a1a6b04bb0c",
+      "key": "archive/melt-01/c58df79/assets/study-wallform01-CjPSGz-g.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 74293,
+      "etag": "bb7f7e145a87b759f5b7eb4597214501417dea6f3796d46eea0ed975e9a0bd9b",
+      "key": "archive/melt-01/c58df79/assets/study-wallform01-CjPSGz-g.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11762,
+      "etag": "ec5c86893bb93abedc31eba1c7475adc6ad2668cb6c51314961ec66b524bcea7",
+      "key": "archive/melt-01/c58df79/assets/study-withhold01-CT63DFgD.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 57291,
+      "etag": "7e7d5b266d3dec7b1684b5615bce001519114617589a7d6a1e260dd7b725ad78",
+      "key": "archive/melt-01/c58df79/assets/study-withhold01-CT63DFgD.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 10581,
+      "etag": "02ef4f6848a4a5e90b7f09ee223186aec6ce566a9fbc94582474ba5e49d05238",
+      "key": "archive/melt-01/c58df79/assets/three.tsl-D4OlXbG3.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 44942,
+      "etag": "a10078b3b1f3c3960ae4bf87c40fb25f946c6f458b82f995103d7711b4ccbc51",
+      "key": "archive/melt-01/c58df79/assets/three.tsl-D4OlXbG3.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 675558,
+      "etag": "8f87bfe2f558fceb270bd2d1429bd91edbf8acaadc7c806f77ae84e925c03758",
+      "key": "archive/melt-01/c58df79/assets/three.webgpu-BNKDU8q4.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3223944,
+      "etag": "bbb4fad79d0863bc9a86352dc83485cfb121b9d8970cc3bb281b4101d84572ed",
+      "key": "archive/melt-01/c58df79/assets/three.webgpu-BNKDU8q4.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1927,
+      "etag": "d79634f4a45899e23456ee9d62a228b1cc707a316f10fd5ccc249df7a9aec9c1",
+      "key": "archive/melt-01/c58df79/index.html",
+      "status": "skipped"
+    },
+    {
+      "bytes": 126201,
+      "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
+      "key": "archive/melt-01/c58df79/og-image.png",
+      "status": "skipped"
+    },
+    {
+      "bytes": 746,
+      "etag": "abcc5a10f3e652f3b87360d2c7ff423e6d6947cb6269f036c2b1d162c3e080e2",
+      "key": "archive/melt-01/c58df79/radar/clock05/provenance.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198774,
+      "etag": "89154c1144c10f99d73c494caf14d4fcf9b3a82eb8d3f59d8e54fdc04679ba3d",
+      "key": "archive/melt-01/c58df79/radar/clock05/rad01.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198231,
+      "etag": "9a95ebb8d11631334a00c0ceac1461a3ae787c4bf971445c3770aef75a7fb5f7",
+      "key": "archive/melt-01/c58df79/radar/clock05/rad02.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198237,
+      "etag": "649c425f846e79f7b3b51f0b4ec4900c28b7d282cdf83bac5c82f9f814a3a40e",
+      "key": "archive/melt-01/c58df79/radar/clock05/rad03.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198205,
+      "etag": "45325bd4a5edde5a75f42ce86c1e673da19b5b3575058f3e11385b2b0534258a",
+      "key": "archive/melt-01/c58df79/radar/clock05/rad04.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198103,
+      "etag": "b2917dba7aefa0a8ff7dffe71ddfd92be40fd48ec3f8efa88101ca146ea892c7",
+      "key": "archive/melt-01/c58df79/radar/clock05/rad05.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198077,
+      "etag": "27883e976c5fab6b1a4de8dab5729f1ddf463ee4e4bd448fe9b9afefff6f955a",
+      "key": "archive/melt-01/c58df79/radar/clock05/rad06.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198067,
+      "etag": "8c4a15001dada6940c618715b1378085962b4bf6596a0864ab87e0312498ec2e",
+      "key": "archive/melt-01/c58df79/radar/clock05/rad07.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198003,
+      "etag": "7f89e25c75821007c12d38a95f36c454bdac192f04ff45b5923fa6b1460c8dac",
+      "key": "archive/melt-01/c58df79/radar/clock05/rad08.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198068,
+      "etag": "07c2198607a9ecf1c568e16650a0f00b2f0f882bd668f6fa1787b425b5f1f171",
+      "key": "archive/melt-01/c58df79/radar/clock05/rad09.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 197377,
+      "etag": "6064e1828aa0207b192477eb4858e61853545179ec07a21dcfe1bf542af6a251",
+      "key": "archive/melt-01/c58df79/radar/clock05/rad10.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46,
+      "etag": "18c44e2b24db04e239c9efd9326ecb43e1350c47fbd53ee3e65a3eced0963190",
+      "key": "archive/melt-01/c58df79/videos/.gitignore",
+      "status": "skipped"
+    },
+    {
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "key": "archive/melt-01/c58df79/videos/README.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "key": "archive/melt-01/c58df79/videos/conquerb1943.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "key": "archive/melt-01/c58df79/videos/starter.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 985,
+      "etag": "80d50ca4914e0cf02da5300ec7fd518d608742effa18a6242588ca1dcc52d8b1",
+      "key": "archive/melt-01/c58df79/manifest.json",
+      "status": "skipped"
+    },
+    {
+      "bytes": 318,
+      "etag": "a560ab7b4acf68fbf75662dfd3fedc480002e27506a615b1d60026cbdb4b525b",
+      "key": "archive/melt-01/c58df79/note.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11575,
+      "etag": "2b1bde1e5d76031f8723a27fce9803b856493498c417295321b8586c170dce20",
+      "key": "archive/melt-01/cd53076/assets/index-CZbq8nS9.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 47321,
+      "etag": "4c0d40d7c21fa79a5e18b6c07d37b213288b7bd138bf7ce5206ca335dc4092fb",
+      "key": "archive/melt-01/cd53076/assets/index-CZbq8nS9.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 212627,
+      "etag": "400b75896baf41e1406ba7faa93bb0759efb3af167bd28f144cd2b606174e55a",
+      "key": "archive/melt-01/cd53076/assets/o11y-CzJjQfRE.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 1856359,
+      "etag": "8384a33c9da4c7b5ef22c4d088c0c56d188d7b58362ec562e94e54d3552aa398",
+      "key": "archive/melt-01/cd53076/assets/o11y-CzJjQfRE.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 912,
+      "etag": "8fd33da592fa2c3e21d1351eade9137532e2d7e11e65562d05d8ae97343b4be0",
+      "key": "archive/melt-01/cd53076/assets/ring-capture-VrqvsPdT.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 6034,
+      "etag": "a02ca077505a9b3d151e5d663bf2875835eedd6cc010e0befe05222807674907",
+      "key": "archive/melt-01/cd53076/assets/ring-capture-VrqvsPdT.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 3646,
+      "etag": "7cba7c08645518f9d8647465d0cebf89c19980f53ace55da7dd72be2ef54f887",
+      "key": "archive/melt-01/cd53076/assets/study-clock-CIjrHPxg.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 13096,
+      "etag": "cf6fba2d556dd3790c3070dcc08565ad720b4eb98b5c97e42e734f8be73dd18a",
+      "key": "archive/melt-01/cd53076/assets/study-clock-CIjrHPxg.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 3297,
+      "etag": "074aa635ea43178d355ef456f6400c74338b849f6443ebe195541fb326f426cb",
+      "key": "archive/melt-01/cd53076/assets/study-clock02-L1DIy8kw.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 11897,
+      "etag": "4b311dd6efadd0d0d2bcb796d489c774670cd73dfa1accc2a2e2aa213d4538d6",
+      "key": "archive/melt-01/cd53076/assets/study-clock02-L1DIy8kw.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 4280,
+      "etag": "d5640085cea0609d168cb8d765b2391a2eda6891a65eae4dd0359977bd3bd845",
+      "key": "archive/melt-01/cd53076/assets/study-clock03-CK9jmBqK.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 16058,
+      "etag": "28a17444b08f6269621d88166ebcc78b2f427ea7ba04135f6b64d5b346e624c8",
+      "key": "archive/melt-01/cd53076/assets/study-clock03-CK9jmBqK.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 9613,
+      "etag": "5c7e25e1b03876333b1f03a0630eb58ad1f28cd4dce2d5dca2b6d55f9b04ac26",
+      "key": "archive/melt-01/cd53076/assets/study-clock04-Bdn8RcTK.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 46985,
+      "etag": "feddb23d0c52c95a31c29f30dc4bc488f9961fcda6955e9913b4e2bb1e62584b",
+      "key": "archive/melt-01/cd53076/assets/study-clock04-Bdn8RcTK.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 3138,
+      "etag": "a3ac76fd29c0d940a43e6bd0e732c229c39159e733ba864a7303ac1ba0916d05",
+      "key": "archive/melt-01/cd53076/assets/study-clock05-BsX7yan9.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 12357,
+      "etag": "6448e244227837d5bb31d8436704e8a1ca975f3cc8ab9da47c65709455238909",
+      "key": "archive/melt-01/cd53076/assets/study-clock05-BsX7yan9.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 15333,
+      "etag": "f67680837c25ec06c7096b71c74866abc3a0ee1074ad27a001c8d5887cc0f8ca",
+      "key": "archive/melt-01/cd53076/assets/study-colour01-D9x08cXp.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 73654,
+      "etag": "7eadd72040220301b102d59c978df4e2783d93611b9dbbf9b34b039b0b9c888a",
+      "key": "archive/melt-01/cd53076/assets/study-colour01-D9x08cXp.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 18053,
+      "etag": "e3cb7fa6064c828d4c4f76a5b5cbb3a6cc9601c592804dfc5125b50d819fbde4",
+      "key": "archive/melt-01/cd53076/assets/study-melt01-CR5v8FcP.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 90277,
+      "etag": "157691f246c6497b2a74117efde8361a0d32ecb6ecc5736677fcb48c88c0a8bb",
+      "key": "archive/melt-01/cd53076/assets/study-melt01-CR5v8FcP.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 166,
+      "etag": "a311a1454ed15880bf9dbbbefee6ef301a3da185775152972e99e2a3013f5043",
+      "key": "archive/melt-01/cd53076/assets/study-recurrence-Bk7aXSP2.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 2103,
+      "etag": "70149cf3e0053617ce32a2eccf786d7a05696b7b4fc1f4ca7409fe81006b8458",
+      "key": "archive/melt-01/cd53076/assets/study-recurrence-C6njJ4Fc.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 9839,
+      "etag": "1c3fda7d57d17113e44750eb72395c8ef5aedff241e143d1d891d682cab33953",
+      "key": "archive/melt-01/cd53076/assets/study-recurrence-C6njJ4Fc.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 176,
+      "etag": "7e3b0235420c28a14ee3d50263298b9df1882922f8acc3622ba69f8f48febc84",
+      "key": "archive/melt-01/cd53076/assets/study-recursion-B6kz2kr1.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 3495,
+      "etag": "bbe03478b553d7d87f8bad450111bff47e6f04c7a1efb817c017deb8f0ef10b9",
+      "key": "archive/melt-01/cd53076/assets/study-recursion-B7bhiP67.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 12817,
+      "etag": "d3a5b314044a01d42dada065c481b4457d875340fe815ed8be0bde5b68862705",
+      "key": "archive/melt-01/cd53076/assets/study-recursion-B7bhiP67.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 15689,
+      "etag": "9f1f10c3d245f2545fcf87964d576dc561edcf392239ec8720801a1a6b04bb0c",
+      "key": "archive/melt-01/cd53076/assets/study-wallform01-CjPSGz-g.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 74293,
+      "etag": "bb7f7e145a87b759f5b7eb4597214501417dea6f3796d46eea0ed975e9a0bd9b",
+      "key": "archive/melt-01/cd53076/assets/study-wallform01-CjPSGz-g.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 11762,
+      "etag": "ec5c86893bb93abedc31eba1c7475adc6ad2668cb6c51314961ec66b524bcea7",
+      "key": "archive/melt-01/cd53076/assets/study-withhold01-CT63DFgD.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 57291,
+      "etag": "7e7d5b266d3dec7b1684b5615bce001519114617589a7d6a1e260dd7b725ad78",
+      "key": "archive/melt-01/cd53076/assets/study-withhold01-CT63DFgD.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 10581,
+      "etag": "02ef4f6848a4a5e90b7f09ee223186aec6ce566a9fbc94582474ba5e49d05238",
+      "key": "archive/melt-01/cd53076/assets/three.tsl-D4OlXbG3.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 44942,
+      "etag": "a10078b3b1f3c3960ae4bf87c40fb25f946c6f458b82f995103d7711b4ccbc51",
+      "key": "archive/melt-01/cd53076/assets/three.tsl-D4OlXbG3.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 675558,
+      "etag": "8f87bfe2f558fceb270bd2d1429bd91edbf8acaadc7c806f77ae84e925c03758",
+      "key": "archive/melt-01/cd53076/assets/three.webgpu-BNKDU8q4.js",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 3223944,
+      "etag": "bbb4fad79d0863bc9a86352dc83485cfb121b9d8970cc3bb281b4101d84572ed",
+      "key": "archive/melt-01/cd53076/assets/three.webgpu-BNKDU8q4.js.map",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 1927,
+      "etag": "7fb4fe57768c596d059dd33f926919cd6e474cefff565eda32a98989a4b62967",
+      "key": "archive/melt-01/cd53076/index.html",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 126201,
+      "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
+      "key": "archive/melt-01/cd53076/og-image.png",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 746,
+      "etag": "abcc5a10f3e652f3b87360d2c7ff423e6d6947cb6269f036c2b1d162c3e080e2",
+      "key": "archive/melt-01/cd53076/radar/clock05/provenance.md",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 198774,
+      "etag": "89154c1144c10f99d73c494caf14d4fcf9b3a82eb8d3f59d8e54fdc04679ba3d",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad01.jpg",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 198231,
+      "etag": "9a95ebb8d11631334a00c0ceac1461a3ae787c4bf971445c3770aef75a7fb5f7",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad02.jpg",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 198237,
+      "etag": "649c425f846e79f7b3b51f0b4ec4900c28b7d282cdf83bac5c82f9f814a3a40e",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad03.jpg",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 198205,
+      "etag": "45325bd4a5edde5a75f42ce86c1e673da19b5b3575058f3e11385b2b0534258a",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad04.jpg",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 198103,
+      "etag": "b2917dba7aefa0a8ff7dffe71ddfd92be40fd48ec3f8efa88101ca146ea892c7",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad05.jpg",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 198077,
+      "etag": "27883e976c5fab6b1a4de8dab5729f1ddf463ee4e4bd448fe9b9afefff6f955a",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad06.jpg",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 198067,
+      "etag": "8c4a15001dada6940c618715b1378085962b4bf6596a0864ab87e0312498ec2e",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad07.jpg",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 198003,
+      "etag": "7f89e25c75821007c12d38a95f36c454bdac192f04ff45b5923fa6b1460c8dac",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad08.jpg",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 198068,
+      "etag": "07c2198607a9ecf1c568e16650a0f00b2f0f882bd668f6fa1787b425b5f1f171",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad09.jpg",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 197377,
+      "etag": "6064e1828aa0207b192477eb4858e61853545179ec07a21dcfe1bf542af6a251",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad10.jpg",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 46,
+      "etag": "18c44e2b24db04e239c9efd9326ecb43e1350c47fbd53ee3e65a3eced0963190",
+      "key": "archive/melt-01/cd53076/videos/.gitignore",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "key": "archive/melt-01/cd53076/videos/README.md",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "key": "archive/melt-01/cd53076/videos/conquerb1943.mp4",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "key": "archive/melt-01/cd53076/videos/starter.mp4",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 870,
+      "etag": "d82a65510c1d4ec6c7debccd17ddac5f569946fe9f69062326c105951295a058",
+      "key": "archive/melt-01/cd53076/manifest.json",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 203,
+      "etag": "b2da73432f80cd62841ea5863acc6e7037de9c09a76d7899dc6b6b533b868767",
+      "key": "archive/melt-01/cd53076/note.md",
+      "status": "uploaded"
     },
     {
       "bytes": 11414,
@@ -27710,15 +28658,639 @@
       "status": "skipped"
     },
     {
-      "bytes": 933,
-      "etag": "7f5f9786ad2d2a17c98121d1e5f1d2d8c1127b9a4761bcaebc75c9e3093800ba",
-      "key": "archive/melt-01/d7953cd/manifest.json",
+      "bytes": 11575,
+      "etag": "2277626bc6d658563d56c99c1269a58db33f597f34ca94e53251269599953e68",
+      "key": "archive/melt-01/f2dfd5f/assets/index-BpGqIyte.js",
       "status": "skipped"
     },
     {
-      "bytes": 266,
-      "etag": "0cebeafd84e34da79e92e27026330e3b55e2b0610f8a25ce816ae09f85f259f5",
-      "key": "archive/melt-01/d7953cd/note.md",
+      "bytes": 47321,
+      "etag": "1762525e1b3c7f7a18ac4fb1e3c5faa39782725118b6ea0e597ce552ed39502e",
+      "key": "archive/melt-01/f2dfd5f/assets/index-BpGqIyte.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 212627,
+      "etag": "400b75896baf41e1406ba7faa93bb0759efb3af167bd28f144cd2b606174e55a",
+      "key": "archive/melt-01/f2dfd5f/assets/o11y-CzJjQfRE.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1856359,
+      "etag": "8384a33c9da4c7b5ef22c4d088c0c56d188d7b58362ec562e94e54d3552aa398",
+      "key": "archive/melt-01/f2dfd5f/assets/o11y-CzJjQfRE.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 912,
+      "etag": "8fd33da592fa2c3e21d1351eade9137532e2d7e11e65562d05d8ae97343b4be0",
+      "key": "archive/melt-01/f2dfd5f/assets/ring-capture-VrqvsPdT.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 6034,
+      "etag": "a02ca077505a9b3d151e5d663bf2875835eedd6cc010e0befe05222807674907",
+      "key": "archive/melt-01/f2dfd5f/assets/ring-capture-VrqvsPdT.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3646,
+      "etag": "7cba7c08645518f9d8647465d0cebf89c19980f53ace55da7dd72be2ef54f887",
+      "key": "archive/melt-01/f2dfd5f/assets/study-clock-CIjrHPxg.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 13096,
+      "etag": "cf6fba2d556dd3790c3070dcc08565ad720b4eb98b5c97e42e734f8be73dd18a",
+      "key": "archive/melt-01/f2dfd5f/assets/study-clock-CIjrHPxg.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3297,
+      "etag": "074aa635ea43178d355ef456f6400c74338b849f6443ebe195541fb326f426cb",
+      "key": "archive/melt-01/f2dfd5f/assets/study-clock02-L1DIy8kw.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11897,
+      "etag": "4b311dd6efadd0d0d2bcb796d489c774670cd73dfa1accc2a2e2aa213d4538d6",
+      "key": "archive/melt-01/f2dfd5f/assets/study-clock02-L1DIy8kw.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 4280,
+      "etag": "d5640085cea0609d168cb8d765b2391a2eda6891a65eae4dd0359977bd3bd845",
+      "key": "archive/melt-01/f2dfd5f/assets/study-clock03-CK9jmBqK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 16058,
+      "etag": "28a17444b08f6269621d88166ebcc78b2f427ea7ba04135f6b64d5b346e624c8",
+      "key": "archive/melt-01/f2dfd5f/assets/study-clock03-CK9jmBqK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9613,
+      "etag": "5c7e25e1b03876333b1f03a0630eb58ad1f28cd4dce2d5dca2b6d55f9b04ac26",
+      "key": "archive/melt-01/f2dfd5f/assets/study-clock04-Bdn8RcTK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46985,
+      "etag": "feddb23d0c52c95a31c29f30dc4bc488f9961fcda6955e9913b4e2bb1e62584b",
+      "key": "archive/melt-01/f2dfd5f/assets/study-clock04-Bdn8RcTK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3138,
+      "etag": "a3ac76fd29c0d940a43e6bd0e732c229c39159e733ba864a7303ac1ba0916d05",
+      "key": "archive/melt-01/f2dfd5f/assets/study-clock05-BsX7yan9.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12357,
+      "etag": "6448e244227837d5bb31d8436704e8a1ca975f3cc8ab9da47c65709455238909",
+      "key": "archive/melt-01/f2dfd5f/assets/study-clock05-BsX7yan9.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15333,
+      "etag": "f67680837c25ec06c7096b71c74866abc3a0ee1074ad27a001c8d5887cc0f8ca",
+      "key": "archive/melt-01/f2dfd5f/assets/study-colour01-D9x08cXp.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 73654,
+      "etag": "7eadd72040220301b102d59c978df4e2783d93611b9dbbf9b34b039b0b9c888a",
+      "key": "archive/melt-01/f2dfd5f/assets/study-colour01-D9x08cXp.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 18053,
+      "etag": "d1abb0c8961082dc2458acc2802976b33a1d72d07ae8eb46d64880a96b59315a",
+      "key": "archive/melt-01/f2dfd5f/assets/study-melt01-GxOsOpql.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 89108,
+      "etag": "696f5fef76c455674bedb7231f1a85c127c534809dabfa76699daafa4c7449ef",
+      "key": "archive/melt-01/f2dfd5f/assets/study-melt01-GxOsOpql.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 166,
+      "etag": "a311a1454ed15880bf9dbbbefee6ef301a3da185775152972e99e2a3013f5043",
+      "key": "archive/melt-01/f2dfd5f/assets/study-recurrence-Bk7aXSP2.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2103,
+      "etag": "70149cf3e0053617ce32a2eccf786d7a05696b7b4fc1f4ca7409fe81006b8458",
+      "key": "archive/melt-01/f2dfd5f/assets/study-recurrence-C6njJ4Fc.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9839,
+      "etag": "1c3fda7d57d17113e44750eb72395c8ef5aedff241e143d1d891d682cab33953",
+      "key": "archive/melt-01/f2dfd5f/assets/study-recurrence-C6njJ4Fc.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 176,
+      "etag": "7e3b0235420c28a14ee3d50263298b9df1882922f8acc3622ba69f8f48febc84",
+      "key": "archive/melt-01/f2dfd5f/assets/study-recursion-B6kz2kr1.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3495,
+      "etag": "bbe03478b553d7d87f8bad450111bff47e6f04c7a1efb817c017deb8f0ef10b9",
+      "key": "archive/melt-01/f2dfd5f/assets/study-recursion-B7bhiP67.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12817,
+      "etag": "d3a5b314044a01d42dada065c481b4457d875340fe815ed8be0bde5b68862705",
+      "key": "archive/melt-01/f2dfd5f/assets/study-recursion-B7bhiP67.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15689,
+      "etag": "9f1f10c3d245f2545fcf87964d576dc561edcf392239ec8720801a1a6b04bb0c",
+      "key": "archive/melt-01/f2dfd5f/assets/study-wallform01-CjPSGz-g.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 74293,
+      "etag": "bb7f7e145a87b759f5b7eb4597214501417dea6f3796d46eea0ed975e9a0bd9b",
+      "key": "archive/melt-01/f2dfd5f/assets/study-wallform01-CjPSGz-g.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11762,
+      "etag": "ec5c86893bb93abedc31eba1c7475adc6ad2668cb6c51314961ec66b524bcea7",
+      "key": "archive/melt-01/f2dfd5f/assets/study-withhold01-CT63DFgD.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 57291,
+      "etag": "7e7d5b266d3dec7b1684b5615bce001519114617589a7d6a1e260dd7b725ad78",
+      "key": "archive/melt-01/f2dfd5f/assets/study-withhold01-CT63DFgD.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 10581,
+      "etag": "02ef4f6848a4a5e90b7f09ee223186aec6ce566a9fbc94582474ba5e49d05238",
+      "key": "archive/melt-01/f2dfd5f/assets/three.tsl-D4OlXbG3.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 44942,
+      "etag": "a10078b3b1f3c3960ae4bf87c40fb25f946c6f458b82f995103d7711b4ccbc51",
+      "key": "archive/melt-01/f2dfd5f/assets/three.tsl-D4OlXbG3.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 675558,
+      "etag": "8f87bfe2f558fceb270bd2d1429bd91edbf8acaadc7c806f77ae84e925c03758",
+      "key": "archive/melt-01/f2dfd5f/assets/three.webgpu-BNKDU8q4.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3223944,
+      "etag": "bbb4fad79d0863bc9a86352dc83485cfb121b9d8970cc3bb281b4101d84572ed",
+      "key": "archive/melt-01/f2dfd5f/assets/three.webgpu-BNKDU8q4.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1927,
+      "etag": "972ea7644e9ec752d4d560a208c80699e332bd31eb13a862c69a950b1faa7cb0",
+      "key": "archive/melt-01/f2dfd5f/index.html",
+      "status": "skipped"
+    },
+    {
+      "bytes": 126201,
+      "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
+      "key": "archive/melt-01/f2dfd5f/og-image.png",
+      "status": "skipped"
+    },
+    {
+      "bytes": 746,
+      "etag": "abcc5a10f3e652f3b87360d2c7ff423e6d6947cb6269f036c2b1d162c3e080e2",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/provenance.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198774,
+      "etag": "89154c1144c10f99d73c494caf14d4fcf9b3a82eb8d3f59d8e54fdc04679ba3d",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/rad01.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198231,
+      "etag": "9a95ebb8d11631334a00c0ceac1461a3ae787c4bf971445c3770aef75a7fb5f7",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/rad02.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198237,
+      "etag": "649c425f846e79f7b3b51f0b4ec4900c28b7d282cdf83bac5c82f9f814a3a40e",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/rad03.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198205,
+      "etag": "45325bd4a5edde5a75f42ce86c1e673da19b5b3575058f3e11385b2b0534258a",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/rad04.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198103,
+      "etag": "b2917dba7aefa0a8ff7dffe71ddfd92be40fd48ec3f8efa88101ca146ea892c7",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/rad05.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198077,
+      "etag": "27883e976c5fab6b1a4de8dab5729f1ddf463ee4e4bd448fe9b9afefff6f955a",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/rad06.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198067,
+      "etag": "8c4a15001dada6940c618715b1378085962b4bf6596a0864ab87e0312498ec2e",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/rad07.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198003,
+      "etag": "7f89e25c75821007c12d38a95f36c454bdac192f04ff45b5923fa6b1460c8dac",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/rad08.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198068,
+      "etag": "07c2198607a9ecf1c568e16650a0f00b2f0f882bd668f6fa1787b425b5f1f171",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/rad09.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 197377,
+      "etag": "6064e1828aa0207b192477eb4858e61853545179ec07a21dcfe1bf542af6a251",
+      "key": "archive/melt-01/f2dfd5f/radar/clock05/rad10.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46,
+      "etag": "18c44e2b24db04e239c9efd9326ecb43e1350c47fbd53ee3e65a3eced0963190",
+      "key": "archive/melt-01/f2dfd5f/videos/.gitignore",
+      "status": "skipped"
+    },
+    {
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "key": "archive/melt-01/f2dfd5f/videos/README.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "key": "archive/melt-01/f2dfd5f/videos/conquerb1943.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "key": "archive/melt-01/f2dfd5f/videos/starter.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 694,
+      "etag": "2f24dd182cb41e9d28212949bf0bca31a08f4d7286c7b41143c6cb312b9c687f",
+      "key": "archive/melt-01/f2dfd5f/manifest.json",
+      "status": "skipped"
+    },
+    {
+      "bytes": 27,
+      "etag": "e4b75fefea259f596db05c9764b75dcbeacea190793344172dddc09f4c9e9c7b",
+      "key": "archive/melt-01/f2dfd5f/note.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11575,
+      "etag": "2277626bc6d658563d56c99c1269a58db33f597f34ca94e53251269599953e68",
+      "key": "archive/melt-01/fca1d6d/assets/index-BpGqIyte.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 47321,
+      "etag": "1762525e1b3c7f7a18ac4fb1e3c5faa39782725118b6ea0e597ce552ed39502e",
+      "key": "archive/melt-01/fca1d6d/assets/index-BpGqIyte.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 212627,
+      "etag": "400b75896baf41e1406ba7faa93bb0759efb3af167bd28f144cd2b606174e55a",
+      "key": "archive/melt-01/fca1d6d/assets/o11y-CzJjQfRE.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1856359,
+      "etag": "8384a33c9da4c7b5ef22c4d088c0c56d188d7b58362ec562e94e54d3552aa398",
+      "key": "archive/melt-01/fca1d6d/assets/o11y-CzJjQfRE.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 912,
+      "etag": "8fd33da592fa2c3e21d1351eade9137532e2d7e11e65562d05d8ae97343b4be0",
+      "key": "archive/melt-01/fca1d6d/assets/ring-capture-VrqvsPdT.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 6034,
+      "etag": "a02ca077505a9b3d151e5d663bf2875835eedd6cc010e0befe05222807674907",
+      "key": "archive/melt-01/fca1d6d/assets/ring-capture-VrqvsPdT.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3646,
+      "etag": "7cba7c08645518f9d8647465d0cebf89c19980f53ace55da7dd72be2ef54f887",
+      "key": "archive/melt-01/fca1d6d/assets/study-clock-CIjrHPxg.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 13096,
+      "etag": "cf6fba2d556dd3790c3070dcc08565ad720b4eb98b5c97e42e734f8be73dd18a",
+      "key": "archive/melt-01/fca1d6d/assets/study-clock-CIjrHPxg.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3297,
+      "etag": "074aa635ea43178d355ef456f6400c74338b849f6443ebe195541fb326f426cb",
+      "key": "archive/melt-01/fca1d6d/assets/study-clock02-L1DIy8kw.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11897,
+      "etag": "4b311dd6efadd0d0d2bcb796d489c774670cd73dfa1accc2a2e2aa213d4538d6",
+      "key": "archive/melt-01/fca1d6d/assets/study-clock02-L1DIy8kw.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 4280,
+      "etag": "d5640085cea0609d168cb8d765b2391a2eda6891a65eae4dd0359977bd3bd845",
+      "key": "archive/melt-01/fca1d6d/assets/study-clock03-CK9jmBqK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 16058,
+      "etag": "28a17444b08f6269621d88166ebcc78b2f427ea7ba04135f6b64d5b346e624c8",
+      "key": "archive/melt-01/fca1d6d/assets/study-clock03-CK9jmBqK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9613,
+      "etag": "5c7e25e1b03876333b1f03a0630eb58ad1f28cd4dce2d5dca2b6d55f9b04ac26",
+      "key": "archive/melt-01/fca1d6d/assets/study-clock04-Bdn8RcTK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46985,
+      "etag": "feddb23d0c52c95a31c29f30dc4bc488f9961fcda6955e9913b4e2bb1e62584b",
+      "key": "archive/melt-01/fca1d6d/assets/study-clock04-Bdn8RcTK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3138,
+      "etag": "a3ac76fd29c0d940a43e6bd0e732c229c39159e733ba864a7303ac1ba0916d05",
+      "key": "archive/melt-01/fca1d6d/assets/study-clock05-BsX7yan9.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12357,
+      "etag": "6448e244227837d5bb31d8436704e8a1ca975f3cc8ab9da47c65709455238909",
+      "key": "archive/melt-01/fca1d6d/assets/study-clock05-BsX7yan9.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15333,
+      "etag": "f67680837c25ec06c7096b71c74866abc3a0ee1074ad27a001c8d5887cc0f8ca",
+      "key": "archive/melt-01/fca1d6d/assets/study-colour01-D9x08cXp.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 73654,
+      "etag": "7eadd72040220301b102d59c978df4e2783d93611b9dbbf9b34b039b0b9c888a",
+      "key": "archive/melt-01/fca1d6d/assets/study-colour01-D9x08cXp.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 18053,
+      "etag": "d1abb0c8961082dc2458acc2802976b33a1d72d07ae8eb46d64880a96b59315a",
+      "key": "archive/melt-01/fca1d6d/assets/study-melt01-GxOsOpql.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 89108,
+      "etag": "696f5fef76c455674bedb7231f1a85c127c534809dabfa76699daafa4c7449ef",
+      "key": "archive/melt-01/fca1d6d/assets/study-melt01-GxOsOpql.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 166,
+      "etag": "a311a1454ed15880bf9dbbbefee6ef301a3da185775152972e99e2a3013f5043",
+      "key": "archive/melt-01/fca1d6d/assets/study-recurrence-Bk7aXSP2.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2103,
+      "etag": "70149cf3e0053617ce32a2eccf786d7a05696b7b4fc1f4ca7409fe81006b8458",
+      "key": "archive/melt-01/fca1d6d/assets/study-recurrence-C6njJ4Fc.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9839,
+      "etag": "1c3fda7d57d17113e44750eb72395c8ef5aedff241e143d1d891d682cab33953",
+      "key": "archive/melt-01/fca1d6d/assets/study-recurrence-C6njJ4Fc.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 176,
+      "etag": "7e3b0235420c28a14ee3d50263298b9df1882922f8acc3622ba69f8f48febc84",
+      "key": "archive/melt-01/fca1d6d/assets/study-recursion-B6kz2kr1.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3495,
+      "etag": "bbe03478b553d7d87f8bad450111bff47e6f04c7a1efb817c017deb8f0ef10b9",
+      "key": "archive/melt-01/fca1d6d/assets/study-recursion-B7bhiP67.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12817,
+      "etag": "d3a5b314044a01d42dada065c481b4457d875340fe815ed8be0bde5b68862705",
+      "key": "archive/melt-01/fca1d6d/assets/study-recursion-B7bhiP67.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15689,
+      "etag": "9f1f10c3d245f2545fcf87964d576dc561edcf392239ec8720801a1a6b04bb0c",
+      "key": "archive/melt-01/fca1d6d/assets/study-wallform01-CjPSGz-g.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 74293,
+      "etag": "bb7f7e145a87b759f5b7eb4597214501417dea6f3796d46eea0ed975e9a0bd9b",
+      "key": "archive/melt-01/fca1d6d/assets/study-wallform01-CjPSGz-g.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11762,
+      "etag": "ec5c86893bb93abedc31eba1c7475adc6ad2668cb6c51314961ec66b524bcea7",
+      "key": "archive/melt-01/fca1d6d/assets/study-withhold01-CT63DFgD.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 57291,
+      "etag": "7e7d5b266d3dec7b1684b5615bce001519114617589a7d6a1e260dd7b725ad78",
+      "key": "archive/melt-01/fca1d6d/assets/study-withhold01-CT63DFgD.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 10581,
+      "etag": "02ef4f6848a4a5e90b7f09ee223186aec6ce566a9fbc94582474ba5e49d05238",
+      "key": "archive/melt-01/fca1d6d/assets/three.tsl-D4OlXbG3.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 44942,
+      "etag": "a10078b3b1f3c3960ae4bf87c40fb25f946c6f458b82f995103d7711b4ccbc51",
+      "key": "archive/melt-01/fca1d6d/assets/three.tsl-D4OlXbG3.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 675558,
+      "etag": "8f87bfe2f558fceb270bd2d1429bd91edbf8acaadc7c806f77ae84e925c03758",
+      "key": "archive/melt-01/fca1d6d/assets/three.webgpu-BNKDU8q4.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3223944,
+      "etag": "bbb4fad79d0863bc9a86352dc83485cfb121b9d8970cc3bb281b4101d84572ed",
+      "key": "archive/melt-01/fca1d6d/assets/three.webgpu-BNKDU8q4.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1927,
+      "etag": "972ea7644e9ec752d4d560a208c80699e332bd31eb13a862c69a950b1faa7cb0",
+      "key": "archive/melt-01/fca1d6d/index.html",
+      "status": "skipped"
+    },
+    {
+      "bytes": 126201,
+      "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
+      "key": "archive/melt-01/fca1d6d/og-image.png",
+      "status": "skipped"
+    },
+    {
+      "bytes": 746,
+      "etag": "abcc5a10f3e652f3b87360d2c7ff423e6d6947cb6269f036c2b1d162c3e080e2",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/provenance.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198774,
+      "etag": "89154c1144c10f99d73c494caf14d4fcf9b3a82eb8d3f59d8e54fdc04679ba3d",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/rad01.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198231,
+      "etag": "9a95ebb8d11631334a00c0ceac1461a3ae787c4bf971445c3770aef75a7fb5f7",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/rad02.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198237,
+      "etag": "649c425f846e79f7b3b51f0b4ec4900c28b7d282cdf83bac5c82f9f814a3a40e",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/rad03.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198205,
+      "etag": "45325bd4a5edde5a75f42ce86c1e673da19b5b3575058f3e11385b2b0534258a",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/rad04.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198103,
+      "etag": "b2917dba7aefa0a8ff7dffe71ddfd92be40fd48ec3f8efa88101ca146ea892c7",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/rad05.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198077,
+      "etag": "27883e976c5fab6b1a4de8dab5729f1ddf463ee4e4bd448fe9b9afefff6f955a",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/rad06.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198067,
+      "etag": "8c4a15001dada6940c618715b1378085962b4bf6596a0864ab87e0312498ec2e",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/rad07.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198003,
+      "etag": "7f89e25c75821007c12d38a95f36c454bdac192f04ff45b5923fa6b1460c8dac",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/rad08.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198068,
+      "etag": "07c2198607a9ecf1c568e16650a0f00b2f0f882bd668f6fa1787b425b5f1f171",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/rad09.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 197377,
+      "etag": "6064e1828aa0207b192477eb4858e61853545179ec07a21dcfe1bf542af6a251",
+      "key": "archive/melt-01/fca1d6d/radar/clock05/rad10.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46,
+      "etag": "18c44e2b24db04e239c9efd9326ecb43e1350c47fbd53ee3e65a3eced0963190",
+      "key": "archive/melt-01/fca1d6d/videos/.gitignore",
+      "status": "skipped"
+    },
+    {
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "key": "archive/melt-01/fca1d6d/videos/README.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "key": "archive/melt-01/fca1d6d/videos/conquerb1943.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "key": "archive/melt-01/fca1d6d/videos/starter.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1164,
+      "etag": "ec191218c556fe382902cfe8333ed42bc4fc9a89fdf7773a92f4b3d16fcc1961",
+      "key": "archive/melt-01/fca1d6d/manifest.json",
+      "status": "skipped"
+    },
+    {
+      "bytes": 497,
+      "etag": "06aa83a07a3b569f594e3c02d18a7cabcc146313ddee1f77aaf78ff8c5338395",
+      "key": "archive/melt-01/fca1d6d/note.md",
       "status": "skipped"
     },
     {
@@ -28355,18 +29927,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/melt-01/ff413ea/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 865,
-      "etag": "a4759bec4777a58d62fd0b253d9e25fe95fdcfe089dde40fc6ec4173d03bdb1a",
-      "key": "archive/melt-01/ff413ea/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 198,
-      "etag": "f3c793de1d121bbdf1a50c30d045f7596463faaffa9fd4b0dc2098a73c70e2b2",
-      "key": "archive/melt-01/ff413ea/note.md",
       "status": "skipped"
     },
     {
@@ -29654,18 +31214,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 719,
-      "etag": "e7db329aebfeafd901aab3b4ec1f8eb335b6ba232ce392689d4a294a7995702b",
-      "key": "archive/wallform-01/0351b34/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 48,
-      "etag": "7db6027046a300fdb2f81e581e2a0f533528cb77b74b07913aae43273602770e",
-      "key": "archive/wallform-01/0351b34/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11194,
       "etag": "1a72e795794d68becb8c52b328b65261afe60f5b5f778aac24bb2c371583a496",
       "key": "archive/wallform-01/162c831/assets/index-BHbSjX9B.js",
@@ -30251,18 +31799,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/wallform-01/162c831/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 711,
-      "etag": "85c4083b0b4bceb6a7f52280b857aa8baa7a55d86ed9c3d594b6d7a83015a2a1",
-      "key": "archive/wallform-01/162c831/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 40,
-      "etag": "a330fd89140ac0575a52b9ed460442a6b7dddd39fbe1c6bbb4ab6e0b7c33c930",
-      "key": "archive/wallform-01/162c831/note.md",
       "status": "skipped"
     },
     {
@@ -30854,18 +32390,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 709,
-      "etag": "9da2d302f85b5a18f2ff6fc45d8b2b1d4669a289f8f853e7d1a9c2522244bfaa",
-      "key": "archive/wallform-01/1ef5eb9/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 38,
-      "etag": "0c1fa142d6e2a0c2aad8191ac05c4d2299096452a48a04cfb96b330162ab5369",
-      "key": "archive/wallform-01/1ef5eb9/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11194,
       "etag": "b9295bd7f30b24f23e2214a8a152c31bb705638f0ba236262a120566a64bc889",
       "key": "archive/wallform-01/370fe4b/assets/index-EwVh2_iZ.js",
@@ -31451,18 +32975,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/wallform-01/370fe4b/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 713,
-      "etag": "1775a5e0b9214ac599a3db86c519ccb3be417edc16d55b2271920f22be8e18ba",
-      "key": "archive/wallform-01/370fe4b/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 42,
-      "etag": "7018462500285d80b4322f415873eff899cb468f47ccb9f20cbbf5860d525338",
-      "key": "archive/wallform-01/370fe4b/note.md",
       "status": "skipped"
     },
     {
@@ -32054,18 +33566,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 712,
-      "etag": "1d74f9b4a527d611d6cd0f7ef250eb459386d0df9e158fbffbae81b80437ab50",
-      "key": "archive/wallform-01/674ee45/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 41,
-      "etag": "43384990dcd4b5cd65779cf0f7e63489fb4ce88356666d4c04fd14e5eac303e2",
-      "key": "archive/wallform-01/674ee45/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11194,
       "etag": "3b63d655a9948bcc0240914ca05d93ced2a3f9ef5569a812d9c51b915ceb4b76",
       "key": "archive/wallform-01/75493cd/assets/index-B6JFTSW3.js",
@@ -32651,18 +34151,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/wallform-01/75493cd/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 715,
-      "etag": "4311e8f9e05e15f6ace9d963d37a54fd7f46698fb5e10ac067721f718eedf871",
-      "key": "archive/wallform-01/75493cd/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 44,
-      "etag": "5b17a5c8eb93867c233b662b6a1ea93aecf34468c68106ba63da5e44cebdac3f",
-      "key": "archive/wallform-01/75493cd/note.md",
       "status": "skipped"
     },
     {
@@ -33254,18 +34742,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 720,
-      "etag": "91f3ec7fe7d9d41dc344c3006a53a65955eb39d1a7831485862c65a35b6af47d",
-      "key": "archive/wallform-01/82e6de2/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 49,
-      "etag": "9ab25b1f56aceea4a63f2fde02eb2de15d304db93c209f7acf65747074565fba",
-      "key": "archive/wallform-01/82e6de2/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11194,
       "etag": "0beca6f3c6b05bc1309a6f21bebec1b41692c758505d5995e5b1f0eebcf1a77a",
       "key": "archive/wallform-01/cac01be/assets/index-yv1Wa9aD.js",
@@ -33851,18 +35327,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/wallform-01/cac01be/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 721,
-      "etag": "54f71584ce9e61f8ca01a5dd7c9c8a40820b0fd0f35357281d08b4514007cada",
-      "key": "archive/wallform-01/cac01be/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 50,
-      "etag": "7e7ba2ef406b5b02e4142248a93c158bc54b6bfa8d2e88d24bb68b79ae0efef7",
-      "key": "archive/wallform-01/cac01be/note.md",
       "status": "skipped"
     },
     {
@@ -34454,18 +35918,6 @@
       "status": "skipped"
     },
     {
-      "bytes": 722,
-      "etag": "a8ad3fcac50b2de2e6ce3a5c9605296a9787a0588d317c46eb2a0e315a62dc75",
-      "key": "archive/wallform-01/d01f025/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 51,
-      "etag": "323e2a84be8d5a66499a400a9a70e6e73b29427d32f5ea9ef7ec8e536885566a",
-      "key": "archive/wallform-01/d01f025/note.md",
-      "status": "skipped"
-    },
-    {
       "bytes": 11194,
       "etag": "3fd0914cb496953934f91e17bb9023485e76a283fcb9d64a729a9f29f88c2643",
       "key": "archive/wallform-01/f08face/assets/index-BB7Gn3-6.js",
@@ -35051,18 +36503,6 @@
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
       "key": "archive/wallform-01/f08face/videos/starter.mp4",
-      "status": "skipped"
-    },
-    {
-      "bytes": 727,
-      "etag": "63ceb7a085fd45fed4c26592b4fa27cd293c60f956161f38ec8b01c6f471244a",
-      "key": "archive/wallform-01/f08face/manifest.json",
-      "status": "skipped"
-    },
-    {
-      "bytes": 56,
-      "etag": "f5c8639e37b8e264dc796c2a60b8812ceeaf3b1aa4120f48ef2defb53d98e703",
-      "key": "archive/wallform-01/f08face/note.md",
       "status": "skipped"
     },
     {

@@ -17,6 +17,20 @@ Entries are dated, newest first, and stay short. An entry is one of:
 `note` (context, no action).
 
 ## Entries
+- **2026-09-17 v03.** Build cd53076: relief horizon 8→24 frames. The
+  16s frame shows the dial ghosted through the displaced relief — the
+  surface remembers, not echoes. Self-critique PASS (same standing
+  order); local critic's apparatus/motion false contradict its own
+  "split and warped, dynamic" text again. CUT IT.
+- **2026-09-17 order (standing, supersedes the 2026-09-16 r7-only
+  override).** Joel live, verbatim: "There is no fucking critic... There
+  is no fucking critic. So just fucking send that shit. Like be your own
+  fucking critic." — read as STANDING for the melt study: the vision
+  critic's verdict is advisory; the loop agent's honest self-critique per
+  the study-critique rubric is the gate. v02 r4 (0125015) judged by
+  self-critique: 6/5 floor gates PASS (receipts in
+  research/2026-09-15-melt-01.md § v02 rounds). CUT IT. The rubric still
+  binds — a self-fail is a fail like any other.
 
 - **2026-09-16 order.** Joel live, verbatim: "There is no fucking critic
   motherfucker like it's dead like look around. There is no fucking critic.
