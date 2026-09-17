@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "9829d93",
+  "at": "2026-09-17T08:16:05.608Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-9829d93-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-9829d93-16s.png"
+  ],
+  "framesDiffer": true,
+  "titleCard": false,
+  "operationVisible": "The film appears to be in motion, as indicated by the blurred and fragmented appearance of the projected image.",
+  "floor": {
+    "space": true,
+    "apparatus": false,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 3,
+  "pass": false,
+  "critic": "The second frame shows a more dynamic and fragmented projection, suggesting motion or a change in the film's material properties.",
+  "raw": "{\n  \"framesDiffer\": true,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": false,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"The film appears to be in motion, as indicated by the blurred and fragmented appearance of the projected image.\",\n  \"notes\": \"The second frame shows a more dynamic and fragmented projection, suggesting motion or a change in the film's material properties.\"\n}\n"
+}
