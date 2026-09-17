@@ -91,3 +91,26 @@ melt-01 earns it — one surface, one operation stays the rule.
 - Until then no cut without a fresh passing verdict for the exact sha —
   extension enforces, doctrine demands.
 - This file is a critique proposing; it is not direction.
+
+## OUTCOME (2026-09-17): study 1 built, closed subtractive, live
+
+surface/melt-01 shipped through five cuts in one day: v01 per-facet
+transforms → v02 TSL feedback-displacement relief (+ a root-cause decode
+fix: the inherited in-point guard re-seeked every frame, starving the
+decoder) → v03 deep horizon (surface remembers, not echoes) → v04 cut
+detonation → v05 deletion (the colour machinery removed; the melt is the
+only operation). The subtractive test closes. Long-window probe verified
+the grey invariant and answered the artistic question: liquid time, not
+noisy geometry — the surface answers the near past.
+
+Critic-doctrine note: this study shipped under a standing operator order
+("be your own critic") — the vision critic's verdicts proved unable to see
+apparatus/motion in this composition while naming the operation in its own
+text. The rubric bound every self-judgment; receipts in
+research/2026-09-15-melt-01.md.
+
+## Study 2 unblocked: `beam/psychedelic-cone-01`
+
+Earned: one surface, one operation held for five generations. The beam can
+now sample the same feedback field. Next variable when the loop opens it:
+beam slices carrying the relief's displaced generations into the air.
