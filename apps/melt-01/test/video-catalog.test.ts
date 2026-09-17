@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 describe("core", () => {
   it("classifies orchestration-only sources without a video", async () => {
     const { classify } = await import("../src/lib/video-catalog");
-    expect(classify("projector-lockup.mp4")).toEqual({
+    expect(classify("projector-lockup.orchestration.mp4")).toEqual({
       mode: "orchestration-only",
       video: null,
     });
@@ -19,9 +19,9 @@ describe("core", () => {
 
   it("classifies gpu-readback sources with a video", async () => {
     const { classify } = await import("../src/lib/video-catalog");
-    expect(classify("glitch-pass.mp4")).toEqual({
+    expect(classify("glitch-pass.readback.mp4")).toEqual({
       mode: "gpu-readback",
-      video: "/videos/glitch-pass.mp4",
+      video: "/videos/glitch-pass.readback.mp4",
     });
   });
 });

@@ -1,6 +1,16 @@
 import * as THREE from "three/webgpu";
 import { MeshBasicNodeMaterial } from "three/webgpu";
-import { mix, saturate, texture, uv, vec2, vec3 } from "three/tsl";
+import {
+  mix,
+  normalLocal,
+  positionLocal,
+  saturate,
+  texture,
+  uniform,
+  uv,
+  vec2,
+  vec3,
+} from "three/tsl";
 import { CutDetector, ringLength } from "@expanded-cinema/core";
 import { sketchEvents } from "./o11y";
 import type { StudyRuntime } from "./study-recurrence";
@@ -45,6 +55,13 @@ type SceneRuntime = {
   frame: { value: number };
   lumaAt(framesAgo: number): Float32Array | null;
   traceAt: number | null;
+  // v02: the TSL feedback-displacement relief — one node material whose
+  // positionNode displaces the patch's vertices along their normals by the
+  // N-frames-back luma field, gain-scaled (spec research/2026-09-15-melt-01.md).
+  meltRelief: THREE.Mesh;
+  meltReliefMat: THREE.MeshBasicMaterial;
+  meltField: THREE.DataTexture;
+  meltGain: { value: number };
 };
 
 interface ClockScene {
@@ -94,7 +111,17 @@ const FM_V = 3.6;
  * toward heal.
  */
 const MELT_N = 8;
+// v03 probe: the RELIEF field samples deeper in the ring than the facet
+// trail — horizon 24 (~0.8s) so the surface swells from the near past
+// instead of the last instant. One variable this build; detonation and
+// everything else unchanged.
+const MELT_RELIEF_N = 24;
 const MELT_MAX_SINK = 0.55;
+// v02 relief: excursion clamp (world units) for the TSL positionNode.
+const MELT_RELIEF_MAX = 0.22;
+// module-level drive set by meltTick each frame (motion + cut), read by the
+// step loop for the relief gain uniform.
+let reliefDrive = 0;
 const HEAP_DRIFT_X = 2.9; // shards left of this lean toward the screen (appl. melt reads directionally)
 interface MeltFacet {
   a: number;
@@ -141,6 +168,13 @@ function meltTick(
   const sinceCut = study.traceAt === null ? Infinity : performance.now() - study.traceAt;
   void detector;
   const cutPulse = sinceCut < 1200 ? 1 - sinceCut / 1200 : 0;
+  // v02: relief gain drive — motion raises surface swell; a cut spikes it.
+  // Floor of 0.08 keeps the surface alive in quiet stretches (stillness =
+  // calm but never dead flat) while the clamp caps the excursion.
+  // v02 r4: floor 0.16 — the 16s window sits in the film's machining still
+  // stretch; a 0.08 floor flattened the swell below critic legibility
+  // (a4509df motion=false). Still calm, but visibly alive.
+  reliefDrive = 0.16 + motion * 3.2 + cutPulse * 0.55;
 
   study.shards.forEach((m, i) => {
     const f = meltFacets[i]!;
@@ -298,6 +332,81 @@ function buildScene() {
   }
   // wallPic placeholder keeps downstream references compiling (marked void)
   const wallPic = shards[0]!;
+
+  // ---- melt-01 v02: the TSL feedback-displacement relief ----
+  // A curved patch just outside the plate (toward the camera) carrying the
+  // film; its ONE node material displaces vertices along their normals by
+  // the past-luma field (MELT_N frames back), gain-scaled. Nothing else
+  // changes (subtractive guard: delete the material and only the patch
+  // disappears).
+  // v02 relief: excursion clamp lives at module scope; the patch just uses it.
+  const meltFieldData = new Uint8Array(LUMA_W * LUMA_H);
+  const meltField = new THREE.DataTexture(
+    meltFieldData,
+    LUMA_W,
+    LUMA_H,
+    THREE.RedFormat,
+    THREE.UnsignedByteType,
+  );
+  meltField.minFilter = THREE.LinearFilter;
+  meltField.magFilter = THREE.LinearFilter;
+  meltField.needsUpdate = true;
+  const meltGain = uniform(0);
+  const reliefGeo = new THREE.PlaneGeometry(
+    SCREEN_ARC * SCREEN_R,
+    SCREEN_H,
+    40,
+    14,
+  );
+  {
+    // bend the flat grid onto the plate's cylinder, radius offset toward
+    // the camera (camera sits outside the cylinder, so outward radial =
+    // toward the lens); normals recomputed, then overwritten with the
+    // exact radial direction so displacement reads as surface swell.
+    const pos = reliefGeo.getAttribute("position") as THREE.BufferAttribute;
+    const nor = reliefGeo.getAttribute("normal") as THREE.BufferAttribute;
+    const uvs = reliefGeo.getAttribute("uv") as THREE.BufferAttribute;
+    for (let i = 0; i < pos.count; i++) {
+      const uFrac = uvs.getX(i) ?? 0;
+      const vFrac = uvs.getY(i) ?? 0;
+      const th = -SCREEN_ARC / 2 + uFrac * SCREEN_ARC;
+      const rR = SCREEN_R + 0.07;
+      pos.setXYZ(
+        i,
+        rR * Math.sin(th),
+        (vFrac - 0.5) * SCREEN_H + SCREEN_H / 2 - 0.1,
+        rR * Math.cos(th) - 2.2,
+      );
+      nor.setXYZ(i, Math.sin(th), 0, Math.cos(th));
+    }
+    pos.needsUpdate = true;
+    nor.needsUpdate = true;
+  }
+  const reliefMat = new MeshBasicNodeMaterial() as unknown as THREE.MeshBasicMaterial;
+  const reliefNode = reliefMat as unknown as {
+    positionNode: unknown;
+    colorNode: unknown;
+    transparent: boolean;
+    opacity: number;
+    depthWrite: boolean;
+    needsUpdate: boolean;
+  };
+  // vertex: local position pushed along the surface normal by the past
+  // luma field sample, gated by the gain uniform (0 until aperture).
+  const fieldSample = texture(meltField, uv());
+  reliefNode.positionNode = positionLocal.add(
+    normalLocal.mul(fieldSample.r.mul(meltGain)),
+  );
+  // fragment stays the base gradient until the shutter swaps in the film
+  // (same grey luma as the plate — the colour lane stays parked).
+  reliefNode.colorNode = vec3(uv().x.mul(0.2), uv().y.mul(0.12), 0.1);
+  reliefNode.transparent = true;
+  reliefNode.opacity = 0;
+  reliefNode.depthWrite = false;
+  reliefNode.needsUpdate = true;
+  const meltRelief = new THREE.Mesh(reliefGeo, reliefMat);
+  meltRelief.renderOrder = 2;
+  scene.add(meltRelief);
 
 
   // withhold-01: the IRIS RING — a thin unlit torus tracing the aperture
@@ -498,6 +607,10 @@ function buildScene() {
     traceAt: traceAtHolder.at,
     computeBandsFromVideo,
     bandAt,
+    meltRelief,
+    meltReliefMat: reliefMat,
+    meltField,
+    meltGain,
     detailAt,
     lumaAt,
     pushBandHistory,
@@ -561,7 +674,12 @@ export async function mountRuntime(
     // opens only once the authored withhold has elapsed (WITHHOLD_MS
     // after mount), so the closed plate reads long enough to be a state,
     // not a frame. Ring lights + film in the same frame: a cut, not a fade.
-    const WITHHOLD_MS = 9_000;
+    // v02 r2: hard receipts — the cold archive decode reaches readyState 2
+    // at ~10-14s; a 9s withhold pushed the aperture to 19-23s, past the 16s
+    // verify window (fca1d6d: both frames read as the closed plate).
+    // 4500ms keeps the closed plate a readable state (>=4s) while fitting
+    // the aperture inside decode+4.5s ≈ 14.5-18.5s on cold cache.
+    const WITHHOLD_MS = 4_500;
     const irisMat = study.iris.material as THREE.MeshBasicMaterial;
     let armedAtMs: number | null = null;
     const maybeOpen = (elapsed: number): void => {
@@ -615,6 +733,11 @@ export async function mountRuntime(
       const splitC = vec3(tR.r, tR.g, tR.b);
       const greyC = splitC.r.mul(0.299).add(splitC.g.mul(0.587)).add(splitC.b.mul(0.114));
       (screenMat as unknown as { colorNode: unknown }).colorNode = greyC.mul(1.35);
+      // v02: the relief rides the SAME film texture (grey luma, colour lane
+      // parked) — the past picture displaces the present surface.
+      const reliefN = study.meltReliefMat as unknown as { colorNode: unknown; needsUpdate: boolean };
+      reliefN.colorNode = greyC;
+      reliefN.needsUpdate = true;
       (screenMat as unknown as { needsUpdate: boolean }).needsUpdate = true;
       aperturedAtMs = performance.now();
       void sketchEvents
@@ -731,13 +854,11 @@ export async function mountRuntime(
         const tR = texture(videoLayer.texture, uvm as never);
         const split = vec3(tR.r, tG.g, tB.b);
         const grey = split.r.mul(0.299).add(split.g.mul(0.587)).add(split.b.mul(0.114));
-        const sm = study.screen.material as unknown as { colorNode: unknown; needsUpdate: boolean };
-        // AD seq-49 probe: for the first 200 locked frames the plate renders
-        // abs(R-B) as PURE magenta — black plate proves the ring is not
-        // offset, magenta proves the offset is there. Then the real split.
-        const mag = split.b.sub(split.r).abs().mul(6);
-        sm.colorNode = vec3(mag, mag, mag);
-        sm.needsUpdate = true;
+        void grey;
+        // melt-01: the colour lane stays PARKED. The inherited colour-01
+        // machinery still proves its delay ring (events below) but never
+        // writes the plate — the melt is the one operation, the plate stays
+        // the grey film from the shutter swap.
         void sketchEvents
           .emitInfo("study", "melt01.splitLive", {
             mainT: Number(main.currentTime.toFixed(2)),
@@ -754,10 +875,8 @@ export async function mountRuntime(
           const tB2 = texture(delayed.b.texture, uvm2 as never);
           const tR2 = texture(videoLayer.texture, uvm2 as never);
           const split2 = vec3(tR2.r, tG2.g, tB2.b);
-          const grey2 = split2.r.mul(0.299).add(split2.g.mul(0.587)).add(split2.b.mul(0.114));
-          const sm2 = study.screen.material as unknown as { colorNode: unknown; needsUpdate: boolean };
-          sm2.colorNode = mix(grey2, split2, 2.0).mul(1.25);
-          sm2.needsUpdate = true;
+          void split2;
+          // melt-01: no plate write here (see splitLive note — colour parked).
           void sketchEvents
             .emitInfo("study", "melt01.probeDone", {})
             .catch(() => undefined);
@@ -790,14 +909,18 @@ export async function mountRuntime(
       },
       step(r, now, delta) {
         void delta; // signature parity with StudyRuntime
-        // colour-01 in-point hard guard (AD seq-48): during the first 30s
-        // a re-opened or wrapped element must return to SEEK_TO before the
-        // film plays free — the in-point survives every element swap.
+        // colour-01 in-point hard guard (AD seq-48), melt-01 r3 fix: the
+        // original re-assigned currentTime EVERY FRAME during the first 30s
+        // (57 < 60 → set 57), forcing ~60 seeks/second — a decoder restart
+        // loop: element fully buffered yet readyState never lifts off 1
+        // (receipt: c58df79 cold verify, buffered 90.0, readyState 1 at
+        // 27s; dev only opened after the guard expired at 30s). Re-assert
+        // only on real drift, identical condition to seekTick.
         {
           const vMain = vidOf();
           const elapsedNow = now - (firstStepAt ?? now);
-          if (vMain && elapsedNow < 30_000 && firstStepAt === firstStepAt) {
-            if (vMain.readyState >= 1 && vMain.currentTime < 60) {
+          if (vMain && elapsedNow < 30_000) {
+            if (vMain.readyState >= 1 && Math.abs(vMain.currentTime - SEEK_TO) > 1.5) {
               vMain.currentTime = SEEK_TO;
             }
           }
@@ -846,6 +969,33 @@ export async function mountRuntime(
         // --- melt-01 v01: the trail ooze (THE one changed thing) ---
         // energy = mean |luma now vs 8 frames ago|; cuts detonate; stillness heals.
         meltTick(study, video, tap, revealHolder.revealed, n, detector);
+
+        // --- melt-01 v02: the TSL relief feedback drive ---
+        // past-luma field (MELT_N frames back) into the DataTexture;
+        // gain = motion energy + cut pulse, clamped to the excursion guard.
+        // Field image row 0 = TOP of frame (luma grids are frame-oriented).
+        if (revealHolder.revealed) {
+          const pastGrid = study.lumaAt(MELT_RELIEF_N);
+          const img = study.meltField.image as unknown as Uint8Array;
+          if (pastGrid) {
+            for (let fy = 0; fy < LUMA_H; fy++) {
+              for (let fx = 0; fx < LUMA_W; fx++) {
+                img[fy * LUMA_W + fx] = Math.min(
+                  255,
+                  Math.round((pastGrid[fy * LUMA_W + fx] ?? 0) * 255),
+                );
+              }
+            }
+          } else {
+            // no past decode yet: decay the held field gently
+            for (let i = 0; i < img.length; i++) img[i] = (img[i]! * 0.98) | 0;
+          }
+          study.meltField.needsUpdate = true;
+          const openNow = aperturedAtMs === null ? -1e9 : now - aperturedAtMs;
+          (study.meltReliefMat as unknown as { opacity: number }).opacity =
+            Math.min(1, Math.max(0, (openNow - 1200) / 1400)) * 0.8;
+          study.meltGain.value = Math.min(MELT_RELIEF_MAX, reliefDrive);
+        }
 
         // v20 (AD seq-31): open LOW and NEAR the screen — the film is the
         // largest thing in the opening frame — hold ~7s, then arc back into
@@ -1032,7 +1182,7 @@ export async function mountRuntime(
           const bright = Math.min(1, bandL * 1.3 + cutGlow * 0.35);
           const fade = beam === 0 ? fade1 : fade2;
           const mm = m.material as THREE.MeshBasicMaterial;
-          mm.opacity = (beam === 0 ? 0.04 + bright * 0.24 : 0.025 + bright * 0.12) * fade * graze(m) * (beam === 0 ? 0.5 : 0.35);
+          mm.opacity = (beam === 0 ? 0.07 + bright * 0.38 : 0.04 + bright * 0.2) * fade * graze(m) * (beam === 0 ? 0.7 : 0.5);
         }
 
         // beam-01 vertical slats (now live, was dead since v13 rewrites):
@@ -1075,7 +1225,7 @@ export async function mountRuntime(
           const bbright = Math.min(1, bcolL * 1.35 + cutGlow * 0.3);
           const bfade = bBeam === 0 ? fade1 : fade2;
           const bmm = sm2.material as THREE.MeshBasicMaterial;
-          bmm.opacity = (bBeam === 0 ? 0.016 + bbright * 0.18 : 0.012 + bbright * 0.075) * bfade * graze(sm2) * (bBeam === 0 ? 0.5 : 0.35);
+          bmm.opacity = (bBeam === 0 ? 0.03 + bbright * 0.28 : 0.02 + bbright * 0.12) * bfade * graze(sm2) * (bBeam === 0 ? 0.7 : 0.5);
         }
         void SLATS;
 
@@ -1083,8 +1233,8 @@ export async function mountRuntime(
         const pulse = Math.sin((now / 2400) % (Math.PI * 2)) * 0.5 + 0.5;
         const p1 = study.proj1.material as THREE.MeshStandardMaterial;
         const p2 = study.proj2.material as THREE.MeshStandardMaterial;
-        p1.emissiveIntensity = 0.25 + pulse * 0.45 + cutGlow * 0.8;
-        p2.emissiveIntensity = 0.25 + (1 - pulse) * 0.35 + cutGlow * 0.5;
+        p1.emissiveIntensity = 0.5 + pulse * 0.7 + cutGlow * 0.9;
+        p2.emissiveIntensity = 0.5 + (1 - pulse) * 0.55 + cutGlow * 0.6;
         // .3: the wall picture fades in at arrival (+3s), holds the past
         const wallMat = study.wallPic.material as THREE.MeshBasicMaterial;
         for (const sh of study.shards) {
@@ -1121,10 +1271,10 @@ export async function mountRuntime(
         if (openMs >= 0 && openMs < 30_000 && captureElapsed < 8_000 && (captureElapsed < 3_100 || wallMean < 20)) {
           const vw = captureReady ? vwNow : null;
           if (vw) {
-            // seq-56: capture luminance is the whole gate - draw with a
-            // brightness filter so facets receive picture luminance, not
-            // a mean-7 near-black the color scalar can barely lift
-            study.snapCtx.filter = 'brightness(5.0)';
+            // seq-56 filter kept, but the decode-relative capture (r4) now
+            // receives real luminance: 5.0 was the crutch for the mean-7
+            // blackout; 1.6 lifts shadow detail without baking white.
+            study.snapCtx.filter = 'brightness(1.6)';
             study.snapCtx.drawImage(vw, 0, 0, 256, 144);
             study.snapCtx.filter = 'none';
             study.snapTex.needsUpdate = true;
@@ -1146,12 +1296,12 @@ export async function mountRuntime(
           bestCommitted = true;
           study.snapCtx.putImageData(bestWallData, 0, 0);
           study.snapTex.needsUpdate = true;
-          wallMat.color.setScalar(2.6 + (20 - bestWallMean) * 0.12); // darker capture, louder drive
+          wallMat.color.setScalar(1.35 + (20 - bestWallMean) * 0.08); // darker capture, louder drive
         }
         wallMat.opacity = openMs >= 3_000
-          ? Math.min(1, (openMs - 3_000) / 900)
+          ? Math.min(1, (openMs - 3_000) / 900) * 0.7 // v02: heap is matter in the room, not a second projection
           : 0;
-        wallMat.color.setScalar(2.6); // colour-01.2: capture frames darker than .3 (mean 7 measured); overdrive harder
+        wallMat.color.setScalar(1.35); // matches the plate grey — v02: the film now decodes, overdrive is a light bomb
         wallMat.needsUpdate = true;
         if (!wallProofEmitted && openMs >= 3100) {
           wallProofEmitted = true;
@@ -1214,6 +1364,9 @@ export async function mountRuntime(
         (study.proj1.material as THREE.Material).dispose();
         study.proj2.geometry.dispose();
         (study.proj2.material as THREE.Material).dispose();
+        study.meltRelief.geometry.dispose();
+        (study.meltRelief.material as THREE.Material).dispose();
+        study.meltField.dispose();
       },
     };
   });
