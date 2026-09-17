@@ -638,25 +638,6 @@ export async function mountRuntime(
     // (r7 pace note: cold-cache decode lands the first pigment at ~12-20s;
     // the verify window ends at 16s — the aperture must fit inside it.)
 
-    // --- the delay line (colour-01): two hidden decoders locked to main ---
-    const D_G = 3.0;
-    const D_B = 6.0;
-    const MAIN_DUR = 90.02;
-    const DRIFT_LIMIT = 0.12;
-    const makeDelayVideo = (): { video: HTMLVideoElement; texture: THREE.VideoTexture } => {
-      const video = document.createElement("video");
-      video.src = "/videos/conquerb1943.mp4";
-      video.muted = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.style.display = "none";
-      document.body.appendChild(video);
-      const texture = new THREE.VideoTexture(video);
-      texture.colorSpace = THREE.SRGBColorSpace;
-      return { video, texture };
-    };
-    const delayed = { g: makeDelayVideo(), b: makeDelayVideo() };
-    let decodersLive = false;
     let seekAttempts = 0;
     const revealHolder = { revealed: false };
     const vidOf = (): HTMLVideoElement | null =>
@@ -810,9 +791,11 @@ export async function mountRuntime(
     document.addEventListener("seeked", onSeeked, true); // capture phase: element swaps included
     const detector = new CutDetector();
 
-    // drift lock + delay live swap (colour-01)
-    let splitLive = false;
-    let probeFrames = 0;
+    // v05 DELETION: the colour-01 delay line is GONE. The subtractive audit
+    // (research/2026-09-15-melt-01.md § subtractive audit) flagged ~80 lines
+    // of neutered colour machinery — two hidden delay decoders, drift lock,
+    // split/probe writes. The melt is the one operation; the o11y events
+    // those decoders emitted were colour-01's, not melt's.
     let wallProofEmitted = false;
     let wallMean = 0;
     // melt-01 fix (r4): the 8s capture budget previously counted from the
@@ -825,78 +808,6 @@ export async function mountRuntime(
     let bestWallMean = 0;
     let bestWallData: ImageData | null = null;
     let bestCommitted = false;
-    let driftEMA = { g: 1, b: 1 };
-    let driftTick = 0;
-    const colourStep = (): void => {
-      const main = vidOf();
-      if (!main || main.readyState < 2 || main.currentTime < D_B + 0.4) return;
-      if (!decodersLive) {
-        void delayed.g.video.play().catch(() => undefined);
-        void delayed.b.video.play().catch(() => undefined);
-        decodersLive = true;
-      }
-      for (const [which, dec, d] of [["g", delayed.g, D_G], ["b", delayed.b, D_B]] as const) {
-        if (dec.video.readyState < 1) continue;
-        const want = (main.currentTime - d + MAIN_DUR) % MAIN_DUR;
-        let diff = dec.video.currentTime - want;
-        if (Math.abs(diff) > MAIN_DUR / 2) diff -= Math.sign(diff) * MAIN_DUR;
-        if (Math.abs(diff) > DRIFT_LIMIT) dec.video.currentTime = want;
-        driftEMA[which] = driftEMA[which] * 0.9 + Math.min(Math.abs(diff), MAIN_DUR / 2) * 0.1;
-      }
-      driftTick++;
-      if (!splitLive && delayed.g.video.readyState >= 2 && delayed.b.video.readyState >= 2
-        && driftEMA.g < 0.05 && driftEMA.b < 0.05) {
-        splitLive = true;
-        void sketchEvents
-          .emitInfo("study", "melt01.lockAt", {
-            mainT: Number(main.currentTime.toFixed(2)),
-          })
-          .catch(() => undefined);
-        const uvm = vec2(uv().x.mul(-1).add(1), uv().y);
-        const tG = texture(delayed.g.texture, uvm as never);
-        const tB = texture(delayed.b.texture, uvm as never);
-        const tR = texture(videoLayer.texture, uvm as never);
-        const split = vec3(tR.r, tG.g, tB.b);
-        const grey = split.r.mul(0.299).add(split.g.mul(0.587)).add(split.b.mul(0.114));
-        void grey;
-        // melt-01: the colour lane stays PARKED. The inherited colour-01
-        // machinery still proves its delay ring (events below) but never
-        // writes the plate — the melt is the one operation, the plate stays
-        // the grey film from the shutter swap.
-        void sketchEvents
-          .emitInfo("study", "melt01.splitLive", {
-            mainT: Number(main.currentTime.toFixed(2)),
-            gT: Number(delayed.g.video.currentTime.toFixed(2)),
-            bT: Number(delayed.b.video.currentTime.toFixed(2)),
-          })
-          .catch(() => undefined);
-      }
-      if (splitLive && probeFrames < 200) {
-        probeFrames++;
-        if (probeFrames === 200) {
-          const uvm2 = vec2(uv().x.mul(-1).add(1), uv().y);
-          const tG2 = texture(delayed.g.texture, uvm2 as never);
-          const tB2 = texture(delayed.b.texture, uvm2 as never);
-          const tR2 = texture(videoLayer.texture, uvm2 as never);
-          const split2 = vec3(tR2.r, tG2.g, tB2.b);
-          void split2;
-          // melt-01: no plate write here (see splitLive note — colour parked).
-          void sketchEvents
-            .emitInfo("study", "melt01.probeDone", {})
-            .catch(() => undefined);
-        }
-      }
-      if (driftTick % 180 === 1) {
-        void sketchEvents
-          .emitInfo("study", "melt01.drift", {
-            main: Number(main.currentTime.toFixed(2)),
-            g: Number(delayed.g.video.currentTime.toFixed(2)),
-            b: Number(delayed.b.video.currentTime.toFixed(2)),
-            split: splitLive,
-          })
-          .catch(() => undefined);
-      }
-    };
     let lumaFramesSeen = 0;
     void sketchEvents.emitInfo("study", "study.ready", { study: STUDY, delay: DELAY }).catch(() => undefined);
 
@@ -929,7 +840,7 @@ export async function mountRuntime(
             }
           }
         }
-        colourStep();
+        // v05: colourStep deleted (see mount-top note — the delay line is gone).
         // seq-30: key the rail (and everything else time-based) to
         // ELAPSED SINCE FIRST STEP, not the shared animation clock —
         // two loads of the same sha must open on the same authored frame
