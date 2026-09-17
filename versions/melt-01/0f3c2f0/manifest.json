@@ -1,0 +1,15 @@
+{
+  "archive": "https://cinema.wzrrd.sh/archive/melt-01/0f3c2f0/",
+  "archivedAt": "2026-09-17T15:17:56.729Z",
+  "bundleHash": "0f3c2f0ad3bef16c6dcfd844b4471add8eeaa5d937bdce61cf9f96e6e72e8c53",
+  "catalogHashes": {
+    "Conquerb1943_512kb.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "Technico1949_512kb.mp4": "d67a9c38f7f3535714dc54aa8a2797491ce047baa2f29a79fb775af3f576420e",
+    "conquerb1943.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "v06 world-melt: floor terrain displaced by the past-luma field, walls funnel inward",
+  "sha": "0f3c2f0",
+  "study": "melt-01",
+  "url": "https://cinema.wzrrd.sh/"
+}

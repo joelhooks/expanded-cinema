@@ -5,6 +5,7 @@ import {
   normalLocal,
   positionLocal,
   saturate,
+  smoothstep,
   texture,
   uniform,
   uv,
@@ -224,9 +225,59 @@ function buildScene() {
   pastCamera.position.set(0.4, 0.85, 5.9);
   pastCamera.lookAt(-0.5, 1.1, 0);
 
-  // room: floor, back wall, curved screen — light receivers, not void
+  // v06 world: the room is no longer a box. The floor is a segmented
+  // terrain displaced by the SAME past-luma field the relief eats (the
+  // room is the screen's sediment — it melts in transposed space), and
+  // the walls lean inward like a funnel so the chamber tightens on the
+  // plate. One variable: world geometry.
+  const meltFieldData = new Uint8Array(LUMA_W * LUMA_H);
+  const meltField = new THREE.DataTexture(
+    meltFieldData,
+    LUMA_W,
+    LUMA_H,
+    THREE.RedFormat,
+    THREE.UnsignedByteType,
+  );
+  meltField.minFilter = THREE.LinearFilter;
+  meltField.magFilter = THREE.LinearFilter;
+  meltField.needsUpdate = true;
+  const meltGain = uniform(0);
   const roomMat = new THREE.MeshLambertMaterial({ color: 0x1b1626 });
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(30, 22), roomMat);
+  const floorMat = new MeshBasicNodeMaterial() as unknown as THREE.MeshBasicMaterial;
+  const floorNode = floorMat as unknown as {
+    positionNode: unknown;
+    colorNode: unknown;
+    needsUpdate: boolean;
+  };
+  // transposed uv so the terrain carries the generations mirrored across
+  // the room diagonal — same time, different body; a narrow smoothstep
+  // border pins only the outer 12% to the walls (a full sine pinned the
+  // near floor the camera actually sees — invisible melt).
+  const terrainField = texture(meltField, vec2(uv().y, uv().x));
+  const uvN = uv();
+  const terrainRim = smoothstep(0, 0.12, uvN.x)
+    .mul(smoothstep(0, 0.12, uvN.x.oneMinus()))
+    .mul(smoothstep(0, 0.12, uvN.y))
+    .mul(smoothstep(0, 0.12, uvN.y.oneMinus()));
+  const WORLD_MELT_MAX = 0.85;
+  const terrainDisp = terrainField.r
+    .mul(terrainRim)
+    .mul(WORLD_MELT_MAX)
+    .mul(meltGain.mul(3)); // v06: the world out-melts the surface — radical read
+  floorNode.positionNode = positionLocal.add(normalLocal.mul(terrainDisp));
+  // displaced craters lift a whisper of violet out of the dark (THREE.Color
+  // keeps the hex under colour management — raw linear literals render
+  // sRGB-bright)
+  floorNode.colorNode = mix(
+    vec3(0.0112, 0.0078, 0.0197), // ≈ #14101d under colour management
+    vec3(0.075, 0.048, 0.135), // craters catch violet — the melt must READ
+    saturate(terrainDisp.mul(2.5)),
+  );
+  floorNode.needsUpdate = true;
+  const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(30, 22, 88, 64),
+    floorMat,
+  );
   floor.rotation.x = -Math.PI / 2;
   floor.position.set(0, -0.02, -2);
   scene.add(floor);
@@ -234,16 +285,19 @@ function buildScene() {
   const back = new THREE.Mesh(new THREE.PlaneGeometry(30, 8), roomMat);
   back.position.set(0, 3.5, -7.6);
   back.rotation.y = Math.PI; // face inward
+  back.rotation.x = -0.14; // v06: lean over the plate
   scene.add(back);
 
   const sideL = new THREE.Mesh(new THREE.PlaneGeometry(22, 8), roomMat);
   sideL.position.set(-10.3, 3.5, -2);
   sideL.rotation.y = Math.PI / 2;
+  sideL.rotation.z = -0.12; // v06: fold toward the beam
   scene.add(sideL);
 
   const sideR = new THREE.Mesh(new THREE.PlaneGeometry(22, 8), roomMat);
   sideR.position.set(10.3, 3.5, -2);
   sideR.rotation.y = -Math.PI / 2;
+  sideR.rotation.z = -0.12; // v06: fold toward the beam
   scene.add(sideR);
 
   // colour-01 palette in the room: channel primaries at the lens, amber
@@ -344,18 +398,6 @@ function buildScene() {
   // changes (subtractive guard: delete the material and only the patch
   // disappears).
   // v02 relief: excursion clamp lives at module scope; the patch just uses it.
-  const meltFieldData = new Uint8Array(LUMA_W * LUMA_H);
-  const meltField = new THREE.DataTexture(
-    meltFieldData,
-    LUMA_W,
-    LUMA_H,
-    THREE.RedFormat,
-    THREE.UnsignedByteType,
-  );
-  meltField.minFilter = THREE.LinearFilter;
-  meltField.magFilter = THREE.LinearFilter;
-  meltField.needsUpdate = true;
-  const meltGain = uniform(0);
   const reliefGeo = new THREE.PlaneGeometry(
     SCREEN_ARC * SCREEN_R,
     SCREEN_H,

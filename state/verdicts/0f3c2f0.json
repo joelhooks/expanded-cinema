@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "0f3c2f0",
+  "at": "2026-09-17T15:40:13.022Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-0f3c2f0-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-0f3c2f0-16s.png"
+  ],
+  "framesDiffer": true,
+  "titleCard": false,
+  "operationVisible": "The film's operation is visible in the second frame, where the film appears to be projected and warped, indicating the motion of the projector and the film's movement.",
+  "floor": {
+    "space": true,
+    "apparatus": true,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 4,
+  "pass": false,
+  "critic": "The second frame shows a clear progression in the projection study, with the film being warped and the projector's beam visible, demonstrating the dynamic nature of the projection.",
+  "raw": "{\n  \"framesDiffer\": true,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": true,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"The film's operation is visible in the second frame, where the film appears to be projected and warped, indicating the motion of the projector and the film's movement.\",\n  \"notes\": \"The second frame shows a clear progression in the projection study, with the film being warped and the projector's beam visible, demonstrating the dynamic nature of the projection.\"\n}\n"
+}
