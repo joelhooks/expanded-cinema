@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "fca1d6d",
+  "at": "2026-09-16T23:10:30.528Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-fca1d6d-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-fca1d6d-16s.png"
+  ],
+  "framesDiffer": false,
+  "titleCard": false,
+  "operationVisible": "none",
+  "floor": {
+    "space": true,
+    "apparatus": false,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 3,
+  "pass": false,
+  "critic": "The two frames appear identical, suggesting no change in the scene or the film's material between the two points in time. The room's depth and the film's material properties remain consistent, indicating no motion or change in the setup.",
+  "raw": "{\n  \"framesDiffer\": false,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": false,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"none\",\n  \"notes\": \"The two frames appear identical, suggesting no change in the scene or the film's material between the two points in time. The room's depth and the film's material properties remain consistent, indicating no motion or change in the setup.\"\n}\n"
+}

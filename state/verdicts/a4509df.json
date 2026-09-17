@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "a4509df",
+  "at": "2026-09-17T00:35:01.532Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-a4509df-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-a4509df-16s.png"
+  ],
+  "framesDiffer": true,
+  "titleCard": false,
+  "operationVisible": "The film's operation is visible in the second frame, where the clock and film strips are shown in motion.",
+  "floor": {
+    "space": true,
+    "apparatus": false,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 3,
+  "pass": false,
+  "critic": "The second frame introduces a clock and film strips, indicating a transition or a new element in the study's operation.",
+  "raw": "{\n  \"framesDiffer\": true,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": false,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"The film's operation is visible in the second frame, where the clock and film strips are shown in motion.\",\n  \"notes\": \"The second frame introduces a clock and film strips, indicating a transition or a new element in the study's operation.\"\n}\n"
+}

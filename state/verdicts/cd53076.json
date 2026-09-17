@@ -1,0 +1,24 @@
+{
+  "study": "melt-01",
+  "sha": "cd53076",
+  "at": "2026-09-17T03:01:35.969Z",
+  "frames": [
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-cd53076-5s.png",
+    "/Users/joel/Code/joelhooks/expanded-cinema/critiques/melt-01-cd53076-16s.png"
+  ],
+  "framesDiffer": true,
+  "titleCard": false,
+  "operationVisible": "The film's operation is visible in the second frame, where the film appears to be split and warped, suggesting a projection or film manipulation effect.",
+  "floor": {
+    "space": true,
+    "apparatus": false,
+    "motion": false,
+    "filmAsMaterial": true,
+    "frameFilled": true,
+    "colour": true
+  },
+  "floorScore": 3,
+  "pass": false,
+  "critic": "The second frame shows a more dynamic and fragmented representation of the film, indicating a change in the projection or film manipulation technique.",
+  "raw": "{\n  \"framesDiffer\": true,\n  \"titleCard\": false,\n  \"space\": true,\n  \"apparatus\": false,\n  \"motion\": false,\n  \"filmAsMaterial\": true,\n  \"frameFilled\": true,\n  \"colour\": true,\n  \"operationVisible\": \"The film's operation is visible in the second frame, where the film appears to be split and warped, suggesting a projection or film manipulation effect.\",\n  \"notes\": \"The second frame shows a more dynamic and fragmented representation of the film, indicating a change in the projection or film manipulation technique.\"\n}\n"
+}
