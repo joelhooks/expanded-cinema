@@ -1,0 +1,15 @@
+{
+  "archive": "https://cinema.wzrrd.sh/archive/melt-01/a4509df/",
+  "archivedAt": "2026-09-16T23:56:51.145Z",
+  "bundleHash": "a4509dfc3994d2f9ebae4b7117ed2d3c8ca1c2c630ce97014eebceaa833ffacd",
+  "catalogHashes": {
+    "Conquerb1943_512kb.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "Technico1949_512kb.mp4": "d67a9c38f7f3535714dc54aa8a2797491ce047baa2f29a79fb775af3f576420e",
+    "conquerb1943.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "surface/melt-01 v02 r3: root cause of the cold-decode starvation found and fixed — the inherited in-point guard reassigned currentTime every frame for 30s (~60 seeks/s, decoder restart loop; element fully buffered at 90s yet readyState 1 at 27s on c58df79); guard now re-asserts only on real drift beyond 1.5s, same condition as seekTick",
+  "sha": "a4509df",
+  "study": "melt-01",
+  "url": "https://cinema.wzrrd.sh/"
+}

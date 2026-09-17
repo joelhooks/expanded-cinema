@@ -1,0 +1,15 @@
+{
+  "archive": "https://cinema.wzrrd.sh/archive/melt-01/cd53076/",
+  "archivedAt": "2026-09-17T02:23:35.523Z",
+  "bundleHash": "cd530762f55cf8a2f17f993f069af4f848a4672ce43dc858d341bd3422a516bd",
+  "catalogHashes": {
+    "Conquerb1943_512kb.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "Technico1949_512kb.mp4": "d67a9c38f7f3535714dc54aa8a2797491ce047baa2f29a79fb775af3f576420e",
+    "conquerb1943.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "surface/melt-01 v03 r1: relief field horizon 8->24 frames (~0.8s) — the surface swells from the near past instead of the last instant; liquid-time probe, everything else unchanged",
+  "sha": "cd53076",
+  "study": "melt-01",
+  "url": "https://cinema.wzrrd.sh/"
+}

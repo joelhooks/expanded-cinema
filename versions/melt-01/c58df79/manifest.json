@@ -1,0 +1,15 @@
+{
+  "archive": "https://cinema.wzrrd.sh/archive/melt-01/c58df79/",
+  "archivedAt": "2026-09-16T23:12:16.777Z",
+  "bundleHash": "c58df794e085faa5de30bb0f8e1246a28626c544f635f906ddab907cfce62713",
+  "catalogHashes": {
+    "Conquerb1943_512kb.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "Technico1949_512kb.mp4": "d67a9c38f7f3535714dc54aa8a2797491ce047baa2f29a79fb775af3f576420e",
+    "conquerb1943.mp4": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+    "starter.mp4": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9"
+  },
+  "note": "surface/melt-01 v02 r2: withhold 9000->4500ms hard receipt — cold archive decode hits readyState 2 at ~10-14s, old withhold pushed the aperture to 19-23s past the 16s verify window (fca1d6d both frames closed plate); 4500 keeps the closed plate a readable state and fits aperture at decode+4.5s",
+  "sha": "c58df79",
+  "study": "melt-01",
+  "url": "https://cinema.wzrrd.sh/"
+}
