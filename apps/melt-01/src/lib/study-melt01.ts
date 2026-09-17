@@ -174,7 +174,11 @@ function meltTick(
   // v02 r4: floor 0.16 — the 16s window sits in the film's machining still
   // stretch; a 0.08 floor flattened the swell below critic legibility
   // (a4509df motion=false). Still calm, but visibly alive.
-  reliefDrive = 0.16 + motion * 3.2 + cutPulse * 0.55;
+  // v04: cut detonation — a film cut slams the relief to its excursion
+  // clamp for the pulse's duration (spec: "on a cut the relief detonates
+  // to maximum displacement"). 0.55 only outshone the 0.16 floor; a cut
+  // should READ as an event in the surface.
+  reliefDrive = 0.16 + motion * 3.2 + cutPulse * 2.4;
 
   study.shards.forEach((m, i) => {
     const f = meltFacets[i]!;

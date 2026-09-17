@@ -22280,8 +22280,8 @@
       "status": "skipped"
     },
     {
-      "bytes": 19048,
-      "etag": "0e13c9bdafcfb1b5591e0eebd8c80894415054601a25ed1cbc736acac16fdc3b",
+      "bytes": 19201,
+      "etag": "7e31903528715ba0e99c5f3e447b9846ff00bae4c05a0e6c1437d3abf5fb458f",
       "key": "archive/index.html",
       "status": "uploaded"
     },
@@ -27657,321 +27657,639 @@
     },
     {
       "bytes": 11575,
-      "etag": "2b1bde1e5d76031f8723a27fce9803b856493498c417295321b8586c170dce20",
-      "key": "archive/melt-01/cd53076/assets/index-CZbq8nS9.js",
+      "etag": "2a42885a65a4b8e5cfdf68f1f5d57c359b6e3a235853b96ba1f71f4cb09461e8",
+      "key": "archive/melt-01/c9799ed/assets/index-ZH0ncUzd.js",
       "status": "uploaded"
     },
     {
       "bytes": 47321,
-      "etag": "4c0d40d7c21fa79a5e18b6c07d37b213288b7bd138bf7ce5206ca335dc4092fb",
-      "key": "archive/melt-01/cd53076/assets/index-CZbq8nS9.js.map",
+      "etag": "746de5a2ef6be92f1701a58aec2ecd181412079df56969a49109c7573e90a150",
+      "key": "archive/melt-01/c9799ed/assets/index-ZH0ncUzd.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 212627,
       "etag": "400b75896baf41e1406ba7faa93bb0759efb3af167bd28f144cd2b606174e55a",
-      "key": "archive/melt-01/cd53076/assets/o11y-CzJjQfRE.js",
+      "key": "archive/melt-01/c9799ed/assets/o11y-CzJjQfRE.js",
       "status": "uploaded"
     },
     {
       "bytes": 1856359,
       "etag": "8384a33c9da4c7b5ef22c4d088c0c56d188d7b58362ec562e94e54d3552aa398",
-      "key": "archive/melt-01/cd53076/assets/o11y-CzJjQfRE.js.map",
+      "key": "archive/melt-01/c9799ed/assets/o11y-CzJjQfRE.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 912,
       "etag": "8fd33da592fa2c3e21d1351eade9137532e2d7e11e65562d05d8ae97343b4be0",
-      "key": "archive/melt-01/cd53076/assets/ring-capture-VrqvsPdT.js",
+      "key": "archive/melt-01/c9799ed/assets/ring-capture-VrqvsPdT.js",
       "status": "uploaded"
     },
     {
       "bytes": 6034,
       "etag": "a02ca077505a9b3d151e5d663bf2875835eedd6cc010e0befe05222807674907",
-      "key": "archive/melt-01/cd53076/assets/ring-capture-VrqvsPdT.js.map",
+      "key": "archive/melt-01/c9799ed/assets/ring-capture-VrqvsPdT.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 3646,
       "etag": "7cba7c08645518f9d8647465d0cebf89c19980f53ace55da7dd72be2ef54f887",
-      "key": "archive/melt-01/cd53076/assets/study-clock-CIjrHPxg.js",
+      "key": "archive/melt-01/c9799ed/assets/study-clock-CIjrHPxg.js",
       "status": "uploaded"
     },
     {
       "bytes": 13096,
       "etag": "cf6fba2d556dd3790c3070dcc08565ad720b4eb98b5c97e42e734f8be73dd18a",
-      "key": "archive/melt-01/cd53076/assets/study-clock-CIjrHPxg.js.map",
+      "key": "archive/melt-01/c9799ed/assets/study-clock-CIjrHPxg.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 3297,
       "etag": "074aa635ea43178d355ef456f6400c74338b849f6443ebe195541fb326f426cb",
-      "key": "archive/melt-01/cd53076/assets/study-clock02-L1DIy8kw.js",
+      "key": "archive/melt-01/c9799ed/assets/study-clock02-L1DIy8kw.js",
       "status": "uploaded"
     },
     {
       "bytes": 11897,
       "etag": "4b311dd6efadd0d0d2bcb796d489c774670cd73dfa1accc2a2e2aa213d4538d6",
-      "key": "archive/melt-01/cd53076/assets/study-clock02-L1DIy8kw.js.map",
+      "key": "archive/melt-01/c9799ed/assets/study-clock02-L1DIy8kw.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 4280,
       "etag": "d5640085cea0609d168cb8d765b2391a2eda6891a65eae4dd0359977bd3bd845",
-      "key": "archive/melt-01/cd53076/assets/study-clock03-CK9jmBqK.js",
+      "key": "archive/melt-01/c9799ed/assets/study-clock03-CK9jmBqK.js",
       "status": "uploaded"
     },
     {
       "bytes": 16058,
       "etag": "28a17444b08f6269621d88166ebcc78b2f427ea7ba04135f6b64d5b346e624c8",
-      "key": "archive/melt-01/cd53076/assets/study-clock03-CK9jmBqK.js.map",
+      "key": "archive/melt-01/c9799ed/assets/study-clock03-CK9jmBqK.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 9613,
       "etag": "5c7e25e1b03876333b1f03a0630eb58ad1f28cd4dce2d5dca2b6d55f9b04ac26",
-      "key": "archive/melt-01/cd53076/assets/study-clock04-Bdn8RcTK.js",
+      "key": "archive/melt-01/c9799ed/assets/study-clock04-Bdn8RcTK.js",
       "status": "uploaded"
     },
     {
       "bytes": 46985,
       "etag": "feddb23d0c52c95a31c29f30dc4bc488f9961fcda6955e9913b4e2bb1e62584b",
-      "key": "archive/melt-01/cd53076/assets/study-clock04-Bdn8RcTK.js.map",
+      "key": "archive/melt-01/c9799ed/assets/study-clock04-Bdn8RcTK.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 3138,
       "etag": "a3ac76fd29c0d940a43e6bd0e732c229c39159e733ba864a7303ac1ba0916d05",
-      "key": "archive/melt-01/cd53076/assets/study-clock05-BsX7yan9.js",
+      "key": "archive/melt-01/c9799ed/assets/study-clock05-BsX7yan9.js",
       "status": "uploaded"
     },
     {
       "bytes": 12357,
       "etag": "6448e244227837d5bb31d8436704e8a1ca975f3cc8ab9da47c65709455238909",
-      "key": "archive/melt-01/cd53076/assets/study-clock05-BsX7yan9.js.map",
+      "key": "archive/melt-01/c9799ed/assets/study-clock05-BsX7yan9.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 15333,
       "etag": "f67680837c25ec06c7096b71c74866abc3a0ee1074ad27a001c8d5887cc0f8ca",
-      "key": "archive/melt-01/cd53076/assets/study-colour01-D9x08cXp.js",
+      "key": "archive/melt-01/c9799ed/assets/study-colour01-D9x08cXp.js",
       "status": "uploaded"
     },
     {
       "bytes": 73654,
       "etag": "7eadd72040220301b102d59c978df4e2783d93611b9dbbf9b34b039b0b9c888a",
-      "key": "archive/melt-01/cd53076/assets/study-colour01-D9x08cXp.js.map",
+      "key": "archive/melt-01/c9799ed/assets/study-colour01-D9x08cXp.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 18053,
-      "etag": "e3cb7fa6064c828d4c4f76a5b5cbb3a6cc9601c592804dfc5125b50d819fbde4",
-      "key": "archive/melt-01/cd53076/assets/study-melt01-CR5v8FcP.js",
+      "etag": "7db1dc73705e4ea45681472cc07136c22e0f4bfae8d95c371ce0911c4f55c142",
+      "key": "archive/melt-01/c9799ed/assets/study-melt01-B-bTXKGv.js",
       "status": "uploaded"
     },
     {
-      "bytes": 90277,
-      "etag": "157691f246c6497b2a74117efde8361a0d32ecb6ecc5736677fcb48c88c0a8bb",
-      "key": "archive/melt-01/cd53076/assets/study-melt01-CR5v8FcP.js.map",
+      "bytes": 90548,
+      "etag": "330da87547614875bb98dbbd50fd9846c340741fd82191913efad09301811433",
+      "key": "archive/melt-01/c9799ed/assets/study-melt01-B-bTXKGv.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 166,
       "etag": "a311a1454ed15880bf9dbbbefee6ef301a3da185775152972e99e2a3013f5043",
-      "key": "archive/melt-01/cd53076/assets/study-recurrence-Bk7aXSP2.js",
+      "key": "archive/melt-01/c9799ed/assets/study-recurrence-Bk7aXSP2.js",
       "status": "uploaded"
     },
     {
       "bytes": 2103,
       "etag": "70149cf3e0053617ce32a2eccf786d7a05696b7b4fc1f4ca7409fe81006b8458",
-      "key": "archive/melt-01/cd53076/assets/study-recurrence-C6njJ4Fc.js",
+      "key": "archive/melt-01/c9799ed/assets/study-recurrence-C6njJ4Fc.js",
       "status": "uploaded"
     },
     {
       "bytes": 9839,
       "etag": "1c3fda7d57d17113e44750eb72395c8ef5aedff241e143d1d891d682cab33953",
-      "key": "archive/melt-01/cd53076/assets/study-recurrence-C6njJ4Fc.js.map",
+      "key": "archive/melt-01/c9799ed/assets/study-recurrence-C6njJ4Fc.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 176,
       "etag": "7e3b0235420c28a14ee3d50263298b9df1882922f8acc3622ba69f8f48febc84",
-      "key": "archive/melt-01/cd53076/assets/study-recursion-B6kz2kr1.js",
+      "key": "archive/melt-01/c9799ed/assets/study-recursion-B6kz2kr1.js",
       "status": "uploaded"
     },
     {
       "bytes": 3495,
       "etag": "bbe03478b553d7d87f8bad450111bff47e6f04c7a1efb817c017deb8f0ef10b9",
-      "key": "archive/melt-01/cd53076/assets/study-recursion-B7bhiP67.js",
+      "key": "archive/melt-01/c9799ed/assets/study-recursion-B7bhiP67.js",
       "status": "uploaded"
     },
     {
       "bytes": 12817,
       "etag": "d3a5b314044a01d42dada065c481b4457d875340fe815ed8be0bde5b68862705",
-      "key": "archive/melt-01/cd53076/assets/study-recursion-B7bhiP67.js.map",
+      "key": "archive/melt-01/c9799ed/assets/study-recursion-B7bhiP67.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 15689,
       "etag": "9f1f10c3d245f2545fcf87964d576dc561edcf392239ec8720801a1a6b04bb0c",
-      "key": "archive/melt-01/cd53076/assets/study-wallform01-CjPSGz-g.js",
+      "key": "archive/melt-01/c9799ed/assets/study-wallform01-CjPSGz-g.js",
       "status": "uploaded"
     },
     {
       "bytes": 74293,
       "etag": "bb7f7e145a87b759f5b7eb4597214501417dea6f3796d46eea0ed975e9a0bd9b",
-      "key": "archive/melt-01/cd53076/assets/study-wallform01-CjPSGz-g.js.map",
+      "key": "archive/melt-01/c9799ed/assets/study-wallform01-CjPSGz-g.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 11762,
       "etag": "ec5c86893bb93abedc31eba1c7475adc6ad2668cb6c51314961ec66b524bcea7",
-      "key": "archive/melt-01/cd53076/assets/study-withhold01-CT63DFgD.js",
+      "key": "archive/melt-01/c9799ed/assets/study-withhold01-CT63DFgD.js",
       "status": "uploaded"
     },
     {
       "bytes": 57291,
       "etag": "7e7d5b266d3dec7b1684b5615bce001519114617589a7d6a1e260dd7b725ad78",
-      "key": "archive/melt-01/cd53076/assets/study-withhold01-CT63DFgD.js.map",
+      "key": "archive/melt-01/c9799ed/assets/study-withhold01-CT63DFgD.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 10581,
       "etag": "02ef4f6848a4a5e90b7f09ee223186aec6ce566a9fbc94582474ba5e49d05238",
-      "key": "archive/melt-01/cd53076/assets/three.tsl-D4OlXbG3.js",
+      "key": "archive/melt-01/c9799ed/assets/three.tsl-D4OlXbG3.js",
       "status": "uploaded"
     },
     {
       "bytes": 44942,
       "etag": "a10078b3b1f3c3960ae4bf87c40fb25f946c6f458b82f995103d7711b4ccbc51",
-      "key": "archive/melt-01/cd53076/assets/three.tsl-D4OlXbG3.js.map",
+      "key": "archive/melt-01/c9799ed/assets/three.tsl-D4OlXbG3.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 675558,
       "etag": "8f87bfe2f558fceb270bd2d1429bd91edbf8acaadc7c806f77ae84e925c03758",
-      "key": "archive/melt-01/cd53076/assets/three.webgpu-BNKDU8q4.js",
+      "key": "archive/melt-01/c9799ed/assets/three.webgpu-BNKDU8q4.js",
       "status": "uploaded"
     },
     {
       "bytes": 3223944,
       "etag": "bbb4fad79d0863bc9a86352dc83485cfb121b9d8970cc3bb281b4101d84572ed",
-      "key": "archive/melt-01/cd53076/assets/three.webgpu-BNKDU8q4.js.map",
+      "key": "archive/melt-01/c9799ed/assets/three.webgpu-BNKDU8q4.js.map",
       "status": "uploaded"
     },
     {
       "bytes": 1927,
-      "etag": "7fb4fe57768c596d059dd33f926919cd6e474cefff565eda32a98989a4b62967",
-      "key": "archive/melt-01/cd53076/index.html",
+      "etag": "2c0ded38e21e5d021c9c3a02deebd02109980ad82d6faff4798c3c5e148ff737",
+      "key": "archive/melt-01/c9799ed/index.html",
       "status": "uploaded"
     },
     {
       "bytes": 126201,
       "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
-      "key": "archive/melt-01/cd53076/og-image.png",
+      "key": "archive/melt-01/c9799ed/og-image.png",
       "status": "uploaded"
     },
     {
       "bytes": 746,
       "etag": "abcc5a10f3e652f3b87360d2c7ff423e6d6947cb6269f036c2b1d162c3e080e2",
-      "key": "archive/melt-01/cd53076/radar/clock05/provenance.md",
+      "key": "archive/melt-01/c9799ed/radar/clock05/provenance.md",
       "status": "uploaded"
     },
     {
       "bytes": 198774,
       "etag": "89154c1144c10f99d73c494caf14d4fcf9b3a82eb8d3f59d8e54fdc04679ba3d",
-      "key": "archive/melt-01/cd53076/radar/clock05/rad01.jpg",
+      "key": "archive/melt-01/c9799ed/radar/clock05/rad01.jpg",
       "status": "uploaded"
     },
     {
       "bytes": 198231,
       "etag": "9a95ebb8d11631334a00c0ceac1461a3ae787c4bf971445c3770aef75a7fb5f7",
-      "key": "archive/melt-01/cd53076/radar/clock05/rad02.jpg",
+      "key": "archive/melt-01/c9799ed/radar/clock05/rad02.jpg",
       "status": "uploaded"
     },
     {
       "bytes": 198237,
       "etag": "649c425f846e79f7b3b51f0b4ec4900c28b7d282cdf83bac5c82f9f814a3a40e",
-      "key": "archive/melt-01/cd53076/radar/clock05/rad03.jpg",
+      "key": "archive/melt-01/c9799ed/radar/clock05/rad03.jpg",
       "status": "uploaded"
     },
     {
       "bytes": 198205,
       "etag": "45325bd4a5edde5a75f42ce86c1e673da19b5b3575058f3e11385b2b0534258a",
-      "key": "archive/melt-01/cd53076/radar/clock05/rad04.jpg",
+      "key": "archive/melt-01/c9799ed/radar/clock05/rad04.jpg",
       "status": "uploaded"
     },
     {
       "bytes": 198103,
       "etag": "b2917dba7aefa0a8ff7dffe71ddfd92be40fd48ec3f8efa88101ca146ea892c7",
-      "key": "archive/melt-01/cd53076/radar/clock05/rad05.jpg",
+      "key": "archive/melt-01/c9799ed/radar/clock05/rad05.jpg",
       "status": "uploaded"
     },
     {
       "bytes": 198077,
       "etag": "27883e976c5fab6b1a4de8dab5729f1ddf463ee4e4bd448fe9b9afefff6f955a",
-      "key": "archive/melt-01/cd53076/radar/clock05/rad06.jpg",
+      "key": "archive/melt-01/c9799ed/radar/clock05/rad06.jpg",
       "status": "uploaded"
     },
     {
       "bytes": 198067,
       "etag": "8c4a15001dada6940c618715b1378085962b4bf6596a0864ab87e0312498ec2e",
-      "key": "archive/melt-01/cd53076/radar/clock05/rad07.jpg",
+      "key": "archive/melt-01/c9799ed/radar/clock05/rad07.jpg",
       "status": "uploaded"
     },
     {
       "bytes": 198003,
       "etag": "7f89e25c75821007c12d38a95f36c454bdac192f04ff45b5923fa6b1460c8dac",
-      "key": "archive/melt-01/cd53076/radar/clock05/rad08.jpg",
+      "key": "archive/melt-01/c9799ed/radar/clock05/rad08.jpg",
       "status": "uploaded"
     },
     {
       "bytes": 198068,
       "etag": "07c2198607a9ecf1c568e16650a0f00b2f0f882bd668f6fa1787b425b5f1f171",
-      "key": "archive/melt-01/cd53076/radar/clock05/rad09.jpg",
+      "key": "archive/melt-01/c9799ed/radar/clock05/rad09.jpg",
       "status": "uploaded"
     },
     {
       "bytes": 197377,
       "etag": "6064e1828aa0207b192477eb4858e61853545179ec07a21dcfe1bf542af6a251",
-      "key": "archive/melt-01/cd53076/radar/clock05/rad10.jpg",
+      "key": "archive/melt-01/c9799ed/radar/clock05/rad10.jpg",
       "status": "uploaded"
     },
     {
       "bytes": 46,
       "etag": "18c44e2b24db04e239c9efd9326ecb43e1350c47fbd53ee3e65a3eced0963190",
-      "key": "archive/melt-01/cd53076/videos/.gitignore",
+      "key": "archive/melt-01/c9799ed/videos/.gitignore",
       "status": "uploaded"
     },
     {
       "bytes": 281,
       "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
-      "key": "archive/melt-01/cd53076/videos/README.md",
+      "key": "archive/melt-01/c9799ed/videos/README.md",
       "status": "uploaded"
     },
     {
       "bytes": 2602709,
       "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
-      "key": "archive/melt-01/cd53076/videos/conquerb1943.mp4",
+      "key": "archive/melt-01/c9799ed/videos/conquerb1943.mp4",
       "status": "uploaded"
     },
     {
       "bytes": 758868,
       "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
-      "key": "archive/melt-01/cd53076/videos/starter.mp4",
+      "key": "archive/melt-01/c9799ed/videos/starter.mp4",
       "status": "uploaded"
+    },
+    {
+      "bytes": 896,
+      "etag": "e924c3519d8e986b8d81d9dce3c9dc3d4441823c7254b6ca774897de851d4221",
+      "key": "archive/melt-01/c9799ed/manifest.json",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 229,
+      "etag": "86fcce4d1d7514f65e135572e18a2a0e0d37153810ef0e061eafd75881c3ccb7",
+      "key": "archive/melt-01/c9799ed/note.md",
+      "status": "uploaded"
+    },
+    {
+      "bytes": 11575,
+      "etag": "2b1bde1e5d76031f8723a27fce9803b856493498c417295321b8586c170dce20",
+      "key": "archive/melt-01/cd53076/assets/index-CZbq8nS9.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 47321,
+      "etag": "4c0d40d7c21fa79a5e18b6c07d37b213288b7bd138bf7ce5206ca335dc4092fb",
+      "key": "archive/melt-01/cd53076/assets/index-CZbq8nS9.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 212627,
+      "etag": "400b75896baf41e1406ba7faa93bb0759efb3af167bd28f144cd2b606174e55a",
+      "key": "archive/melt-01/cd53076/assets/o11y-CzJjQfRE.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1856359,
+      "etag": "8384a33c9da4c7b5ef22c4d088c0c56d188d7b58362ec562e94e54d3552aa398",
+      "key": "archive/melt-01/cd53076/assets/o11y-CzJjQfRE.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 912,
+      "etag": "8fd33da592fa2c3e21d1351eade9137532e2d7e11e65562d05d8ae97343b4be0",
+      "key": "archive/melt-01/cd53076/assets/ring-capture-VrqvsPdT.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 6034,
+      "etag": "a02ca077505a9b3d151e5d663bf2875835eedd6cc010e0befe05222807674907",
+      "key": "archive/melt-01/cd53076/assets/ring-capture-VrqvsPdT.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3646,
+      "etag": "7cba7c08645518f9d8647465d0cebf89c19980f53ace55da7dd72be2ef54f887",
+      "key": "archive/melt-01/cd53076/assets/study-clock-CIjrHPxg.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 13096,
+      "etag": "cf6fba2d556dd3790c3070dcc08565ad720b4eb98b5c97e42e734f8be73dd18a",
+      "key": "archive/melt-01/cd53076/assets/study-clock-CIjrHPxg.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3297,
+      "etag": "074aa635ea43178d355ef456f6400c74338b849f6443ebe195541fb326f426cb",
+      "key": "archive/melt-01/cd53076/assets/study-clock02-L1DIy8kw.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11897,
+      "etag": "4b311dd6efadd0d0d2bcb796d489c774670cd73dfa1accc2a2e2aa213d4538d6",
+      "key": "archive/melt-01/cd53076/assets/study-clock02-L1DIy8kw.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 4280,
+      "etag": "d5640085cea0609d168cb8d765b2391a2eda6891a65eae4dd0359977bd3bd845",
+      "key": "archive/melt-01/cd53076/assets/study-clock03-CK9jmBqK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 16058,
+      "etag": "28a17444b08f6269621d88166ebcc78b2f427ea7ba04135f6b64d5b346e624c8",
+      "key": "archive/melt-01/cd53076/assets/study-clock03-CK9jmBqK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9613,
+      "etag": "5c7e25e1b03876333b1f03a0630eb58ad1f28cd4dce2d5dca2b6d55f9b04ac26",
+      "key": "archive/melt-01/cd53076/assets/study-clock04-Bdn8RcTK.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46985,
+      "etag": "feddb23d0c52c95a31c29f30dc4bc488f9961fcda6955e9913b4e2bb1e62584b",
+      "key": "archive/melt-01/cd53076/assets/study-clock04-Bdn8RcTK.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3138,
+      "etag": "a3ac76fd29c0d940a43e6bd0e732c229c39159e733ba864a7303ac1ba0916d05",
+      "key": "archive/melt-01/cd53076/assets/study-clock05-BsX7yan9.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12357,
+      "etag": "6448e244227837d5bb31d8436704e8a1ca975f3cc8ab9da47c65709455238909",
+      "key": "archive/melt-01/cd53076/assets/study-clock05-BsX7yan9.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15333,
+      "etag": "f67680837c25ec06c7096b71c74866abc3a0ee1074ad27a001c8d5887cc0f8ca",
+      "key": "archive/melt-01/cd53076/assets/study-colour01-D9x08cXp.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 73654,
+      "etag": "7eadd72040220301b102d59c978df4e2783d93611b9dbbf9b34b039b0b9c888a",
+      "key": "archive/melt-01/cd53076/assets/study-colour01-D9x08cXp.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 18053,
+      "etag": "e3cb7fa6064c828d4c4f76a5b5cbb3a6cc9601c592804dfc5125b50d819fbde4",
+      "key": "archive/melt-01/cd53076/assets/study-melt01-CR5v8FcP.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 90277,
+      "etag": "157691f246c6497b2a74117efde8361a0d32ecb6ecc5736677fcb48c88c0a8bb",
+      "key": "archive/melt-01/cd53076/assets/study-melt01-CR5v8FcP.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 166,
+      "etag": "a311a1454ed15880bf9dbbbefee6ef301a3da185775152972e99e2a3013f5043",
+      "key": "archive/melt-01/cd53076/assets/study-recurrence-Bk7aXSP2.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2103,
+      "etag": "70149cf3e0053617ce32a2eccf786d7a05696b7b4fc1f4ca7409fe81006b8458",
+      "key": "archive/melt-01/cd53076/assets/study-recurrence-C6njJ4Fc.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 9839,
+      "etag": "1c3fda7d57d17113e44750eb72395c8ef5aedff241e143d1d891d682cab33953",
+      "key": "archive/melt-01/cd53076/assets/study-recurrence-C6njJ4Fc.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 176,
+      "etag": "7e3b0235420c28a14ee3d50263298b9df1882922f8acc3622ba69f8f48febc84",
+      "key": "archive/melt-01/cd53076/assets/study-recursion-B6kz2kr1.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3495,
+      "etag": "bbe03478b553d7d87f8bad450111bff47e6f04c7a1efb817c017deb8f0ef10b9",
+      "key": "archive/melt-01/cd53076/assets/study-recursion-B7bhiP67.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 12817,
+      "etag": "d3a5b314044a01d42dada065c481b4457d875340fe815ed8be0bde5b68862705",
+      "key": "archive/melt-01/cd53076/assets/study-recursion-B7bhiP67.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 15689,
+      "etag": "9f1f10c3d245f2545fcf87964d576dc561edcf392239ec8720801a1a6b04bb0c",
+      "key": "archive/melt-01/cd53076/assets/study-wallform01-CjPSGz-g.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 74293,
+      "etag": "bb7f7e145a87b759f5b7eb4597214501417dea6f3796d46eea0ed975e9a0bd9b",
+      "key": "archive/melt-01/cd53076/assets/study-wallform01-CjPSGz-g.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 11762,
+      "etag": "ec5c86893bb93abedc31eba1c7475adc6ad2668cb6c51314961ec66b524bcea7",
+      "key": "archive/melt-01/cd53076/assets/study-withhold01-CT63DFgD.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 57291,
+      "etag": "7e7d5b266d3dec7b1684b5615bce001519114617589a7d6a1e260dd7b725ad78",
+      "key": "archive/melt-01/cd53076/assets/study-withhold01-CT63DFgD.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 10581,
+      "etag": "02ef4f6848a4a5e90b7f09ee223186aec6ce566a9fbc94582474ba5e49d05238",
+      "key": "archive/melt-01/cd53076/assets/three.tsl-D4OlXbG3.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 44942,
+      "etag": "a10078b3b1f3c3960ae4bf87c40fb25f946c6f458b82f995103d7711b4ccbc51",
+      "key": "archive/melt-01/cd53076/assets/three.tsl-D4OlXbG3.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 675558,
+      "etag": "8f87bfe2f558fceb270bd2d1429bd91edbf8acaadc7c806f77ae84e925c03758",
+      "key": "archive/melt-01/cd53076/assets/three.webgpu-BNKDU8q4.js",
+      "status": "skipped"
+    },
+    {
+      "bytes": 3223944,
+      "etag": "bbb4fad79d0863bc9a86352dc83485cfb121b9d8970cc3bb281b4101d84572ed",
+      "key": "archive/melt-01/cd53076/assets/three.webgpu-BNKDU8q4.js.map",
+      "status": "skipped"
+    },
+    {
+      "bytes": 1927,
+      "etag": "7fb4fe57768c596d059dd33f926919cd6e474cefff565eda32a98989a4b62967",
+      "key": "archive/melt-01/cd53076/index.html",
+      "status": "skipped"
+    },
+    {
+      "bytes": 126201,
+      "etag": "386813afff419e5d236833e85fce5332de8bb0c8d75b9bb79bc97969758207df",
+      "key": "archive/melt-01/cd53076/og-image.png",
+      "status": "skipped"
+    },
+    {
+      "bytes": 746,
+      "etag": "abcc5a10f3e652f3b87360d2c7ff423e6d6947cb6269f036c2b1d162c3e080e2",
+      "key": "archive/melt-01/cd53076/radar/clock05/provenance.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198774,
+      "etag": "89154c1144c10f99d73c494caf14d4fcf9b3a82eb8d3f59d8e54fdc04679ba3d",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad01.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198231,
+      "etag": "9a95ebb8d11631334a00c0ceac1461a3ae787c4bf971445c3770aef75a7fb5f7",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad02.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198237,
+      "etag": "649c425f846e79f7b3b51f0b4ec4900c28b7d282cdf83bac5c82f9f814a3a40e",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad03.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198205,
+      "etag": "45325bd4a5edde5a75f42ce86c1e673da19b5b3575058f3e11385b2b0534258a",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad04.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198103,
+      "etag": "b2917dba7aefa0a8ff7dffe71ddfd92be40fd48ec3f8efa88101ca146ea892c7",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad05.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198077,
+      "etag": "27883e976c5fab6b1a4de8dab5729f1ddf463ee4e4bd448fe9b9afefff6f955a",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad06.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198067,
+      "etag": "8c4a15001dada6940c618715b1378085962b4bf6596a0864ab87e0312498ec2e",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad07.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198003,
+      "etag": "7f89e25c75821007c12d38a95f36c454bdac192f04ff45b5923fa6b1460c8dac",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad08.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 198068,
+      "etag": "07c2198607a9ecf1c568e16650a0f00b2f0f882bd668f6fa1787b425b5f1f171",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad09.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 197377,
+      "etag": "6064e1828aa0207b192477eb4858e61853545179ec07a21dcfe1bf542af6a251",
+      "key": "archive/melt-01/cd53076/radar/clock05/rad10.jpg",
+      "status": "skipped"
+    },
+    {
+      "bytes": 46,
+      "etag": "18c44e2b24db04e239c9efd9326ecb43e1350c47fbd53ee3e65a3eced0963190",
+      "key": "archive/melt-01/cd53076/videos/.gitignore",
+      "status": "skipped"
+    },
+    {
+      "bytes": 281,
+      "etag": "dfa6456ee4ddbcc9161f44a0fc3ad6f4e8a9a8d6a9a9b51bf094b5574d3d9114",
+      "key": "archive/melt-01/cd53076/videos/README.md",
+      "status": "skipped"
+    },
+    {
+      "bytes": 2602709,
+      "etag": "02b596fb075d7ee35e44c09d14466b27d6d618d7156c0afd26a7331a09cae056",
+      "key": "archive/melt-01/cd53076/videos/conquerb1943.mp4",
+      "status": "skipped"
+    },
+    {
+      "bytes": 758868,
+      "etag": "8f74b70e38f56e0bcf1d0dcf584e40a97b0ae3cbd01da40d956956812dc984c9",
+      "key": "archive/melt-01/cd53076/videos/starter.mp4",
+      "status": "skipped"
     },
     {
       "bytes": 870,
       "etag": "d82a65510c1d4ec6c7debccd17ddac5f569946fe9f69062326c105951295a058",
       "key": "archive/melt-01/cd53076/manifest.json",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 203,
       "etag": "b2da73432f80cd62841ea5863acc6e7037de9c09a76d7899dc6b6b533b868767",
       "key": "archive/melt-01/cd53076/note.md",
-      "status": "uploaded"
+      "status": "skipped"
     },
     {
       "bytes": 11414,
