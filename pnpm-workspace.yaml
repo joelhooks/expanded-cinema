@@ -10,14 +10,14 @@ allowBuilds:
   msgpackr-extract: true
   workerd: true
 
-# One Effect major across the workspace: v4 at rc.112, pinned exactly.
-# alchemy beta.77 declares `effect >=4.0.0-rc.112` (open range) and calls
-# Config.string, which rc.115 removed; its transitive @effect/* packages would
-# otherwise resolve to rc.115 builds that import `effect/ByteSize`, which
-# rc.112 does not ship. Bump this set together when alchemy targets a newer rc.
+# One Effect major across the workspace: v4 stable, pinned exactly.
+# Keep the platform packages on the same stable release as Effect.
 overrides:
-  "@effect/platform-node-shared": 4.0.0-rc.112
-  "@effect/platform-bun": 4.0.0-rc.112
-  "@effect/platform-node": 4.0.0-rc.112
-  effect: 4.0.0-rc.112
+  "@effect/platform-node-shared": 4.0.2
+  "@effect/platform-bun": 4.0.2
+  "@effect/platform-node": 4.0.2
+  "@effect/sql-d1": 4.0.2
+  "@effect/sql-sqlite-do": 4.0.2
+  "@effect/vitest": 4.0.2
+  effect: 4.0.2
   alchemy: 2.0.0-beta.77
