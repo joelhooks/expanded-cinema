@@ -11,10 +11,10 @@
     "check": "pnpm run typecheck"
   },
   "dependencies": {
-    "@effect/platform-node": "4.0.0-rc.112",
+    "@effect/platform-node": "4.0.2",
     "@expanded-cinema/core": "workspace:*",
     "@types/three": "0.186.0",
-    "effect": "4.0.0-rc.112",
+    "effect": "4.0.2",
     "three": "0.186.0",
     "xstate": "6.0.0-alpha.53",
     "zustand": "5.0.15"
